@@ -1,1 +1,20 @@
 @charset "UTF-8";
+/*==============================================전체 기본 설정===============================================*/
+@font-face {
+    font-family: 'paybooc-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+body, ul, li{
+	margin:0px;
+	padding:0px;
+	font-family: 'paybooc-Bold';
+	list-style-type:none;
+	min-height:717px;
+}
+a, a:visited, a:hover, a:active{
+	text-decoration: none;
+	color: black;
+}
+/*===========================================================================================================*/
