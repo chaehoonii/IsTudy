@@ -11,34 +11,33 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!-- 제이쿼리, 플러그인 CDN -->
 <link rel="stylesheet" href="/jquery-ui/jquery-ui.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<!-- 폰트어썸 CDN -->
+<script src="https://kit.fontawesome.com/71aed6da77.js" crossorigin="anonymous"></script>
 <!-- 부트스트랩 JS -->
 <link rel="stylesheet" href="/css/inc/top.css" type="text/css" />
-<script src="/js/top.js"></script>
-<script>
-	let logo = document.getElementById("logo");
-	logo.click(function(){
-		
-	});
-</script>
 </head>
 <body>
-	<nav>
 		<div id="topBar">
-			<div class="col-lg-3"></div>
+			<div class="col-lg-1">
+				<button type="button" class="menuBtn"><i class="fas fa-bars"></i></button>
+			</div>
+			<div class="col-lg-2"></div>
 			<div class="col-lg-5 logoDiv">
 				<img src="/images/logo.png" id="logo">
 			</div>
 			<div class="col-lg-4 btnDiv">
-				<button class="btn">로그인</button>&nbsp;&nbsp;&nbsp;
-				<button class="btn">회원가입</button>
+				<button class="loginBtn btn">로그인</button>&nbsp;&nbsp;&nbsp;
+				<button class="signUpBtn btn">회원가입</button>
 			</div>
 		</div>
-		<div id="hiddenBar">
-			<div class="col-lg-3">스터디</div>
-			<div class="col-lg-3"></div>
-			<div class="col-lg-3"></div>
-			<div class="col-lg-3"></div>
-		</div>	
-	</nav>
+		<div class="menuWrap">
+			<nav id="menu">
+			<ul class="category_list">
+				<li class="listStyle"><a href="#">스터디 구하기</a></li>
+				<li class="listStyle"><a href="#">Q & A</a></li>
+				<li class="listStyle"><a href="#">공지사항</a></li>
+			</ul>
+			</nav>
+		</div>
+<script src="./js/inc/top.js"></script>
