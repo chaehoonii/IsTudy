@@ -22,35 +22,26 @@ public class UserController {
 	@Inject
 	UserService service;
 	
-	//·Î±×ÀÎ ÆäÀÌÁö ÀÌµ¿
+	//ë¡œê·¸ì¸ í˜ì´ì§€ ì´ë™
 	@GetMapping("login")
 	public ModelAndView login() {
 		
 		ModelAndView mav = new ModelAndView();	
 		mav.setViewName("users/login");	
 		return mav;
-		
 	}
 	
-	
-	//·Î±×ÀÎ
+	//ë¡œê·¸ì¸
 	@PostMapping("loginOk")
 	public ResponseEntity<String> loginOk(UserVO vo, HttpSession session) {
 		
 		ResponseEntity<String> entity = null;
 		
 		HttpHeaders headers = new HttpHeaders();
-		
 		headers.add("Content-Type", "text/html;charset=utf-8");
 		
 		try {
-		
-			System.out.println(vo.getUser_id());
-			System.out.println(vo.getUser_pw());
-			
 			UserVO user = service.loginCheck(vo);
-			System.out.println(user.getUser_id());
-			
 			
 			if(user!=null) {
 				session.setAttribute("logId", user.getUser_id());
@@ -58,7 +49,7 @@ public class UserController {
 				session.setAttribute("logName", user.getUser_name());
 				session.setAttribute("logStatus", "Y");
 				
-				String msg = "<script>alert('·Î±×ÀÎ ¼º°øÇÏ¿´½À´Ï´Ù.');location.href = '/';</script>";
+				String msg = "<script>alert('ë¡œê·¸ì¸ ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤.');location.href = '/';</script>";
 				entity = new ResponseEntity<String>(msg,headers,HttpStatus.OK);
 				
 			}else {
@@ -66,31 +57,27 @@ public class UserController {
 			}
 			
 		}catch(Exception e){
-			
 			e.printStackTrace();
 			
-			String msg = "<script>alert('·Î±×ÀÎ ½ÇÆĞÇÏ¿´½À´Ï´Ù.\\n ´Ù½Ã ·Î±×ÀÎÇÏ¼¼¿ä.');history.back();</script>";
+			String msg = "<script>alert('ë¡œê·¸ì¸ ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.\\n ë‹¤ì‹œ ë¡œê·¸ì¸í•˜ì„¸ìš”.');history.back();</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
 		}
 		
 		return entity;
-		
 	}
 	
-	//¾ÆÀÌµğ Ã£±â ÆäÀÌÁö ÀÌµ¿
+	//ì•„ì´ë”” ì°¾ê¸° í˜ì´ì§€ ì´ë™
 	@GetMapping("idSearch")
 	public ModelAndView idSearch() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("users/idSearch");
-		
 		return mav;
 	}
 	
-	//¾ÆÀÌµğ Ã£±â
+	//ì•„ì´ë”” ì°¾ê¸°
 	
 	
-	
-	//ºñ¹Ğ¹øÈ£ Ã£±â ÆäÀÌÁö ÀÌµ¿
+	//ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° í˜ì´ì§€ ì´ë™
 	@GetMapping("pwdSearch")
 	public ModelAndView pwdSearch() {
 		ModelAndView mav = new ModelAndView();

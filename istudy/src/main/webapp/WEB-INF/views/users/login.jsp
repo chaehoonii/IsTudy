@@ -1,12 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="url" value="<%=request.getContextPath()%>"/>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>로그인</title>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <style>
@@ -17,13 +11,11 @@
     a:hover{
         color: gray;
     }
-
     body, ul, li{
         margin: 0;
         padding: 0;
         list-style-type: none;
     }
-    
     .page{
         width: 100%;
     }
@@ -55,7 +47,6 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%); 
-       
     }
     .userForm li input{
         width: 300px;
@@ -72,7 +63,6 @@
         background-repeat: no-repeat;
         text-indent: 2em;
     }
-
     #userpw::-webkit-input-placeholder{
         background-image: url(${url}/images/password.png);
         background-size: contain;
@@ -91,7 +81,6 @@
     .userLink ul{
         text-align: center;
         margin-top: 15px;
-
     }
     .userLink li{
         float: left;
@@ -106,8 +95,6 @@
 		
 	    var userid = document.getElementById("userid");
 	    var userpw = document.getElementById("userpw");
-	    
-	    console.log(userid.value);
 	
 	    if(userid.value==""){
 	        alert("아이디를 입력하세요\n아이디는 6~16자리입니다.");
@@ -138,13 +125,8 @@
 	    }
 	
 	    return true;
-	
 	}
-
-
 </script>
-</head>
-<body>
 
 <div class="page">
         <div class="logo">
@@ -171,5 +153,3 @@
         </div>
 
     </div>
-</body>
-</html>
