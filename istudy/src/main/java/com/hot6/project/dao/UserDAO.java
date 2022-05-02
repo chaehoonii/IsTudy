@@ -11,4 +11,7 @@ import com.hot6.project.vo.UserVO;
 @Repository
 public interface UserDAO {
 	public List<UserVO> MentorRecommend();
+	
+	//·Î±×ÀÎ 
+	public UserVO loginCheck(UserVO vo);
 }
