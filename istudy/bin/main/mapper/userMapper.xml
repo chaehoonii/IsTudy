@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hot6.project.dao.UserDAO">
+	<select id="MentorRecommend" resultType="UserVO">
+		SELECT 	 A.*, B.level_icon
+		FROM 	 user A
+		LEFT JOIN	 level B
+		on		 B.exp_min <![CDATA[<=]]> A.exp
+		AND      A.exp <![CDATA[<=]]> B.exp_max
+		WHERE	 A.permission='mentor'
+		ORDER BY A.exp DESC
+		LIMIT 	 5
+	</select>
+</mapper>
