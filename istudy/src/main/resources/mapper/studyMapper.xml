@@ -10,4 +10,10 @@
 		ON 		A.study_type_num = B.study_type_num
 		WHERE 	user_id = #{user_id}
 	</select>
+	
+	<select id="CalendarList" resultType="StudyVO">
+		SELECT 	*
+		FROM 	calendar
+		WHERE 	study_num=#{param1}
+	</select>
 </mapper>
