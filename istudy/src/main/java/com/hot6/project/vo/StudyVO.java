@@ -20,6 +20,10 @@ public class StudyVO {
 	private String host_id; 
 	private String is_mentor;
 	
+	//calender_color
+	private int color_num;
+	private String color_name;
+	
 	//study_type
 	private int study_type_num;
 	private String study_type_name;
