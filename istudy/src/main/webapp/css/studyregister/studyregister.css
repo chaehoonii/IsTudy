@@ -1,0 +1,166 @@
+@charset "UTF-8";
+
+/*-------------------side bar------------------------------*/
+.content {
+	float: left;
+	width:20%;
+	height: 100%;
+	margin: 0 auto;
+	position: relative;
+}
+
+.head {
+	height: 50px;
+	box-shadow: 0 3px 10px rgba(106, 106, 106, .15);
+	background: #fff;
+}
+
+.head .menu {
+	width: 50px;
+	height: 100%;
+	position: relative;
+}
+
+.head .menu .res-menu {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 20px;
+	height: 12px;
+	transform: translate(-50%, -50%);
+	cursor: pointer;
+}
+
+.head .menu .res-menu span {
+	diplay: block;
+	position: absolute;
+	width: 100%;
+	height: 2px;
+	background: #333;
+	border-radius: 2px;
+	transition: transform .3s;
+}
+
+.head .menu span:nth-child(1) {
+	top: 0;
+	left: 0;
+}
+
+.head .menu span:nth-child(2) {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.head .menu span:nth-child(3) {
+	bottom: 0;
+	left: 0;
+}
+
+#sideopen {
+	display: none;
+}
+
+.head input[type="checkbox"]:checked+label>.res-menu span:nth-child(1) {
+	top: 50%;
+	transform: translateY(-50%) rotate(-45deg);
+}
+
+.head input[type="checkbox"]:checked+label>.res-menu span:nth-child(2) {
+	display: none;
+}
+
+.head input[type="checkbox"]:checked+label>.res-menu span:nth-child(3) {
+	top: 50%;
+	transform: translateY(-50%) rotate(45deg);
+}
+
+.sidebar {
+	position: fixed; /* fixed */
+	width: 20%;
+	height: calc(100vh - 50px);
+	top: 50px;
+	left: -80%;
+	background: rgb(230, 223, 215);
+	border-right: 1px solid #ccc;
+	transition: left .5s;
+}
+
+.head input[type="checkbox"]:checked+label+.sidebar {
+	left: 0;
+} /* 아코디언 메뉴 */
+.cate {
+	width: 100%;
+	position: relative;
+	border-bottom: 1px solid #000;
+}
+
+.cate:last-child {
+	border-bottom: 1px solid #000;
+}
+
+.cate .menu {
+	display: block;
+	position: relative;
+	width: 100%;
+	background:rgb(212, 196, 181);
+	height: 50px;
+}
+
+.cate .menu .menulink {
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	width: 70%;
+	padding-left: 15px;
+	line-height: 50px;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.cate .menu .check {
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	right: 15px;
+	padding: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+.cate ul li {
+	padding: 5px 15px;
+	font-size: 13px;
+}
+
+.cate ul li:first-child {
+	padding-top: 20px;
+}
+
+.cate ul li:last-child {
+	padding-bottom: 20px;
+}
+.r_button{
+	width:25%;
+	padding: 5px;
+	margin-top:5px;
+	margin-right:10px;
+	float: right;
+	background-color: #89c5c5;
+	color: white;
+	border-radius: 10px;
+	font-weight: bold;
+}
+/*-------------------step1 page------------------------------*/
+.register_content{
+	padding: 80px;
+	float:right;
+	width: 80%;
+}
+/*-------------------step2 page------------------------------*/
+
+/*-------------------step3 page------------------------------*/
+
+/*-------------------step4 page------------------------------*/
+
