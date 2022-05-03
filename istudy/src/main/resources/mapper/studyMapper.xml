@@ -10,4 +10,12 @@
 		ON 		A.study_type_num = B.study_type_num
 		WHERE 	user_id = #{user_id}
 	</select>
+	
+	<select id="CalendarList" resultType="StudyVO">
+		SELECT 		A.*, B.color_name
+		FROM 		calendar A
+		LEFT JOIN 	calendar_color B
+		ON 			A.color_num = B.color_num
+		WHERE 		study_num=#{param1}
+	</select>
 </mapper>
