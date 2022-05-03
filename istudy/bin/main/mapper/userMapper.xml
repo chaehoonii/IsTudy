@@ -13,4 +13,9 @@
 		ORDER BY A.exp DESC
 		LIMIT 	 5
 	</select>
+	
+	<select id="loginCheck" resultType="UserVO">
+		SELECT user_name, user_id, user_nick FROM user WHERE user_id=#{user_id} AND user_pw=#{user_pw}
+	
+	</select>
 </mapper>

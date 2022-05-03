@@ -19,4 +19,9 @@ public class UserServiceImpl implements UserService{
 		return dao.MentorRecommend();
 	}
 
+	@Override
+	public UserVO loginCheck(UserVO vo) {
+		return dao.loginCheck(vo);
+	}
+
 }
