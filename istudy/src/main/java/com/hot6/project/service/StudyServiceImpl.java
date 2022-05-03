@@ -19,4 +19,9 @@ public class StudyServiceImpl implements StudyService{
 		return dao.CalendarList(study_num);
 	}
 
+	@Override
+	public int PlanInsert(StudyVO vo) {
+		return dao.PlanInsert(vo);
+	}
+
 }

@@ -42,6 +42,8 @@ public class StudyVO {
 	private String plan_detail;
 	private String plan_start;
 	private String plan_finish;
+	private String start_time;
+	private String finish_time;
 	
 	//hashtag
 	private String tag1;
