@@ -6,18 +6,26 @@
 	<div id="mainImage"><img src="/images/mainImg.jpg"></div>
 	<div id="mainText"><p>웹 개발자를 위한 스터디</p></div>
 </div>
+<div class="mentoContaier">
+	<h1>멘토추천</h1>
+	<ul>
+		<c:forEach var="vo" items="${MentorList}">
+			<li>
+				<div class="card" style="width:400px">
+					<img src="/upload/user/${vo.profile_img}"/>
+					<div class="card-body">
+					<h4 class="card-title">${vo.user_nick}</h4>
+					<p class="card-text">${vo.career}</p>
+					<a href="#" class="btn profile">See Profile</a>
+					</div>
+				</div>
+			</li>
+		</c:forEach>
+	</ul>
+</div>
 
-<ul id="mentor_rec_list">
-	<c:forEach var="vo" items="${MentorList}">
-		<li>
-			<ul>
-				<li><img src="/upload/user/${vo.profile_img}"/></li>
-				<li><img src="${vo.level_icon}" width="30px"/> ${vo.user_nick}</li>
-				<li>${vo.career}</li>
-			</ul>
-		</li>
-	</c:forEach>
-</ul>
+
+<div>
 <ul id="job_rec_list">
 	<c:forEach var="vo" items="${JobList}">
 		<li>
@@ -30,3 +38,4 @@
 		</li>
 	</c:forEach>
 </ul>
+</div>	
