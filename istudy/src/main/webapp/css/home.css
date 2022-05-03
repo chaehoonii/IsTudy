@@ -21,23 +21,36 @@
 	user-select:none;
 }
 /*===============================멘토정보 슬라이드====================================*/
-.mentoContaier{
-	width:100%;
+.swiper-container{
+	width:2500px;
 	height:600px;
-	background-color:darkgreen;
+	overflow:visible;
+	margin:0 auto;
+	margin-left:30px;
 }
-.mentoContaier h1{
+#mentoRec{
 	padding:40px 0px;
 	padding-left:30px;
 }
+.swiper-slide{
+	opacity:0.4; 
+	transition:opacity 0.3s;
+}
+.swiper-slide-active,
+.swiper-slide-active + .swiper-slide,
+.swiper-slide-active + .swiper-slide + .swiper-slide,
+.swiper-slide-active + .swiper-slide + .swiper-slide + .swiper-slide{
+	opacity:1;
+}
 .card{
-	margin:10px;
-	padding:10px;
-	width:15% !important;
+	margin-left:30px;
+	padding:20px;
+	width:250px !important;
 	float:left;
 	border:1px solid rgba(0,0,0,5%);
 	text-align:center;
 	border-radius:20px;
+	filter: drop-shadow(0px 3px 3px rgba(0,0,0,30%));
 }
 .card img{
 	width:80%;
@@ -45,7 +58,18 @@
 	margin-top:10px;
 	border-radius:10px;
 }
+.card-text, .card-title{
+	margin:15px 0px;
+}
 .profile{
-	background-color:rgb(85, 76, 66);
+	background-color:rgba(85, 76, 66, 70%);
 	color:white !important;
+	width:70px;
+	height:30px;
+	line-height:20px;
+}
+.loginBtn, .signUpBtn{
+	width:70px;
+	height:30px;
+	font-size:1.1em;
 }
