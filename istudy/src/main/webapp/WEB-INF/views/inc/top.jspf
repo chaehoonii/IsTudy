@@ -26,11 +26,21 @@
 			</div>
 			<div class="col-lg-2"></div>
 			<div class="col-lg-5 logoDiv">
-				<img src="/images/logo.png" id="logo">
+				<a href="/"><img src="/images/logo.png" id="logo"></a>
 			</div>
 			<div class="col-lg-4 btnDiv">
-				<button class="loginBtn btn">로그인</button>&nbsp;&nbsp;&nbsp;
-				<button class="signUpBtn btn">회원가입</button>
+				<c:if test="${logStatus != 'Y'}">
+	                <a href="users/login"><button class="loginBtn btn">로그인</button>&nbsp;&nbsp;&nbsp;
+					<a href="users/userForm"><button class="signUpBtn btn">회원가입</button></a>
+	            </c:if>
+	            <c:if test="${logStatus == 'Y' && logPermission !='admin'}">
+	            	<a href="/users/logout"><button class="loginBtn btn">로그아웃</button></a>&nbsp;&nbsp;&nbsp;
+	                <a href="/users/myPage"><button class="signUpBtn btn">마이페이지</button></a>
+	            </c:if>
+	            <c:if test="${logStatus == 'Y' && logPermission =='admin'}">
+	            	<a href="/users/logout"><button class="loginBtn btn">로그아웃</button></a>&nbsp;&nbsp;&nbsp;
+	                <a href=""><button class="signUpBtn btn">관리자 페이지</button></a>	                
+	            </c:if>
 			</div>
 		</div>
 		<div class="menuWrap">

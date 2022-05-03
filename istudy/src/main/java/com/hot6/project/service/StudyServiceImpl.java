@@ -24,4 +24,9 @@ public class StudyServiceImpl implements StudyService{
 		return dao.PlanInsert(vo);
 	}
 
+	@Override
+	public List<StudyVO> StudyRecommend(String user_id) {
+		return dao.StudyRecommend(user_id);
+	}
+
 }

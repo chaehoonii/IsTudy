@@ -31,6 +31,11 @@ public class StudyVO {
 	//lang_type
 	private int lang_type_num;
 	private String lang_type_name;
+	private String lang01;
+	private String lang02;
+	private String lang03;
+	private String lang04;
+	private String lang05;
 	
 	//study_mate
 	private int want_num;
@@ -46,10 +51,10 @@ public class StudyVO {
 	private String finish_time;
 	
 	//hashtag
-	private String tag1;
-	private String tag2;
-	private String tag3;
-	private String tag4;
-	private String tag5;
+	private String tag01;
+	private String tag02;
+	private String tag03;
+	private String tag04;
+	private String tag05;
 		
 }
