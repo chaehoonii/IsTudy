@@ -10,8 +10,8 @@
 		on		 B.exp_min <![CDATA[<=]]> A.exp
 		AND      A.exp <![CDATA[<=]]> B.exp_max
 		WHERE	 A.permission='mentor'
-		ORDER BY A.exp DESC
-		LIMIT 	 5
+		ORDER BY A.exp DESC, user_id
+		LIMIT 	 8
 	</select>
 	
 	<select id="loginCheck" resultType="UserVO">

@@ -8,6 +8,19 @@
 		FROM 	study_room A
 		JOIN 	user B
 		ON 		A.study_type_num = B.study_type_num
-		WHERE 	user_id = #{user_id}
+		WHERE 	user_id = #{param1}
 	</select>
+	
+	<select id="CalendarList" resultType="StudyVO">
+		SELECT 		A.*, B.color_name
+		FROM 		calendar A
+		LEFT JOIN 	calendar_color B
+		ON 			A.color_num = B.color_num
+		WHERE 		study_num=#{param1}
+	</select>
+	
+	<insert id="PlanInsert">
+		INSERT calendar(study_num, plan_name, plan_detail, plan_start, plan_finish, start_time, finish_time, color_num)
+		VALUES (#{study_num}, #{plan_name}, #{plan_detail}, #{plan_start}, #{plan_finish}, #{start_time}, #{finish_time}, #{color_num})
+	</insert>
 </mapper>
