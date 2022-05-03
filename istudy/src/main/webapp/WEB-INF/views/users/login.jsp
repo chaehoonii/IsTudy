@@ -57,7 +57,7 @@
         font-size: 18px;
     }
     #userid::-webkit-input-placeholder{
-        background-image: url(${url}/images/id.png); 
+        background-image: url(${url}/images/user.png); 
         background-size: contain;
         background-position: 2px;
         background-repeat: no-repeat;
@@ -105,7 +105,7 @@
 	    var regid = /^[a-zA-Z0-9]{6,16}$/;
 	    
 	    if(!regid.test(userid.value)){
-	        alert("아이디는 6~16자리 영문입니다.");
+	    	alert("아이디는 6~16자리 영문 또는 숫자입니다.");
 	        userid.focus();
 	        return false;
 	    }

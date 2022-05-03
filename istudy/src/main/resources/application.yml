@@ -15,7 +15,19 @@ spring:
     password: root1234
   devtools: # 서버 자동 시작
     livereload:
-      enabled: true      
+      enabled: true  
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: istudyjoin@gmail.com
+    password: welcome2@
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+      
   
 mybatis: # mybatis에서 패키지를 생략할 수 있도록 설정
     type-aliases-package: com.hot6.project.vo

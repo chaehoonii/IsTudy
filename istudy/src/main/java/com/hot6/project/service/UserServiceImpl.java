@@ -24,4 +24,21 @@ public class UserServiceImpl implements UserService{
 		return dao.loginCheck(vo);
 	}
 
+	@Override
+	public String findId(UserVO vo) {
+		return dao.findId(vo);
+	}
+
+	@Override
+	public int matchUser(UserVO vo) {
+		return dao.matchUser(vo);
+	}
+
+	@Override
+	public int pwdUpdate(String newPwd, UserVO vo) {
+		return dao.pwdUpdate(newPwd, vo);
+	}
+
+	
+
 }
