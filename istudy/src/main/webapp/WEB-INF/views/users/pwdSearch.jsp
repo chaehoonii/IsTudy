@@ -59,7 +59,7 @@
         font-size: 16px;
     }
     #userid::-webkit-input-placeholder{
-        background-image: url(${url}/images/user.png);
+        background-image: url(${url}/images/login_icon/user.png);
         background-size: contain;
         background-position: 2px;
         background-repeat: no-repeat;
@@ -67,7 +67,7 @@
     }
 
     #email::-webkit-input-placeholder{
-        background-image: url(${url}/images/email.png);
+        background-image: url(${url}/images/login_icon/email.png);
         background-size: contain;
         background-position: 2px;
         background-repeat: no-repeat;
