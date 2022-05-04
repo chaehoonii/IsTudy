@@ -237,5 +237,15 @@ public class UserController {
 		return buffer.toString();
 	}
 	
+	//마이페이지로 이동
+	@GetMapping("myPage")
+	public ModelAndView mypage() {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("users/myPage");
+		return mav;
+		
+	}
+	
 	
 }
