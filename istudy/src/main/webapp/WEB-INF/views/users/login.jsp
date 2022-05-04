@@ -1,7 +1,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="url" value="<%=request.getContextPath()%>"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
 <style>
     a{
@@ -54,10 +54,10 @@
         border-radius: 5px;
         border: 1px solid #ddd;
         display: inline-block;
-        font-size: 18px;
+        font-size: 16px;
     }
     #userid::-webkit-input-placeholder{
-        background-image: url(${url}/images/id.png); 
+        background-image: url(${url}/images/user.png); 
         background-size: contain;
         background-position: 2px;
         background-repeat: no-repeat;
@@ -105,7 +105,7 @@
 	    var regid = /^[a-zA-Z0-9]{6,16}$/;
 	    
 	    if(!regid.test(userid.value)){
-	        alert("아이디는 6~16자리 영문입니다.");
+	    	alert("아이디는 6~16자리 영문 또는 숫자입니다.");
 	        userid.focus();
 	        return false;
 	    }
@@ -137,7 +137,7 @@
             
             <form method="post" action="${url}/users/loginOk" class="userForm" onsubmit="return loginCheck()">
                 <ul>
-                    <li><i class="fa fa-user icon"></i><input type="text" placeholder="아이디" name="user_id" id="userid"></li>
+                    <li><input type="text" placeholder="아이디" name="user_id" id="userid"></li>
                     <li><input type="text" placeholder="비밀번호" name="user_pw" id="userpw"></li>
                     <li><input type="submit" value="로그인" class="submitButton"></li>
                 </ul>

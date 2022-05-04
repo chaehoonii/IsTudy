@@ -10,12 +10,26 @@
 		on		 B.exp_min <![CDATA[<=]]> A.exp
 		AND      A.exp <![CDATA[<=]]> B.exp_max
 		WHERE	 A.permission='mentor'
-		ORDER BY A.exp DESC
-		LIMIT 	 5
+		ORDER BY A.exp DESC, user_id
+		LIMIT 	 8
 	</select>
 	
 	<select id="loginCheck" resultType="UserVO">
 		SELECT user_name, user_id, user_nick FROM user WHERE user_id=#{user_id} AND user_pw=#{user_pw}
 	
 	</select>
+	
+	<select id="findId" resultType="String">
+		select user_id from user where user_name=#{user_name} and tel=#{tel}
+	
+	</select>
+	
+	<select id="matchUser" resultType="int">
+		select count(user_id) from user where user_id=#{user_id} and email=#{email}
+	</select>
+	
+	<update id="pwdUpdate">
+		update user set user_pw=#{param1} where user_id=#{param2.user_id}
+	</update>
+	
 </mapper>
