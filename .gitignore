@@ -117,3 +117,5 @@ gradle-app.setting
 application-*.*
 istudy/.classpath
 istudy/.project
+.classpath
+.project

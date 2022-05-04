@@ -6,12 +6,7 @@ public class UserVO {
 	private String user_name;
 	private String user_nick;
 	private String email;
-	private String email1;
-	private String email2;
 	private String tel;
-	private String tel1;
-	private String tel2;
-	private String tel3;
 	private String register_date;
 	private int exp;
 	private String profile_img;
@@ -31,25 +26,17 @@ public class UserVO {
 	private String leave_detail;
 	private int leave_type_num;
 	
+	
 	public String getEmail() {
-		email = email1 +"@"+ email2;
 		return email;
 	}
 	public void setEmail(String email) {
-		String emailSp[] = email.split("@");
-		email1 = emailSp[0];
-		email2 = emailSp[1];
 		this.email = email;
 	}
 	public String getTel() {
-		tel = tel1 +"-"+ tel2 +"-"+ tel3;
 		return tel;
 	}
 	public void setTel(String tel) {
-		String telSp[] = tel.split("-");
-		tel1 = telSp[0];
-		tel2 = telSp[1];
-		tel3 = telSp[2];
 		this.tel = tel;
 	}
 	public String getUser_id() {
@@ -76,36 +63,7 @@ public class UserVO {
 	public void setUser_nick(String user_nick) {
 		this.user_nick = user_nick;
 	}
-	public String getEmail1() {
-		return email1;
-	}
-	public void setEmail1(String email1) {
-		this.email1 = email1;
-	}
-	public String getEmail2() {
-		return email2;
-	}
-	public void setEmail2(String email2) {
-		this.email2 = email2;
-	}
-	public String getTel1() {
-		return tel1;
-	}
-	public void setTel1(String tel1) {
-		this.tel1 = tel1;
-	}
-	public String getTel2() {
-		return tel2;
-	}
-	public void setTel2(String tel2) {
-		this.tel2 = tel2;
-	}
-	public String getTel3() {
-		return tel3;
-	}
-	public void setTel3(String tel3) {
-		this.tel3 = tel3;
-	}
+	
 	public String getRegister_date() {
 		return register_date;
 	}
