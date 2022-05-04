@@ -1,7 +1,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="url" value="<%=request.getContextPath()%>"/>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
 <style>
     a{
@@ -54,7 +54,7 @@
         border-radius: 5px;
         border: 1px solid #ddd;
         display: inline-block;
-        font-size: 18px;
+        font-size: 16px;
     }
     #userid::-webkit-input-placeholder{
         background-image: url(${url}/images/user.png); 
@@ -137,7 +137,7 @@
             
             <form method="post" action="${url}/users/loginOk" class="userForm" onsubmit="return loginCheck()">
                 <ul>
-                    <li><i class="fa fa-user icon"></i><input type="text" placeholder="아이디" name="user_id" id="userid"></li>
+                    <li><input type="text" placeholder="아이디" name="user_id" id="userid"></li>
                     <li><input type="text" placeholder="비밀번호" name="user_pw" id="userpw"></li>
                     <li><input type="submit" value="로그인" class="submitButton"></li>
                 </ul>

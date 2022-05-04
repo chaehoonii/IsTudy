@@ -56,7 +56,7 @@
         border-radius: 5px;
         border: 1px solid #ddd;
         display: inline-block;
-        font-size: 18px;
+        font-size: 16px;
     }
     #userid::-webkit-input-placeholder{
         background-image: url(${url}/images/user.png);
@@ -95,12 +95,11 @@
 </style>
 <script>
 
-function idSearchCheck(){
+function pwdSearchCheck(){
 	
     var userid = document.getElementById("userid");
     var email = document.getElementById("email");
     
-    console.log(userid.value);
 
     if(userid.value==""){
         alert("아이디를 입력하세요\n아이디는 6~16자리입니다.");
@@ -121,8 +120,15 @@ function idSearchCheck(){
         email.focus();
         return false;
     }
+    
+    var regemail = /^\w{2,}[@]{1}[a-zA-Z]{2,8}[.]{1}[a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?$/;
+    
+    if(!regemail.test(email.value)){
+    	alert("이메일을 다시 입력하세요. 적절하지 않은 이메일 형식 입니다.");
+    	email.focus();
+    	return false;
+    }
 
- 
     return true;
 
 }
