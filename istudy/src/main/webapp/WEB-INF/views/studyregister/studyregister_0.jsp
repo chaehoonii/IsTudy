@@ -64,8 +64,8 @@ function asyncMovePage(url){
 							</span>
 							<ul>
 								<li>스터디 제목</li>
+								<li>스터디 대표 이미지</li>
 								<li>스터디 내용</li>
-								<li>대표 이미지 등록</li>
 							</ul>
 						</div>
 						<div class="cate">
