@@ -79,6 +79,7 @@
 				<c:if test="${vo.is_mentor == 'F'}">
 					<li>자율</li>
 				</c:if>
+				<li>${vo.in_people} / ${vo.max}</li>
 				<li>${vo.lang01}&nbsp;${vo.lang02}&nbsp;${vo.lang03}&nbsp;${vo.tag1}&nbsp;${vo.tag2}</li>
 			</ul>
 		</li>
