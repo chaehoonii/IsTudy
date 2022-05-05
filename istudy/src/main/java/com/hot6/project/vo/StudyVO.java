@@ -31,6 +31,11 @@ public class StudyVO {
 	//lang_type
 	private int lang_type_num;
 	private String lang_type_name;
+	private String lang01;
+	private String lang02;
+	private String lang03;
+	private String lang04;
+	private String lang05;
 	
 	//study_mate
 	private int want_num;
@@ -38,6 +43,7 @@ public class StudyVO {
 	private String want_ok;
 	
 	//calendar
+	private String plan_num;
 	private String plan_name;
 	private String plan_detail;
 	private String plan_start;
