@@ -43,6 +43,7 @@ public class StudyVO {
 	private String want_ok;
 	
 	//calendar
+	private String plan_num;
 	private String plan_name;
 	private String plan_detail;
 	private String plan_start;

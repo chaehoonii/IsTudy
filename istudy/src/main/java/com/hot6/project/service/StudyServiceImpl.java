@@ -29,4 +29,19 @@ public class StudyServiceImpl implements StudyService{
 		return dao.StudyRecommend(user_id);
 	}
 
+	@Override
+	public StudyVO CalendarDetail(int plan_num) {
+		return dao.CalendarDetail(plan_num);
+	}
+
+	@Override
+	public int CalendarDel(int plan_num) {
+		return dao.CalendarDel(plan_num);
+	}
+
+	@Override
+	public int CalendarEdit(StudyVO vo) {
+		return dao.CalendarEdit(vo);
+	}
+
 }
