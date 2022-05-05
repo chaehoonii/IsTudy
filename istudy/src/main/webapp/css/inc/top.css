@@ -29,6 +29,7 @@ a, a:visited, a:hover, a:active{
 	height:60px;
 	line-height:60px;
 	background-color:rgb(230, 220, 215);
+	z-index:1;
 }
 .logoDiv{
 	text-align:center;
@@ -71,10 +72,10 @@ a, a:visited, a:hover, a:active{
     top:60;
     left: -300px; /* 너비 300px 인 사이드바를 왼쪽으로 300px 이동시켜 화면에 보이지 않게 함 */
     width: 300px; /* 너비 */
-    height:858px;
+    height:92%;
     line-height:250px;
     text-align:center;
-    font-size:1.2em;
+    font-size:1.5em;
     transition: left .3s ease-in-out; /* 0.3초 동안 이동 애니메이션 */
     background-color:rgba(85, 76, 66, 50%);
 }
