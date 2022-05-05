@@ -26,6 +26,19 @@ public class UserVO {
 	private String leave_detail;
 	private int leave_type_num;
 	
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	public String getUser_id() {
 		return user_id;
 	}
@@ -50,6 +63,7 @@ public class UserVO {
 	public void setUser_nick(String user_nick) {
 		this.user_nick = user_nick;
 	}
+	
 	public String getRegister_date() {
 		return register_date;
 	}
@@ -145,18 +159,6 @@ public class UserVO {
 	}
 	public void setLeave_type_num(int leave_type_num) {
 		this.leave_type_num = leave_type_num;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getTel() {
-		return tel;
-	}
-	public void setTel(String tel) {
-		this.tel = tel;
 	}
 	
 }
