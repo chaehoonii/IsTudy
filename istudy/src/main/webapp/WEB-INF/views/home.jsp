@@ -16,25 +16,27 @@
 	</div>
 </div>
 <!-- 멘토추천 영역 -->
-<div class="mentoRecommend section">
-	<h1 id="mentoTitle">멘토추천</h1>
-	<div class="slideBtnArea col-lg-1">
-		<button class="customPrevBtn"><</button>
-	</div>
-	<div class="owl-carousel owl-theme owl-loaded col-lg-10">
-		<c:forEach var="vo" items="${MentorList}">
-			<div class="card item">
-				<img src="/upload/user/${vo.profile_img}" />
-				<div class="card-body">
-					<h4 class="card-title">${vo.user_nick}</h4>
-					<p class="card-text">${vo.career}</p>
-					<a href="#" class="btn profile">프로필 보기</a>
+<div class="section">
+	<div class="mentoRecommend">
+		<h1 id="mentoTitle">멘토추천</h1>
+		<div class="slideBtnArea col-lg-1">
+			<button class="customPrevBtn"><</button>
+		</div>
+		<div class="owl-carousel owl-theme owl-loaded col-lg-10">
+			<c:forEach var="vo" items="${MentorList}">
+				<div class="card item">
+					<img src="/upload/user/${vo.profile_img}" />
+					<div class="card-body">
+						<h4 class="card-title">${vo.user_nick}</h4>
+						<p class="card-text">${vo.career}</p>
+						<a href="#" class="btn profile">프로필 보기</a>
+					</div>
 				</div>
-			</div>
-		</c:forEach>
-	</div>
-	<div class="slideBtnArea col-lg-1">
-		<button class="customNextBtn">></button>
+			</c:forEach>
+		</div>
+		<div class="slideBtnArea col-lg-1">
+			<button class="customNextBtn">></button>
+		</div>
 	</div>
 </div>
 <!-- 기업추천 영역 -->
