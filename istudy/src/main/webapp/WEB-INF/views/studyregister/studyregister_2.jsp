@@ -2,18 +2,17 @@
 <div id="sub_register_content">
 	<h2>기본 정보</h2>
 	<hr/>
-	<div class="study_people">
-		<h3>스터디 모집 인원</h3>
-		
+	<div class="study_title">
+		<h3>스터디 제목</h3>
+		<input type="text" id="s_title" placeholder="20자 이내로 입력해주세요.">
 	</div>
-	<div class="study_status">
-		<h3>스터디 상태</h3>
-		<input type="text"/>
-		<input type="text"/>
-		<input type="text"/>
+	<div class="study_image">
+		<h3>스터디 대표 이미지</h3>
 	</div>
-	<div class="study_caution">
-		<h3>스터디 주의사항</h3>
-		<textarea rows="10" cols="50" placeholder="스터디 주의 사항을 500자 이내로 입력하세요."></textarea>
+	<div class="study_info"></div>
+		<h3>스터디 내용</h3>
+		<textarea rows="" cols="">스터디 개요</textarea>
+		<textarea rows="" cols="">상세 내용</textarea>
+	<div>
 	</div>
 </div>
