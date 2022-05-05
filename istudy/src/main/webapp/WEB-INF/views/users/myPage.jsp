@@ -15,26 +15,24 @@
         }
 
         #mypage{
-            margin-top: 100px;
+            /* margin-top: 100px; */
             width: 100%;
             height: 100vh;
         }
     
 
         #profilePage{
-            width: 30%;
+            width: 25%;
             float: left;
             height: 100vh;
-            position: fixed;
+            background-color: rgb(230, 220, 215);
+            
         }
         #userProfile{
-            margin-left: 50px;
-            width: 350px;
-            height: 600px;
-            border-radius: 10px;
-            background-color: rgb(230, 223, 215);
+            width: 100%;
+            height:100%;
             position: relative;
-           
+    
         }
         #userPhoto{
             width: 250px;
@@ -42,7 +40,7 @@
             border-radius: 50%;
             background-color: blue;
             position: absolute;
-            top: 50px;
+            top: 110px;
             left: 50%;
             transform: translate(-50%, 0%);
             background-color: white;
@@ -50,14 +48,14 @@
         }
         #userid{
             position: absolute;
-            top : 310px;
+            top : 370px;
             left: 50%;
             transform: translate(-50%,0%); 
             font-size: 20px;
         }
         #studyDesc{
             position: absolute;
-            top : 350px;
+            top : 480px;
             left: 50%;
             transform: translate(-50%,0%); 
             
@@ -66,105 +64,126 @@
             margin: 30px 0px;
             font-size: 18px;
         }
-
-        #category{
+        #category>a{
+            font-size: 16px;
             position: absolute;
-            top: 550px;
+            top : 700px;
             left: 50%;
             transform: translate(-50%,0%);
-            width: 100%;
         }
-        #category li{
-            float: left;
-            width: 50%;
-            font-size: 16px;
-            text-align: center;
-        }
-        #studyPage{
-            width: 70%;
+        #contentPage{
+            width: 75%;
             float: right;
-            height: 100vh;
-            text-align: center;
-            position: relative;
+            height: 100%;  
         }
-        h2{
-            text-align: center;
-            height: 100px;
+        
+        #buttons{
+        	width: 100%;
+        	height: 80px;
+
         }
-        .studyState{
-           position: absolute;
-           left: 50%;
-           transform: translate(-50%,0%); 
-           margin-top: 70px;
-           width: 100%;
+       
+        #buttons input[type=submit]{
+        	width: 100px;
+        	height: 35px;
+        	font-size: 14px;
+        	border-radius:15px;
+        	border: 1px solid #ddd;
+        	margin: 15px;
+        	 
         }
-        .studyState li{
-            float: left;
-            width: 400px;
-            width: 50%;
+        .contentBox{
+        	width: 100%;
+        	margin-left: 20px;
+        	
         }
-        .studyState li a{
-            color: gray;
-            font-size: 20px;
+        
+        .title{
+        	font-size: 20px;
+        	height: 60px;
+        	line-height: 60px;
         }
-        .studyList{
-            width: 800px;
+        hr{
+        	margin:0;
         }
-        .studyRooms{
-            width: 100%;
-            position: absolute;
-            top: 250px;
+        .contents{
+        	width: 100%;
+        	height: 100%;
+        	overflow: hidden;
         }
-        .studyRooms li{
-            float: left;
-            width: 33.3%;
-            height: 400px;
+        
+        .contents ul{
+        	width: 100%;
+        	height: 100%;
+        	
+        	
         }
-        .rooms{
-            width: 230px;
-            height: 300px;
-            border: 1px solid gray;
-            border-radius: 15px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
+        
+        .eachContent{
+        	height: 50px;
+        	width: 100%;
+        	line-height: 50px;
+        	font-size: 16px;
+        	
+        	
         }
-        .rooms img{
-            width: 100%;
-            height: 100%;
-            opacity: 0.6;
-        } 
-        .roomDesc{
-            font-size: 16px;
-            font-weight: bold;
-            position: absolute;
-            left: 50%;
-            top: 30%;
-            transform: translate(-50%,0%); 
-            color: rgb(61, 60, 60);
+        .studyInfo{
+        	display: flex;
+        	
+        }
+        
+        .studyImg{
+        	flex:1;
+        	position: relative;
+        }
+        .photo{
+        	width: 40px;
+        	height: 40px;
+        	border-radius: 50%;
+        	border: 1px solid gray;
+        	position: absolute;
+        	top: 5px;
+        	left: 50%;
+        	transform: translate(-50%,0%); 
+        	overflow: hidden;
+        }
+        .photo img{
+        	object-fit: cover;
+        	width: 100%;
+        	height: 100%;
+        	background-position: center;
+        	position: absolute;
+        	top: 0px;
+        }
+        .studyName{
+        	flex:2;
+        }
+        .studyCategory{
+        	flex:1;
         }
         
         .paging{
-            position: relative;
+            width: 100%;
+            height: 30px;
+            margin: 0 auto;
+            font-size: 16px;
         }
         .paging ul{
-            left: 50%;
             width: 30%;
-            transform: translate(-50%,0%); 
-            position: absolute;
-            top: 1350px;
-            
+            height: 100%;
+            margin: 30px auto;
         }
         .paging ul li{
             float: left;
             width: 20%;
+            text-align: center;
         }
         
 
     </style>
 
     <div id="mypage">
-        <h2>마이페이지</h2>
+       <!--  <h2>마이페이지</h2> -->
         <div id="profilePage">
             <div id="userProfile">
                 <div id="userPhoto">
@@ -175,65 +194,112 @@
                 <div id="userDesc">
                     <div>  
                         <ul id="studyDesc">
-                            <li id="joinStudy">참가한 스터디 : 10개</li>
-                            <li id="finishStudy">완료한 스터디 : 10개</li>
+                            <li id="joinStudy">진행 스터디 : 10개</li>
+                            <li id="finishStudy">완료 스터디 : 10개</li>
                         </ul>
                     </div>
-                    <div>
-                        <ul id="category">
-                            <li><a href="#">회원 수정</a></li>
-                            <li><a href="#">글 관리</a></li>
-                        </ul>
+                    <div id="category">
+                          <a href="#">회원 수정</a>
                     </div>
                     
                 </div>
             </div>
         </div>
 
-        <div id="studyPage">
-            <h3>스터디 관리</h3>
-            <ul class="studyState">
-                <li><a href="#">진행중인 스터디</a></li>
-                <li><a href="#">완료된 스터디</a></li>
-            </ul>
-            <div class="studyList">
-                <ul class="studyRooms">
-
-                    <li>
-                        <div class="rooms">
-                            <img src="${url}/images/mypage_img/exstudy1.jpg" alt="">
-                            <a href="#" class="roomDesc">
-                            	<span class="roomCategory">알고리즘 스터디</span><br/>
-                            	<span class="roomName">알고리즘 3팀</span>
-                            </a>
-                            
-                        </div>
-                    </li>
-                    <li>
-                        <div class="rooms">
-                            <img src="${url}/images/mypage_img/exstudy2.jpg" alt="">
-                            <a href="#" class="roomDesc">
-                            	<span class="roomCategory">프로젝트</span><br/>
-                            	<span class="roomName">IsTudy</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="rooms">
-                            <img src="${url}/images/mypage_img/exstudy3.jpg" alt="">
-                            <a href="#" class="roomDesc">
-                            	<span class="roomCategory">백엔드 스터디</span><br/>
-                            	<span class="roomName">백엔드</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li><div class="rooms"></div></li>
-                    <li><div class="rooms"></div></li>
-                    <li><div class="rooms"></div></li>
-                    <li><div class="rooms"></div></li>
-                    <li><div class="rooms"></div></li>
-                    <li><div class="rooms"></div></li>
-                </ul>
+        <div id="contentPage">
+            
+            <div id="buttons">
+            	<input type="submit" id="writeRecord" value="글관리"/>
+            	<input type="submit" id="joinStudy" value="진행 스터디"/>
+            	<input type="submit" id="finishStudy" value="완료 스터디"/>
+            
+            </div>
+            <div class="contentBox">
+            	<div class="title">진행 스터디</div><hr/>
+            	<div class="contents">
+            		<ul>
+            			<li class="eachContent">
+            				<div class="studyInfo">
+	            				<div class="studyImg">
+	            					<div class="photo">
+	            						<img src="${url}/images/mypage_img/exstudy1.jpg"/>
+	            					</div>
+	            				</div>
+	            				<div class="studyName">
+	            					<a>Istudy</a>
+	            				</div>
+	            				<div class="studyCategory">
+	            					<span>프로젝트</span>
+	            				</div>
+	            			</div><hr/>
+            			</li>
+            			<li class="eachContent">
+            				<div class="studyInfo">
+	            				<div class="studyImg">
+	            					<div class="photo">
+	            						<img src="${url}/images/mypage_img/exstudy2.jpg"/>
+	            					</div>
+	            				</div>
+	            				<div class="studyName">
+	            					<a>문제 풀자</a>
+	            				</div>
+	            				<div class="studyCategory">
+	            					<span>알고리즘 스터디</span>
+	            				</div>
+	            			</div><hr/>
+            			</li>
+            			<li class="eachContent">
+            				<div class="studyInfo">
+	            				<div class="studyImg">
+	            					<div class="photo">
+	            						<img src="${url}/images/mypage_img/exstudy3.jpg"/>
+	            					</div>
+	            				</div>
+	            				<div class="studyName">
+	            					<a>Spring???</a>
+	            				</div>
+	            				<div class="studyCategory">
+	            					<span>백엔드 스터디</span>
+	            				</div>
+	            			</div><hr/>
+            			</li>
+            			<li class="eachContent">
+            				<div class="studyInfo">
+	            				<div class="studyImg">
+	            					<div class="photo">
+	            						<img src="${url}/images/mypage_img/exstudy3.jpg"/>
+	            					</div>
+	            				</div>
+	            				<div class="studyName">
+	            					<a>React 공부하자</a>
+	            				</div>
+	            				<div class="studyCategory">
+	            					<span>프런트엔드 스터디</span>
+	            				</div>
+	            			</div><hr/>
+            			</li>
+            			<li class="eachContent">
+            				<div class="studyInfo">
+	            				<div class="studyImg">
+	            					<div class="photo">
+	            						<img src="${url}/images/mypage_img/exstudy3.jpg"/>
+	            					</div>
+	            				</div>
+	            				<div class="studyName">
+	            					<a>Spring Boot???</a>
+	            				</div>
+	            				<div class="studyCategory">
+	            					<span>백엔드 스터디</span>
+	            				</div>
+	            			</div><hr/>
+            			</li>
+            			
+            		</ul><hr/>
+            	
+            	
+            	</div>
+            	
+            
             </div>
             <div class="paging">
                 <ul>
