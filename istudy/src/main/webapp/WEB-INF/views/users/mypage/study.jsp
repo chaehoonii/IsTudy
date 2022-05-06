@@ -6,7 +6,6 @@
             padding: 0;
             margin: 0;
             list-style-type: none;
-            
         }
         a{
             text-decoration: none;
@@ -15,7 +14,6 @@
         a:hover{
             color: gray;
         }
-        
         body{
         	scrollbar-width: none;
         }
@@ -29,7 +27,6 @@
         #profilePage{
             width: 25%;
             float: left;
-            /* height: 120vh; */
             height: 100vh;
             background-color: rgb(230, 220, 215); 
         }
@@ -37,7 +34,6 @@
             width: 100%;
             height:100%;
             position: relative;
-    
         }
         #userPhoto{
             width: 250px;
@@ -63,7 +59,6 @@
             top : 480px;
             left: 50%;
             transform: translate(-50%,0%); 
-            
         }
         #studyDesc li{
             margin: 30px 0px;
@@ -81,13 +76,11 @@
             float: right;
             height: 100%;  
         }
-        
         #buttons{
         	width: 100%;
         	height: 80px;
 			margin-top: 60px;
         }
-       
         #buttons input[type=button]{
         	width: 100px;
         	height: 35px;
@@ -95,14 +88,11 @@
         	border-radius:15px;
         	border: 1px solid #ddd;
         	margin: 15px;
-        	 
         }
         .contentBox{
         	width: 100%;
         	margin-left: 20px;
-        	
         }
-        
         .title{
         	font-size: 20px;
         	height: 60px;
@@ -121,43 +111,32 @@
         .contents::-webkit-scrollbar{
         	display: none;
         }
-        
         .contents ul{
         	width: 100%;
         	height: 100%;
-        	
-        	
         }
         .contents ul li:first-child{
         	color: grey;
         	font-size: 17px;
-        	
-        }
-        
+        }/* 
         .scrollIcon{
         	
         	position: absolute;
         	top: 600px;
         	right: 20px;
-        }
-        
+        } */
         .eachContent{
         	height: 50px;
         	width: 100%;
         	line-height: 50px;
         	font-size: 16px;
-        	
-        	
         }
         .studyInfo{
         	display: flex;
-        	
         }
-        
         .studyImg{
         	flex:0.8;
         	position: relative;
-        	
         }
         .photo{
         	width: 40px;
@@ -180,16 +159,13 @@
         }
         .studyName{
         	flex:3;
-        	
         }
         .studyCategory{
         	flex:1;
         }
         .studyLeader{
-        	flex : 0.5;
-        	
+        	flex : 0.5;	
         }
-        
         .paging{
             width: 100%;
             height: 30px;
@@ -207,11 +183,9 @@
             text-align: center;
         }
         
-
     </style>
 
     <div id="mypage">
-       <!--  <h2>마이페이지</h2> -->
         <div id="profilePage">
             <div id="userProfile">
                 <div id="userPhoto">
@@ -229,17 +203,13 @@
                     <div id="category">
                           <a href="#">회원 수정</a>
                     </div>
-                    
                 </div>
             </div>
         </div>
-
         <div id="contentPage">
-            
             <div id="buttons">
             	<input id="writeRecord"  type="button" onclick="location.href='${url}/users/mypage/viewWrite'" value="글관리"/>
             	<input id="joinStudy"  type="button" onclick="location.href='${url}/users/mypage/study'" value="스터디"/>
-            
             </div>
             <div class="contentBox">
             	<div class="title">진행 스터디</div><hr/>
@@ -280,171 +250,7 @@
 		            				</div>
 		            			</div><hr/>
 	            		</li>
-            		
             		</c:forEach>
-            			
-            			<%-- <li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy1.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>Istudy</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>프로젝트</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>goguma</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy1.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>Istudy</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>프로젝트</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>goguma</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy2.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>문제 풀자</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>알고리즘 스터디</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>goguma12</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy3.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>Spring???</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>백엔드 스터디</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>goguma12</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy3.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>React 공부하자</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>프런트엔드 스터디</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>webmaster</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy3.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>Spring Boot???</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>백엔드 스터디</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>hi9102</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy3.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>Spring Boot???</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>백엔드 스터디</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>hi9102</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy3.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>Spring Boot???</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>백엔드 스터디</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>hi9102</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy3.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>Spring Boot???</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>백엔드 스터디</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>hi9102</span>
-	            				</div>
-	            			</div><hr/>
-            			</li> --%>
             			
             		</ul>
             		<%-- <div class="scrollIcon">
@@ -489,107 +295,9 @@
 		            				</div>
 		            			</div><hr/>
 	            		</li>
-            		
             		</c:forEach>
-            		
-            			<%-- <li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy1.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>세미 프로젝트</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>프로젝트</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>team</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy2.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>weather</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>프로젝트</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>goguma12</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy3.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>NodeJS??</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>백엔드 스터디</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>goguma12</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy3.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>Vue 공부</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>프런트엔드 스터디</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>webmaster</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy3.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>공부하자</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>백엔드 스터디</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>hi9102</span>
-	            				</div>
-	            			</div><hr/>
-            			</li> 
-            			 --%>
             		</ul>
-            	
-            	
-            	
-            	</div>
-            	
-            
+            	</div>     
             </div>
             <!-- <div class="paging">
                 <ul>
@@ -601,5 +309,4 @@
                 </ul>
             </div> -->
         </div>
-        
     </div>
