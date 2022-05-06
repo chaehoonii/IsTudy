@@ -1,5 +1,7 @@
 package com.hot6.project.vo;
 
+import java.util.List;
+
 public class StudyVO {
 	//study_room
 	private int study_num;
@@ -28,11 +30,6 @@ public class StudyVO {
 	//lang_type
 	private int lang_type_num;
 	private String lang_type_name;
-	private String lang01;
-	private String lang02;
-	private String lang03;
-	private String lang04;
-	private String lang05;
 	
 	//study_mate
 	private int want_num;
@@ -40,7 +37,7 @@ public class StudyVO {
 	private String want_ok;
 	
 	//calendar
-	private String plan_num;
+	private int plan_num;
 	private String plan_name;
 	private String plan_detail;
 	private String plan_start;
@@ -49,12 +46,26 @@ public class StudyVO {
 	private String finish_time;
 	
 	//hashtag
-	private String tag1;
-	private String tag2;
-	private String tag3;
-	private String tag4;
-	private String tag5;
+	private String tag;
 	
+	private List<String> lang_list;
+	private List<String> tag_list;
+	
+	
+	
+	
+	public List<String> getLang_list() {
+		return lang_list;
+	}
+	public void setLang_list(List<String> lang_list) {
+		this.lang_list = lang_list;
+	}
+	public List<String> getTag_list() {
+		return tag_list;
+	}
+	public void setTag_list(List<String> tag_list) {
+		this.tag_list = tag_list;
+	}
 	public int getIn_people() {
 		return in_people;
 	}
@@ -67,40 +78,11 @@ public class StudyVO {
 	public void setRemain(int remain) {
 		this.remain = remain;
 	}
-	public String getLang01() {
-		return lang01;
-	}
-	public void setLang01(String lang01) {
-		this.lang01 = lang01;
-	}
-	public String getLang02() {
-		return lang02;
-	}
-	public void setLang02(String lang02) {
-		this.lang02 = lang02;
-	}
-	public String getLang03() {
-		return lang03;
-	}
-	public void setLang03(String lang03) {
-		this.lang03 = lang03;
-	}
-	public String getLang04() {
-		return lang04;
-	}
-	public void setLang04(String lang04) {
-		this.lang04 = lang04;
-	}
-	public String getLang05() {
-		return lang05;
-	}
-	public void setLang05(String lang05) {
-		this.lang05 = lang05;
-	}
-	public String getPlan_num() {
+	
+	public int getPlan_num() {
 		return plan_num;
 	}
-	public void setPlan_num(String plan_num) {
+	public void setPlan_num(int plan_num) {
 		this.plan_num = plan_num;
 	}
 	public int getStudy_num() {
@@ -265,35 +247,12 @@ public class StudyVO {
 	public void setFinish_time(String finish_time) {
 		this.finish_time = finish_time;
 	}
-	public String getTag1() {
-		return tag1;
+	public String getTag() {
+		return tag;
 	}
-	public void setTag1(String tag1) {
-		this.tag1 = tag1;
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
-	public String getTag2() {
-		return tag2;
-	}
-	public void setTag2(String tag2) {
-		this.tag2 = tag2;
-	}
-	public String getTag3() {
-		return tag3;
-	}
-	public void setTag3(String tag3) {
-		this.tag3 = tag3;
-	}
-	public String getTag4() {
-		return tag4;
-	}
-	public void setTag4(String tag4) {
-		this.tag4 = tag4;
-	}
-	public String getTag5() {
-		return tag5;
-	}
-	public void setTag5(String tag5) {
-		this.tag5 = tag5;
-	}
+	
 		
 }

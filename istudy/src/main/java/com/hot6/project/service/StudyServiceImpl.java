@@ -53,4 +53,14 @@ public class StudyServiceImpl implements StudyService{
 		return dao.finishStudy(user_id);
 	}
 
+	@Override
+	public List<String> lang_List(int study_num) {
+		return dao.lang_List(study_num);
+	}
+
+	@Override
+	public List<String> tag_List(int study_num) {
+		return dao.tag_List(study_num);
+	}
+
 }
