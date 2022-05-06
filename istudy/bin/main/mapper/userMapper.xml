@@ -15,7 +15,7 @@
 	</select>
 	
 	<select id="loginCheck" resultType="UserVO">
-		SELECT user_name, user_id, user_nick FROM user WHERE user_id=#{user_id} AND user_pw=#{user_pw}
+		SELECT user_name, user_id, user_nick, permission FROM user WHERE user_id=#{user_id} AND user_pw=#{user_pw}
 	
 	</select>
 	

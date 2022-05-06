@@ -26,7 +26,6 @@ public class UserVO {
 	private String leave_detail;
 	private int leave_type_num;
 	
-	
 	public String getEmail() {
 		return email;
 	}
@@ -63,7 +62,6 @@ public class UserVO {
 	public void setUser_nick(String user_nick) {
 		this.user_nick = user_nick;
 	}
-	
 	public String getRegister_date() {
 		return register_date;
 	}

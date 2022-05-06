@@ -46,4 +46,31 @@ public class StudyController {
 		Sservice.PlanInsert(vo);
 		return "redirect:/study/calendar/calendarList?study_num="+vo.getStudy_num();
 	}
+	
+	//일정 상세
+	@ResponseBody //Ajax
+	@RequestMapping(value = "/study/calendar/calendarDetail", method=RequestMethod.GET)
+	public StudyVO calendarDetail(@RequestParam("plan_num")int plan_num) {
+		System.out.println("plan_num= "+plan_num);
+		return Sservice.CalendarDetail(plan_num);
+	}
+	
+	//일정 삭제
+	@ResponseBody //Ajax
+	@RequestMapping(value = "/study/calendar/calendarDel", method=RequestMethod.GET)
+	public String calendarDel(StudyVO vo, @RequestParam("plan_num")int plan_num, @RequestParam("study_num")int study_num) {
+		System.out.println("plan_num= "+plan_num);
+		Sservice.CalendarDel(plan_num);
+		System.out.println("study_num= "+study_num);
+		return "/study/calendar/calendarList?study_num="+study_num;
+	}
+	
+	//일정 수정
+	@ResponseBody //Ajax
+	@RequestMapping(value = "/study/calendar/calendarEdit", method=RequestMethod.POST)
+	public StudyVO calendarEdit(@RequestParam StudyVO vo) {
+		System.out.println("edit start");
+		Sservice.CalendarEdit(vo);
+		return Sservice.CalendarDetail(Integer.parseInt(vo.getPlan_num()));
+	}
 }

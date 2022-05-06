@@ -60,3 +60,29 @@
 	</div>
 </div>
 
+<!-- 스터디추천 영역 -->
+<ul id="study_rec_list">
+<c:if test="${logStatus != 'Y'}">
+	로그인 시 이용할 수 있는 서비스입니다.(스터디추천이미지 캡쳐 후 블러처리)
+</c:if>
+<c:if test="${logStatus == 'Y'}">
+	<c:forEach var="vo" items="${StudyList}">
+		<li>
+			<ul>
+				<li><a href="/study_home/study_info?study_num=${vo.study_num}"><img src="/upload/study_room/${vo.study_img}" width="100px"/></a></li>
+				<li>[ ${vo.study_type_name} ]</li>
+				<li>${vo.study_name}</li>
+				<li>${vo.start_date} ~ ${vo.finish_date}</li>	
+				<c:if test="${vo.is_mentor == 'T'}">
+					<li>멘토</li>
+				</c:if>
+				<c:if test="${vo.is_mentor == 'F'}">
+					<li>자율</li>
+				</c:if>
+				<li>${vo.in_people} / ${vo.max}</li>
+				<li>${vo.lang01}&nbsp;${vo.lang02}&nbsp;${vo.lang03}&nbsp;${vo.tag1}&nbsp;${vo.tag2}</li>
+			</ul>
+		</li>
+	</c:forEach>
+</c:if>
+</ul>

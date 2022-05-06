@@ -62,6 +62,7 @@ public class UserController {
 				session.setAttribute("logNickname", user.getUser_nick());
 				session.setAttribute("logName", user.getUser_name());
 				session.setAttribute("logStatus", "Y");
+				session.setAttribute("logPermission", user.getPermission());
 				
 				String msg = "<script>alert('로그인 성공하였습니다.');location.href = '/';</script>";
 				entity = new ResponseEntity<String>(msg,headers,HttpStatus.OK);
