@@ -8,38 +8,68 @@
 <title>IsTudy</title>
 
 <!-- 부트스트랩 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+	crossorigin="anonymous">
 <!-- 제이쿼리, 플러그인 CDN -->
 <link rel="stylesheet" href="/jquery-ui/jquery-ui.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+	integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+	crossorigin="anonymous"></script>
 <!-- 폰트어썸 CDN -->
-<script src="https://kit.fontawesome.com/71aed6da77.js" crossorigin="anonymous"></script>
-<!-- 부트스트랩 JS -->
+<script src="https://kit.fontawesome.com/71aed6da77.js"
+	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="/css/inc/top.css" type="text/css" />
 </head>
 <body>
-		<div id="topBar">
-			<div class="col-lg-1">
-				<button type="button" class="menuBtn"><i class="fas fa-bars"></i></button>
-			</div>
-			<div class="col-lg-2"></div>
-			<div class="col-lg-5 logoDiv">
-				<img src="/images/logo.png" id="logo">
-			</div>
-			<div class="col-lg-4 btnDiv">
-				<button class="loginBtn btn">로그인</button>&nbsp;&nbsp;&nbsp;
-				<button class="signUpBtn btn">회원가입</button>
-			</div>
+	<div id="topBar">
+		<div class="col-lg-1">
+			<button type="button" class="menuBtn">
+				<i class="fas fa-bars"></i>
+			</button>
 		</div>
-		<div class="menuWrap">
-			<nav id="menu">
+		<div class="col-lg-2"></div>
+		<div class="col-lg-5 logoDiv">
+			<a href="/"><img src="/images/logo.png" id="logo"></a>
+		</div>
+		<div class="col-lg-4 btnDiv">
+			<c:if test="${logStatus != 'Y'}">
+				<button class="loginBtn btn"
+					onclick="window.location.href='/users/login'">로그인</button>
+					&nbsp;&nbsp;&nbsp;
+					<button class="signUpBtn btn"
+					onclick="window.location.href='/users/userForm'">회원가입</button>
+			</c:if>
+			<c:if test="${logStatus == 'Y' && logPermission !='admin'}">
+				<button class="loginBtn btn"
+					onclick="window.location.href='/users/logout'">로그아웃</button>
+	            	&nbsp;&nbsp;&nbsp;
+	                <button class="signUpBtn btn"
+					onclick="window.location.href='/users/myPage'">마이페이지</button>
+			</c:if>
+			<c:if test="${logStatus == 'Y' && logPermission =='admin'}">
+				<button class="loginBtn btn"
+					onclick="window.location.href='/users/logout'">로그아웃</button>
+	            	&nbsp;&nbsp;&nbsp;
+	               <button class="signUpBtn btn"
+					onclick="window.location.href='#'">관리자 페이지</button>
+			</c:if>
+		</div>
+	</div>
+	<div class="menuWrap">
+		<nav id="menu">
 			<ul class="category_list">
 				<li class="listStyle"><a href="#">스터디 구하기</a></li>
 				<li class="listStyle"><a href="#">Q & A</a></li>
+				<li class="listStyle"><a href="#">채용정보</a></li>
 				<li class="listStyle"><a href="#">공지사항</a></li>
 			</ul>
-			</nav>
-		</div>
-<script src="./js/inc/top.js"></script>
+		</nav>
+	</div>
+	<script src="./js/inc/top.js"></script>
