@@ -17,9 +17,9 @@
         padding: 0;
         list-style-type: none;
     }
-    
     .page{
         width: 100%;
+        margin-bottom: 300px;
     }
     .logo{
         margin-top:300px;
@@ -60,7 +60,7 @@
         font-size: 16px;
     }
     #username::-webkit-input-placeholder{
-        background-image: url(${url}/images/user.png);
+        background-image: url(${url}/images/login_icon/user.png);
         background-size: contain;
         background-position: 2px;
         background-repeat: no-repeat;
@@ -68,7 +68,7 @@
     }
 
     #tel::-webkit-input-placeholder{
-        background-image: url(${url}/images/phone.png);
+        background-image: url(${url}/images/login_icon/phone.png);
         background-size: contain;
         background-position: 2px;
         background-repeat: no-repeat;
