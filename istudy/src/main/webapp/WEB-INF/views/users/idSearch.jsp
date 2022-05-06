@@ -17,9 +17,9 @@
         padding: 0;
         list-style-type: none;
     }
-    
     .page{
         width: 100%;
+        margin-bottom: 300px;
     }
     .logo{
         margin-top:300px;
