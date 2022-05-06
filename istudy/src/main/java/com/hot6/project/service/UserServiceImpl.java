@@ -58,5 +58,20 @@ public class UserServiceImpl implements UserService {
 	public int userDelete(String id) {
 		return dao.userDelete(id);
 	}
+	
+	@Override
+	public String findId(UserVO vo) {
+		return dao.findId(vo);
+	}
+
+	@Override
+	public int matchUser(UserVO vo) {
+		return dao.matchUser(vo);
+	}
+
+	@Override
+	public int pwdUpdate(String newPwd, UserVO vo) {
+		return dao.pwdUpdate(newPwd, vo);
+	}
 
 }

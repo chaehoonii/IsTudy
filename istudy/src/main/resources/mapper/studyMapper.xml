@@ -4,10 +4,59 @@
   
 <mapper namespace="com.hot6.project.dao.StudyDAO">
 	<select id="StudyRecommend" resultType="StudyVO">
-		SELECT 	* 
-		FROM 	study_room A
-		JOIN 	user B
-		ON 		A.study_type_num = B.study_type_num
-		WHERE 	user_id = #{user_id}
+		SELECT 	  	A.*, (select D.lang_type_name from lang_type D where C.lang_type_num01 = D.lang_type_num) as lang01, 
+				  	(select D.lang_type_name from lang_type D where C.lang_type_num02 = D.lang_type_num) as lang02,
+				  	(select D.lang_type_name from lang_type D where C.lang_type_num03 = D.lang_type_num) as lang03,
+				  	E.study_type_name, F.*,
+                  	COUNT(G.want_ok='T') AS in_people,
+                  	(A.max -  COUNT(G.want_ok='T')) AS remain
+		FROM 	  	study_room A
+		LEFT JOIN 	user B
+		ON 		  	A.study_type_num = B.study_type_num
+        LEFT JOIN 	study_lang_type C
+        ON 		  	C.study_num = A.study_num
+        LEFT JOIN 	study_type E
+        ON 		  	E.study_type_num =  A.study_type_num
+        LEFT JOIN 	hashtag F
+        ON 		  	F.study_num = A.study_num
+        Left join 	study_mate G
+        on		  	G.study_num=A.study_num
+		where 	 	B.user_id = #{param1}
+        GROUP BY  	A.study_num
+        order by  	remain, A.study_num
+        LIMIT 	  	6;
 	</select>
+	
+	<select id="CalendarList" resultType="StudyVO">
+		SELECT 		A.*, B.color_name
+		FROM 		calendar A
+		LEFT JOIN 	calendar_color B
+		ON 			A.color_num = B.color_num
+		WHERE 		study_num=#{param1}
+	</select>
+	
+	<insert id="PlanInsert">
+		INSERT calendar(study_num, plan_name, plan_detail, plan_start, plan_finish, start_time, finish_time, color_num)
+		VALUES (#{study_num}, #{plan_name}, #{plan_detail}, #{plan_start}, #{plan_finish}, #{start_time}, #{finish_time}, #{color_num})
+	</insert>
+	
+	<select id="CalendarDetail" resultType="StudyVO">
+		SELECT 	A.*, B.color_name
+		FROM 	calendar A
+		JOIN 	calendar_color B
+		ON		B.color_num = A.color_num
+		WHERE 	A.plan_num = #{param1}
+	</select>
+	
+	<delete id="CalendarDel">
+		DELETE FROM calendar 
+		WHERE plan_num=#{param1}
+	</delete>
+	
+	<update id="CalendarEdit">
+		UPDATE 	calendar 
+		SET 	plan_name=#{plan_name}, plan_detail=#{plan_detail}, plan_start=#{plan_start}, plan_finish=#{plan_finish}, 
+				start_time=#{start_time}, finish_time=#{finish_time}, color_num=#{color_num} 
+		WHERE 	plan_num=#{plan_num}; 
+	</update>
 </mapper>

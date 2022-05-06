@@ -7,7 +7,7 @@ public class UserVO {
 	private String user_nick;
 	private String email;
 	private String tel;
-	
+
 	private String register_date;
 	private int exp;
 	private String profile_img; 
@@ -27,7 +27,14 @@ public class UserVO {
 	private String leave_detail;
 	private int leave_type_num;
 	
-	
+
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getTel() {
 		return tel;
 	}
@@ -58,12 +65,7 @@ public class UserVO {
 	public void setUser_nick(String user_nick) {
 		this.user_nick = user_nick;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+
 	public String getRegister_date() {
 		return register_date;
 	}

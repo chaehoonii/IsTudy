@@ -16,10 +16,6 @@ public interface UserDAO {
 	// 아이디 중복 체크
 	public int idCheck(String id);
 
-	// 로그인 (임시)
-	public UserVO loginCheck(UserVO vo);
-	public UserVO inquiryOfUserById(String id);
-
 	// 회원정보수정 폼 진입>로그인 정보 가져오기 (user 1명 선택)
 	public UserVO userSelect(String id);
 
@@ -33,4 +29,17 @@ public interface UserDAO {
 	public int userDelete(String id);
 
 	public List<UserVO> MentorRecommend();
+	
+	//로그인
+	public UserVO loginCheck(UserVO vo);
+	public UserVO inquiryOfUserById(String id);
+	
+	//아이디 찾기
+	public String findId(UserVO vo); 
+	
+	//아이디, 이메일 일치하는 회원 있는지 확인
+	public int matchUser(UserVO vo);
+	
+	//임의로 생성한 비밀번호로 업데이트
+	public int pwdUpdate(String newPwd, UserVO vo);
 }

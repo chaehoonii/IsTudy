@@ -53,6 +53,10 @@ dependencies {
 	
 	// 파일업로드 구현
 	implementation 'commons-fileupload:commons-fileupload:1.4'
+
+	//비밀번호 찾기 메일 전송
+	implementation 'org.springframework.boot:spring-boot-starter-mail:2.5.6'
+
 	
 }
 

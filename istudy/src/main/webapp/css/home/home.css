@@ -1,0 +1,135 @@
+@charset "UTF-8";
+html{
+	overflow:hidden;
+}
+/*================================이미지, 글씨======================================*/
+#mainImage>img{
+	width:100%;
+	height:80%;
+}
+#mainImage {
+	vertical-align: middle;
+}
+#mainText {
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	color:white;
+	font-family: 'paybooc-Bold';
+	font-size:3em;
+	letter-spacing:20px;
+	transform: translate( -50%, -50% );
+	user-select:none;
+}
+/*===============================멘토정보 슬라이드====================================*/
+.mentoRecommend{
+	width:100%;
+	height:700px;
+	text-align:center;
+	margin:0px auto;
+}
+.item:active{
+	width:250px !important;
+	height:400px !important;
+}
+#mentoTitle{
+	padding:60px 0px;
+}
+.card{
+	margin-left:20px;
+	padding:20px;
+	width:250px !important;
+	text-align:center;
+	border-radius:20px;
+	filter: drop-shadow(0px 3px 3px rgba(0,0,0,30%));
+}
+.card img{
+	width:80%;
+	margin:0 auto;
+	margin-top:10px;
+	border-radius:10px;
+}
+.card-text, .card-title{
+	margin:15px 0px;
+}
+.profile{
+	background-color:rgba(85, 76, 66, 70%);
+	color:white !important;
+	width:70px;
+	height:30px;
+	line-height:20px;
+}
+.loginBtn, .signUpBtn{
+	width:70px;
+	height:30px;
+	font-size:1.1em;
+}
+.slideBtnArea{
+	height:400px;
+	padding-top:170px;
+}
+.customPrevBtn, .customNextBtn{
+	height:60px;
+	border:none;
+	background:none;
+	font-size:4em;
+	color:rgba(0,0,0,50%);
+}
+.customPrevBtn{
+	float:right;
+}
+.customNextBtn{
+	float:left;
+}
+.owl-dots{
+	display:none;
+}
+/*===============================기업정보====================================*/
+.recruit {
+	width:100%;
+	height:900px;
+	text-align:center;
+	margin:0 auto;	
+	background-color:rgb(230, 220, 215);
+	overflow:hidden;
+	font-size:15px !important;
+}
+.recruitTitle{
+	padding:60px 0px;
+}
+.recruitArea{
+	width:1500px;
+	margin:0 auto;	
+}
+.recruitInfo{
+	margin:10px;
+	display:inline-block;
+	background-color:white;
+	width:45%;
+	border-radius:10px;
+	filter: drop-shadow(0px 3px 3px rgba(0,0,0,30%));
+}
+.recruitImg{
+	width:150px;
+	height:150px;
+	padding:20px;
+	border-right:5px solid rgb(230, 220, 215);
+	
+}
+.recruitInfo img{
+	width:100px;
+}
+.recruitList{
+	width:50%;
+	margin:10px;
+	border:1px solid #ddd;
+	background-color:white;
+}
+.recruitText{
+	border-bottom:5px solid rgb(230, 220, 215);
+	width:100%;
+}
+.recruitText, .recruitText2{
+	padding-left:30px;
+}
