@@ -66,7 +66,9 @@
 	로그인 시 이용할 수 있는 서비스입니다.(스터디추천이미지 캡쳐 후 블러처리)
 </c:if>
 <c:if test="${logStatus == 'Y'}">
+<c:set var="study_num"/>
 	<c:forEach var="vo" items="${StudyList}">
+	    
 		<li>
 			<ul>
 				<li><a href="/study_home/study_info?study_num=${vo.study_num}"><img src="/upload/study_room/${vo.study_img}" width="100px"/></a></li>
@@ -80,9 +82,17 @@
 					<li>자율</li>
 				</c:if>
 				<li>${vo.in_people} / ${vo.max}</li>
-				<li>${vo.lang01}&nbsp;${vo.lang02}&nbsp;${vo.lang03}&nbsp;${vo.tag1}&nbsp;${vo.tag2}</li>
+				<li>
+					<c:forEach var="lang_type" items="${vo.lang_list}">
+						${lang_type}&nbsp;
+					</c:forEach>
+					<c:forEach var="tag_name" items="${vo.tag_list}">
+						${tag_name}&nbsp;
+					</c:forEach>
+				</li>
 			</ul>
 		</li>
+		
 	</c:forEach>
 </c:if>
 </ul>

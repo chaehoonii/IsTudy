@@ -3,30 +3,32 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.hot6.project.dao.StudyDAO">
+	<!-- 스터디 추천 -->
 	<select id="StudyRecommend" resultType="StudyVO">
-		SELECT 	  	A.*, (select D.lang_type_name from lang_type D where C.lang_type_num01 = D.lang_type_num) as lang01, 
-				  	(select D.lang_type_name from lang_type D where C.lang_type_num02 = D.lang_type_num) as lang02,
-				  	(select D.lang_type_name from lang_type D where C.lang_type_num03 = D.lang_type_num) as lang03,
-				  	E.study_type_name, F.*,
-                  	COUNT(G.want_ok='T') AS in_people,
-                  	(A.max -  COUNT(G.want_ok='T')) AS remain
+		SELECT 	  	A.*,E.*,  G.in_people, (A.max -  G.in_people) AS remain
 		FROM 	  	study_room A
-		LEFT JOIN 	user B
+		inner JOIN 	user B
 		ON 		  	A.study_type_num = B.study_type_num
-        LEFT JOIN 	study_lang_type C
-        ON 		  	C.study_num = A.study_num
-        LEFT JOIN 	study_type E
+        JOIN 		study_type E
         ON 		  	E.study_type_num =  A.study_type_num
-        LEFT JOIN 	hashtag F
-        ON 		  	F.study_num = A.study_num
-        Left join 	study_mate G
+        left join 	(select study_num, COUNT(want_ok) AS in_people from study_mate where want_ok='T' group by study_num ) G
         on		  	G.study_num=A.study_num
-		where 	 	B.user_id = #{param1}
-        GROUP BY  	A.study_num
+        where 		user_id=#{param1}
         order by  	remain, A.study_num
-        LIMIT 	  	6;
+	</select>
+	<select id="lang_List" resultType="string">
+		select B.lang_type_name 
+        from study_lang_type A
+        join lang_type B
+        on A.lang_type_num =B.lang_type_num and A.study_num=#{param1}
+	</select>
+	<select id="tag_List" resultType="string">
+		SELECT 	tag
+        FROM 	hashtag
+        WHERE 	study_num=#{param1}
 	</select>
 	
+	<!-- 달력 페이지 -->
 	<select id="CalendarList" resultType="StudyVO">
 		SELECT 		A.*, B.color_name
 		FROM 		calendar A
@@ -35,11 +37,13 @@
 		WHERE 		study_num=#{param1}
 	</select>
 	
+	<!-- 일정 등록 -->
 	<insert id="PlanInsert">
 		INSERT calendar(study_num, plan_name, plan_detail, plan_start, plan_finish, start_time, finish_time, color_num)
 		VALUES (#{study_num}, #{plan_name}, #{plan_detail}, #{plan_start}, #{plan_finish}, #{start_time}, #{finish_time}, #{color_num})
 	</insert>
 	
+	<!-- 일정 상세 -->
 	<select id="CalendarDetail" resultType="StudyVO">
 		SELECT 	A.*, B.color_name
 		FROM 	calendar A
@@ -48,11 +52,13 @@
 		WHERE 	A.plan_num = #{param1}
 	</select>
 	
+	<!-- 일정 삭제 -->
 	<delete id="CalendarDel">
 		DELETE FROM calendar 
 		WHERE plan_num=#{param1}
 	</delete>
 	
+	<!-- 일정 수정 -->
 	<update id="CalendarEdit">
 		UPDATE 	calendar 
 		SET 	plan_name=#{plan_name}, plan_detail=#{plan_detail}, plan_start=#{plan_start}, plan_finish=#{plan_finish}, 

@@ -1,0 +1,72 @@
+@charset "UTF-8";
+#calendar_container {
+	margin: 40px 10px;
+	padding: 0;
+	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+#calendar {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.select_color {
+	appearance: none;
+	background-color: #EACACB;
+	width: 40px;
+	font-size: 25px;
+	border: none;
+}
+
+.select_color02 {
+	appearance: none;
+	width: 40px;
+	font-size: 25px;
+	border: none;
+}
+
+.input_plan_name {
+	border: 2px solid #bbb;
+	border-right: 0px;
+	border-top: 0px;
+	border-left: 0px;
+}
+
+.time_selector {
+	border-right: 0px;
+	border-top: 0px;
+	border-left: 0px;
+	border-bottom: 0px;
+}
+
+.nocenter {
+	text-align: left;
+}
+
+.yescenter {
+	text-align: center;
+}
+
+.Planbtns {
+	background: none;
+	border: 2px solid #bbb;
+	border-radius: 5px;
+}
+
+#addPlanModalBody {
+	font-size: 14px;
+	text-align: center;
+}
+
+#viewPlanModalBody {
+	font-size: 14px;
+	text-align: center;
+}
+
+.graySquare {
+	resize: none;
+	border: 2px solid #bbb;
+	border-radius: 5px;
+	padding: 20px;
+}
