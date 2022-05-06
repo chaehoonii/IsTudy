@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<h2><a href="${url}/users/userForm">회원가입</a></h2>
+<h2><a href="${url}/users/userEdit">회원정보수정</a></h2>
 <ul id="mentor_rec_list">
 	<c:forEach var="vo" items="${MentorList}">
 		<li>
