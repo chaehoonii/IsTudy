@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
 
         ul, li, body{
@@ -258,6 +260,46 @@
 	            					<span>스터디장</span>
 	            				</div>
 	            			</div><hr/>
+            		</li>
+            		<c:forEach var="vo" items="${Jstudy}">
+	            		<li class="eachContent">
+	            				<div class="studyInfo">
+		            				<div class="studyImg">
+		            					<div class="photo">
+		            						<img src="${url}/images/mypage_img/exstudy1.jpg"/>
+		            					</div>
+		            				</div>
+		            				<div class="studyName">
+		            					<a>${vo.study_name}</a>
+		            				</div>
+		            				<div class="studyCategory">
+		            					<span>${vo.study_type_name}</span>
+		            				</div>
+		            				<div class="studyLeader">
+		            					<span>${vo.host_id}</span>
+		            				</div>
+		            			</div><hr/>
+	            		</li>
+            		
+            		</c:forEach>
+            			
+            			<%-- <li class="eachContent">
+            				<div class="studyInfo">
+	            				<div class="studyImg">
+	            					<div class="photo">
+	            						<img src="${url}/images/mypage_img/exstudy1.jpg"/>
+	            					</div>
+	            				</div>
+	            				<div class="studyName">
+	            					<a>Istudy</a>
+	            				</div>
+	            				<div class="studyCategory">
+	            					<span>프로젝트</span>
+	            				</div>
+	            				<div class="studyLeader">
+	            					<span>goguma</span>
+	            				</div>
+	            			</div><hr/>
             			</li>
             			<li class="eachContent">
             				<div class="studyInfo">
@@ -402,12 +444,12 @@
 	            					<span>hi9102</span>
 	            				</div>
 	            			</div><hr/>
-            			</li>
+            			</li> --%>
             			
             		</ul>
-            		<div class="scrollIcon">
+            		<%-- <div class="scrollIcon">
             			<img src="${url}/images/mypage_img/scrolldown.png"/>
-            		</div>
+            		</div> --%>
             	</div>
             	<div class="title">완료 스터디</div><hr/>
             	<div class="contents">
@@ -428,7 +470,29 @@
 	            				</div>
 	            			</div><hr/>
             			</li>
-            			<li class="eachContent">
+            			<c:forEach var="vo" items="${Fstudy}">
+	            		<li class="eachContent">
+	            				<div class="studyInfo">
+		            				<div class="studyImg">
+		            					<div class="photo">
+		            						<img src="${url}/images/mypage_img/exstudy1.jpg"/>
+		            					</div>
+		            				</div>
+		            				<div class="studyName">
+		            					<a>${vo.study_name}</a>
+		            				</div>
+		            				<div class="studyCategory">
+		            					<span>${vo.study_type_name}</span>
+		            				</div>
+		            				<div class="studyLeader">
+		            					<span>${vo.host_id}</span>
+		            				</div>
+		            			</div><hr/>
+	            		</li>
+            		
+            		</c:forEach>
+            		
+            			<%-- <li class="eachContent">
             				<div class="studyInfo">
 	            				<div class="studyImg">
 	            					<div class="photo">
@@ -517,8 +581,8 @@
 	            					<span>hi9102</span>
 	            				</div>
 	            			</div><hr/>
-            			</li>
-            			
+            			</li> 
+            			 --%>
             		</ul>
             	
             	
