@@ -17,13 +17,13 @@ spring:
   # 서버 자동 시작
   devtools:
     livereload:
-      enabled: true      
+      enabled: true
   # multipart 설정
   servlet:
     multipart:
       location: C:\\IsTudy\\istudy\\src\\main\\webapp\\
       enabled: true
-      max-file-size: 20MB  
+      max-file-size: 20MB
   mail:
     host: smtp.gmail.com
     port: 587
@@ -35,7 +35,7 @@ spring:
           auth: true
           starttls:
             enable: true
-      
+
 # mybatis에서 패키지를 생략할 수 있도록 설정 
 mybatis:
     type-aliases-package: com.hot6.project.vo

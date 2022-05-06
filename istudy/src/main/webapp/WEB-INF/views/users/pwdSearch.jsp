@@ -19,6 +19,7 @@
     
     .page{
         width: 100%;
+        margin-bottom: 300px;
     }
     .logo{
         margin-top:300px;
