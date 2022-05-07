@@ -1,0 +1,52 @@
+@charset "UTF-8";
+#qna_back {
+	width: 1000px;
+	margin: 0 auto;
+	margin-top:20px;
+}
+.lang_list {
+	background-color: #FEF5D4;
+	border-radius: 5px;
+	padding: 5px;
+	font-size:12px;
+}
+
+.tag_list {
+	background-color: rgb(232,244,232);
+	border-radius: 5px;
+	padding: 5px;
+	font-size:12px;
+}
+
+#qna_profile {
+	width: 40px;
+	border-radius: 50%;
+}
+
+.qna_ul {
+	margin-left:50px;
+	line-height: 45px;
+	display:inline-block;
+	width:750px;
+	font-size:15px;
+	
+}
+.qna_ul li, .qna_ul2 li{
+	text-overflow:ellipsis;
+	white-space: nowrap;
+  	overflow: hidden;
+}
+.qna_ul2 {
+	line-height: 45px;
+	display:inline-block;
+	width:150px;
+	font-size:12px;
+}
+
+.gray_border {
+	line-height: 30px;
+	border-radius: 5px;
+	padding: 5px;
+	border: 1px solid #ddd;
+	font-size:15px;
+}

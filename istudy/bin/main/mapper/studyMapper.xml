@@ -5,27 +5,29 @@
 <mapper namespace="com.hot6.project.dao.StudyDAO">
 	<!-- 스터디 추천 -->
 	<select id="StudyRecommend" resultType="StudyVO">
-		SELECT 	  	A.*,E.*,  G.in_people, (A.max -  G.in_people) AS remain
+		SELECT 	  	A.*,E.*,  ifnull(G.in_people,0) AS in_people, (A.max -  ifnull(G.in_people,0)) AS remain
 		FROM 	  	study_room A
-		inner JOIN 	user B
+		INNER JOIN 	user B
 		ON 		  	A.study_type_num = B.study_type_num
-        JOIN 		study_type E
-        ON 		  	E.study_type_num =  A.study_type_num
-        left join 	(select study_num, COUNT(want_ok) AS in_people from study_mate where want_ok='T' group by study_num ) G
-        on		  	G.study_num=A.study_num
-        where 		user_id=#{param1}
-        order by  	remain, A.study_num
+	    JOIN 		study_type E
+	    ON 		  	E.study_type_num =  A.study_type_num
+	    LEFT JOIN 	(SELECT study_num, COUNT(want_ok) AS in_people FROM study_mate WHERE want_ok='T' GROUP BY study_num ) G
+	    ON		  	G.study_num=A.study_num
+	    WHERE 		user_id=#{param}
+	    ORDER BY  	remain, A.study_num;
 	</select>
-	<select id="lang_List" resultType="string">
-		select B.lang_type_name 
-        from study_lang_type A
-        join lang_type B
-        on A.lang_type_num =B.lang_type_num and A.study_num=#{param1}
+  	<!-- 스터디 추천: 언어타입 -->
+	<select id="StudyLangType" resultType="string">
+		SELECT  B.lang_type_name 
+	    FROM    study_lang_type A
+	    JOIN    lang_type B
+	    ON      A.lang_type_num =B.lang_type_num and A.study_num=#{param1}
 	</select>
-	<select id="tag_List" resultType="string">
+  	<!-- 스터디 추천: 태그 -->
+	<select id="StudyTag" resultType="string">
 		SELECT 	tag
-        FROM 	hashtag
-        WHERE 	study_num=#{param1}
+	    FROM 	  hashtag
+	    WHERE 	study_num=#{param1}
 	</select>
 	
 	<!-- 달력 페이지 -->
@@ -65,4 +67,16 @@
 				start_time=#{start_time}, finish_time=#{finish_time}, color_num=#{color_num} 
 		WHERE 	plan_num=#{plan_num}; 
 	</update>
+	
+	<select id="joinStudy" resultType="StudyVO">
+		SELECT study_room.*, study_type.study_type_name, study_mate.user_id FROM study_room INNER JOIN study_type
+		ON study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[<=]]> finish_date
+		INNER JOIN study_mate ON study_mate.study_num= study_room.study_num AND user_id= #{param1};
+	</select>
+	
+	<select id="finishStudy" resultType="StudyVO">
+		SELECT study_room.*, study_type.study_type_name, study_mate.user_id FROM study_room INNER JOIN study_type
+		ON study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[>]]> finish_date
+		INNER join study_mate ON study_mate.study_num= study_room.study_num AND user_id= #{param1};
+	</select>
 </mapper>
