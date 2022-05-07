@@ -26,7 +26,7 @@ public class BoardVO {
 	private String file4;
 	private String file5;
 	
-	//hashtag
+	//board_hashtag
 	private String tag;
 
 	private List<String> lang_list;

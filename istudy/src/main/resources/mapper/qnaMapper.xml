@@ -30,7 +30,7 @@
 <!-- 질문 리스트 : 태그 -->
 <select id="QnaTag" resultType="String">
 	SELECT 	tag 
-	FROM 	hashtag 
+	FROM 	board_hashtag 
 	WHERE 	board_num=#{param1}
 </select>
 </mapper>

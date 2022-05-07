@@ -26,7 +26,7 @@
   	<!-- 스터디 추천: 태그 -->
 	<select id="StudyTag" resultType="string">
 		SELECT 	tag
-	    FROM 	  hashtag
+	    FROM 	study_hashtag
 	    WHERE 	study_num=#{param1}
 	</select>
 	
@@ -57,7 +57,7 @@
 	<!-- 일정 삭제 -->
 	<delete id="CalendarDel">
 		DELETE FROM calendar 
-		WHERE plan_num=#{param1}
+		WHERE 	plan_num=#{param1}
 	</delete>
 	
 	<!-- 일정 수정 -->
