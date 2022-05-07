@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <link href='/lib/main.css' rel='stylesheet' />
 <script src='/lib/main.js'></script>
 <link rel="stylesheet" href="/css/study/studyCalendar.css" type="text/css" />

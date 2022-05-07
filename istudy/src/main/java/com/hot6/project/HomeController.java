@@ -38,14 +38,10 @@ public class HomeController {
         System.out.println((String)session.getAttribute("logPermission"));
         List<StudyVO> studylist = Sservice.StudyRecommend(user_id);
         for(StudyVO vo:studylist) {
-        	vo.setLang_list(Sservice.lang_List(vo.getStudy_num()));
-//        	for(String s :vo.getLang_list()) {
-//        		System.out.println(s);
-//        	}
-        }
-        
+        	vo.setLang_list(Sservice.StudyLangType(vo.getStudy_num()));
+        } 
         for(StudyVO vo:studylist) {
-        	vo.setTag_list(Sservice.tag_List(vo.getStudy_num()));
+        	vo.setTag_list(Sservice.StudyTag(vo.getStudy_num()));
         }	
         
         mav.addObject("StudyList", studylist);
