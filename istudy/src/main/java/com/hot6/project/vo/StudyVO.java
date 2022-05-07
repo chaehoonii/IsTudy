@@ -45,7 +45,7 @@ public class StudyVO {
 	private String start_time;
 	private String finish_time;
 	
-	//hashtag
+	//study_hashtag
 	private String tag;
 	
 	private List<String> lang_list;

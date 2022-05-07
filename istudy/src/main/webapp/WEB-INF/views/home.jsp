@@ -83,14 +83,12 @@
 					<li>자율</li>
 				</c:if>
 				<li>${vo.in_people} / ${vo.max}</li>
-				<li>
-					<c:forEach var="lang_type" items="${vo.lang_list}">
-						${lang_type}&nbsp;
-					</c:forEach>
-					<c:forEach var="tag_name" items="${vo.tag_list}">
-						${tag_name}&nbsp;
-					</c:forEach>
-				</li>
+				<li><c:forEach var="lang_list" items="${vo.lang_list}">
+						<span class="lang_list">&nbsp;${lang_list}&nbsp;</span>&nbsp;
+					</c:forEach> 
+					<c:forEach var="tag_list" items="${vo.tag_list}">
+						<span class="tag_list">&nbsp;${tag_list}&nbsp;</span>&nbsp;
+					</c:forEach></li>
 			</ul>
 		</li>
 		
