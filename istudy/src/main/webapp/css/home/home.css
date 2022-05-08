@@ -173,3 +173,16 @@
 	width:75%;
 	height:40px;
 }
+.lang_list {
+	background-color: #FEF5D4;
+	border-radius: 5px;
+	padding: 5px;
+	font-size:12px;
+}
+/*===============================스터디 추천====================================*/
+.tag_list {
+	background-color: rgb(232,244,232);
+	border-radius: 5px;
+	padding: 5px;
+	font-size:12px;
+}

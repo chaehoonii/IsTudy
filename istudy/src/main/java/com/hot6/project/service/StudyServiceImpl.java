@@ -54,13 +54,13 @@ public class StudyServiceImpl implements StudyService{
 	}
 
 	@Override
-	public List<String> lang_List(int study_num) {
-		return dao.lang_List(study_num);
+	public List<String> StudyLangType(int study_num) {
+		return dao.StudyLangType(study_num);
 	}
 
 	@Override
-	public List<String> tag_List(int study_num) {
-		return dao.tag_List(study_num);
+	public List<String> StudyTag(int study_num) {
+		return dao.StudyTag(study_num);
 	}
 
 }
