@@ -57,8 +57,8 @@
 				<button class="loginBtn btn"
 					onclick="window.location.href='/users/logout'">로그아웃</button>
 	            	&nbsp;&nbsp;&nbsp;
-	               <button class="signUpBtn btn"
-					onclick="window.location.href='#'">관리자 페이지</button>
+	               <button class="adminBtn btn"
+					onclick="window.location.href='/admin/adminMain'">관리자 페이지</button>
 			</c:if>
 		</div>
 	</div>

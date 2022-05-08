@@ -5,23 +5,23 @@
 <mapper namespace="com.hot6.project.dao.StudyDAO">
 	<!-- 스터디 추천 -->
 	<select id="StudyRecommend" resultType="StudyVO">
-		SELECT 	  	A.*,E.*,  G.in_people, (A.max -  G.in_people) AS remain
+		SELECT 	  	A.*,E.*,  ifnull(G.in_people,0) AS in_people, (A.max -  ifnull(G.in_people,0)) AS remain
 		FROM 	  	  study_room A
 		INNER JOIN 	user B
 		ON 		  	  A.study_type_num = B.study_type_num
-    JOIN 		    study_type E
-    ON 		  	  E.study_type_num =  A.study_type_num
-    LEFT JOIN 	(SELECT study_num, COUNT(want_ok) AS in_people FROM study_mate WHERE want_ok='T' GROUP BY study_num ) G
-    ON		  	  G.study_num=A.study_num
-    WHERE 		  user_id=#{param1}
-    ORDER BY  	remain, A.study_num
-	</select>
+     	JOIN 		study_type E
+	    ON 		  	E.study_type_num =  A.study_type_num
+	    LEFT JOIN 	(SELECT study_num, COUNT(want_ok) AS in_people FROM study_mate WHERE want_ok='T' GROUP BY study_num ) G
+	    ON		  	G.study_num=A.study_num
+	    WHERE 		user_id=#{param}
+	    ORDER BY  	remain, A.study_num;
+	 </select>
   <!-- 스터디 추천: 언어타입 -->
-	<select id="lang_List" resultType="string">
+	<select id="StudyLangType" resultType="string">
 		SELECT  B.lang_type_name 
-    FROM    study_lang_type A
-    JOIN    lang_type B
-    ON      A.lang_type_num =B.lang_type_num and A.study_num=#{param1}
+	    FROM    study_lang_type A
+	    JOIN    lang_type B
+	    ON      A.lang_type_num =B.lang_type_num and A.study_num=#{param1}
 	</select>
   <!-- 스터디 추천: 태그 -->
 	<select id="tag_List" resultType="string">
@@ -31,7 +31,7 @@
 	</select>
 	
 	<!-- 달력 페이지 -->
-	<select id="CalendarList" resultType="StudyVO">
+	<select id="Calenda    rList" resultType="StudyVO">
 		SELECT 		A.*, B.color_name
 		FROM 		calendar A
 		LEFT JOIN 	calendar_color B

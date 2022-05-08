@@ -18,8 +18,8 @@ public interface StudyDAO {
 
 	// 메인페이지 - 스터디 추천
 	public List<StudyVO> StudyRecommend(String user_id);
-	public List<String> lang_List(int study_num);
-	public List<String> tag_List(int study_num);
+	public List<String> StudyLangType(int study_num);
+	public List<String> StudyTag(int study_num);
 	// 일정 상세
 	public StudyVO CalendarDetail(int plan_num);
 

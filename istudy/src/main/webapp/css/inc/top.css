@@ -49,6 +49,17 @@ a, a:visited, a:hover, a:active{
 	text-align:right;
 }
 .loginBtn, .signUpBtn{
+	width:80px !important;
+	height:40px !important;
+	font-size:1.3em !important;
+	background-color:rgb(85, 76, 66);
+	color:white;
+	border-radius:8px;
+}
+.adminBtn{
+	width:100px !important;
+	height:40px !important;
+	font-size:1.3em !important;
 	background-color:rgb(85, 76, 66);
 	color:white;
 	border-radius:8px;
@@ -72,8 +83,8 @@ a, a:visited, a:hover, a:active{
     top:60;
     left: -300px; /* 너비 300px 인 사이드바를 왼쪽으로 300px 이동시켜 화면에 보이지 않게 함 */
     width: 300px; /* 너비 */
-    height:92%;
-    line-height:250px;
+    height:91.5%;
+    line-height:240px;
     text-align:center;
     font-size:1.5em;
     transition: left .3s ease-in-out; /* 0.3초 동안 이동 애니메이션 */
