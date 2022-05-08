@@ -240,17 +240,22 @@ insert board_hashtag(board_num, tag) value (3, 'JPA');
 insert board_hashtag(board_num, tag) value (3, 'DB');
 insert board_hashtag(board_num, tag) value (4, '에러');
 
-
 insert board_lang_type(board_num, lang_type_num) values(1, 12);
 insert board_lang_type(board_num, lang_type_num) values(1, 5);
 insert board_lang_type(board_num, lang_type_num) values(2, 11);
 insert board_lang_type(board_num, lang_type_num) values(3, 12);
 insert board_lang_type(board_num, lang_type_num) values(3, 5);
-insert board_lang_type(board_num, lang_type_num) values(3, 4);
+insert board_lang_type(board_num, lang_type_num) values(4, 4);
 
-insert reply(board_num, user_id, reply_coment, ip) values(1, 'bbbb0000', 'SDFsdfsdljklk','0');
-insert reply(board_num, user_id, reply_coment, ip) values(2, 'cccc0000', 'SDFssdfsdfklk','0');
-insert reply(board_num, user_id, reply_coment, ip) values(2, 'dddd0000', 'SDFsderwerfgdfsdljklk','0');
-insert reply(board_num, user_id, reply_coment, ip) values(2, 'eeee0000', 'gfsgdhyjytj','0');
-insert reply(board_num, user_id, reply_coment, ip) values(3, 'ffff0000', 'rthfgvbc','0');
-insert reply(board_num, user_id, reply_coment, ip) values(3, 'gggg0000', 'rthrtfdb','0');
+insert reply(board_num, user_id, reply_coment, ip) values(1, 'bbbb0000', '새로고침하세요222','0');
+insert reply(board_num, user_id, reply_coment, ip) values(2, 'cccc0000', '저장하세요','0');
+insert reply(board_num, user_id, reply_coment, ip) values(2, 'dddd0000', '새로고침하세요','0');
+insert reply(board_num, user_id, reply_coment, ip) values(2, 'eeee0000', '저장하세요222','0');
+insert reply(board_num, user_id, reply_coment, ip) values(3, 'ffff0000', '새로고침하세요333','0');
+insert reply(board_num, user_id, reply_coment, ip) values(3, 'gggg0000', '저장하세요3333','0');
+
+insert select_reply(board_num, reply_num) values(1,1);
+insert select_reply(board_num, reply_num) values(3,2);
+
+set foreign_key_checks=1;
+truncate reply;
