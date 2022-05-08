@@ -13,7 +13,7 @@
 			<ul class='qna_ul'>
 				<li><span class='gray_border'>&nbsp;Q&nbsp;</span>&nbsp;&nbsp;&nbsp;${vo.title}</li>
 
-				<li><c:forEach var="lang_list" items="${vo.lang_list}">
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<c:forEach var="lang_list" items="${vo.lang_list}">
 						<span class="lang_list">&nbsp;${lang_list}&nbsp;</span>&nbsp;
 					</c:forEach> 
 					<c:forEach var="tag_list" items="${vo.tag_list}">
