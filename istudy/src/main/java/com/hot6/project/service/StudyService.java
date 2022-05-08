@@ -13,6 +13,8 @@ public interface StudyService {
 
 	// 메인페이지 - 스터디 추천
 	public List<StudyVO> StudyRecommend(String user_id);
+	public List<String> StudyLangType(int study_num);
+	public List<String> StudyTag(int study_num);
 
 	// 일정 상세
 	public StudyVO CalendarDetail(int plan_num);
@@ -22,4 +24,10 @@ public interface StudyService {
 	
 	//일정 수정
 	public int CalendarEdit(StudyVO vo);
+	
+	//마이페이지 진행 스터디 
+	public List<StudyVO> joinStudy(String user_id);
+				
+	//마이페이지 완료 스터디
+	public List<StudyVO> finishStudy(String user_id);
 }

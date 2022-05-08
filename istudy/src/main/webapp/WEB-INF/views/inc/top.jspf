@@ -66,8 +66,7 @@
 		<nav id="menu">
 			<ul class="category_list">
 				<li class="listStyle"><a href="#">스터디 구하기</a></li>
-				<li class="listStyle"><a href="#">Q & A</a></li>
-				<li class="listStyle"><a href="#">채용정보</a></li>
+				<li class="listStyle"><a href="/qna/qnaList">Q & A</a></li>
 				<li class="listStyle"><a href="#">공지사항</a></li>
 			</ul>
 		</nav>

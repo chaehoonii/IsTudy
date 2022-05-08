@@ -1,5 +1,7 @@
 package com.hot6.project.vo;
 
+import java.util.List;
+
 public class StudyVO {
 	//study_room
 	private int study_num;
@@ -42,11 +44,26 @@ public class StudyVO {
 	private String plan_finish;
 	private String start_time;
 	private String finish_time;
-	
-	//hashtag
+
+	//study_hashtag
 	private String tag;
 	
+	private List<String> lang_list;
+	private List<String> tag_list;
 	
+	
+	public List<String> getLang_list() {
+		return lang_list;
+	}
+	public void setLang_list(List<String> lang_list) {
+		this.lang_list = lang_list;
+	}
+	public List<String> getTag_list() {
+		return tag_list;
+	}
+	public void setTag_list(List<String> tag_list) {
+		this.tag_list = tag_list;
+	}
 	public int getIn_people() {
 		return in_people;
 	}

@@ -43,3 +43,4 @@ public interface UserDAO {
 	
 	public List<UserVO> MentorRecommend();
 }
+

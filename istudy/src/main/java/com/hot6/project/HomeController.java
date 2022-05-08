@@ -1,5 +1,7 @@
 package com.hot6.project;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hot6.project.service.JobService;
 import com.hot6.project.service.StudyService;
 import com.hot6.project.service.UserService;
+import com.hot6.project.vo.StudyVO;
 
 @Controller
 public class HomeController {
@@ -33,7 +36,15 @@ public class HomeController {
         String user_id = (String)session.getAttribute("logId");
         System.out.println(user_id);
         System.out.println((String)session.getAttribute("logPermission"));
-        mav.addObject("StudyList", Sservice.StudyRecommend(user_id));
+        List<StudyVO> studylist = Sservice.StudyRecommend(user_id);
+        for(StudyVO vo:studylist) {
+        	vo.setLang_list(Sservice.StudyLangType(vo.getStudy_num()));
+        } 
+        for(StudyVO vo:studylist) {
+        	vo.setTag_list(Sservice.StudyTag(vo.getStudy_num()));
+        }	
+        
+        mav.addObject("StudyList", studylist);
         mav.setViewName("home");
         return mav;
     }
