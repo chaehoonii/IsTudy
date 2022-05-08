@@ -1,1 +1,117 @@
-@charset "EUC-KR";
+@charset "UTF-8";
+
+@font-face {
+	font-family: 'paybooc-Bold';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+body * {
+	font-family: 'paybooc-Bold';
+}
+
+ul, li * {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.wrap {
+	padding-bottom: 100px;
+}
+
+.userForm_wrap {
+	width: 800px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+#user_img_wrap {
+	border-radius: 50%;
+	border: 1.5px solid gray;
+	width: 250px;
+	height: 250px;
+	margin: 0 auto;
+	margin-bottom: 50px;
+	overflow: hidden;
+	line-height: 250px;
+	color: gray;
+	cursor: pointer;
+	text-align: center;
+}
+
+#user_img {
+	width: 255px;
+	vertical-align: middle;
+	margin: 0;
+}
+
+fieldset {
+	padding: 40px; 
+	margin-bottom: 20px;
+	border: 1px solid gray;
+	margin-top: 80px;
+}
+
+legend {
+	font-size: 1.4em;
+	width: 16%;
+	border-bottom: hidden;
+}
+
+fieldset li:nth-child(2n) {
+	margin: 5px 0px 9px;
+}
+
+fieldset li:last-child {
+	margin: 5px 0px;
+}
+
+input[type=text], input[type=password] {
+	width: 97%;
+	height: 35px;
+	padding-left: 10px;
+	margin-bottom: 5px;
+}
+
+input[type=radio] {
+	margin-right: 5px;
+}
+
+input[type=submit] {
+	width: 100%;
+	padding: 15px;
+	font-size: 1.5em;
+	background-color: rgb(212, 196, 181); color : white;
+	margin-top: 8px;
+	border: none;
+	color: white;
+}
+
+#radio_list {
+	overflow: auto;
+}
+
+#radio_list li {
+	margin: 0;
+	float: left;
+}
+
+
+#radio_list li:not(first-child) {
+	margin-right: 10px;
+}
+
+#user_notice {
+	color: gray;
+	font-weight: bold;
+	text-align: right;
+	font-size: 14px;
+}
+
+.career_url{
+	display:none;
+}

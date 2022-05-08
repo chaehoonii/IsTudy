@@ -64,7 +64,7 @@ public class StudyController {
 		System.out.println("study_num= "+study_num);
 		return "/study/calendar/calendarList?study_num="+study_num;
 	}
-	
+/*	
 	//일정 수정
 	@ResponseBody //Ajax
 	@RequestMapping(value = "/study/calendar/calendarEdit", method=RequestMethod.POST)
@@ -73,4 +73,5 @@ public class StudyController {
 		Sservice.CalendarEdit(vo);
 		return Sservice.CalendarDetail(Integer.parseInt(vo.getPlan_num()));
 	}
+*/
 }

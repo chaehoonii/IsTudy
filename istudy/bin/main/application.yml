@@ -33,7 +33,6 @@ spring:
           starttls:
             enable: true
       
- 
 mybatis: # mybatis에서 패키지를 생략할 수 있도록 설정
     type-aliases-package: com.hot6.project.vo
     mapper-locations: mapper/*Mapper.xml

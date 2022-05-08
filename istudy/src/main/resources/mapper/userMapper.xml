@@ -46,6 +46,20 @@
 		WHERE user_id=#{param1}
 	</select>
 	
+	<select id="userSelect" resultType="com.hot6.project.vo.UserVO">
+		select user_id, user_name, tel,
+		email, profile_img, from user
+		where id=#{param1}
+	</select>
+	 
+	<update id="userUpdate">
+		update user set 
+		user_name=#{param1.name},user_id=#{param1.user_id}, tel=#{param1.tel},
+		email=#{param1.email}, gender=#{param1.gender}, user_img=#{param2}, age=#{param1.age}
+		where
+		id=#{param1.id}
+	</update>
+	 
 	<select id="loginCheck" resultType="UserVO">
 		SELECT user_name, user_id, user_nick, permission FROM user WHERE user_id=#{user_id} AND user_pw=#{user_pw}
 	

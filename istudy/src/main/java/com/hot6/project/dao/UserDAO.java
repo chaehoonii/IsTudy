@@ -27,8 +27,6 @@ public interface UserDAO {
 
 	// 회원탈퇴
 	public int userDelete(String id);
-
-	public List<UserVO> MentorRecommend();
 	
 	//로그인
 	public UserVO loginCheck(UserVO vo);
@@ -42,4 +40,6 @@ public interface UserDAO {
 	
 	//임의로 생성한 비밀번호로 업데이트
 	public int pwdUpdate(String newPwd, UserVO vo);
+	
+	public List<UserVO> MentorRecommend();
 }

@@ -6,7 +6,6 @@
 <script src="/js/home/home.js"></script>
 <script src="/js/home/owl.carousel.js"></script>
 
-
 <!-- 서비스 이미지 -->
 <div class="mainWrap section">
 	<div id="mainImage">
@@ -81,7 +80,7 @@
 					<li>자율</li>
 				</c:if>
 				<li>${vo.in_people} / ${vo.max}</li>
-				<li>${vo.lang01}&nbsp;${vo.lang02}&nbsp;${vo.lang03}&nbsp;${vo.tag1}&nbsp;${vo.tag2}</li>
+				<li>${vo.lang_type_name}&nbsp;${vo.tag}</li>
 			</ul>
 		</li>
 	</c:forEach>
