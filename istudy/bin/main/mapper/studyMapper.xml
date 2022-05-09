@@ -67,6 +67,5 @@
 				start_time=#{start_time}, finish_time=#{finish_time}, color_num=#{color_num} 
 		WHERE 	plan_num=#{plan_num}; 
 	</update>
-	
-	
 </mapper>
+

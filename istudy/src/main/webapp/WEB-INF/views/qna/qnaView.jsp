@@ -86,7 +86,6 @@
 						<li>조회수&nbsp;: &nbsp;${vo.hit}</li>
 					</ul>
 				</li>
-				<hr/>
 				<li>
 					<ul id="qna_content">
 						<li>${vo.content}</li>
