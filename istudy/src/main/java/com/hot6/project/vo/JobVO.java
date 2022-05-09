@@ -8,6 +8,7 @@ public class JobVO {
 	private String info_sal;
 	private String info_com;
 	private String info_job;
+	private String info_region;
 	
 	public int getInfo_num() {
 		return info_num;
@@ -44,6 +45,12 @@ public class JobVO {
 	}
 	public void setInfo_job(String info_job) {
 		this.info_job = info_job;
+	}
+	public String getInfo_region() {
+		return info_region;
+	}
+	public void setInfo_region(String info_region) {
+		this.info_region = info_region;
 	}
 	
 	

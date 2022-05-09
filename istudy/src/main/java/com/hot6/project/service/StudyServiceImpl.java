@@ -43,5 +43,16 @@ public class StudyServiceImpl implements StudyService{
 	public int CalendarEdit(StudyVO vo) {
 		return dao.CalendarEdit(vo);
 	}
+	
+
+	@Override
+	public List<String> StudyLangType(int study_num) {
+		return dao.StudyLangType(study_num);
+	}
+
+	@Override
+	public List<String> StudyTag(int study_num) {
+		return dao.StudyTag(study_num);
+	}
 
 }

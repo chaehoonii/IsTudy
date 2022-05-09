@@ -18,6 +18,7 @@
     }
     .page{
         width: 100%;
+        margin-bottom: 300px;
     }
     .logo{
         margin-top:300px;
@@ -57,14 +58,14 @@
         font-size: 16px;
     }
     #userid::-webkit-input-placeholder{
-        background-image: url(${url}/images/user.png); 
+        background-image: url(${url}/images/login_icon/user.png); 
         background-size: contain;
         background-position: 2px;
         background-repeat: no-repeat;
         text-indent: 2em;
     }
     #userpw::-webkit-input-placeholder{
-        background-image: url(${url}/images/password.png);
+        background-image: url(${url}/images/login_icon/password.png);
         background-size: contain;
         background-position: 2px;
         background-repeat: no-repeat;
@@ -138,7 +139,7 @@
             <form method="post" action="${url}/users/loginOk" class="userForm" onsubmit="return loginCheck()">
                 <ul>
                     <li><input type="text" placeholder="아이디" name="user_id" id="userid"></li>
-                    <li><input type="text" placeholder="비밀번호" name="user_pw" id="userpw"></li>
+                    <li><input type="password" placeholder="비밀번호" name="user_pw" id="userpw"></li>
                     <li><input type="submit" value="로그인" class="submitButton"></li>
                 </ul>
             </form>
