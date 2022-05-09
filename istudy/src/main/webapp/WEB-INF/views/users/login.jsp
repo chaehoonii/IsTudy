@@ -139,7 +139,7 @@
             <form method="post" action="${url}/users/loginOk" class="userForm" onsubmit="return loginCheck()">
                 <ul>
                     <li><input type="text" placeholder="아이디" name="user_id" id="userid"></li>
-                    <li><input type="text" placeholder="비밀번호" name="user_pw" id="userpw"></li>
+                    <li><input type="password" placeholder="비밀번호" name="user_pw" id="userpw"></li>
                     <li><input type="submit" value="로그인" class="submitButton"></li>
                 </ul>
             </form>
