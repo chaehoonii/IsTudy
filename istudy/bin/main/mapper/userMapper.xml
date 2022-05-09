@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hot6.project.dao.UserDAO">
+	<select id="MentorRecommend" resultType="UserVO">
+		SELECT A.*, B.level_icon
+		FROM user A
+		LEFT JOIN level B
+		on B.exp_min <![CDATA[<=]]>
+		A.exp
+		AND A.exp <![CDATA[<=]]>
+		B.exp_max
+		WHERE A.permission='mentor'
+		ORDER BY A.exp DESC
+		LIMIT 5
+	</select>
+
+	<insert id="userInsert">
+		INSERT into user(
+		user_name, 
+		user_id, 
+		user_pw, 
+		user_nick, 
+		tel, 
+		email, 
+		permission, 
+		career, 
+		profile_img, 
+		study_type_num)
+		VALUES(#{param1.user_name}, 
+		#{param1.user_id},
+		#{param1.user_pw}, 
+		#{param1.user_nick},
+		#{param1.tel}, 
+		#{param1.email}, 
+		#{param1.permission},
+		#{param1.career},
+		#{param2},
+		#{param1.study_type_num})		
+	</insert>
+
+	<select id="idCheck" resultType="int">
+		SELECT count(user_id) cnt
+		FROM user
+		WHERE user_id=#{param1}
+	</select>
+	
+	<select id="loginCheck" resultType="UserVO">
+		SELECT user_name, user_id, user_nick, permission FROM user WHERE user_id=#{user_id} AND user_pw=#{user_pw}
+	
+	</select>
+	
+	<select id="findId" resultType="String">
+		select user_id from user where user_name=#{user_name} and tel=#{tel}
+	
+	</select>
+	
+	<select id="matchUser" resultType="int">
+		select count(user_id) from user where user_id=#{user_id} and email=#{email}
+	</select>
+	
+	<update id="pwdUpdate">
+		update user set user_pw=#{param1} where user_id=#{param2.user_id}
+	</update>
+	
+</mapper>
