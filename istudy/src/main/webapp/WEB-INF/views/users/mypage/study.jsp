@@ -25,18 +25,18 @@
         body::-webkit-scrollbar{
         	display: none;
         }
-        #profilePage{
+        .profilePage{
             width: 25%;
             float: left;
             height: 100%;
             background-color: rgb(230, 220, 215); 
         }
-        #userProfile{
+        .userProfile{
             width: 100%;
             height:100%;
             position: relative;
         }
-        #userPhoto{
+        .userPhoto{
             width: 250px;
             height: 250px;
             border-radius: 50%;
@@ -48,41 +48,41 @@
             background-color: white;
             border: 1px solid #ddd;
         }
-        #userid{
+        .userid{
             position: absolute;
             top : 370px;
             left: 50%;
             transform: translate(-50%,0%); 
             font-size: 20px;
         }
-        #studyDesc{
+        .studyDesc{
             position: absolute;
             top : 480px;
             left: 50%;
             transform: translate(-50%,0%); 
         }
-        #studyDesc li{
+        .studyDesc li{
             margin: 30px 0px;
             font-size: 18px;
         }
-        #category>a{
+        .category>a{
             font-size: 16px;
             position: absolute;
             top : 700px;
             left: 50%;
             transform: translate(-50%,0%);
         }
-        #contentPage{
+        .contentPage{
             width: 75%;
             float: right;
             height: 100%; 
         }
-        #buttons{
+        .buttons{
         	width: 100%;
         	height: 80px;
 			margin-top: 60px;
         }
-        #buttons input[type=button]{
+        .buttons input[type=button]{
         	width: 100px;
         	height: 35px;
         	font-size: 16px;
@@ -90,9 +90,16 @@
         	border: 1px solid #ddd;
         	margin: 15px;
         }
+        .buttons input[type=button]:first-child{
+        	margin-left:50px;
+        }
+        .buttons input[type=button]:nth-child(2){
+        	background-color: #f9f9f8;
+        	box-shadow: 2px 2px 3px #c2c2bd;
+        }
         .contentBox{
         	width: 100%;
-        	margin-left: 20px;
+        	margin-left: 50px;
         }
         .title{
         	font-size: 20px;
@@ -120,7 +127,11 @@
         .contents ul li:first-child{
         	color: grey;
         	font-size: 17px;
+        	/* background-color: rgb(230, 220, 215);
+        	height: 50px;
+        	width: 100%; */
         }
+        
         .eachContent{
         	height: 50px;
         	width: 100%;
@@ -160,7 +171,7 @@
         	flex:1;
         }
         .studyLeader{
-        	flex : 0.5;	
+        	flex : 0.7;	
         }
         .paging{
             width: 100%;
@@ -183,30 +194,30 @@
     </style>
 
     <div id="mypage">
-        <div id="profilePage">
-            <div id="userProfile">
-                <div id="userPhoto">
+        <div class="profilePage">
+            <div class="userProfile">
+                <div class="userPhoto">
                 </div>
-                <div id="userid">
+                <div class="userid">
                     Istudy님
                 </div>
-                <div id="userDesc">
+                <div class="userDesc">
                     <div>  
-                        <ul id="studyDesc">
-                            <li id="joinStudy">진행 스터디 : 10개</li>
-                            <li id="finishStudy">완료 스터디 : 10개</li>
+                        <ul class="studyDesc">
+                            <li class="joinStudy">진행 스터디 : 10개</li>
+                            <li class="finishStudy">완료 스터디 : 10개</li>
                         </ul>
                     </div>
-                    <div id="category">
+                    <div class="category">
                           <a href="#">회원 수정</a>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="contentPage">
-            <div id="buttons">
-            	<input id="writeRecord"  type="button" onclick="location.href='${url}/users/mypage/viewWrite'" value="글관리"/>
-            	<input id="joinStudy"  type="button" onclick="location.href='${url}/users/mypage/study'" value="스터디"/>
+        <div class="contentPage">
+            <div class="buttons">
+            	<input type="button" onclick="location.href='${url}/users/mypage/viewWrite'" value="글관리"/>
+            	<input type="button" onclick="location.href='${url}/users/mypage/study'" value="스터디"/>
             </div>
             <div class="contentBox">
             	<div class="title">진행 스터디</div><hr/>
@@ -237,7 +248,7 @@
 		            					</div>
 		            				</div>
 		            				<div class="studyName">
-		            					<a>${vo.study_name}</a>
+		            					<a href='${url}/study_home/study_room/${vo.study_num}'>${vo.study_name}</a>
 		            				</div>
 		            				<div class="studyCategory">
 		            					<span>${vo.study_type_name}</span>
@@ -300,16 +311,17 @@
 	            		</li>
             		</c:forEach>
             		</ul>
-            	</div>     
+            	</div>
+            	<div class="paging">
+	                <ul>
+	                    <li><a href="#">1</a></li>
+	                    <li><a href="#">2</a></li>
+	                    <li><a href="#">3</a></li>
+	                    <li><a href="#">4</a></li>
+	                    <li><a href="#">5</a></li>
+	                </ul>
+	            </div>     
             </div>
-            <div class="paging">
-                <ul>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                </ul>
-            </div>
+            
         </div>
     </div>

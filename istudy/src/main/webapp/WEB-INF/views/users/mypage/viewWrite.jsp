@@ -1,10 +1,9 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
-
-        ul, li, body{
+ul, li, body{
             padding: 0;
             margin: 0;
             list-style-type: none;
-            
         }
         a{
             text-decoration: none;
@@ -13,37 +12,29 @@
         a:hover{
             color: gray;
         }
-
-        #mypage{
-
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            overflow-x: hidden;
-            overflow-y: hidden;
-            /* -ms-overflow-style: none;
-    		scrollbar-width: none; */
-    		
+        body{
+        	scrollbar-width: none;
         }
-        /* #mypage::-webkit-scrollbar{
-        	display: none;
-        } */
-    
-
-        #profilePage{
-            width: 25%;
-            float: left;
-            height: 100vh;
-            background-color: rgb(230, 220, 215);
+        #mypage{
+            width: 100%;
+            height: 1200px;
             
         }
-        #userProfile{
+        body::-webkit-scrollbar{
+        	display: none;
+        }
+        .profilePage{
+            width: 25%;
+            float: left;
+            height: 100%;
+            background-color: rgb(230, 220, 215); 
+        }
+        .userProfile{
             width: 100%;
             height:100%;
             position: relative;
-    
         }
-        #userPhoto{
+        .userPhoto{
             width: 250px;
             height: 250px;
             border-radius: 50%;
@@ -55,58 +46,57 @@
             background-color: white;
             border: 1px solid #ddd;
         }
-        #userid{
+        .userid{
             position: absolute;
             top : 370px;
             left: 50%;
             transform: translate(-50%,0%); 
             font-size: 20px;
         }
-        #studyDesc{
+        .studyDesc{
             position: absolute;
             top : 480px;
             left: 50%;
             transform: translate(-50%,0%); 
-            
         }
-        #studyDesc li{
+        .studyDesc li{
             margin: 30px 0px;
             font-size: 18px;
         }
-        #category>a{
+        .category>a{
             font-size: 16px;
             position: absolute;
             top : 700px;
             left: 50%;
             transform: translate(-50%,0%);
         }
-        #contentPage{
+        .contentPage{
             width: 75%;
             float: right;
-            height: 100%;  
+            height: 100%; 
         }
-        
-        #buttons{
+        .buttons{
         	width: 100%;
         	height: 80px;
 			margin-top: 60px;
         }
-       
-        #buttons input[type=button]{
+        .buttons input[type=button]{
         	width: 100px;
         	height: 35px;
-        	font-size: 14px;
+        	font-size: 16px;
         	border-radius:15px;
         	border: 1px solid #ddd;
         	margin: 15px;
-        	 
+        }
+        .buttons input[type=button]:first-child{
+        	margin-left:50px;
+        	background-color: #f9f9f8;
+        	box-shadow: 2px 2px 3px #c2c2bd;
         }
         .contentBox{
         	width: 100%;
-        	margin-left: 20px;
-        	
+        	margin-left: 50px;
         }
-        
         .title{
         	font-size: 20px;
         	height: 60px;
@@ -117,68 +107,87 @@
         }
         .contents{
         	width: 100%;
-        	height: 100%;
+        	height: 350px;
+        	/* overflow: scroll; */
         	overflow: hidden;
+        	margin-bottom: 30px;
+        	border-bottom: 1px solid #ddd;
         }
-        
+        .contents::-webkit-scrollbar{
+        	display: none;
+        }
         .contents ul{
         	width: 100%;
         	height: 100%;
-        	
-        	
         }
         .contents ul li:first-child{
         	color: grey;
         	font-size: 17px;
+        	/* background-color: rgb(230, 220, 215);
+        	height: 50px;
+        	width: 100%; */
         }
-        
         .eachContent{
         	height: 50px;
         	width: 100%;
         	line-height: 50px;
         	font-size: 16px;
-        	
-        	
         }
-        .studyInfo{
+        .articleInfo{
         	display: flex;
-        	
         }
         
-        .studyImg{
-        	flex:0.8;
-        	position: relative;
-        	
+        .articleTitle{
+        	flex:2;
+        	margin-left:20px;
+        	overflow:hidden;
+	        text-overflow:ellipsis;
+	        white-space:nowrap;
+	        margin-right: 20px;
         }
-        .photo{
-        	width: 40px;
-        	height: 40px;
-        	border-radius: 50%;
-        	border: 1px solid gray;
-        	position: absolute;
-        	top: 5px;
-        	left: 30%;
-        	transform: translate(-50%,0%); 
-        	overflow: hidden;
+        .commentTitle{
+        	flex:1.3;
+        	margin-left:20px;
+        	overflow:hidden;
+	        text-overflow:ellipsis;
+	        white-space:nowrap;
+	        margin-right: 20px;
+        
         }
-        .photo img{
-        	object-fit: cover;
-        	width: 100%;
-        	height: 100%;
-        	background-position: center;
-        	position: absolute;
-        	top: 0px;
+        .comment{
+        	flex:1.5;
+        	overflow:hidden;
+	        text-overflow:ellipsis;
+	        white-space:nowrap;
+	        margin-right: 50px;
+	        padding: 0 10px;
+	        
         }
-        .studyName{
-        	flex:3;
-        	
+        .articleCategory{
+        	flex: 1;
         }
-        .studyCategory{
-        	flex:1;
+        .commentCategory{
+        	margin-left:35px;
+        	flex: 0.7;
+        	padding: 0 20px;
         }
-        .studyLeader{
-        	flex : 0.5;
-        	
+        .writeDate{
+        	flex : 1;	
+        }
+        .articleDelete{
+        	flex: 1;
+        }
+        .articleDelete a{
+        	color: #7f7f75;
+        }
+        .articleDelete a:hover{
+        	color: #080807;
+        }
+        .commentDate{
+        	flex:0.7;
+        }
+        .commentDelete{
+        	flex:0.7;
         }
         
         .paging{
@@ -186,9 +195,10 @@
             height: 30px;
             margin: 0 auto;
             font-size: 16px;
+            margin-bottom: 20px;
         }
         .paging ul{
-            width: 30%;
+            width: 250px;
             height: 100%;
             margin: 30px auto;
         }
@@ -198,159 +208,131 @@
             text-align: center;
         }
         
-
     </style>
 
     <div id="mypage">
-       <!--  <h2>마이페이지</h2> -->
-        <div id="profilePage">
-            <div id="userProfile">
-                <div id="userPhoto">
+        <div class="profilePage">
+            <div class="userProfile">
+                <div class="userPhoto">
                 </div>
-                <div id="userid">
+                <div class="userid">
                     Istudy님
                 </div>
-                <div id="userDesc">
+                <div class="userDesc">
                     <div>  
-                        <ul id="studyDesc">
-                            <li id="joinStudy">진행 스터디 : 10개</li>
-                            <li id="finishStudy">완료 스터디 : 10개</li>
+                        <ul class="studyDesc">
+                            <li class="joinStudy">진행 스터디 : 10개</li>
+                            <li class="finishStudy">완료 스터디 : 10개</li>
                         </ul>
                     </div>
-                    <div id="category">
+                    <div class="category">
                           <a href="#">회원 수정</a>
                     </div>
-                    
                 </div>
             </div>
         </div>
-
-        <div id="contentPage">
-            
-            <div id="buttons">
-            	<input id="writeRecord"  type="button" onclick="location.href='${url}/users/mypage/viewWrite'" value="글관리"/>
-            	<input id="joinStudy"  type="button" onclick="location.href='${url}/users/mypage/study'" value="스터디"/>
-            
+        <div class="contentPage">
+            <div class="buttons">
+            	<input type="button" onclick="location.href='${url}/users/mypage/viewWrite'" value="글관리"/>
+            	<input type="button" onclick="location.href='${url}/users/mypage/study'" value="스터디"/>
             </div>
             <div class="contentBox">
-            	<div class="title">글 관리</div><hr/>
+            	<div class="title">작성한 글</div><hr/>
             	<div class="contents">
             		<ul>
             		<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					
+            				<div class="articleInfo">
+	            				
+	            				<div class="articleTitle">
+	            					<a>제목</a>
 	            				</div>
-	            				<div class="studyName">
-	            					<a>스터디명</a>
-	            				</div>
-	            				<div class="studyCategory">
+	            				<div class="articleCategory">
 	            					<span>분류</span>
 	            				</div>
-	            				<div class="studyLeader">
-	            					<span>스터디장</span>
+	            				<div class="writeDate">
+	            					<span>작성일</span>
+	            				</div>
+	            				<div class="articleDelete">
+	            					<span>글 삭제</span>
 	            				</div>
 	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy1.jpg"/>
+            		</li>
+            		
+	            		<li class="eachContent">
+	            				<div class="articleInfo">
+		            				
+		            				<div class="articleTitle">
+		            					<a href='${url}/study_home/study_room/${vo.study_num}'>Spring 에러 해결 도와주세요 ㅠㅠ</a>
+		            				</div>
+		            				<div class="articleCategory">
+		            					<span>QnA</span>
+		            				</div>
+		            				<div class="writeDate">
+		            					<span>2022.03.10</span>
+		            				</div>
+		            				<div class="articleDelete">
+	            						<a href="#">삭제하기</a>
 	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>세미 프로젝트</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>프로젝트</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>team</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy2.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>weather</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>프로젝트</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>goguma12</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy3.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>NodeJS??</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>백엔드 스터디</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>goguma12</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy3.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>Vue 공부</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>프런트엔드 스터디</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>webmaster</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			<li class="eachContent">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					<div class="photo">
-	            						<img src="${url}/images/mypage_img/exstudy3.jpg"/>
-	            					</div>
-	            				</div>
-	            				<div class="studyName">
-	            					<a>공부하자</a>
-	            				</div>
-	            				<div class="studyCategory">
-	            					<span>백엔드 스터디</span>
-	            				</div>
-	            				<div class="studyLeader">
-	            					<span>hi9102</span>
-	            				</div>
-	            			</div><hr/>
-            			</li>
-            			
-            		</ul><hr/>
-            	
-            	
+		            			</div><hr/>
+	            		</li>
+            		
+            		</ul>
+            		
             	</div>
-            	
-            
-            </div>
-            <!-- <div class="paging">
+            	<div class="paging">
+		                <ul>
+		                    <li><a href="#">1</a></li>
+		                    <li><a href="#">2</a></li>
+		                    <li><a href="#">3</a></li>
+		                    <li><a href="#">4</a></li>
+		                    <li><a href="#">5</a></li>
+		                </ul>
+		        </div>
+            	<div class="title">댓글 단 글</div><hr/>
+            	<div class="contents">
+            		<ul>
+            		<li class="eachContent">
+            				<div class="articleInfo">
+	            				<div class="commentTitle">
+	            					<a>제목</a>
+	            				</div>
+	            				<div class="comment">
+	            					<span>댓글</span>
+	            				</div>
+	            				<div class="commentCategory">
+	            					<span>분류</span>
+	            				</div>
+	            				<div class="commentDate">
+	            					<span>작성일</span>
+	            				</div>
+	            				<div class="commentDelete">
+	            					<span>댓글 삭제</span>
+	            				</div>
+	            			</div><hr/>
+            		</li>
+            			<li class="eachContent">
+	            				<div class="articleInfo">
+		            				
+		            				<div class="commentTitle">
+		            					<a href='${url}/study_home/study_room/${vo.study_num}'>img 영역 밖에 튀어나와요..어떻게 해야할까요</a>
+		            				</div>
+		            				<div class="comment">
+		            					<a href='${url}/study_home/study_room/${vo.study_num}'>혹시 img가 담겨있는 영역에 overflow : hidden 써보셨나요?? 적용이 안되어서 그럴수도</a>
+		            				</div>
+		            				<div class="commentCategory" >
+		            					<span>자유게시판</span>
+		            				</div>
+		            				<div class="commentDate">
+		            					<span>2022.02.12</span>
+		            				</div>
+		            				<div class="commentDelete">
+	            						<a href="#">삭제하기</a>
+	            					</div>
+		            			</div><hr/>
+	            		</li>
+            		</ul>
+            	</div>
+            	<div class="paging">
                 <ul>
                     <li><a href="#">1</a></li>
                     <li><a href="#">2</a></li>
@@ -358,7 +340,8 @@
                     <li><a href="#">4</a></li>
                     <li><a href="#">5</a></li>
                 </ul>
-            </div> -->
+            </div>     
+            </div>
+            
         </div>
-        
     </div>
