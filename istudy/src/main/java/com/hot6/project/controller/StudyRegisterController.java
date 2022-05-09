@@ -26,6 +26,7 @@ public class StudyRegisterController {
 	public ModelAndView studyRegisterWrite0() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("studyregister/studyregister_0");
+		
 		return mav;
 	}
 	//스터디 폼
@@ -82,4 +83,5 @@ public class StudyRegisterController {
 		return entity;
 				
 	}
+	
 }
