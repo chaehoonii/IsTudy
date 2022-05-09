@@ -21,4 +21,19 @@ public interface QnaDAO {
 
 	// 태그
 	public List<String> QnaTag(int board_num);
+	
+	// 검색 기능
+	public int TotalQna_title(String searchWord);
+	public List<BoardVO> QnaList_title(String searchWord);
+	public int TotalQna_content(String searchWord);
+	public List<BoardVO> QnaList_content(String searchWord);
+	public int TotalQna_nick(String searchWord);
+	public List<BoardVO> QnaList_nick(String searchWord);
+	public int TotalQna_lang(String searchWord);
+	public List<BoardVO> QnaList_lang(String searchWord);
+	public int TotalQna_tag(String searchWord);
+	public List<BoardVO> QnaList_tag(String searchWord);
+	
+	//글 내용
+	public BoardVO QnaView(int board_num);
 }
