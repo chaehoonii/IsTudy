@@ -1,11 +1,12 @@
 @charset "UTF-8";
-.bottom{
-   width:100%;
-   height:120px;
-   line-height:40px;
-   text-align:center;
-   color:white;
-   background-color:rgba(85, 76, 66, 70%);
-   font-size:1.5em;
-   display:relative;
+
+.bottom {
+	width: 100%;
+	height: 120px;
+	line-height: 40px;
+	text-align: center;
+	color: white;
+	background-color: rgba(85, 76, 66, 70%);
+	font-size: 1.5em;
+	position: relative;
 }

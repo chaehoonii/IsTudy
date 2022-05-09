@@ -253,6 +253,4 @@ public class StudyVO {
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
-	
-		
 }

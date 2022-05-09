@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.hot6.project.dao.MypageDAO">
+  
+  	<!-- 진행 중인 스터디 -->
+  	<select id="joinStudy" resultType="StudyVO">
+		SELECT study_room.*, study_type.study_type_name, study_mate.user_id FROM study_room INNER JOIN study_type
+		ON study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[<=]]> finish_date
+		INNER JOIN study_mate ON study_mate.study_num= study_room.study_num AND user_id= #{param1};
+	</select>
+	
+	<!-- 완료된 스터디 -->
+	<select id="finishStudy" resultType="StudyVO">
+		SELECT study_room.*, study_type.study_type_name, study_mate.user_id FROM study_room INNER JOIN study_type
+		ON study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[>]]> finish_date
+		INNER join study_mate ON study_mate.study_num= study_room.study_num AND user_id= #{param1};
+	</select>
+	
+	<!-- 작성한 글 보기 -->
+	<select id="getArticles" resultType="BoardVO">
+		SELECT board.*, board_type.board_type_name
+		FROM board INNER JOIN board_type
+		ON board.board_type_num = board_type.board_type_num AND user_id=#{param1};
+		
+	</select>
+	
+	<!-- 댓글 보기 -->
+	<select id="getComments" resultType="BoardVO">
+		SELECT reply.*, board.title, board_type.board_type_name
+		FROM board INNER JOIN reply
+		ON reply.board_num = board.board_num AND reply.user_id=#{param1}
+		INNER JOIN board_type ON board.board_type_num = board_type.board_type_num;
+			
+	
+	</select>
+  
+  </mapper>
