@@ -1,14 +1,20 @@
 @charset "UTF-8";
-html{
-	overflow:hidden;
-}
 /*================================이미지, 글씨======================================*/
-#mainImage>img{
-	width:100%;
-	height:80%;
+.mainImageWrap{
+	height:1050px;
+	position:relative;
 }
 #mainImage {
+	height:1050px;
 	vertical-align: middle;
+	z-index:102;
+	filter:grayscale(50%);
+}
+#mainImage>img{
+	width:100%;
+	opacity: 0.9;
+	height:1050px;
+	
 }
 #mainText {
 	text-align: center;
@@ -17,10 +23,47 @@ html{
 	left: 50%;
 	color:white;
 	font-family: 'paybooc-Bold';
-	font-size:3em;
+	font-size:4em;
 	letter-spacing:20px;
 	transform: translate( -50%, -50% );
 	user-select:none;
+	text-shadow:0 0 15px black;
+}
+/*===============================스터디 추천====================================*/
+.studyRecommend {
+	width:1200px;
+	height:1050px;
+	text-align:center;
+	margin:0 auto;	
+	padding:0px;
+	overflow:hidden;
+	font-size:15px !important;
+	position:relative;
+}
+.studyTitle{
+	padding:30px 0px;
+}
+.studyInfo{
+	width:300px;
+	height:450px;
+	display:inline-block;
+	font-size:0.8em;
+	filter: drop-shadow(0px 3px 3px rgba(0,0,0,30%));
+}
+.studyInfo img{
+	padding:10px;
+	margin:0px;
+	width:300px;
+}
+.studyInfoText{
+	height:20px;
+}
+.sort{
+	font-size:1.5em;
+	color:rgb(85, 76, 66);
+}
+.tag_list{
+	overflow:hidden;
 }
 /*===============================멘토정보 슬라이드====================================*/
 .mentoRecommend{
@@ -28,6 +71,8 @@ html{
 	height:700px;
 	text-align:center;
 	margin:0px auto;
+	background-color:rgba(47, 40, 38,90%);
+	position:relative;
 }
 .item:active{
 	width:250px !important;
@@ -35,6 +80,8 @@ html{
 }
 #mentoTitle{
 	padding:60px 0px;
+	color:white;
+	
 }
 .card{
 	margin-left:20px;
@@ -74,7 +121,7 @@ html{
 	border:none;
 	background:none;
 	font-size:4em;
-	color:rgba(0,0,0,50%);
+	color:white;
 }
 .customPrevBtn{
 	float:right;
@@ -91,7 +138,6 @@ html{
 	height:900px;
 	text-align:center;
 	margin:0 auto;	
-	background-color:rgb(230, 220, 215);
 	overflow:hidden;
 	font-size:15px !important;
 }
@@ -103,12 +149,13 @@ html{
 	margin:0 auto;	
 }
 .recruitInfo{
-	margin:10px;
+	margin:15px;
 	display:inline-block;
 	background-color:white;
 	width:45%;
 	border-radius:10px;
 	filter: drop-shadow(0px 3px 3px rgba(0,0,0,30%));
+	
 }
 .recruitImg{
 	width:150px;
@@ -129,9 +176,17 @@ html{
 .recruitText{
 	border-bottom:5px solid rgb(230, 220, 215);
 	width:100%;
+	height:40px;
+	font-size:1.2em;
+	font-weight:700;
 }
-.recruitText, .recruitText2{
-	padding-left:30px;
+.recruitCategory{
+	width:25% !important;
+	border-right:5px solid rgb(230, 220, 215);
+}
+.recruitText1, .recruitText2, .recruitText3{
+	width:75%;
+	height:40px;
 }
 .lang_list {
 	background-color: #FEF5D4;
