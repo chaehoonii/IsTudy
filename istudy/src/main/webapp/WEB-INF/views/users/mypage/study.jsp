@@ -201,7 +201,7 @@
                         </ul>
                     </div>
                     <div id="category">
-                          <a href="#">회원 수정</a>
+                          <a href="${url}/users/userEdit">회원 수정</a>
                     </div>
                 </div>
             </div>

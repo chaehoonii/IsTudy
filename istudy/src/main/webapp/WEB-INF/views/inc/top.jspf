@@ -71,4 +71,5 @@
 			</ul>
 		</nav>
 	</div>
+	<H2><a href="${url}/users/userEdit">회원정보수정</a></H2>
 	<script src="./js/inc/top.js"></script>
