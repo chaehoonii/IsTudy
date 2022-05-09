@@ -26,7 +26,7 @@
 			dataType : "html",
 			cache : false
 		};
-
+		
 		$.ajax(ajaxOption).done(function(data) {
 
 			// Contents 영역 삭제
@@ -40,49 +40,23 @@
 
 <!-- ///////////////////////////사이드 메뉴//////////////////////////////// -->
 <div class="register_content">
-	<div class="side_menu">
-		<div class="sidebar">
-				<div class="cate">
-					<span class="menu"> <input type="button" class="menulink" value="Step 1" onclick="asyncMovePage('studyregister_1')">
-						<input type="checkbox" name="s_check" class="check" value="s1" />
-					</span>
-					<ul>
-						<li>스터디 종류</li>
-						<li>스터디 분류</li>
-					</ul>
-				</div>
-				<div class="cate">
-					<span class="menu"><input type="button" class="menulink" value="Step 2" onclick="asyncMovePage('studyregister_2')">
-					<input type="checkbox" name="s_check" class="check" value="s2" /> </span>
-					<ul>
-						<li>스터디 제목</li>
-						<li>스터디 대표 이미지</li>
-						<li>스터디 내용</li>
-					</ul>
-				</div>
-				<div class="cate">
-					<span class="menu"> <input type="button" class="menulink" value="Step 3" onclick="asyncMovePage('studyregister_3')">
-					<input type="checkbox" name="s_check" class="check" value="s3" />
-					</span>
-					<ul>
-						<li>스터디 모집 인원</li>
-						<li>스터디 상태</li>
-						<li>스터디 주의사항</li>
-					</ul>
-				</div>
-				<div class="cate">
-					<span class="menu"> <input type="button" class="menulink" value="Step 4" onclick="asyncMovePage('studyregister_4')">
-						<input type="checkbox" name="s_check" class="check" value="s4" />
-					</span>
-					<ul>
-						<li>스터디 기간</li>
-						<li>사용 언어</li>
-					</ul>
-				</div>
-				<input type="submit" name="r_button" class="r_button" value="등록">
-		</div>
-	<!-- sidebar -->
-	</div>
+	<div class="header" role="banner">
+  		<h1 class="logo">
+    		<a href="#"><span>I </span>s<span>T</span>udy</a>
+  		</h1>
+  	<div class="nav-wrap">
+    	<nav class="main-nav" role="navigation">
+      		<ul class="unstyled list-hover-slide">
+        		<li><a href="#" id="menulink" onclick="asyncMovePage('studyregister_1')">Step 1</a></li>
+        		<li><a href="#" id="menulink" onclick="asyncMovePage('studyregister_2')">Step 2</a></li>
+        		<li><a href="#" id="menulink" onclick="asyncMovePage('studyregister_3')">Step 3</a></li>
+        		<li><a href="#" id="menulink" onclick="asyncMovePage('studyregister_4')">Step 4</a></li>
+      		</ul>
+      	<input type="submit" name="r_button" class="r_button" value="등록">
+    	</nav>
+    
+  </div>
+</div>
 	<div id="register_content"></div>
 </div>
 
