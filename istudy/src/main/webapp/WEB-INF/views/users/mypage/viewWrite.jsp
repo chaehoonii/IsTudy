@@ -257,25 +257,25 @@ ul, li, body{
 	            				</div>
 	            			</div><hr/>
             		</li>
-            		
-	            		<li class="eachContent">
-	            				<div class="articleInfo">
-		            				
-		            				<div class="articleTitle">
-		            					<a href='${url}/study_home/study_room/${vo.study_num}'>Spring 에러 해결 도와주세요 ㅠㅠ</a>
-		            				</div>
-		            				<div class="articleCategory">
-		            					<span>QnA</span>
-		            				</div>
-		            				<div class="writeDate">
-		            					<span>2022.03.10</span>
-		            				</div>
-		            				<div class="articleDelete">
-	            						<a href="#">삭제하기</a>
-	            					</div>
-		            			</div><hr/>
-	            		</li>
-            		
+            			<c:forEach var="vo" items="${article}">
+		            		<li class="eachContent">
+		            				<div class="articleInfo">
+			            				
+			            				<div class="articleTitle">
+			            					<a href='#'>${vo.title}</a>
+			            				</div>
+			            				<div class="articleCategory">
+			            					<span>${vo.board_type_name}</span>
+			            				</div>
+			            				<div class="writeDate">
+			            					<span>${vo.write_date}</span>
+			            				</div>
+			            				<div class="articleDelete">
+		            						<a href="#">삭제하기</a>
+		            					</div>
+			            			</div><hr/>
+		            		</li>
+            			</c:forEach>
             		</ul>
             		
             	</div>
@@ -310,26 +310,28 @@ ul, li, body{
 	            				</div>
 	            			</div><hr/>
             		</li>
+            		<c:forEach var="vo" items="${comment}">
             			<li class="eachContent">
 	            				<div class="articleInfo">
 		            				
 		            				<div class="commentTitle">
-		            					<a href='${url}/study_home/study_room/${vo.study_num}'>img 영역 밖에 튀어나와요..어떻게 해야할까요</a>
+		            					<a href='#'>${vo.title}</a>
 		            				</div>
 		            				<div class="comment">
-		            					<a href='${url}/study_home/study_room/${vo.study_num}'>혹시 img가 담겨있는 영역에 overflow : hidden 써보셨나요?? 적용이 안되어서 그럴수도</a>
+		            					<a href='#'>${vo.reply_coment}</a>
 		            				</div>
 		            				<div class="commentCategory" >
-		            					<span>자유게시판</span>
+		            					<span>${vo.board_type_name}</span>
 		            				</div>
 		            				<div class="commentDate">
-		            					<span>2022.02.12</span>
+		            					<span>${vo.reply_date}</span>
 		            				</div>
 		            				<div class="commentDelete">
 	            						<a href="#">삭제하기</a>
 	            					</div>
 		            			</div><hr/>
-	            		</li>
+	            			</li>
+	            		</c:forEach>
             		</ul>
             	</div>
             	<div class="paging">
