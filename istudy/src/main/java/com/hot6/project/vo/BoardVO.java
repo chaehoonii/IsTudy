@@ -36,6 +36,8 @@ public class BoardVO {
 	private String user_nick;
 	private String profile_img;
 	
+	//writedate
+	private String write_date;
 	
 	public int getCount_reply() {
 		return count_reply;
@@ -211,6 +213,14 @@ public class BoardVO {
 
 	public void setTag(String tag) {
 		this.tag = tag;
+	}
+
+	public String getWrite_date() {
+		return write_date;
+	}
+
+	public void setWrite_date(String write_date) {
+		this.write_date = write_date;
 	}
 	
 	
