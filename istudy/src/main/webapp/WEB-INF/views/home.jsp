@@ -6,41 +6,50 @@
 <script type="text/javascript" src="./js/home/home.js" ></script>
 <script type="text/javascript" src="./js/home/owl.carousel.js"></script>
 <!-- 서비스 이미지 -->
-<div class="mainWrap section">
+<div class="mainImageWrap">
 	<div id="mainImage">
-		<img src="/images/mainImg.jpg">
+		<img src="/images/main.jpg">
 	</div>
 	<div id="mainText">
-		<p>웹 개발자를 위한 스터디</p>
+		<p>IT 개발자를 위한 스터디</p>
 	</div>
 </div>
 <!-- 스터디추천 영역 -->
+<div style="clear:none";></div>
 <c:if test="${logStatus == 'Y'}">
-	<div class="studyRecommend section">
+	<div class="studyRecommend">
 		<h1 class="studyTitle">스터디 추천</h1>
 		<div id="study_rec_list">
 			<c:forEach var="vo" items="${StudyList}">
 				<ul class="studyInfo">
 					<li><a href="/study_home/study_info?study_num=${vo.study_num}"><img
 							src="/upload/study_room/${vo.study_img}" width="100px" /></a></li>
-					<hr/>
-					<li class="studyInfoText">[ ${vo.study_type_name} ]</li>
 					<c:if test="${vo.is_mentor == 'T'}">
-						<li class="studyInfoText">멘토</li>
+						<li class="studyInfoText sort">멘토</li>
 					</c:if>
 					<c:if test="${vo.is_mentor == 'F'}">
-						<li class="studyInfoText">자율</li>
+						<li class="studyInfoText sort">자율</li>
 					</c:if>
-					<li class="studyInfoText">스터디명: ${vo.study_name}</li>
-					<li class="studyInfoText">${vo.start_date}-${vo.finish_date}</li>
-					<li class="studyInfoText">${vo.lang_type_name}&nbsp;${vo.tag}</li>
+					<hr/>
+					<li class="studyInfoText studyInfotitle">${vo.study_name}</li>
+					<li class="studyInfoText">${vo.start_date}&nbsp;~&nbsp;${vo.finish_date}</li>
+					<li class="studyInfoText">${vo.in_people} / ${vo.max}</li>
+					<br/>
+					<li class="studyCategory"><c:forEach var="lang_list" items="${vo.lang_list}" end="2">
+						<span class="lang_list">&nbsp;${lang_list}&nbsp;</span>&nbsp;
+					</c:forEach> 
+					<br/>
+					<br/>
+					<c:forEach var="tag_list" items="${vo.tag_list}" end="2">
+						<span class="tag_list">&nbsp;${tag_list}&nbsp;</span>&nbsp;
+					</c:forEach></li>
 				</ul>
 			</c:forEach>
 		</div>
 	</div>
 </c:if>
 <!-- 멘토추천 영역 -->
-<div class="mentoRecommend section">
+<div class="mentoRecommend">
 	<h1 id="mentoTitle">멘토추천</h1>
 	<div class="slideBtnArea col-lg-1">
 		<button class="customPrevBtn"><</button>
@@ -62,7 +71,7 @@
 	</div>
 </div>
 <!-- 기업추천 영역 -->
-<div class="recruit section">
+<div class="recruit">
 	<h1 class="recruitTitle">채용정보</h1>
 	<div class="recruitArea">
 		<c:forEach var="vo" items="${JobList}">

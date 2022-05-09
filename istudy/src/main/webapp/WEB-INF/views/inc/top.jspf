@@ -25,6 +25,23 @@
 <!-- 폰트어썸 CDN -->
 <script src="https://kit.fontawesome.com/71aed6da77.js"
 	crossorigin="anonymous"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+    document.querySelector(".menuBtn").addEventListener("click", function(e){
+        if ( document.querySelector('.menuWrap').classList.contains('on') ){
+            //메뉴닫힘
+            document.querySelector('.menuWrap').classList.remove('on');
+            document.querySelector('.menuBtn i').classList.remove('fa-times')
+            document.querySelector('.menuBtn i').classList.add('fa-bars');
+        } else {
+            //메뉴펼침
+            document.querySelector('.menuWrap').classList.add('on');
+            document.querySelector('.menuBtn i').classList.remove('fa-bars');
+            document.querySelector('.menuBtn i').classList.add('fa-times');
+        }
+    });
+});
+</script>
 <link rel="stylesheet" href="/css/inc/top.css" type="text/css" />
 </head>
 <body>
@@ -51,7 +68,7 @@
 					onclick="window.location.href='/users/logout'">로그아웃</button>
 	            	&nbsp;&nbsp;&nbsp;
 	                <button class="signUpBtn btn"
-					onclick="window.location.href='/users/myPage'">마이페이지</button>
+					onclick="window.location.href='/users/mypage/study'">마이페이지</button>
 			</c:if>
 			<c:if test="${logStatus == 'Y' && logPermission =='admin'}">
 				<button class="loginBtn btn"
@@ -71,4 +88,3 @@
 			</ul>
 		</nav>
 	</div>
-	<script src="./js/inc/top.js"></script>

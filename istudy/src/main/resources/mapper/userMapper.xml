@@ -13,7 +13,7 @@
 		B.exp_max
 		WHERE A.permission='mentor'
 		ORDER BY A.exp DESC
-		LIMIT 5
+		LIMIT 8
 	</select>
 
 	<insert id="userInsert">

@@ -19,12 +19,12 @@ $(document).ready(function() {
 		owl.trigger('prev.owl.carousel', [300]);
 	})
 
-	//==================스크롤 없애기===============
+	 //==================스크롤 없애기===============
 	var mHtml = $("html");
 	var page = 1;
 
-	let divHeight1 = 1040;
-	let divHeight2 = 920;
+	let divHeight1 = 1050;
+	let divHeight2 = 1050;
 	let divHeight3 = 850;
 
 	mHtml.animate({ scrollTop: 0 }, 10);
@@ -40,15 +40,28 @@ $(document).ready(function() {
 			if (page == 4) return;
 			page++;
 		} else if (e.originalEvent.deltaY < 0) {
-			if (page == 1) return;
+			if (page == 1) {
+				return;
+			}
+				$(".menuWrap").css('margin','60');
 			page--;
+			
 		}
-		var posTop;
-		if (page == 1) posTop = 0;
-		if (page == 2) posTop = divHeight1;
-		if (page == 3) posTop = divHeight1 + divHeight2;
-		if (page == 4) posTop = divHeight1 + divHeight2 + divHeight3;
-
-		mHtml.animate({ scrollTop: posTop + "px" });//"800px"
+		
+			var posTop;
+			if (page == 1) {
+				posTop = 0;	
+			}
+			if (page == 2) {
+				posTop = divHeight1;
+			}
+			if (page == 3) {
+				posTop = divHeight1 + divHeight2;
+			}
+			if (page == 4){
+				posTop = divHeight1 + divHeight2 + divHeight3;
+			} 
+	
+			mHtml.animate({ scrollTop: posTop + "px" });//"800px"
 	})
 });
