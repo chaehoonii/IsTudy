@@ -19,7 +19,8 @@
         }
         #mypage{
             width: 100%;
-            height: 100vh;
+            height: 1200px;
+            
         }
         body::-webkit-scrollbar{
         	display: none;
@@ -27,7 +28,7 @@
         #profilePage{
             width: 25%;
             float: left;
-            height: 100vh;
+            height: 100%;
             background-color: rgb(230, 220, 215); 
         }
         #userProfile{
@@ -74,7 +75,7 @@
         #contentPage{
             width: 75%;
             float: right;
-            height: 100%;  
+            height: 100%; 
         }
         #buttons{
         	width: 100%;
@@ -103,9 +104,10 @@
         }
         .contents{
         	width: 100%;
-        	height: 400px;
-        	overflow: scroll;
-        	margin-bottom: 20px;
+        	height: 350px;
+        	/* overflow: scroll; */
+        	overflow: hidden;
+        	margin-bottom: 30px;
         	border-bottom: 1px solid #ddd;
         }
         .contents::-webkit-scrollbar{
@@ -118,13 +120,7 @@
         .contents ul li:first-child{
         	color: grey;
         	font-size: 17px;
-        }/* 
-        .scrollIcon{
-        	
-        	position: absolute;
-        	top: 600px;
-        	right: 20px;
-        } */
+        }
         .eachContent{
         	height: 50px;
         	width: 100%;
@@ -171,9 +167,10 @@
             height: 30px;
             margin: 0 auto;
             font-size: 16px;
+            margin-bottom: 20px;
         }
         .paging ul{
-            width: 30%;
+            width: 250px;
             height: 100%;
             margin: 30px auto;
         }
@@ -251,12 +248,18 @@
 		            			</div><hr/>
 	            		</li>
             		</c:forEach>
-            			
             		</ul>
-            		<%-- <div class="scrollIcon">
-            			<img src="${url}/images/mypage_img/scrolldown.png"/>
-            		</div> --%>
+            		
             	</div>
+            	<div class="paging">
+		                <ul>
+		                    <li><a href="#">1</a></li>
+		                    <li><a href="#">2</a></li>
+		                    <li><a href="#">3</a></li>
+		                    <li><a href="#">4</a></li>
+		                    <li><a href="#">5</a></li>
+		                </ul>
+		        </div>
             	<div class="title">완료 스터디</div><hr/>
             	<div class="contents">
             		<ul>
@@ -299,7 +302,7 @@
             		</ul>
             	</div>     
             </div>
-            <!-- <div class="paging">
+            <div class="paging">
                 <ul>
                     <li><a href="#">1</a></li>
                     <li><a href="#">2</a></li>
@@ -307,6 +310,6 @@
                     <li><a href="#">4</a></li>
                     <li><a href="#">5</a></li>
                 </ul>
-            </div> -->
+            </div>
         </div>
     </div>
