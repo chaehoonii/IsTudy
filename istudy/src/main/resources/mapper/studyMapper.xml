@@ -69,15 +69,5 @@
 		WHERE 	plan_num=#{plan_num}; 
 	</update>
 	
-	<select id="joinStudy" resultType="StudyVO">
-		SELECT study_room.*, study_type.study_type_name, study_mate.user_id FROM study_room INNER JOIN study_type
-		ON study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[<=]]> finish_date
-		INNER JOIN study_mate ON study_mate.study_num= study_room.study_num AND user_id= #{param1};
-	</select>
 	
-	<select id="finishStudy" resultType="StudyVO">
-		SELECT study_room.*, study_type.study_type_name, study_mate.user_id FROM study_room INNER JOIN study_type
-		ON study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[>]]> finish_date
-		INNER join study_mate ON study_mate.study_num= study_room.study_num AND user_id= #{param1};
-	</select>
 </mapper>
