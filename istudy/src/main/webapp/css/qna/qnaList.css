@@ -1,40 +1,70 @@
 @charset "UTF-8";
-#qna_back {
+.qna_back {
 	width: 1000px;
 	margin: 0 auto;
 	margin-top:20px;
 }
-.lang_list {
-	background-color: #FEF5D4;
+#qna_logo{
+	width:20%;
+	display:inline-block;
+	cursor:pointer;
+}
+#qna_top01{
+	margin-left:0;
+	width:20%;
+	display:inline;
+	border-bottom:1px solid #ddd;
+	border-bottom-width: 800px;
+}
+#qna_top02{
+	float:right;
+	margin-right:0;
+	width:10%;
+	display:inline;
+	cursor:pointer;
+}
+.gray_box {
+	line-height: 35px;
 	border-radius: 5px;
 	padding: 5px;
-	font-size:12px;
+	background-color: #eee;
+	font-size:15px;
+	width:10%
+}
+/*검색*/
+.search_div{
+	text-align:center;
+	height:100px;
+}
+.searchbox li{
+	display:inline-block;
 }
 
-.tag_list {
-	background-color: rgb(232,244,232);
-	border-radius: 5px;
-	padding: 5px;
-	font-size:12px;
+.searchKey{
+	border: 1px solid #ccc;
+	line-height:25px;
+	font-size:13px;
+	padding:5px;
 }
-
-#qna_profile {
-	width: 40px;
-	border-radius: 50%;
+.searchWord{
+	border: 1px solid #ccc;
+	line-height:26px;
+	font-size:14px;
 }
-
+.search_icon{
+	width:30px;
+	height:30px;
+	padding:3px;
+	cursor:pointer;
+}
+/*qna리스트*/
 .qna_ul {
 	margin-left:50px;
 	line-height: 45px;
 	display:inline-block;
 	width:750px;
 	font-size:15px;
-	
-}
-.qna_ul li, .qna_ul2 li{
-	text-overflow:ellipsis;
-	white-space: nowrap;
-  	overflow: hidden;
+	cursor:pointer;
 }
 .qna_ul2 {
 	line-height: 45px;
@@ -42,11 +72,55 @@
 	width:150px;
 	font-size:12px;
 }
+.qna_ul li, .qna_ul2 li{
+	text-overflow:ellipsis;
+	white-space: nowrap;
+  	overflow: hidden;
+}
+.lang_list {
+	background-color: #FEF5D4;
+	border-radius: 5px;
+	padding: 5px;
+	font-size:11px;
+}
 
+.tag_list {
+	background-color: rgb(232,244,232);
+	border-radius: 5px;
+	padding: 5px;
+	font-size:11px;
+}
+
+#qna_profile {
+	width: 40px;
+	border-radius: 50%;
+}
 .gray_border {
 	line-height: 30px;
 	border-radius: 5px;
 	padding: 5px;
 	border: 1px solid #ddd;
 	font-size:15px;
+}
+.white_border {
+	line-height: 30px;
+	border-radius: 5px;
+	padding: 5px;
+	border: 1px solid #fff;
+	font-size:15px;
+}
+/*답변 채택*/
+.not_selected{
+	line-height: 15px;
+	border-radius: 50%;
+	padding: 3px;
+	font-size:12px;
+	background-color: RGB(255,239,222);
+}
+.is_selected{
+	line-height: 15px;
+	border-radius: 50%;
+	padding: 3px;
+	font-size:12px;
+	background-color: RGB(222,239,255);
 }

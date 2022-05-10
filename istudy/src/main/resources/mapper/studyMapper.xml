@@ -5,20 +5,16 @@
 <mapper namespace="com.hot6.project.dao.StudyDAO">
 	<!-- 스터디 추천 -->
 	<select id="StudyRecommend" resultType="StudyVO">
-		SELECT A.*,E.*,
-		ifnull(G.in_people,0) AS in_people, (A.max - ifnull(G.in_people,0)) AS
-		remain
-		FROM study_room A
-		INNER JOIN user B
-		ON A.study_type_num =
-		B.study_type_num
-		JOIN study_type E
-		ON E.study_type_num = A.study_type_num
-		LEFT JOIN (SELECT study_num, COUNT(want_ok) AS in_people FROM study_mate
-		WHERE want_ok='T' GROUP BY study_num ) G
-		ON G.study_num=A.study_num
-		WHERE user_id=#{param}
-		ORDER BY remain, A.study_num;
+		SELECT 	  	A.*,E.*,  ifnull(G.in_people,0) AS in_people, (A.max -  ifnull(G.in_people,0)) AS remain
+		FROM 	  	study_room A
+		INNER JOIN 	user B
+		ON 		  	A.study_type_num = B.study_type_num
+	    JOIN 		study_type E
+	    ON 		  	E.study_type_num =  A.study_type_num
+	    LEFT JOIN 	(SELECT study_num, COUNT(want_ok) AS in_people FROM study_mate WHERE want_ok='T' GROUP BY study_num ) G
+	    ON		  	G.study_num=A.study_num
+	    WHERE 		user_id=#{param1}
+	    ORDER BY  	remain, A.study_num;
 	</select>
 	<!-- 스터디 추천: 언어타입 -->
 	<select id="StudyLangType" resultType="string">
@@ -77,4 +73,5 @@
 		color_num=#{color_num}
 		WHERE plan_num=#{plan_num};
 	</update>
+
 </mapper>

@@ -34,6 +34,61 @@ public class QnaServiceImpl implements QnaService{
 		return dao.QnaTag(board_num);
 	}
 
+	@Override
+	public List<BoardVO> QnaList_title(String searchWord) {
+		return dao.QnaList_title(searchWord);
+	}
+
+	@Override
+	public List<BoardVO> QnaList_content(String searchWord) {
+		return dao.QnaList_content(searchWord);
+	}
+
+	@Override
+	public List<BoardVO> QnaList_nick(String searchWord) {
+		return dao.QnaList_nick(searchWord);
+	}
+
+	@Override
+	public List<BoardVO> QnaList_lang(String searchWord) {
+		return dao.QnaList_lang(searchWord);
+	}
+
+	@Override
+	public List<BoardVO> QnaList_tag(String searchWord) {
+		return dao.QnaList_tag(searchWord);
+	}
+
+	@Override
+	public int TotalQna_title(String searchWord) {
+		return dao.TotalQna_title(searchWord);
+	}
+
+	@Override
+	public int TotalQna_content(String searchWord) {
+		return dao.TotalQna_content(searchWord);
+	}
+
+	@Override
+	public int TotalQna_nick(String searchWord) {
+		return dao.TotalQna_nick(searchWord);
+	}
+
+	@Override
+	public int TotalQna_lang(String searchWord) {
+		return dao.TotalQna_lang(searchWord);
+	}
+
+	@Override
+	public int TotalQna_tag(String searchWord) {
+		return dao.TotalQna_tag(searchWord);
+	}
+
+	@Override
+	public BoardVO QnaView(int board_num) {
+		return dao.QnaView(board_num);
+	}
+
 
 	
 	
