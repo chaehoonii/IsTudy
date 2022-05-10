@@ -1,11 +1,11 @@
 @charset "UTF-8";
 /*================================이미지, 글씨======================================*/
 .mainImageWrap{
-	height:1050px;
+	height:100vh;
 	position:relative;
 }
 #mainImage {
-	height:1050px;
+	height:100vh;
 	vertical-align: middle;
 	z-index:102;
 	filter:grayscale(50%);
@@ -13,7 +13,7 @@
 #mainImage>img{
 	width:100%;
 	opacity: 0.9;
-	height:1050px;
+	height:100vh;
 	
 }
 #mainText {
@@ -32,7 +32,7 @@
 /*===============================스터디 추천====================================*/
 .studyRecommend {
 	width:1200px;
-	height:1050px;
+	height:100vh;
 	text-align:center;
 	margin:0 auto;	
 	padding:0px;
@@ -45,7 +45,7 @@
 }
 .studyInfo{
 	width:300px;
-	height:450px;
+	height:420px;
 	display:inline-block;
 	font-size:0.8em;
 	filter: drop-shadow(0px 3px 3px rgba(0,0,0,30%));
@@ -53,7 +53,11 @@
 .studyInfo img{
 	padding:10px;
 	margin:0px;
-	width:300px;
+	width:240px;
+	height:180px;
+}
+.studyInfo hr{
+	width:240px;
 }
 .studyInfoText{
 	height:20px;
@@ -64,6 +68,10 @@
 }
 .tag_list{
 	overflow:hidden;
+	background-color: rgb(232,244,232);
+	border-radius: 5px;
+	padding: 5px;
+	font-size:12px;
 }
 /*===============================멘토정보 슬라이드====================================*/
 .mentoRecommend{
@@ -135,7 +143,7 @@
 /*===============================기업정보====================================*/
 .recruit {
 	width:100%;
-	height:900px;
+	height:88vh;
 	text-align:center;
 	margin:0 auto;	
 	overflow:hidden;
@@ -190,13 +198,6 @@
 }
 .lang_list {
 	background-color: #FEF5D4;
-	border-radius: 5px;
-	padding: 5px;
-	font-size:12px;
-}
-/*===============================스터디 추천====================================*/
-.tag_list {
-	background-color: rgb(232,244,232);
 	border-radius: 5px;
 	padding: 5px;
 	font-size:12px;

@@ -23,9 +23,9 @@ $(document).ready(function() {
 	var mHtml = $("html");
 	var page = 1;
 
-	let divHeight1 = 1050;
-	let divHeight2 = 1050;
-	let divHeight3 = 850;
+	let divHeight1 = window.innerHeight;
+	let divHeight2 = window.innerHeight;
+	let divHeight3 = 700;
 
 	mHtml.animate({ scrollTop: 0 }, 10);
 
