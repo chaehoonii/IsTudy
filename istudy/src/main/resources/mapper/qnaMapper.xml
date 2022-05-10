@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.hot6.project.dao.QnaDAO">
+<!-- 질문 수 -->
+<select id="TotalQna" resultType="int">
+	SELECT 	COUNT(board_num) AS total_qna 
+	FROM 	board 
+	WHERE 	board_type_num=2
+</select>
+<!-- 질문 리스트 & 채택된 답변이 있는지 여부(0:없음/ 1:있음)-->
+<select id="QnaList" resultType="BoardVO">
+	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(D.selected,0) AS selected
+	FROM 	  board A
+    LEFT JOIN user B
+    ON 		  A.user_id=B.user_id
+    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply FROM reply GROUP BY board_num) C
+    ON		  C.board_num=A.board_num
+    LEFT JOIN (SELECT board_num,COUNT(board_num) AS selected FROM select_reply GROUP BY board_num) D
+    ON 		  A.board_num = D.board_num
+	WHERE 	  A.board_type_num=2
+	ORDER BY  board_num DESC;
+</select>
+<!-- 질문 리스트 : 언어타입 -->
+<select id="QnaLangType" resultType="String">
+	SELECT 	A.lang_type_name 
+	FROM 	lang_type A 
+	JOIN 	board_lang_type B 
+	ON 		A.lang_type_num = B.lang_type_num 
+	WHERE 	B.board_num=#{param1}
+</select>
+<!-- 질문 리스트 : 태그 -->
+<select id="QnaTag" resultType="String">
+	SELECT 	tag 
+	FROM 	board_hashtag 
+	WHERE 	board_num=#{param1}
+</select>
+<!-- 채택된 답변이 있는지 여부(0:없음/ 1:있음) -->
+<select id="IsSelected" resultType="int">
+	select count(board_num) as selected from select_reply where board_num=#{param1}
+</select>
+<!-- 검색 -->
+<select id="TotalQna_title" resultType="int">
+	SELECT 	COUNT(board_num) AS total_qna 
+	FROM 	board 
+	WHERE 	board_type_num=2
+	and		title LIKE CONCAT('%', #{param1}, '%')
+</select>
+<select id="QnaList_title" resultType="BoardVO">
+	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(D.selected,0) AS selected
+	FROM 	  board A
+    LEFT JOIN user B
+    ON 		  A.user_id=B.user_id
+    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply FROM reply GROUP BY board_num) C
+    ON		  C.board_num=A.board_num
+    LEFT JOIN (SELECT board_num,COUNT(board_num) AS selected FROM select_reply GROUP BY board_num) D
+    ON 		  A.board_num = D.board_num
+	WHERE 	  A.board_type_num=2
+    AND 	  A.title LIKE CONCAT('%', #{param1}, '%')
+	ORDER BY  board_num DESC;
+</select>
+<select id="TotalQna_content" resultType="int">
+	SELECT 	COUNT(board_num) AS total_qna 
+	FROM 	board 
+	WHERE 	board_type_num=2
+	and		content LIKE CONCAT('%', #{param1}, '%')
+</select>
+<select id="QnaList_content" resultType="BoardVO">
+	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(D.selected,0) AS selected
+	FROM 	  board A
+    LEFT JOIN user B
+    ON 		  A.user_id=B.user_id
+    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply FROM reply GROUP BY board_num) C
+    ON		  C.board_num=A.board_num
+    LEFT JOIN (SELECT board_num,COUNT(board_num) AS selected FROM select_reply GROUP BY board_num) D
+    ON 		  A.board_num = D.board_num
+	WHERE 	  A.board_type_num=2
+    AND 	  A.content LIKE CONCAT('%', #{param1}, '%')
+	ORDER BY  board_num DESC;
+</select>
+<select id="TotalQna_id" resultType="int">
+	SELECT 	COUNT(board_num) AS total_qna 
+	FROM 	board 
+	WHERE 	board_type_num=2
+	and		user_nick LIKE CONCAT('%', #{param1}, '%')
+</select>
+<select id="QnaList_id" resultType="BoardVO">
+	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(D.selected,0) AS selected
+	FROM 	  board A
+    LEFT JOIN user B
+    ON 		  A.user_id=B.user_id
+    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply FROM reply GROUP BY board_num) C
+    ON		  C.board_num=A.board_num
+    LEFT JOIN (SELECT board_num,COUNT(board_num) AS selected FROM select_reply GROUP BY board_num) D
+    ON 		  A.board_num = D.board_num
+	WHERE 	  A.board_type_num=2
+    AND 	  B.user_nick LIKE CONCAT('%', #{param1}, '%')
+	ORDER BY  board_num DESC;
+</select>
+<select id="TotalQna_lang" resultType="int">
+	SELECT 	  COUNT(A.board_num) AS total_qna 
+	FROM 	  board A
+    LEFT JOIN board_lang_type B
+    ON 		  B.board_num = A.board_num
+    LEFT JOIN lang_type C
+    ON		  C.lang_type_num = B.lang_type_num
+	WHERE 	  A.board_type_num=2
+    AND 	  C.lang_type_name LIKE CONCAT('%', #{param1}, '%')
+</select>
+<select id="QnaList_lang" resultType="BoardVO">
+	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(D.selected,0) AS selected
+	FROM 	  board A
+    LEFT JOIN user B
+    ON 		  A.user_id=B.user_id
+    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply FROM reply GROUP BY board_num) C
+    ON		  C.board_num=A.board_num
+    LEFT JOIN (SELECT board_num,COUNT(board_num) AS selected FROM select_reply GROUP BY board_num) D
+    ON 		  A.board_num = D.board_num
+    LEFT JOIN board_lang_type E
+    ON 		  E.board_num = A.board_num
+    LEFT JOIN lang_type F
+    ON		  F.lang_type_num = E.lang_type_num
+	WHERE 	  A.board_type_num=2
+    AND 	  F.lang_type_name LIKE CONCAT('%', #{param1}, '%')
+	ORDER BY  board_num DESC
+</select>
+<select id="TotalQna_tag" resultType="int">
+	SELECT 	COUNT(A.board_num) AS total_qna 
+	FROM 	board A
+    JOIN	board_hashtag B
+    ON		B.board_num =A.board_num
+	WHERE 	A.board_type_num=2
+	AND		tag LIKE CONCAT('%', #{param1}, '%')
+</select>
+<select id="QnaList_tag" resultType="BoardVO">
+	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(D.selected,0) AS selected
+	FROM 	  board A
+    LEFT JOIN user B
+    ON 		  A.user_id=B.user_id
+    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply FROM reply GROUP BY board_num) C
+    ON		  C.board_num=A.board_num
+    LEFT JOIN (SELECT board_num,COUNT(board_num) AS selected FROM select_reply GROUP BY board_num) D
+    ON 		  A.board_num = D.board_num
+    LEFT JOIN	board_hashtag E
+    on 			E.board_num = A.board_num
+	WHERE 	  A.board_type_num=2
+    AND 	  E.tag LIKE CONCAT('%', #{param1}, '%')
+	ORDER BY  board_num DESC;
+</select>
+<!-- 글 내용 -->
+<select id="QnaView" resultType="BoardVO">
+	SELECT 	  A.title, A.content, DATE_FORMAT(A.write_date, '%Y-%m-%d') AS write_date, 
+			  B.user_nick, B.profile_img, IFNULL(D.selected,0) AS selected, 
+			  E.file1, E.file2, E.file3, E.file4, E.file5
+	FROM 	  board A
+    LEFT JOIN user B
+    ON 		  A.user_id=B.user_id
+    LEFT JOIN (SELECT board_num,COUNT(board_num) AS selected FROM select_reply GROUP BY board_num) D
+    ON 		  A.board_num = D.board_num
+    LEFT JOIN board_image E
+    on		  E.board_num = A.board_num
+	WHERE 	  A.board_num=#{param1}
+</select>
+</mapper>
