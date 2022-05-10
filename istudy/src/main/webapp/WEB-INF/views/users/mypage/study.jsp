@@ -26,7 +26,7 @@
         	display: none;
         }
         .profilePage{
-            width: 25%;
+            width: 20%;
             float: left;
             height: 100%;
             background-color: rgb(230, 220, 215); 
