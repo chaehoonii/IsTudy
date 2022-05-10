@@ -14,7 +14,8 @@
 	    LEFT JOIN 	(SELECT study_num, COUNT(want_ok) AS in_people FROM study_mate WHERE want_ok='T' GROUP BY study_num ) G
 	    ON		  	G.study_num=A.study_num
 	    WHERE 		user_id=#{param1}
-	    ORDER BY  	remain, A.study_num;
+	    ORDER BY  	remain, A.study_num
+	    LIMIT 6;
 	</select>
 	<!-- 스터디 추천: 언어타입 -->
 	<select id="StudyLangType" resultType="string">
