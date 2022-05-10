@@ -35,8 +35,7 @@ spring:
           auth: true
           starttls:
             enable: true
-
-# mybatis에서 패키지를 생략할 수 있도록 설정 
+  # mybatis에서 패키지를 생략할 수 있도록 설정 
 mybatis:
     type-aliases-package: com.hot6.project.vo
     mapper-locations: mapper/*Mapper.xml

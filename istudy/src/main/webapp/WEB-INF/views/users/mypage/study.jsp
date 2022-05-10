@@ -208,8 +208,8 @@
                             <li class="finishStudy">완료 스터디 : 10개</li>
                         </ul>
                     </div>
-                    <div class="category">
-                          <a href="#">회원 수정</a>
+                    <div id="category">
+                          <a href="${url}/users/userEdit">회원 수정</a>
                     </div>
                 </div>
             </div>
