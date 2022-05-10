@@ -29,9 +29,5 @@ public interface StudyDAO {
 	//일정 수정
 	public int CalendarEdit(StudyVO vo);
 	
-	//마이페이지 진행 스터디 
-	public List<StudyVO> joinStudy(String user_id);
-		
-	//마이페이지 완료 스터디
-	public List<StudyVO> finishStudy(String user_id);
+	
 }

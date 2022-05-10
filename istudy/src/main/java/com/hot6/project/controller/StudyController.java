@@ -70,6 +70,7 @@ public class StudyController {
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/study/calendar/calendarEdit", method = RequestMethod.POST)
 	public void calendarEdit(StudyVO vo) {
+
 		System.out.println("edit start");
 		Sservice.CalendarEdit(vo);
 	}

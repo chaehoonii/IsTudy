@@ -9,7 +9,7 @@ public class BoardVO {
 	private String user_id;
 	private String title;
 	private String content;
-	private String writedate;
+	private String write_date;
 	private int hit;
 	private int is_boardnotice;
 	private String ip;
@@ -36,9 +36,54 @@ public class BoardVO {
 	private String user_nick;
 	private String profile_img;
 	
-	//writedate
-	private String write_date;
+	//reply
+	private int selected;
+	public int reply_num;
+	public String reply_coment;
+	public String reply_date;
+	public String selected_id;
 	
+	
+	public int getReply_num() {
+		return reply_num;
+	}
+
+	public void setReply_num(int reply_num) {
+		this.reply_num = reply_num;
+	}
+
+	public String getReply_coment() {
+		return reply_coment;
+	}
+
+	public void setReply_coment(String reply_coment) {
+		this.reply_coment = reply_coment;
+	}
+
+	public String getReply_date() {
+		return reply_date;
+	}
+
+	public void setReply_date(String reply_date) {
+		this.reply_date = reply_date;
+	}
+
+	public String getSelected_id() {
+		return selected_id;
+	}
+
+	public void setSelected_id(String selected_id) {
+		this.selected_id = selected_id;
+	}
+
+	public int getSelected() {
+		return selected;
+	}
+
+	public void setSelected(int selected) {
+		this.selected = selected;
+	}
+
 	public int getCount_reply() {
 		return count_reply;
 	}
@@ -117,14 +162,6 @@ public class BoardVO {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public String getWritedate() {
-		return writedate;
-	}
-
-	public void setWritedate(String writedate) {
-		this.writedate = writedate;
 	}
 
 	public int getHit() {
