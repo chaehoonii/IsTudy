@@ -50,7 +50,7 @@
 				        <option value="tag">태그</option>
 				    </select>
 			    </li>
-			    <li><input type="text" name="searchWord" class="searchWord"  id='searchWord_box'/></li>
+			    <li>&nbsp;<input type="text" name="searchWord" class="searchWord"  id='searchWord_box'/></li>
 			    <li>&nbsp;<img src='/images/search.png' class='search_icon'/></li>
 			</ul>
 		</form>

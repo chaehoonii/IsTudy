@@ -85,14 +85,23 @@ public class QnaController {
 		}
 		//글 상세
 		@GetMapping("/qna/qnaView")
-		public ModelAndView qnaView(int board_num) {
+		public ModelAndView qnaView(int board_num, HttpSession session) {
+			String user_id = (String)session.getAttribute("logId");
 			ModelAndView mav = new ModelAndView();
 			BoardVO vo = Qservice.QnaView(board_num);
 			vo.setLang_list(Qservice.QnaLangType(board_num));
         	vo.setTag_list(Qservice.QnaTag(board_num));
         	mav.addObject("vo", vo);
+        	//댓글
+        	List<BoardVO> replyList = Qservice.QnaReplyList(user_id, board_num);
+        	mav.addObject("replyList", replyList);
 			mav.setViewName("/qna/qnaView");
-			System.out.println("view start");
+			return mav;
+		}
+		@RequestMapping(value = "/qna/qnaWrite", method = RequestMethod.GET)
+		public ModelAndView qnaWrite() {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("/qna/qnaWrite");
 			return mav;
 		}
 }
