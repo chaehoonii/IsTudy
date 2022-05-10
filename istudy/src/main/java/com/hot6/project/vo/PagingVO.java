@@ -1,5 +1,7 @@
 package com.hot6.project.vo;
 
+import java.util.List;
+
 public class PagingVO {
 	//페이징
 	private int onePageRecord = 10;//한페이지당 출력할 레코드 수
@@ -12,6 +14,8 @@ public class PagingVO {
 	//검색
 	private String searchKey;
 	private String searchWord;
+	
+	private List<String> sclass;
 	
 	public int getOnePageRecord() {
 		return onePageRecord;
@@ -75,6 +79,13 @@ public class PagingVO {
 		}
 		public void setSearchWord(String searchWord) {
 			this.searchWord = searchWord;
+		}
+		public List<String> getSclass() {
+			return sclass;
+		}
+		public void setSclass(List<String> sclass) {
+			System.out.println(":>>>"+sclass);
+			this.sclass = sclass;
 		}
 		
 }
