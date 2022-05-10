@@ -44,14 +44,12 @@ public class StudyVO {
 	private String plan_finish;
 	private String start_time;
 	private String finish_time;
-	
+
 	//study_hashtag
 	private String tag;
 	
 	private List<String> lang_list;
 	private List<String> tag_list;
-	
-	
 	
 	
 	public List<String> getLang_list() {
@@ -253,4 +251,5 @@ public class StudyVO {
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
+
 }

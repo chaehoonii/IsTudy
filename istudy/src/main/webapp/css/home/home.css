@@ -32,7 +32,11 @@
 /*===============================스터디 추천====================================*/
 .studyRecommend {
 	width:1200px;
+<<<<<<< HEAD
 	height:100vmin;
+=======
+	height:100vh;
+>>>>>>> b076bbfc2ca94ec409aec2aa3b6d2d9c3c93ff97
 	text-align:center;
 	margin:0 auto;	
 	padding:0px;
@@ -68,6 +72,10 @@
 }
 .tag_list{
 	overflow:hidden;
+	background-color: rgb(232,244,232);
+	border-radius: 5px;
+	padding: 5px;
+	font-size:12px;
 }
 /*===============================멘토정보 슬라이드====================================*/
 .mentoRecommend{
@@ -194,13 +202,6 @@
 }
 .lang_list {
 	background-color: #FEF5D4;
-	border-radius: 5px;
-	padding: 5px;
-	font-size:12px;
-}
-/*===============================스터디 추천====================================*/
-.tag_list {
-	background-color: rgb(232,244,232);
 	border-radius: 5px;
 	padding: 5px;
 	font-size:12px;

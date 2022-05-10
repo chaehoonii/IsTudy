@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hot6.project.dao.StudyInfoDAO">
+	<select id="studyInfo" resultType="StudyInfoVO">
+		select is_mentor, study_img, study_name, study_num, host_id, start_date, finish_date, max
+		from study_room
+	</select>
+	<select id="studyLang" resultType="String">
+		select lt.lang_type_name 
+		from study_lang_type st join lang_type lt on st.lang_type_num=lt.lang_type_num and st.study_num=#{param1}
+	</select>
+	<select id="langAll" resultType="StudyInfoVO">
+		select*from lang_type order by lang_type_name
+	</select>
+</mapper>

@@ -164,14 +164,6 @@ public class BoardVO {
 		this.content = content;
 	}
 
-	public String getWrite_date() {
-		return write_date;
-	}
-
-	public void setWrite_date(String write_date) {
-		this.write_date = write_date;
-	}
-
 	public int getHit() {
 		return hit;
 	}
@@ -258,6 +250,14 @@ public class BoardVO {
 
 	public void setTag(String tag) {
 		this.tag = tag;
+	}
+
+	public String getWrite_date() {
+		return write_date;
+	}
+
+	public void setWrite_date(String write_date) {
+		this.write_date = write_date;
 	}
 	
 	

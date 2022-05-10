@@ -143,7 +143,6 @@ $(function() {
 		if ($(this).is(':checked')) {
 			$("#career_list").hide();
 			$(".career_url").hide();
-
 		}
 	})
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.hot6.project.dao.NoticeDAO">
+	<select id="selectNoticeList" resultType="BoardVO">
+		SELECT A.*, B.*
+		FROM board A
+		LEFT JOIN board_type B
+		ON A.board_type_num=B.board_type_num
+		WHERE A.board_type_num="3"
+		ORDER BY A.board_num DESC;
+	</select>
+</mapper> 

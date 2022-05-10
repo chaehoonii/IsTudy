@@ -24,7 +24,6 @@ $(document).ready(function() {
 	var page = 1;
 
 	let divHeight1 = window.innerHeight;
-
 	let divHeight2 = window.innerHeight;
 	let divHeight3 = 700;
 
