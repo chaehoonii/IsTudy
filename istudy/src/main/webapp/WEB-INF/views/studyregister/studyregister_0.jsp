@@ -59,6 +59,7 @@
 </div>
 	<div id="register_content"></div>
 </div>
+<div style="clear: both"></div>
 
 
 
