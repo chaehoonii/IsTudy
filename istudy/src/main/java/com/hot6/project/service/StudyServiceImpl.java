@@ -43,15 +43,7 @@ public class StudyServiceImpl implements StudyService{
 	public int CalendarEdit(StudyVO vo) {
 		return dao.CalendarEdit(vo);
 	}
-	@Override
-	public List<StudyVO> joinStudy(String user_id) {	
-		return dao.joinStudy(user_id);
-	}
-
-	@Override
-	public List<StudyVO> finishStudy(String user_id) {
-		return dao.finishStudy(user_id);
-	}
+	
 
 	@Override
 	public List<String> StudyLangType(int study_num) {
