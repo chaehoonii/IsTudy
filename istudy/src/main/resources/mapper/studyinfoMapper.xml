@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hot6.project.dao.StudyInfoDAO">
-	<select id="studyInfo" resultType="StudyInfoVO">
+	<select id="studyHome"  resultType="StudyInfoVO">
 		select is_mentor, study_img, study_name, study_num, host_id, start_date, finish_date, max
 		from study_room
 	</select>
