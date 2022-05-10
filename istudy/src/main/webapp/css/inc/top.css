@@ -27,7 +27,7 @@ a, a:visited, a:hover, a:active{
 	width:100%;
 	height:60px;
 	line-height:60px;
-	background-color:rgba(85, 76, 66, 50%);
+	background-color:rgba(85, 76, 66, 80%);
 	z-index:101;
 	position:absolute;
 	top:0;
@@ -83,15 +83,15 @@ a, a:visited, a:hover, a:active{
 .menuWrap {
 	margin-top:60px;
     position:absolute;
-    top:60;
-    left: -300px; /* 너비 300px 인 사이드바를 왼쪽으로 300px 이동시켜 화면에 보이지 않게 함 */
-    width: 300px; /* 너비 */
+    top:0;
+    left: -20%; /* 너비 300px 인 사이드바를 왼쪽으로 300px 이동시켜 화면에 보이지 않게 함 */
+    width: 20%; /* 너비 */
     height:900px;
     line-height:300px;
     text-align:center;
     font-size:2em;
     transition: left .3s ease-in-out; /* 0.3초 동안 이동 애니메이션 */
-    background-color:rgba(85, 76, 66, 50%);
+    background-color:rgba(85, 76, 66, 80%);
     z-index:100;
 }
 .menuWrap.on {
