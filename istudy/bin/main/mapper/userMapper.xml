@@ -13,7 +13,6 @@
 		B.exp_max
 		WHERE A.permission='mentor'
 		ORDER BY A.exp DESC
-<<<<<<< HEAD
 		LIMIT 8
 	</select>
 
@@ -94,57 +93,3 @@
    </update>
    
 </mapper>
-=======
-		LIMIT 5
-	</select>
-
-	<insert id="userInsert">
-		INSERT into user(
-		user_name, 
-		user_id, 
-		user_pw, 
-		user_nick, 
-		tel, 
-		email, 
-		permission, 
-		career, 
-		profile_img, 
-		study_type_num)
-		VALUES(#{param1.user_name}, 
-		#{param1.user_id},
-		#{param1.user_pw}, 
-		#{param1.user_nick},
-		#{param1.tel}, 
-		#{param1.email}, 
-		#{param1.permission},
-		#{param1.career},
-		#{param2},
-		#{param1.study_type_num})		
-	</insert>
-
-	<select id="idCheck" resultType="int">
-		SELECT count(user_id) cnt
-		FROM user
-		WHERE user_id=#{param1}
-	</select>
-	
-	<select id="loginCheck" resultType="UserVO">
-		SELECT user_name, user_id, user_nick, permission FROM user WHERE user_id=#{user_id} AND user_pw=#{user_pw}
-	
-	</select>
-	
-	<select id="findId" resultType="String">
-		select user_id from user where user_name=#{user_name} and tel=#{tel}
-	
-	</select>
-	
-	<select id="matchUser" resultType="int">
-		select count(user_id) from user where user_id=#{user_id} and email=#{email}
-	</select>
-	
-	<update id="pwdUpdate">
-		update user set user_pw=#{param1} where user_id=#{param2.user_id}
-	</update>
-	
-</mapper>
->>>>>>> 772c3bad1c4f60fc92e7a5ec3b9a9f0a6ac74630
