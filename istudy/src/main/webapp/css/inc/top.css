@@ -83,7 +83,7 @@ a, a:visited, a:hover, a:active{
 .menuWrap {
 	margin-top:60px;
     position:absolute;
-    top:60;
+    top:0;
     left: -300px; /* 너비 300px 인 사이드바를 왼쪽으로 300px 이동시켜 화면에 보이지 않게 함 */
     width: 300px; /* 너비 */
     height:900px;
