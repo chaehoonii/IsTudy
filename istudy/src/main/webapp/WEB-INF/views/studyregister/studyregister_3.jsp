@@ -7,7 +7,7 @@
 	<div class="people_status_grid">
 		<div class="study_people">
 			<h3>▶스터디 모집 인원</h3>
-			<input type="number" id="people_set" min="2" max="10" value="2" /> 
+			<input type="number" id="people_set" name="max" /> 
 			<input type="submit" value="확인" id="people_set_btn" />
 		</div>
 		<div class="register_page3">
