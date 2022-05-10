@@ -17,8 +17,8 @@ public class StudyInfoServiceImpl implements StudyInfoService{
 	
 	// 스터디글 정보페이지
 	@Override
-	public List<StudyInfoVO> studyInfo(int study_num, PagingVO vo) {
-		return dao.studyInfo(study_num, vo);
+	public List<StudyInfoVO> studyHome(PagingVO vo) {
+		return dao.studyHome(vo);
 	}
 	public List<String> studyLang(int study_num){
 		return dao.studyLang(study_num);
@@ -27,5 +27,4 @@ public class StudyInfoServiceImpl implements StudyInfoService{
 	public List<StudyInfoVO> langAll(){
 		return dao.langAll();
 	}
-	
 }

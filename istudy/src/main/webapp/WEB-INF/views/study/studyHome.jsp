@@ -17,7 +17,7 @@
 	#category_box{
 		float:left;
 		width:20%;
-		height:100%;
+		height:100vh;
 		
 		padding: 10px;
 		background-color: rgb(230,223,215);
@@ -128,3 +128,4 @@
 		</div>	
 	</c:forEach>
 </div>
+<div style="clear:both"></div>
