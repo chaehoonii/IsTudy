@@ -8,5 +8,6 @@
   		<mapper resource="mapper/studyMapper.xml"></mapper>
   		<mapper resource="mapper/jobMapper.xml"></mapper>
   		<mapper resource="mapper/qnaMapper.xml"></mapper>
+  		<mapper resource="mapper/noticeMapper.xml"></mapper>
 </mappers>
 </configuration>

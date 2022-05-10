@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function(){
 					onclick="window.location.href='/users/logout'">로그아웃</button>
 	            	&nbsp;&nbsp;&nbsp;
 	               <button class="adminBtn btn"
-					onclick="window.location.href='/admin/adminMain'">관리자 페이지</button>
+					onclick="window.location.href='#'">관리자 페이지</button>
 			</c:if>
 		</div>
 	</div>
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function(){
 			<ul class="category_list">
 				<li class="listStyle"><a href="#">스터디 구하기</a></li>
 				<li class="listStyle"><a href="/qna/qnaList">Q & A</a></li>
-				<li class="listStyle"><a href="#">공지사항</a></li>
+				<li class="listStyle"><a href="/notice/noticeList">공지사항</a></li>
 			</ul>
 		</nav>
 	</div>
