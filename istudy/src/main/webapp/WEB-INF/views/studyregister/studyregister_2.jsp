@@ -6,7 +6,7 @@
 	</div>
 	<div class="study_title">
 		<h3>▶스터디 제목</h3>
-		<input type="text" id="s_title" placeholder="20자 이내로 입력해주세요." maxlength="20">
+		<input type="text" name="study_name" id="s_title" placeholder="20자 이내로 입력해주세요." maxlength="20">
 		<input type="submit" id="register_title_btn" value="확인"/>
 	</div>
 	<div class="register_page2">

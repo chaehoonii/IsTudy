@@ -128,3 +128,4 @@
 		</div>	
 	</c:forEach>
 </div>
+<div style="clear:both"></div>
