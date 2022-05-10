@@ -66,6 +66,12 @@
 	font-size:1.5em;
 	color:rgb(85, 76, 66);
 }
+.lang_list {
+	background-color: #FEF5D4;
+	border-radius: 5px;
+	padding: 5px;
+	font-size:12px;
+}
 .tag_list{
 	overflow:hidden;
 	background-color: rgb(232,244,232);
@@ -196,9 +202,4 @@
 	width:75%;
 	height:40px;
 }
-.lang_list {
-	background-color: #FEF5D4;
-	border-radius: 5px;
-	padding: 5px;
-	font-size:12px;
-}
+

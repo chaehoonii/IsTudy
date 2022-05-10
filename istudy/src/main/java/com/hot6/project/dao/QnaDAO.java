@@ -36,4 +36,7 @@ public interface QnaDAO {
 	
 	//글 내용
 	public BoardVO QnaView(int board_num);
+	
+	//댓글 리스트
+	public List<BoardVO> QnaReplyList(String user_id, int board_num);
 }

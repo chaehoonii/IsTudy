@@ -63,7 +63,12 @@ public class StudyRegisterController {
 		vo.setHost_id((String)request.getSession().getAttribute("logId"));
 		
 		ResponseEntity<String> entity =null;
-		
+//		String permission = vo.setPermission((String)request.getSession().getAttribute("logPermission"));
+//		if(permission.equals("mentor")) {
+//				//멘토
+//		}else {
+//			service.StudyInsert(vo);	//일반
+//		}
 		try {
 			service.StudyInsert(vo);
 			//정상구현
