@@ -4,6 +4,8 @@
 
 
 <style>
+	@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
     a{
         text-decoration: none;
         color: black;
@@ -16,27 +18,37 @@
         padding: 0;
         list-style-type: none;
     }
-    .page{
-        width: 100%;
-        margin-bottom: 300px;
+    body::-webkit-scrollbar{
+        	display: none;
     }
-    .logo{
-        margin-top:300px;
+    body * {
+    	font-family: "NanumSquare";
+    	transform: skew(-0.03deg);
+    }
+    h2{
+    	font-weight: bold;
+    }
+    .page{
+        width: 100%;       
+        display: flex;
+        min-height: 85vh; 
+        align-items: center;
+        margin-top:60px;
     }
     .content{
-        width:600px;
+        width:500px;
         margin: 0 auto;
-        
+        border: 1px solid rgb(240,240,240);
+        height: 430px;
     }
-    .title{
-        margin-bottom: 10px;
-        font-size:18px;
-    }
+    .content h2{
+    	text-align: center;
+    	margin-top:30px;
+    } 
     .userForm{
         text-align: center;
-        width:600px;
+        width:500px;
         height: 320px;
-        border: 1px solid black;
         margin: 0 auto;
         justify-content: center;
         position: relative;
@@ -50,12 +62,16 @@
         transform: translate(-50%,-50%); 
     }
     .userForm li input{
-        width: 300px;
+        width: 400px;
         height: 60px;
         border-radius: 5px;
         border: 1px solid #ddd;
         display: inline-block;
         font-size: 16px;
+        letter-space: 5px;
+    }
+    input[type=password]{
+    	font-family:'Malgun gothic', dotum, sans-serif;
     }
     #userid::-webkit-input-placeholder{
         background-image: url(${url}/images/login_icon/user.png); 
@@ -76,7 +92,7 @@
         background-color: rgb(230, 223, 215);
     }
     .userLink{
-        width:600px;
+        width:500px;
         text-align: center;
     }
     .userLink ul{
@@ -86,7 +102,11 @@
     .userLink li{
         float: left;
         width: 33.3%;
-        font-size: 16px;
+        font-size: 14px;
+        
+    }
+    .userLink a{
+    	color: gray;
     }
 
 </style>
@@ -130,12 +150,8 @@
 </script>
 
 <div class="page">
-        <div class="logo">
-
-        </div>
         <div class="content">
-            <div class="title">로그인</div>
-            
+            <h2>로그인</h2>  
             <form method="post" action="${url}/users/loginOk" class="userForm" onsubmit="return loginCheck()">
                 <ul>
                     <li><input type="text" placeholder="아이디" name="user_id" id="userid"></li>
@@ -154,3 +170,4 @@
         </div>
 
     </div>
+    <div style="clear: both"></div>

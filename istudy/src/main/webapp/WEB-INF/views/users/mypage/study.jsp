@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
-
+	@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
         ul, li, body{
             padding: 0;
             margin: 0;
@@ -17,10 +17,14 @@
         body{
         	scrollbar-width: none;
         }
+        body * {
+    		font-family: "NanumSquare";
+    		transform: skew(-0.03deg);
+    	}
         #mypage{
             width: 100%;
-            height: 1200px;
-            
+            height: 1100px;
+            margin-top:60px;
         }
         body::-webkit-scrollbar{
         	display: none;
@@ -29,7 +33,8 @@
             width: 20%;
             float: left;
             height: 100%;
-            background-color: rgb(230, 220, 215); 
+            background-color:rgba(85, 76, 66, 80%);
+            color:white;
         }
         .userProfile{
             width: 100%;
@@ -37,8 +42,8 @@
             position: relative;
         }
         .userPhoto{
-            width: 250px;
-            height: 250px;
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             background-color: blue;
             position: absolute;
@@ -65,41 +70,35 @@
             margin: 30px 0px;
             font-size: 18px;
         }
-        .category>a{
+        .category{
             font-size: 16px;
             position: absolute;
-            top : 700px;
+            top : 470px;
             left: 50%;
             transform: translate(-50%,0%);
+            color:white;
+            
+        }
+        .category li{
+        	margin: 60px;
+        	text-align:center;
+        	font-size: 18px;
+        }
+        .category a{
+        	color:white;
+        }
+        .category a:hover{
+        	color: rgb(160,160,160);
         }
         .contentPage{
-            width: 75%;
+            width: 80%;
             float: right;
             height: 100%; 
         }
-        .buttons{
-        	width: 100%;
-        	height: 80px;
-			margin-top: 60px;
-        }
-        .buttons input[type=button]{
-        	width: 100px;
-        	height: 35px;
-        	font-size: 16px;
-        	border-radius:15px;
-        	border: 1px solid #ddd;
-        	margin: 15px;
-        }
-        .buttons input[type=button]:first-child{
-        	margin-left:50px;
-        }
-        .buttons input[type=button]:nth-child(2){
-        	background-color: #f9f9f8;
-        	box-shadow: 2px 2px 3px #c2c2bd;
-        }
         .contentBox{
-        	width: 100%;
-        	margin-left: 50px;
+        	width: 90%;
+        	margin: 0 auto;
+        	margin-top: 80px;
         }
         .title{
         	font-size: 20px;
@@ -115,7 +114,7 @@
         	/* overflow: scroll; */
         	overflow: hidden;
         	margin-bottom: 30px;
-        	border-bottom: 1px solid #ddd;
+        	border-bottom: 1px solid #ddd;    	
         }
         .contents::-webkit-scrollbar{
         	display: none;
@@ -127,22 +126,19 @@
         .contents ul li:first-child{
         	color: grey;
         	font-size: 17px;
-        	/* background-color: rgb(230, 220, 215);
-        	height: 50px;
-        	width: 100%; */
-        }
-        
+        }       
         .eachContent{
         	height: 50px;
-        	width: 100%;
+        	/* width: 100%; */
         	line-height: 50px;
         	font-size: 16px;
+        	/* padding-right: 30px; */
         }
         .studyInfo{
         	display: flex;
         }
         .studyImg{
-        	flex:0.8;
+        	width: 80px;
         	position: relative;
         }
         .photo{
@@ -152,7 +148,7 @@
         	border: 1px solid gray;
         	position: absolute;
         	top: 5px;
-        	left: 30%;
+        	left: 50%;
         	transform: translate(-50%,0%); 
         	overflow: hidden;
         }
@@ -165,13 +161,19 @@
         	top: 0px;
         }
         .studyName{
-        	flex:3;
+        	flex:2;
+        }
+        .studyStart{
+        	flex:1.2;
+        }
+        .studyEnd{
+        	flex:1.2;
         }
         .studyCategory{
-        	flex:1;
+        	flex:1.2;
         }
         .studyLeader{
-        	flex : 0.7;	
+        	flex : 0.5;	
         }
         .paging{
             width: 100%;
@@ -180,6 +182,7 @@
             font-size: 16px;
             margin-bottom: 20px;
         }
+        
         .paging ul{
             width: 250px;
             height: 100%;
@@ -190,7 +193,11 @@
             width: 20%;
             text-align: center;
         }
-        
+        .numColor{
+        	color:#392f31;
+        	/*font-weight: bold;*/
+        	font-size: 22px;
+        }
     </style>
 
     <div id="mypage">
@@ -199,28 +206,22 @@
                 <div class="userPhoto">
                 </div>
                 <div class="userid">
-                    Istudy님
+                    ${id}
                 </div>
                 <div class="userDesc">
-                    <div>  
-                        <ul class="studyDesc">
-                            <li class="joinStudy">진행 스터디 : 10개</li>
-                            <li class="finishStudy">완료 스터디 : 10개</li>
-                        </ul>
-                    </div>
-                    <div id="category">
-                          <a href="${url}/users/userEdit">회원 수정</a>
+                    <div class="category">
+	                    <ul>
+	                    	<li><a href="${url}/users/mypage/viewWrite">글관리</a></li>
+                    	  	<li><a href="${url}/users/mypage/study">스터디</a></li>
+                          	<li><a href="${url}/users/userEdit">회원 수정</a></li>
+	                    </ul>  
                     </div>
                 </div>
             </div>
         </div>
         <div class="contentPage">
-            <div class="buttons">
-            	<input type="button" onclick="location.href='${url}/users/mypage/viewWrite'" value="글관리"/>
-            	<input type="button" onclick="location.href='${url}/users/mypage/study'" value="스터디"/>
-            </div>
             <div class="contentBox">
-            	<div class="title">진행 스터디</div><hr/>
+            	<div class="title">진행 스터디&nbsp; <span class="numColor">${cntJstudy}</span></div><hr/>
             	<div class="contents">
             		<ul>
             		<li class="eachContent">
@@ -230,6 +231,12 @@
 	            				</div>
 	            				<div class="studyName">
 	            					<a>스터디명</a>
+	            				</div>
+	            				<div class="studyStart">
+	            					<span>시작일</span>
+	            				</div>
+	            				<div class="studyEnd">
+	            					<span>종료일</span>
 	            				</div>
 	            				<div class="studyCategory">
 	            					<span>분류</span>
@@ -249,6 +256,12 @@
 		            				</div>
 		            				<div class="studyName">
 		            					<a href='${url}/study_home/study_room/${vo.study_num}'>${vo.study_name}</a>
+		            				</div>
+		            				<div class="studyStart">
+		            					<span>${vo.start_date}</span>
+		            				</div>
+		            				<div class="studyEnd">
+		            					<span>${vo.finish_date}</span>
 		            				</div>
 		            				<div class="studyCategory">
 		            					<span>${vo.study_type_name}</span>
@@ -271,7 +284,7 @@
 		                    <li><a href="#">5</a></li>
 		                </ul>
 		        </div>
-            	<div class="title">완료 스터디</div><hr/>
+            	<div class="title">완료 스터디 &nbsp; <span class="numColor">${cntFstudy}</span></div><hr/>
             	<div class="contents">
             		<ul>
             		<li class="eachContent">
@@ -281,6 +294,12 @@
 	            				</div>
 	            				<div class="studyName">
 	            					<a>스터디명</a>
+	            				</div>
+	            				<div class="studyStart">
+	            					<span>시작일</span>
+	            				</div>
+	            				<div class="studyEnd">
+	            					<span>종료일</span>
 	            				</div>
 	            				<div class="studyCategory">
 	            					<span>분류</span>
@@ -300,6 +319,12 @@
 		            				</div>
 		            				<div class="studyName">
 		            					<a>${vo.study_name}</a>
+		            				</div>
+		            				<div class="studyStart">
+		            					<span>${vo.start_date}</span>
+		            				</div>
+		            				<div class="studyEnd">
+		            					<span>${vo.finish_date}</span>
 		            				</div>
 		            				<div class="studyCategory">
 		            					<span>${vo.study_type_name}</span>

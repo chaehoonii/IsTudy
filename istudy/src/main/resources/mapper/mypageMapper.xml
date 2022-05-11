@@ -7,14 +7,14 @@
   	<!-- 진행 중인 스터디 -->
   	<select id="joinStudy" resultType="StudyVO">
 		SELECT study_room.*, study_type.study_type_name, study_mate.user_id FROM study_room INNER JOIN study_type
-		ON study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[<=]]> finish_date
+		ON study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[<]]> finish_date
 		INNER JOIN study_mate ON study_mate.study_num= study_room.study_num AND user_id= #{param1};
 	</select>
 	
 	<!-- 완료된 스터디 -->
 	<select id="finishStudy" resultType="StudyVO">
 		SELECT study_room.*, study_type.study_type_name, study_mate.user_id FROM study_room INNER JOIN study_type
-		ON study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[>]]> finish_date
+		ON study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[>=]]> finish_date
 		INNER join study_mate ON study_mate.study_num= study_room.study_num AND user_id= #{param1};
 	</select>
 	
@@ -22,8 +22,7 @@
 	<select id="getArticles" resultType="BoardVO">
 		SELECT board.*, board_type.board_type_name
 		FROM board INNER JOIN board_type
-		ON board.board_type_num = board_type.board_type_num AND user_id=#{param1};
-		
+		ON board.board_type_num = board_type.board_type_num AND user_id=#{param1};	
 	</select>
 	
 	<!-- 댓글 보기 -->
@@ -32,8 +31,37 @@
 		FROM board INNER JOIN reply
 		ON reply.board_num = board.board_num AND reply.user_id=#{param1}
 		INNER JOIN board_type ON board.board_type_num = board_type.board_type_num;
-			
+	</select>
 	
+	<!-- 진행 중인 스터디 개수 -->
+	<select id="cntJoinStudy" resultType="int">
+		SELECT count(study_room.study_name) 
+		FROM study_room INNER JOIN study_type
+		ON study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[<]]> finish_date
+		INNER JOIN study_mate ON study_mate.study_num= study_room.study_num AND user_id=#{param1};
+	</select>
+	
+	<!-- 완료된 스터디 개수 -->
+	<select id="cntFinishStudy" resultType="int">
+		SELECT count(study_room.study_name) 
+		FROM study_room INNER JOIN study_type
+		ON study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[>=]]> finish_date
+		INNER JOIN study_mate ON study_mate.study_num= study_room.study_num AND user_id=#{param1};
+	</select>
+	
+	<!-- 작성한 글 개수 -->
+	<select id="cntArticle" resultType="int">
+		SELECT count(board.board_num)
+		FROM board INNER JOIN board_type
+		ON board.board_type_num = board_type.board_type_num AND user_id=#{param1};
+	
+	</select>
+	
+	<!-- 댓글 단 개수 -->
+	<select id="cntComment" resultType="int">
+		SELECT count(reply.reply_num)
+		FROM board INNER JOIN reply ON reply.board_num = board.board_num AND reply.user_id=#{param1}
+		INNER JOIN board_type ON board.board_type_num = board_type.board_type_num;
 	</select>
   
   </mapper>
