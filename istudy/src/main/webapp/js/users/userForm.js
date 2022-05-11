@@ -4,7 +4,7 @@ function userCheck() {
 	let user_nick = document.getElementById("user_nick");
 	let career = document.getElementById("career");
 	let study_type_num = document.getElementById("study_type_num");
-
+	
 
 	let userid = document.getElementById("user_id");
 	if (userid.value == '') {
