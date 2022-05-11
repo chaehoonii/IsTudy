@@ -24,10 +24,10 @@ public class StudyRegisterController {
 	StudyRegisterService service; //inject : 객체를 만들어 반환
 		
 	////////////////////////////////////////스터디 폼/////////////////////////////////////////////
-	@GetMapping("studyregister_0")
+	@GetMapping("registerform")
 	public ModelAndView studyRegisterWrite0() {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("studyregister/studyregister_0");
+		mav.setViewName("studyregister/registerform");
 		
 		return mav;
 	}
@@ -65,7 +65,7 @@ public class StudyRegisterController {
 		ResponseEntity<String> entity =null;
 		
 		try {
-			service.StudyInsert(vo);
+			service.studyInsert(vo);
 			//정상구현
 			String msg = "<script>";
 			msg+="alert('스터디가 등록되었습니다>_<');";

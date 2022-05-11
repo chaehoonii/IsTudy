@@ -13,7 +13,7 @@ public class StudyRegisterServiceImpl implements StudyRegisterService {
 	StudyRegisterDAO dao;
 	
 	@Override
-	public int StudyInsert(StudyRegisterVO vo) {
-		return dao.StudyInsert(vo);
+	public int studyInsert(StudyRegisterVO vo) {
+		return dao.studyInsert(vo);
 	}
 }

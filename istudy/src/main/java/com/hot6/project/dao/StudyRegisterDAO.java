@@ -9,6 +9,9 @@ import com.hot6.project.vo.StudyRegisterVO;
 @Repository
 public interface StudyRegisterDAO {
 	//스터디 등록
-	public int StudyInsert(StudyRegisterVO vo);
+	public int studyInsert(StudyRegisterVO vo);
+	//스터디 룸 이름 중복 체크
+	public int studynameCheck(String name);
+	//
 	
 }

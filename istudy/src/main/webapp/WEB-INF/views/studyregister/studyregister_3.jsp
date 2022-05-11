@@ -7,18 +7,18 @@
 	<div class="people_status_grid">
 		<div class="study_people">
 			<h3>▶스터디 모집 인원</h3>
-			<input type="number" id="people_set" name="max" /> 
+			<input type="number" id="people_set" name="max" value="2" min="2" /> 
 			<input type="submit" value="확인" id="people_set_btn" />
 		</div>
 		<div class="register_page3">
 			<div class="study_status">
 				<h3>▶스터디 상태</h3>
 				<div id="status_box">
-					<input type="text" id="status_txt" value="신규 모집" /> 
+					<input type="text" id="status_txt" value="신규 모집" disabled/> 
 					<input type="radio" id="status_radio "name="status_radio" />
 				</div>
 				<div id="status_box">
-					<input type="text" id="status_txt" value="추가 모집" /> 
+					<input type="text" id="status_txt" value="추가 모집" disabled/> 
 					<input type="radio" id="status_radio" name="status_radio" />
 				</div>
 			</div>
@@ -32,6 +32,6 @@
 			<input type="button" value="PREVIOUS" id="previous_button" onclick="asyncMovePage('studyregister_2')"> 
 			<input type="button" value="NEXT" id="next_button" onclick="asyncMovePage('studyregister_4')">
 		</div>
-		<input type="submit" id="register_page3_btn" />
+		<input type="submit" value="확인" id="register_page3_btn" />
 	</div>
 </div>

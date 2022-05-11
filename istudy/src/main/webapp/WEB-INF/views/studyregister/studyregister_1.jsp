@@ -6,20 +6,10 @@
 	<hr/>
 	</div>
 	<div class="register_page1">
-		<div class="study_host">
-			<h3>▶스터디 종류</h3><br/>
-			<div class="host_grid">
-				<div id="host_box">
-					<p>멘토 스터디</p>
-					<img src="/images/studyregister/mentor.png"/>
-					<input type="radio" name="is_mentor" value="T"/>
-			</div>
-			<div id="host_box">
-				<p>일반 스터디</p>
-				<img src="/images/studyregister/user.png"/>
-				<input type="radio" name="is_mentor" value="F"/> <!-- 클래스 이름 공통으로 주고, 클래스.value! --> 
-			</div>
-			</div>
+		<div class="study_title">
+			<h3>▶스터디 제목</h3>
+			<input type="text" name="study_name" id="s_title" placeholder="20자 이내로 입력해주세요." maxlength="20">
+			<input type="submit" id="register_title_btn" value="확인"/>
 		</div>
 		<div class="study_kinds">
 			<h3>▶스터디 분류</h3><br/>

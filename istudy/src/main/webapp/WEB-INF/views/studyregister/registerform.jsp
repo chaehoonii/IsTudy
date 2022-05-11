@@ -1,22 +1,11 @@
 <link rel="stylesheet" href="/css/studyregister/studyregister.css"
 	type="text/css" />
+
 <script>
 	$(document).ready(
 			function() {
-
-				var strData = "s1, s2";
-
-				var arrStep = strData.split(',');
-
-				$('.check').prop('checked', false); // 일단 모두 uncheck	  
-				for ( var nArrCnt in arrStep) {
-					$("input[name=s_check][value=" + arrStep[nArrCnt] + "]")
-							.prop("checked", true);
-				}
 				asyncMovePage("studyregister_1")
-			});
-</script>
-<script>
+		});
 	function asyncMovePage(url) {
 		// ajax option
 		var ajaxOption = {

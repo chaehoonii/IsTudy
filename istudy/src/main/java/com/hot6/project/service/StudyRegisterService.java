@@ -4,5 +4,5 @@ import com.hot6.project.vo.StudyRegisterVO;
 
 public interface StudyRegisterService {
 	//스터디 등록
-		public int StudyInsert(StudyRegisterVO vo);
+		public int studyInsert(StudyRegisterVO vo);
 }
