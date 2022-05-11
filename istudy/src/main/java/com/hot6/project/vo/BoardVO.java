@@ -14,6 +14,7 @@ public class BoardVO {
 	private int is_boardnotice;
 	private String ip;
 	private int count_reply;
+	private int solved;
 	
 	//board_type
 	private int board_type_num;
@@ -46,6 +47,15 @@ public class BoardVO {
 	private String writer_id;
 	
 	
+	
+	public int getSolved() {
+		return solved;
+	}
+
+	public void setSolved(int solved) {
+		this.solved = solved;
+	}
+
 	public String getWriter_id() {
 		return writer_id;
 	}

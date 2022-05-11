@@ -4,16 +4,6 @@
 <title>스터디 정보 페이지</title>
 
 <style>
-	body, ul, li{
-		margin:0px;
-		padding:0px;
-		font-family: 'paybooc-Bold';
-		list-style-type:none;
-	}
-	a, a:visited, a:hover, a:active{
-		text-decoration: none;
-		color: black;
-	}
 	#category_box{
 		float:left;
 		width:20%;
@@ -21,9 +11,6 @@
 		
 		padding: 10px;
 		background-color: rgb(230,223,215);
-	}
-	#h1{
-		padding-bottom:10px;
 	}
 	#first_menu{
 		padding-top: 1px;

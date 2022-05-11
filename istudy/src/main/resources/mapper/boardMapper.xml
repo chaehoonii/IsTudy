@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.hot6.project.dao.BoardDAO">
+	<select id="getFileName" resultType="BoardVO">
+		SELECT 	* 
+		FROM 	board_image 
+		WHERE 	board_num=#{board_num}
+	</select>
+	<select id="getType_num" resultType="int">
+		SELECT 	board_type_num
+		FROM 	board
+		WHERE 	board_num = #{param1}
+	</select>
+	<delete id="boardDelete">
+		DELETE 	FROM board 
+		WHERE 	board_num=#{param1}
+	</delete>
+	<select id="getStudy_num" resultType="int">
+		SELECT 	study_num
+		FROM 	board
+		WHERE 	board_num = #{param1}
+	</select>
+</mapper>
