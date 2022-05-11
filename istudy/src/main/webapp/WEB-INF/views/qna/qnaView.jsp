@@ -41,7 +41,7 @@
 						tag += "<li><span id='qna_profile_span'><img src='/upload/user/"+data[i].profile_img+"' id='qna_profile' />&nbsp;&nbsp;&nbsp;"+data[i].user_nick+"</span></li>";
 						tag += "<li>"+data[i].reply_date+"</li>";
 						if('${logId}'== data[i].user_id){
-							tag += "<li><input type='hidden' value='"+data[i].reply_num+"'/><span id='reply_edit'>수정</span>&nbsp;&nbsp;<span id='reply_del' onclick='ReplyDel("+data[i].reply_num+")'>삭제</span></li>";
+							tag += "<li><input type='hidden' value='"+data[i].reply_num+"'/><span class='reply_edit edit_btns'>수정</span>&nbsp;&nbsp;<span class='reply_del del_btns' onclick='ReplyDel("+data[i].reply_num+")'>삭제</span></li>";
 						}
 						tag += "</ul></div>";	
 					}
@@ -58,7 +58,7 @@
 						}else{
 							if(confirm('댓글을 등록하시겠습니까?')){
 								var param = $('#replyWriteForm').serialize();
-								var url = '/qna/qnaReplyWrite';
+								var url = '/board/replyWrite';
 								console.log(param);
 								$.ajax({
 									data:param,
@@ -77,6 +77,48 @@
 							return false;
 						}
 					})
+					//댓글 수정폼
+					$(".reply_edit").click(function(){
+						var reply_num = $(this).prev().val();
+						var param = {"reply_num":reply_num};
+						console.log("reply_num="+reply_num);
+						$.ajax({
+							url:'/board/replyEdit',
+							data:param,
+							type:'GET',
+							context: this,
+							success:function(r){
+								console.log("success");
+								var tag01 = "";
+								tag01 += "<form method='post' id='replyEditForm'>";
+								tag01 += "<input type='hidden' name='reply_num' value='"+r.reply_num+"'/>";
+								tag01 += "<input type='hidden' name='board_num' value='"+r.board_num+"'/>";
+								tag01 += "<ul class='reply_write_ul'>";
+								tag01 += "<li><textarea name='reply_coment' class='graySquare' id='reply_coment'>"+r.reply_coment+"</textarea></li>";
+								tag01 += "<li><input type='button' value='댓글 수정' id='replyEditbtn' /></li>";
+								tag01 += "</ul></form>";
+								
+								$(this).parent().parent().parent().html(tag01);
+								
+								//댓글 수정
+								$("#replyEditbtn").click(function(){
+									var param = $("#replyEditForm").serialize();
+									$.ajax({
+										url:'/board/replyEditOk',
+										data:param,
+										type:'POST',
+										success:function(){
+											qnaReplyList();
+										}
+									})
+								})
+							},
+							error:function(error){
+						        alert("error:"+error);
+						    }
+						})
+					})
+					
 				}
 			})//ajax
 		}//qnaReplyList
@@ -119,7 +161,7 @@
 		if(confirm('댓글을 삭제하시겠습니까?')){
 			var param04 = {"reply_num":reply_num};
 			$.ajax({
-				url:'/qna/replyDel',
+				url:'/board/replyDel',
 				data:param04,
 				type:'GET',
 				success:function(){

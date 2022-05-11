@@ -22,4 +22,26 @@
 		FROM 	board
 		WHERE 	board_num = #{param1}
 	</select>
+	<!-- 댓글 작성 -->
+	<insert id='replyWrite'>
+		INSERT 	reply(board_num, user_id, reply_coment, ip) 
+		VALUES	(#{board_num}, #{user_id}, #{reply_coment}, #{ip})
+	</insert>
+	<!-- 댓글 삭제 -->
+	<delete id="replyDel">
+		DELETE 	FROM reply
+		WHERE 	reply_num=#{param1}
+	</delete>
+	<!-- 댓글 수정폼 -->
+	<select id="getOneReply" resultType="BoardVO">
+		SELECT 	* 
+		FROM 	reply 
+		WHERE 	reply_num = #{param1}
+	</select>
+	<!-- 댓글 수정 -->
+	<update id="replyEditOk">
+		UPDATE 	reply 
+		SET 	reply_coment=#{reply_coment} 
+		WHERE 	reply_num=#{reply_num}
+	</update>
 </mapper>
