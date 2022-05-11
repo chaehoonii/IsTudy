@@ -4,6 +4,8 @@
 
 
 <style>
+	@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
     a{
         text-decoration: none;
         color: black;
@@ -19,10 +21,17 @@
     body::-webkit-scrollbar{
         	display: none;
     }
+    body * {
+    	font-family: "NanumSquare";
+    	transform: skew(-0.03deg);
+    }
+    h2{
+    	font-weight: bold;
+    }
     .page{
         width: 100%;       
         display: flex;
-        min-height: 83vh; 
+        min-height: 85vh; 
         align-items: center;
         margin-top:60px;
     }
@@ -59,6 +68,10 @@
         border: 1px solid #ddd;
         display: inline-block;
         font-size: 16px;
+        letter-space: 5px;
+    }
+    input[type=password]{
+    	font-family:'Malgun gothic', dotum, sans-serif;
     }
     #userid::-webkit-input-placeholder{
         background-image: url(${url}/images/login_icon/user.png); 
