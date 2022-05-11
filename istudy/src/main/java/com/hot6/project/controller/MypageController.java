@@ -33,7 +33,12 @@ public class MypageController {
 		mav.addObject("Jstudy", Mservice.joinStudy(id));
 			
 		mav.addObject("Fstudy", Mservice.finishStudy(id));
-			
+		
+		mav.addObject("cntJstudy", Mservice.cntJoinStudy(id));
+		
+		mav.addObject("cntFstudy", Mservice.cntFinishStudy(id));
+		
+		mav.addObject("id", id);
 			
 		mav.setViewName("users/mypage/study");
 		
@@ -51,7 +56,14 @@ public class MypageController {
 		String id = (String)session.getAttribute("logId");
 			
 		mav.addObject("article", Mservice.getArticles(id));
+		
 		mav.addObject("comment", Mservice.getComments(id));
+		
+		mav.addObject("cntArticle", Mservice.cntArticle(id));
+		
+		mav.addObject("cntComment", Mservice.cntComment(id));
+		
+		mav.addObject("id", id);
 		
 		mav.setViewName("users/mypage/viewWrite");
 		return mav;
