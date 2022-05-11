@@ -94,7 +94,25 @@ public class QnaServiceImpl implements QnaService{
 		return dao.QnaReplyList(user_id, board_num);
 	}
 
+	@Override
+	public int QnaReplyWrite(BoardVO vo) {
+		return dao.QnaReplyWrite(vo);
+	}
 
+	@Override
+	public int LikeUp(String user_id, int reply_num) {
+		return dao.LikeUp(user_id, reply_num);
+	}
+
+	@Override
+	public int LikeDown(String user_id, int reply_num) {
+		return dao.LikeDown(user_id, reply_num);
+	}
+
+	@Override
+	public int ReplyDel(int reply_num) {
+		return dao.ReplyDel(reply_num);
+	}
 	
 	
 }
