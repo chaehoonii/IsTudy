@@ -41,12 +41,19 @@ public class BoardVO {
 	private int reply_num;
 	private String reply_coment;
 	private String reply_date;
-	private String selected_id;
 	private int like_num;
 	private int like_type;
+	private String writer_id;
 	
 	
-	
+	public String getWriter_id() {
+		return writer_id;
+	}
+
+	public void setWriter_id(String writer_id) {
+		this.writer_id = writer_id;
+	}
+
 	public int getLike_num() {
 		return like_num;
 	}
@@ -85,14 +92,6 @@ public class BoardVO {
 
 	public void setReply_date(String reply_date) {
 		this.reply_date = reply_date;
-	}
-
-	public String getSelected_id() {
-		return selected_id;
-	}
-
-	public void setSelected_id(String selected_id) {
-		this.selected_id = selected_id;
 	}
 
 	public int getSelected() {
