@@ -86,8 +86,8 @@ a, a:visited, a:hover, a:active{
     top:0;
     left: -20%; /* 너비 300px 인 사이드바를 왼쪽으로 300px 이동시켜 화면에 보이지 않게 함 */
     width: 20%; /* 너비 */
-    height:900px;
-    line-height:300px;
+    height:90vh;
+    line-height:30vh;
     text-align:center;
     font-size:2em;
     transition: left .3s ease-in-out; /* 0.3초 동안 이동 애니메이션 */
