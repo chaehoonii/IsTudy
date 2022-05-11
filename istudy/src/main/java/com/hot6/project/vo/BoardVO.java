@@ -38,12 +38,31 @@ public class BoardVO {
 	
 	//reply
 	private int selected;
-	public int reply_num;
-	public String reply_coment;
-	public String reply_date;
-	public String selected_id;
+	private int reply_num;
+	private String reply_coment;
+	private String reply_date;
+	private String selected_id;
+	private int like_num;
+	private int like_type;
 	
 	
+	
+	public int getLike_num() {
+		return like_num;
+	}
+
+	public void setLike_num(int like_num) {
+		this.like_num = like_num;
+	}
+
+	public int getLike_type() {
+		return like_type;
+	}
+
+	public void setLike_type(int like_type) {
+		this.like_type = like_type;
+	}
+
 	public int getReply_num() {
 		return reply_num;
 	}

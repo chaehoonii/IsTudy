@@ -89,6 +89,11 @@ public class QnaServiceImpl implements QnaService{
 		return dao.QnaView(board_num);
 	}
 
+	@Override
+	public List<BoardVO> QnaReplyList(String user_id, int board_num) {
+		return dao.QnaReplyList(user_id, board_num);
+	}
+
 
 	
 	

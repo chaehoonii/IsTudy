@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IsTudy</title>
 
 <!-- 부트스트랩 CSS -->
@@ -82,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	<div class="menuWrap">
 		<nav id="menu">
 			<ul class="category_list">
-				<li class="listStyle"><a href="#">스터디 구하기</a></li>
+				<li class="listStyle"><a href="/study/study_home">스터디 구하기</a></li>
 				<li class="listStyle"><a href="/qna/qnaList">Q & A</a></li>
 				<li class="listStyle"><a href="/notice/noticeList">공지사항</a></li>
 			</ul>

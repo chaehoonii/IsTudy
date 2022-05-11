@@ -57,7 +57,7 @@
 	height:180px;
 }
 .studyInfo hr{
-	width:240px;
+    width:240px;
 }
 .studyInfoText{
 	height:20px;
@@ -65,6 +65,12 @@
 .sort{
 	font-size:1.5em;
 	color:rgb(85, 76, 66);
+}
+.lang_list {
+	background-color: #FEF5D4;
+	border-radius: 5px;
+	padding: 5px;
+	font-size:12px;
 }
 .tag_list{
 	overflow:hidden;
@@ -196,9 +202,4 @@
 	width:75%;
 	height:40px;
 }
-.lang_list {
-	background-color: #FEF5D4;
-	border-radius: 5px;
-	padding: 5px;
-	font-size:12px;
-}
+

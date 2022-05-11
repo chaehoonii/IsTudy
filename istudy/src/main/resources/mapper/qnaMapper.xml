@@ -162,4 +162,19 @@
     on		  E.board_num = A.board_num
 	WHERE 	  A.board_num=#{param1}
 </select>
+<!-- 댓글 리스트 -->
+<select id="QnaReplyList" resultType="BoardVO">
+	SELECT 		A.*, B.user_nick, B.profile_img,
+				COUNT( case when ifnull(C.user_id, 0)=#{param1} then 1 end) AS like_type,
+				COUNT(C.user_id) AS like_num
+	FROM 		reply A
+	LEFT JOIN 	user B
+	ON 			A.user_id = B.user_id
+	LEFT JOIN 	reply_like C
+	ON			A.reply_num = C.reply_num
+	WHERE 		A.board_num = #{param2}
+	GROUP BY 	A.reply_num
+	ORDER BY 	A.reply_num DESC
+	
+</select>
 </mapper>
