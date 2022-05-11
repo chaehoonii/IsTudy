@@ -3,6 +3,7 @@
 
 <title>비밀번호 찾기</title>
 <style>
+	@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 	a{
         text-decoration: none;
         color: black;
@@ -18,10 +19,17 @@
     body::-webkit-scrollbar{
         	display: none;
     }
+    body * {
+    	font-family: "NanumSquare";
+    	transform: skew(-0.03deg);
+    }
+    h2{
+    	font-weight: bold;
+    }
     .page{
         width: 100%;       
         display: flex;
-        min-height: 83vh; 
+        min-height: 85vh; 
         align-items: center;
         margin-top:60px;
     }
@@ -89,7 +97,7 @@
     .userLink li{
         float: left;
         width: 33.3%;
-        font-size: 16px;
+        font-size: 14px;
         
     }
     .userLink a{
@@ -104,7 +112,6 @@ function pwdSearchCheck(){
     var userid = document.getElementById("userid");
     var email = document.getElementById("email");
     
-
     if(userid.value==""){
         alert("아이디를 입력하세요\n아이디는 6~16자리입니다.");
         userid.focus();
@@ -136,7 +143,6 @@ function pwdSearchCheck(){
     return true;
 
 }
-
 
 </script>
 

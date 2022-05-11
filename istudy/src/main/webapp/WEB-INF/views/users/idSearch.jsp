@@ -4,6 +4,7 @@
 
 <title>아이디 찾기</title>
 <style>
+	@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
     a{
         text-decoration: none;
         color: black;
@@ -19,10 +20,17 @@
     body::-webkit-scrollbar{
         	display: none;
     }
+    body * {
+    	font-family: "NanumSquare";
+    	transform: skew(-0.03deg);
+    }
+    h2{
+    	font-weight: bold;
+    }
     .page{
         width: 100%;       
         display: flex;
-        min-height: 83vh; 
+        min-height: 85vh; 
         align-items: center;
         margin-top:60px;
     }
@@ -90,7 +98,7 @@
     .userLink li{
         float: left;
         width: 33.3%;
-        font-size: 16px;
+        font-size: 14px;
         
     }
     .userLink a{
@@ -101,9 +109,7 @@
 <script>
 
 	function idSearchCheck(){
-		
-		
-		
+
 	    var username = document.getElementById("username");
 	    var tel = document.getElementById("tel");
 	    
@@ -128,15 +134,13 @@
 	    }
 	
 	    return true;
-	
 	}
-
 
 </script>
 
 <div class="page">
         <div class="content">
-            <h2>아이디 찾기</h2>  
+        <h2>아이디 찾기</h2>  
             <form method="post" action="${url}/users/idSearchOk" class="userForm" onsubmit="return idSearchCheck()">
                 <ul>
                     <li><input type="text" placeholder="이름" name="user_name" id="username"></li>
@@ -152,5 +156,6 @@
                 </ul>
             </div>
         </div>
+    	
     </div>
 	<div style="clear: both"></div>
