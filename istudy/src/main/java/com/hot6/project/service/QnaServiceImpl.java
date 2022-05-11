@@ -113,6 +113,16 @@ public class QnaServiceImpl implements QnaService{
 	public int ReplyDel(int reply_num) {
 		return dao.ReplyDel(reply_num);
 	}
+
+	@Override
+	public int ReplySelect(int reply_num) {
+		return dao.ReplySelect(reply_num);
+	}
+
+	@Override
+	public int ReplySelectDel(int reply_num) {
+		return dao.ReplySelectDel(reply_num);
+	}
 	
 	
 }

@@ -45,4 +45,8 @@ public interface QnaService {
 	
 	//댓글 삭제
 	public int ReplyDel(int reply_num);
+	//답변 채택
+	public int ReplySelect(int reply_num);
+	//답변 채택 취소
+	public int ReplySelectDel(int reply_num);
 }

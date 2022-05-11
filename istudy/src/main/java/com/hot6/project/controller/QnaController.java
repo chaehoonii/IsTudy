@@ -23,7 +23,7 @@ public class QnaController {
 	@Inject 
 	QnaService Qservice;
 	
-	//리스트
+		//리스트
 		@RequestMapping(value = "/qna/qnaList", method = RequestMethod.GET)
 	    public ModelAndView home(HttpSession session) {
 	        ModelAndView mav = new ModelAndView();
@@ -134,5 +134,16 @@ public class QnaController {
 		public void replyDel(@RequestParam("reply_num") int reply_num) {
 			Qservice.ReplyDel(reply_num);
 		}
-		
+		//답변 채택
+		@ResponseBody // Ajax
+		@RequestMapping(value = "/qna/replySelect", method = RequestMethod.POST)
+		public void replySelect(@RequestParam("reply_num") int reply_num) {
+			Qservice.ReplySelect(reply_num);
+		}
+		//답변 채택 취소
+		@ResponseBody // Ajax
+		@RequestMapping(value = "/qna/replySelectDel", method = RequestMethod.POST)
+		public void replySelectDel(@RequestParam("reply_num") int reply_num) {
+			Qservice.ReplySelectDel(reply_num);
+		}
 }
