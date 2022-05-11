@@ -1,13 +1,10 @@
 package com.hot6.project.controller;
 
-import java.util.HashMap;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hot6.project.service.StudyRegisterService;
-import com.hot6.project.vo.StudyRegisterVO;
+import com.hot6.project.vo.StudyVO;
 
 @RestController
 @RequestMapping("/studyregister/")
@@ -57,7 +54,7 @@ public class StudyRegisterController {
 	}
 ////////////////////////////////////////스터디 등록/////////////////////////////////////////////
 	@PostMapping("studyRegisterOk")
-	public ResponseEntity studyRegisterOk(StudyRegisterVO vo,HttpServletRequest request) {
+	public ResponseEntity studyRegisterOk(StudyVO vo,HttpServletRequest request) {
 		vo.setIp(request.getRemoteAddr());//접속자 IP
 		//글쓴이-session로그인 아이디를 구한다
 		vo.setHost_id((String)request.getSession().getAttribute("logId"));

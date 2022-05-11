@@ -96,7 +96,7 @@
 				<ul id='tag_ul_big'>
 					<li>
 						<ul id='tag_ul'>
-							<li>Tag : <input type="text" name="tag" class='tag_box' /></li>
+							<li># : <input type="text" name="tag" class='tag_box' /></li>
 						</ul>
 					</li>
 					<li><img src='/images/studyregister/plus.png' id='plus'
@@ -105,7 +105,7 @@
 			</div>
 			<script src="/js/studyregister/tagSelect.js"></script>
 		</div>
-		<input type="submit" id="register_page4_btn" />
+		<input type="submit" value="확인" id="register_page4_btn" />
 	</form>
 	<input type="button" value="PREVIOUS" id="previous_button1"
 		onclick="asyncMovePage('studyregister_3')">

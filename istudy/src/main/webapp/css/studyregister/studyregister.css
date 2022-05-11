@@ -26,9 +26,9 @@
 
 .header {
 	position: fixed;
-	width: 18%;
+	width: 20%;
 	height: 100vh;
-	background-color: rgba(99, 89, 78,100%);
+	background-color: rgba(119,112,104,100%);
 }
 
 .logo {
@@ -461,6 +461,7 @@
 	float:left;
 	margin-left:5px;
 	margin-right:5px;
+	font-size: 15px;
 }
 .tag_box{
 	width:100px;
