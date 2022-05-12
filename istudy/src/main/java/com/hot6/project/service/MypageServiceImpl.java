@@ -55,7 +55,10 @@ public class MypageServiceImpl implements MypageService {
 	public int cntComment(String user_id) {
 		return dao.cntComment(user_id);
 	}
-	
-	
+
+	@Override
+	public String getNickname(String user_id) {
+		return dao.getNickname(user_id);
+	}
 
 }
