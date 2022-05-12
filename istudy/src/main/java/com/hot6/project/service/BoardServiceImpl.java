@@ -1,5 +1,7 @@
 package com.hot6.project.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -75,6 +77,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int boardLangInsert(BoardVO vo) {
 		return dao.boardLangInsert(vo);
+	}
+
+	@Override
+	public List<BoardVO> replyList(String user_id, int board_num) {
+		return dao.replyList(user_id, board_num);
 	}
 
 }

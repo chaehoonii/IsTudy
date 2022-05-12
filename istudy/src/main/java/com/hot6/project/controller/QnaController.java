@@ -97,13 +97,6 @@ public class QnaController {
 			mav.setViewName("/qna/qnaView");
 			return mav;
 		}
-		//댓글 리스트
-		@ResponseBody // Ajax
-		@RequestMapping(value = "/qna/qnaReplyList", method = RequestMethod.GET)
-		public List<BoardVO> qnaReplyList(@RequestParam("board_num") int board_num, HttpSession session) {
-			String user_id = (String)session.getAttribute("logId");
-			return Qservice.QnaReplyList(user_id, board_num);
-		}
 		
 		//좋아요 누르기
 		@ResponseBody // Ajax

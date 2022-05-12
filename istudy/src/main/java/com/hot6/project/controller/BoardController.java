@@ -23,6 +23,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hot6.project.service.BoardService;
+import com.hot6.project.service.QnaService;
 import com.hot6.project.service.StudyService;
 import com.hot6.project.vo.BoardVO;
 
@@ -32,6 +33,8 @@ public class BoardController {
 	BoardService Bservice;
 	@Inject 
 	StudyService Sservice;
+	@Inject
+	QnaService Qservice;
 	
 	//글 등록
 	@PostMapping("/board/boardWriteOk")
@@ -225,7 +228,17 @@ public class BoardController {
 			file.delete();
 		}
 	}
-	
+	//댓글 리스트==============================================================================================
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/board/replyList", method = RequestMethod.GET)
+	public List<BoardVO> qnaReplyList(@RequestParam("board_num") int board_num, HttpSession session) {
+		String user_id = (String)session.getAttribute("logId");
+		List<BoardVO> replylist = Bservice.replyList(user_id, board_num);
+		for(BoardVO vo : replylist) {
+			vo.setSolved(Qservice.getSolved(board_num));
+		}
+		return replylist;
+	}
 	//댓글 등록==============================================================================================
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/board/replyWrite", method = RequestMethod.POST)
