@@ -22,4 +22,56 @@
 		FROM 	board
 		WHERE 	board_num = #{param1}
 	</select>
+	<!-- 댓글 작성 -->
+	<insert id='replyWrite'>
+		INSERT 	reply(board_num, user_id, reply_coment, ip) 
+		VALUES	(#{board_num}, #{user_id}, #{reply_coment}, #{ip})
+	</insert>
+	<!-- 댓글 삭제 -->
+	<delete id="replyDel">
+		DELETE 	FROM reply
+		WHERE 	reply_num=#{param1}
+	</delete>
+	<!-- 댓글 수정폼 -->
+	<select id="getOneReply" resultType="BoardVO">
+		SELECT 	* 
+		FROM 	reply 
+		WHERE 	reply_num = #{param1}
+	</select>
+	<!-- 댓글 수정 -->
+	<update id="replyEditOk">
+		UPDATE 	reply 
+		SET 	reply_coment=#{reply_coment} 
+		WHERE 	reply_num=#{reply_num}
+	</update>
+	<!-- 글 등록 -->
+	<insert id='boardInsert'>
+		INSERT 	board(user_id, title, content, board_type_num, ip) 
+		VALUES 	(#{user_id}, #{title}, #{content}, #{board_type_num}, #{ip});
+	</insert>
+	<select id="boardNum" resultType="int">
+		SELECT 	 board_num 
+		FROM 	 board 
+		WHERE 	 user_id = #{param1}
+		ORDER BY board_num DESC
+		LIMIT 	 1
+	</select>
+	<insert id='boardFileInsert'>
+		INSERT 	board_image(board_num, file1, file2, file3, file4, file5) 
+		VALUES	(#{board_num}, #{file1}, #{file2}, #{file3}, #{file4}, #{file5})
+	</insert>
+	<insert id='boardTagInsert'>
+		INSERT board_hashtag(board_num, tag) 
+		VALUES (#{board_num}, 
+		<foreach collection="ChkList" item="item" separator=","> 
+ 					#{item})
+ 		</foreach>
+	</insert>
+	<insert id='boardLangInsert'>
+		INSERT  board_lang_type(board_num, lang_type_num) 
+		VALUES (#{board_num}, 
+		<foreach collection="ChkList" item="item" separator=","> 
+ 					#{item})
+ 		</foreach>
+	</insert>
 </mapper>

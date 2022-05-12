@@ -168,11 +168,6 @@
 	ORDER BY 	selected DESC, like_num DESC, A.reply_num
 	<!-- 정렬: 채택된 답변 > 좋아요순 > 오래된순 -->
 </select>
-<!-- 댓글 작성 -->
-<insert id='QnaReplyWrite'>
-	INSERT 	reply(board_num, user_id, reply_coment, ip) 
-	VALUES	(#{board_num}, #{user_id}, #{reply_coment}, #{ip})
-</insert>
 <!-- 좋아요 누르기 -->
 <insert id='LikeUp'>
 	INSERT reply_like(user_id, reply_num) 
@@ -183,11 +178,6 @@
 	DELETE 	FROM reply_like
 	WHERE 	user_id=#{param1}
 	AND		reply_num=#{param2}
-</delete>
-<!-- 댓글 삭제 -->
-<delete id="ReplyDel">
-	DELETE 	FROM reply
-	WHERE 	reply_num=#{param1}
 </delete>
 <!-- 답변 채택 -->
 <update id="ReplySelect">

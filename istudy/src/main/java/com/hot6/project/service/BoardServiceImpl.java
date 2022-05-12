@@ -32,4 +32,49 @@ public class BoardServiceImpl implements BoardService{
 		return dao.getStudy_num(board_num);
 	}
 
+	@Override
+	public int replyWrite(BoardVO vo) {
+		return dao.replyWrite(vo);
+	}
+
+	@Override
+	public int replyDel(int reply_num) {
+		return dao.replyDel(reply_num);
+	}
+
+	@Override
+	public BoardVO getOneReply(int reply_num) {
+		return dao.getOneReply(reply_num);
+	}
+
+	@Override
+	public int replyEditOk(BoardVO vo) {
+		return dao.replyEditOk(vo);
+	}
+
+	@Override
+	public int boardInsert(BoardVO vo) {
+		return dao.boardInsert(vo);
+	}
+
+	@Override
+	public int boardNum(String user_id) {
+		return dao.boardNum(user_id);
+	}
+
+	@Override
+	public int boardFileInsert(BoardVO vo) {
+		return dao.boardFileInsert(vo);
+	}
+
+	@Override
+	public int boardTagInsert(BoardVO vo) {
+		return dao.boardTagInsert(vo);
+	}
+
+	@Override
+	public int boardLangInsert(BoardVO vo) {
+		return dao.boardLangInsert(vo);
+	}
+
 }
