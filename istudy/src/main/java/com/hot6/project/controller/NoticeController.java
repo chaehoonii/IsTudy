@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hot6.project.service.NoticeService;
 import com.hot6.project.vo.BoardVO;
+import com.hot6.project.vo.PagingVO;
 
 @Controller
 @RequestMapping("/notice/")
@@ -20,9 +21,13 @@ public class NoticeController {
 	ModelAndView mav = new ModelAndView();
 	
 	@GetMapping(value="noticeList")
-	public ModelAndView adminMain(BoardVO vo) {
-		List<BoardVO> noticeList = service.selectNoticeList(vo);
+	public ModelAndView noticeMain(BoardVO vo, PagingVO pvo) {
 		
+		pvo.setTotalRecord(service.setTotalRecord(3));
+		
+		List<BoardVO> noticeList = service.selectNoticeList(vo, pvo);
+		
+		mav.addObject("pvo", pvo);
 		mav.addObject("noticeList", noticeList);
 		mav.setViewName("/notice/noticeList");
 		return mav;
