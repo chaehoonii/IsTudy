@@ -11,7 +11,7 @@
 </select>
 <!-- 질문 리스트 & 채택된 답변이 있는지 여부(0:없음/ 1:있음)-->
 <select id="QnaList" resultType="BoardVO">
-	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(C.selected,0) AS selected
+	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(C.selected,0) AS solved
 	FROM 	  board A
     LEFT JOIN user B
     ON 		  A.user_id=B.user_id
@@ -33,10 +33,6 @@
 	SELECT 	tag 
 	FROM 	board_hashtag 
 	WHERE 	board_num=#{param1}
-</select>
-<!-- 채택된 답변이 있는지 여부(0:없음/ 1:있음) -->
-<select id="IsSelected" resultType="int">
-	select count(board_num) as selected from select_reply where board_num=#{param1}
 </select>
 <!-- 검색 -->
 <select id="TotalQna_title" resultType="int">
@@ -150,24 +146,6 @@
     on		  E.board_num = A.board_num
 	WHERE 	  A.board_num=#{param1}
 </select>
-<!-- 댓글 리스트 -->
-<select id="QnaReplyList" resultType="BoardVO">
-	SELECT 		A.*, B.user_nick, B.profile_img,
-				COUNT( case when ifnull(C.user_id, 0)= #{param1} then 1 end) AS like_type,
-				COUNT(C.user_id) AS like_num,
-                D.user_id AS writer_id
-	FROM 		reply A
-	LEFT JOIN 	user B
-	ON 			A.user_id = B.user_id
-	LEFT JOIN 	reply_like C
-	ON			A.reply_num = C.reply_num
-    LEFT JOIN	board D
-    ON			D.board_num = A.board_num
-	WHERE 		A.board_num = #{param2}
-	GROUP BY 	A.reply_num
-	ORDER BY 	selected DESC, like_num DESC, A.reply_num
-	<!-- 정렬: 채택된 답변 > 좋아요순 > 오래된순 -->
-</select>
 <!-- 좋아요 누르기 -->
 <insert id='LikeUp'>
 	INSERT reply_like(user_id, reply_num) 
@@ -191,4 +169,10 @@
 	SET 	selected=0 
 	WHERE 	reply_num=#{reply_num}
 </update>
+<!-- 질문 해결 여부(0:없음/ 1:있음)-->
+<select id='getSolved' resultType='int'>
+	SELECT COUNT(CASE WHEN selected=1 THEN 1 END) AS solved 
+	FROM reply  
+	WHERE board_num=#{param1}
+</select>
 </mapper>

@@ -8,7 +8,7 @@
 			var pathname = decodeURIComponent(location.href);
 			var board_num = pathname.substring( pathname.indexOf('=')+1);
 			var param = {"board_num" : board_num};
-			var url = '/qna/qnaReplyList';
+			var url = '/board/replyList';
 			$.ajax({
 				data:param,
 				url:url,
@@ -31,7 +31,7 @@
 								tag += "<li><span class='is_selected_01'><span class='is_selected_02'>&nbsp;✔&nbsp;</span>채택됨</span></li>";
 							}
 						}else{ //답변채택되지 않은 글일때
-							if('${logId}'== data[i].writer_id && ${vo.solved}==0){ //로그인아이디가 작성자일때 > 채택
+							if('${logId}'== data[i].writer_id && data[i].solved == 0){ //로그인아이디가 작성자일때 > 채택
 								tag += "<li><span id='select_btn' onclick='SelectReply("+data[i].reply_num+")'>채택하기</span></li>";
 							}else{
 								tag += "<li><span>&nbsp;&nbsp;&nbsp;</span></li>";
@@ -48,7 +48,7 @@
 					console.log('${logStatus}');
 					$("#reply_div").html(tag);
 					
-					//댓글 등록
+					//댓글 등록=========================================================================================
 					$("#addReplybtn").off("click").on("click",function(){
 						
 						if($("#reply_coment").val().trim() ==''){
@@ -77,7 +77,7 @@
 							return false;
 						}
 					})
-					//댓글 수정폼
+					//댓글 수정폼=========================================================================================
 					$(".reply_edit").click(function(){
 						var reply_num = $(this).prev().val();
 						var param = {"reply_num":reply_num};
@@ -100,7 +100,7 @@
 								
 								$(this).parent().parent().parent().html(tag01);
 								
-								//댓글 수정
+								//댓글 수정=========================================================================================
 								$("#replyEditbtn").click(function(){
 									var param = $("#replyEditForm").serialize();
 									$.ajax({
@@ -123,14 +123,14 @@
 			})//ajax
 		}//qnaReplyList
 		
-	// 게시글 삭제
+	// 게시글 삭제===================================================================================================
 	function BoardDel(){
 		if(confirm("글을 삭제하시겠습니까?")){
 	   		location.href = "/board/boardDelete?board_num="+${vo.board_num};     
 	    }
 	    return false;
 	}
-	//댓글 좋아요
+	//댓글 좋아요===================================================================================================
 	function LikeUp(reply_num){
 		var param02 = {"reply_num":reply_num};
 		console.log(reply_num);
@@ -143,7 +143,7 @@
 			}
 		});
 	}
-	//댓글 좋아요 취소
+	//댓글 좋아요 취소===================================================================================================
 	function LikeDown(reply_num){
 		var param03 = {"reply_num":reply_num};
 		console.log(reply_num);
@@ -156,7 +156,7 @@
 			}
 		})
 	}
-	//댓글 삭제
+	//댓글 삭제===================================================================================================
 	function ReplyDel(reply_num){
 		if(confirm('댓글을 삭제하시겠습니까?')){
 			var param04 = {"reply_num":reply_num};
@@ -170,7 +170,7 @@
 			})
 		}
 	}
-	//답변 채택
+	//답변 채택===================================================================================================
 	function SelectReply(reply_num){
 		if(confirm('답변을 채택하시겠습니까?')){
 			var param05 = {"reply_num":reply_num};
@@ -184,7 +184,7 @@
 			})
 		}
 	}
-	//답변 채택 취소
+	//답변 채택 취소===================================================================================================
 	function SelectReplyDel(reply_num){
 		if(confirm('답변채택을 취소하시겠습니까?')){
 			var param06 = {"reply_num":reply_num};

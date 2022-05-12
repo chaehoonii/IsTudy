@@ -1,5 +1,7 @@
 package com.hot6.project.service;
 
+import java.util.List;
+
 import com.hot6.project.vo.BoardVO;
 
 public interface BoardService {
@@ -15,6 +17,9 @@ public interface BoardService {
 	// 글삭제
 	public int boardDelete(int board_num);
 
+	// 댓글 리스트
+	public List<BoardVO> replyList(String user_id, int board_num);
+
 	// 댓글 등록
 	public int replyWrite(BoardVO vo);
 
@@ -23,15 +28,19 @@ public interface BoardService {
 
 	// 댓글 수정폼
 	public BoardVO getOneReply(int reply_num);
-	
-	//댓글 수정
+
+	// 댓글 수정
 	public int replyEditOk(BoardVO vo);
-	
-	//글 등록
+
+	// 글 등록
 	public int boardInsert(BoardVO vo);
+
 	public int boardNum(String user_id);
+
 	public int boardFileInsert(BoardVO vo);
+
 	public int boardTagInsert(BoardVO vo);
+
 	public int boardLangInsert(BoardVO vo);
-	
+
 }

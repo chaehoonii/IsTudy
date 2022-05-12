@@ -13,10 +13,10 @@
 		<c:forEach var="vo" items="${qnaList}">
 			<ul class='qna_ul' onclick="location.href='/qna/qnaView?board_num=${vo.board_num}'">
 				<li><span class='gray_border'>&nbsp;Q&nbsp;</span>&nbsp;&nbsp;
-					<c:if test="${vo.selected==0}">
+					<c:if test="${vo.solved==0}">
 					<span class="not_selected">&nbsp;?&nbsp;</span>
 					</c:if>
-					<c:if test="${vo.selected==1}">
+					<c:if test="${vo.solved==1}">
 					<span class="is_selected">&nbsp;✔&nbsp;</span>
 					</c:if>
 					&nbsp;&nbsp;${vo.title}
