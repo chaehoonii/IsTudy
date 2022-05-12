@@ -33,4 +33,11 @@ public interface BoardDAO {
 
 	// 댓글 수정
 	public int replyEditOk(BoardVO vo);
+	
+	//글 등록
+	public int boardInsert(BoardVO vo);
+	public int boardNum(String user_id);
+	public int boardFileInsert(BoardVO vo);
+	public int boardTagInsert(BoardVO vo);
+	public int boardLangInsert(BoardVO vo);
 }

@@ -52,4 +52,29 @@ public class BoardServiceImpl implements BoardService{
 		return dao.replyEditOk(vo);
 	}
 
+	@Override
+	public int boardInsert(BoardVO vo) {
+		return dao.boardInsert(vo);
+	}
+
+	@Override
+	public int boardNum(String user_id) {
+		return dao.boardNum(user_id);
+	}
+
+	@Override
+	public int boardFileInsert(BoardVO vo) {
+		return dao.boardFileInsert(vo);
+	}
+
+	@Override
+	public int boardTagInsert(BoardVO vo) {
+		return dao.boardTagInsert(vo);
+	}
+
+	@Override
+	public int boardLangInsert(BoardVO vo) {
+		return dao.boardLangInsert(vo);
+	}
+
 }

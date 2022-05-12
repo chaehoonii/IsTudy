@@ -131,4 +131,11 @@ public class QnaController {
 		public void replySelectDel(@RequestParam("reply_num") int reply_num) {
 			Qservice.ReplySelectDel(reply_num);
 		}
+		//글 등록 폼
+		@RequestMapping(value = "/qna/qnaWrite", method = RequestMethod.GET)
+		public ModelAndView qnaWrite() {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("/qna/qnaWrite");
+			return mav;
+		}
 }
