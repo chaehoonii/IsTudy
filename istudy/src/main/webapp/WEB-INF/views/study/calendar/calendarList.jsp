@@ -70,9 +70,9 @@
 					 	
 					 	$.ajax({
 							url : '/study/calendar/calendarDetail',
-							type : 'GET',
-							dataType : 'json',
-							data :param1,
+							type : 'GET',	//매핑방식
+							dataType : 'json',	//받는 데이터의 형식
+							data :param1,	//보내는 데이터
 							success : function(r){
 								console.log("start detail");
 								$("#study_num02").val(r.study_num);

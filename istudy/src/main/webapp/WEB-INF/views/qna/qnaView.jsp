@@ -231,9 +231,6 @@
 							<c:if test="${vo.file4 != null && vo.file4 != ''}">
 								<img src='/upload/qna/${vo.file4}' class='qna_img'/>
 							</c:if>
-							<c:if test="${vo.file5 != null && vo.file5 != ''}">
-								<img src='/upload/qna/${vo.file5}' class='qna_img'/>
-							</c:if>
 						</li>
 						<li class='nocenter'>
 							<br/><br/>
