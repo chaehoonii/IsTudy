@@ -8,6 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IsTudy</title>
 
+<link rel="shortcut icon" type="image/png" href="/images/lamp02.png">
+
 <!-- 부트스트랩 CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
