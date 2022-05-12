@@ -50,25 +50,6 @@
 	width:90%;
 }
 #qna_title li:nth-child(2){
-	display:inline-block;
-	width:5%;
-}
-/*답변 채택*/
-.not_selected{
-	line-height: 15px;
-	border-radius: 50%;
-	padding: 3px;
-	font-size:17px;
-	background-color: RGB(255,239,222);
-}
-.is_selected{
-	line-height: 15px;
-	border-radius: 50%;
-	padding: 3px;
-	font-size:17px;
-	background-color: RGB(222,239,255);
-}
-#qna_title li:nth-child(2){
 	width:20%;
 	float:right;
 }
@@ -122,6 +103,29 @@
 }
 
 /*댓글 리스트*/
+/*답변 채택*/
+#select_btn{
+	border:1px solid #bbb; 
+	padding:5px;
+	cursor:pointer;
+}
+.not_selected{
+	line-height: 15px;
+	border-radius: 50%;
+	padding: 3px;
+	font-size:17px;
+	background-color: RGB(255,239,222);
+}
+.is_selected_01{
+	cursor:pointer;
+}
+.is_selected_02{
+	line-height: 15px;
+	border-radius: 50%;
+	padding: 3px;
+	font-size:17px;
+	background-color: RGB(222,239,255);
+}
 .qna_like{
 	width: 40px;
 }
@@ -160,7 +164,7 @@
 	float:right;
 	width:20%;
 }
-#reply_edit, #reply_del{
+.edit_btns, .del_btns{
 	border: 1px solid #bbb;
 	padding:5px;
 	cursor:pointer;

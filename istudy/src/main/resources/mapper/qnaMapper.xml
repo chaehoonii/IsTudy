@@ -139,11 +139,13 @@
 <!-- 글 내용 -->
 <select id="QnaView" resultType="BoardVO">
 	SELECT 	  A.board_num, A.title, A.content, DATE_FORMAT(A.write_date, '%Y-%m-%d') AS write_date, 
-			  B.user_nick, B.profile_img, 
+			  B.user_id, B.user_nick, B.profile_img, count(case when C.selected=1 then 1 end) as solved,
 			  E.file1, E.file2, E.file3, E.file4, E.file5
 	FROM 	  board A
     LEFT JOIN user B
     ON 		  A.user_id=B.user_id
+    LEFT JOIN reply C
+    on		  C.board_num = A.board_num
     LEFT JOIN board_image E
     on		  E.board_num = A.board_num
 	WHERE 	  A.board_num=#{param1}
@@ -163,12 +165,9 @@
     ON			D.board_num = A.board_num
 	WHERE 		A.board_num = #{param2}
 	GROUP BY 	A.reply_num
-	ORDER BY 	A.reply_num DESC
+	ORDER BY 	selected DESC, like_num DESC, A.reply_num
+	<!-- 정렬: 채택된 답변 > 좋아요순 > 오래된순 -->
 </select>
-<insert id='QnaReplyWrite'>
-	INSERT 	reply(board_num, user_id, reply_coment, ip) 
-	VALUES	(#{board_num}, #{user_id}, #{reply_coment}, #{ip})
-</insert>
 <!-- 좋아요 누르기 -->
 <insert id='LikeUp'>
 	INSERT reply_like(user_id, reply_num) 
@@ -180,9 +179,16 @@
 	WHERE 	user_id=#{param1}
 	AND		reply_num=#{param2}
 </delete>
-<!-- 댓글 삭제 -->
-<delete id="ReplyDel">
-	DELETE 	FROM reply
-	WHERE 	reply_num=#{param1}
-</delete>
+<!-- 답변 채택 -->
+<update id="ReplySelect">
+	UPDATE 	reply 
+	SET 	selected=1 
+	WHERE 	reply_num=#{reply_num}
+</update>
+<!-- 답변 채택 취소-->
+<update id="ReplySelectDel">
+	UPDATE 	reply 
+	SET 	selected=0 
+	WHERE 	reply_num=#{reply_num}
+</update>
 </mapper>
