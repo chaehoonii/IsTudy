@@ -15,6 +15,7 @@ public class UserVO {
 	private String study_type_num;
 	private String want;
 	private String career;
+	private String career_year;
 	
 	private int exp_min;
 	private int exp_max;
@@ -162,5 +163,12 @@ public class UserVO {
 	public void setLeave_type_num(int leave_type_num) {
 		this.leave_type_num = leave_type_num;
 	}
+	public String getCareer_year() {
+		return career_year;
+	}
+	public void setCareer_year(String career_year) {
+		this.career_year = career_year;
+	}
+	
 	
 }
