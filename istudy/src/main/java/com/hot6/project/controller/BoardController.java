@@ -2,7 +2,10 @@ package com.hot6.project.controller;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.hot6.project.service.BoardService;
+import com.hot6.project.service.QnaService;
 import com.hot6.project.service.StudyService;
 import com.hot6.project.vo.BoardVO;
 
@@ -32,6 +36,8 @@ public class BoardController {
 	BoardService Bservice;
 	@Inject 
 	StudyService Sservice;
+	@Inject
+	QnaService Qservice;
 	
 	//글 등록
 	@PostMapping("/board/boardWriteOk")
@@ -50,19 +56,46 @@ public class BoardController {
 		
 		//스터디 게시판			
 		if(vo.getBoard_type_num()==1) {	
-			path = request.getSession().getServletContext().getRealPath("/upload/qna");
-			int study_num = Bservice.getStudy_num(vo.getStudy_num());	//study_num 가져와야함!
-			msg += "location.href='/study/study_home/mystudy/studyList?study_num="+study_num+"';</script>";
-		//qna 게시판	
-		}else if(vo.getBoard_type_num()==2) { 
+			Sservice.StudyboardInsert(vo);
+			vo.setBoard_num(Bservice.boardNum(vo.getUser_id())); //유저의 최신글 번호 가져오기
+			int study_num = Bservice.getStudy_num(vo.getBoard_num());	//study_num 가져와야함!
 			path = request.getSession().getServletContext().getRealPath("/upload/study");
-			msg += "location.href='/qna/qnaList';</script>";
-		//공지사항 게시판	
-		}else if(vo.getBoard_type_num()==3) { 
-			path = request.getSession().getServletContext().getRealPath("/upload/notice");
-			msg += "location.href='/notice/noticeList';</script>";
+			msg += "location.href='/study/study_home/mystudy/studyList?study_num="+study_num+"';</script>";			
+		}else {
+			Bservice.boardInsert(vo);
+			int board_num = Bservice.boardNum(vo.getUser_id()); //유저의 최신글 번호 가져오기
+			vo.setBoard_num(board_num);
+			//qna 게시판
+			if(vo.getBoard_type_num()==2) { 
+				path = request.getSession().getServletContext().getRealPath("/upload/qna");
+				msg += "location.href='/qna/qnaList';</script>";
+				if(vo.getLang_list()!=null) {
+					Bservice.boardLangInsert(vo); //언어
+				}
+				
+				List<String> taglist = vo.getTag_list();
+				if(taglist.size()!=0) {
+					//태그 공백제거
+					for(int i=0; i<taglist.size(); i++) {
+						String tag = taglist.get(i).trim(); //공백제거한 태그
+						System.out.println(tag);
+						if(tag.equals("")) {
+							taglist.remove(i);	//비어있는 태그 지우기
+							i--;
+						}else {
+							taglist.set(i, tag);
+						}
+					}
+					Bservice.boardTagInsert(vo); //태그
+				}
+			//공지사항 게시판	
+			}else if(vo.getBoard_type_num()==3) { 
+				path = request.getSession().getServletContext().getRealPath("/upload/notice");
+				msg += "location.href='/notice/noticeList';</script>";
+			}
 		}
-					
+		
+		//파일 등록
 		try {		
 			System.out.println("path -> "+path);
 			System.out.println("try문");
@@ -72,7 +105,7 @@ public class BoardController {
 			List<MultipartFile> files = mr.getFiles("filename");
 			System.out.println("업로드 파일 수 -> "+files.size());
 			
-			if(files!=null) {	//if 111
+			if(files.size()!=1) {	//if 111
 				int cnt = 1;	// 4번에서 업로드 순서에 따라 filename1, filename2 파일명을 대입하기 위한 변수
 				//첨부파일수 만큼 반복하여 업로드한다.
 				for(int i=0; i<files.size(); i++) {	// for 222
@@ -117,31 +150,16 @@ public class BoardController {
 						if(cnt==2) vo.setFile2(orgFileName);
 						if(cnt==3) vo.setFile3(orgFileName);
 						if(cnt==4) vo.setFile4(orgFileName);
-						if(cnt==5) vo.setFile5(orgFileName);
 						cnt++;
 					}	//if 333
 					
 				}// for 222
 				
+				//DB등록
+				Bservice.boardFileInsert(vo);
 			}//	if 111
-			System.out.println(vo.getFile1());
-			System.out.println(vo.getFile2());
-			System.out.println(vo.getFile3());
-			System.out.println(vo.getFile4());
-			System.out.println(vo.getFile5());
-			
-			//DB등록
-			Bservice.boardInsert(vo);
-			vo.setBoard_num(Bservice.boardNum(vo.getUser_id())); //유저의 최신글 번호 가져오기
-			Bservice.boardFileInsert(vo);
-			//qna 게시판
-			if(vo.getBoard_type_num()==2) {
-				Bservice.boardTagInsert(vo); //태그
-				Bservice.boardLangInsert(vo); //언어
-			}
 			//레코드 추가 성공
-			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200
-			
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);	//200			
 		}catch(Exception e) {
 			e.printStackTrace();
 			//레코드 추가실패
@@ -150,7 +168,6 @@ public class BoardController {
 				fileDelete(path, vo.getFile2());
 				fileDelete(path, vo.getFile3());
 				fileDelete(path, vo.getFile4());
-				fileDelete(path, vo.getFile5());
 			//메세지
 			msg = "<script>alert('글 등록에 실패하였습니다');history.back();</script>";
 			//이전페이지로 보내기
@@ -203,9 +220,6 @@ public class BoardController {
 			if(dbFileVO.getFile4()!=null) {	
 				fileDelete(path, dbFileVO.getFile4());
 			}
-			if(dbFileVO.getFile5()!=null) {	
-				fileDelete(path, dbFileVO.getFile5());
-			}
 			
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 			
@@ -225,7 +239,17 @@ public class BoardController {
 			file.delete();
 		}
 	}
-	
+	//댓글 리스트==============================================================================================
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/board/replyList", method = RequestMethod.GET)
+	public List<BoardVO> qnaReplyList(@RequestParam("board_num") int board_num, HttpSession session) {
+		String user_id = (String)session.getAttribute("logId");
+		List<BoardVO> replylist = Bservice.replyList(user_id, board_num);
+		for(BoardVO vo : replylist) {
+			vo.setSolved(Qservice.getSolved(board_num));
+		}
+		return replylist;
+	}
 	//댓글 등록==============================================================================================
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/board/replyWrite", method = RequestMethod.POST)

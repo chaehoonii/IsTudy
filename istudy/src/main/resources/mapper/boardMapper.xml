@@ -22,6 +22,24 @@
 		FROM 	board
 		WHERE 	board_num = #{param1}
 	</select>
+	<!-- 댓글 리스트 -->
+	<select id="replyList" resultType="BoardVO">
+		SELECT 		A.*, B.user_nick, B.profile_img,
+					COUNT( case when ifnull(C.user_id, 0)= #{param1} then 1 end) AS like_type,
+					COUNT(C.user_id) AS like_num,
+	                D.user_id AS writer_id
+		FROM 		reply A
+		LEFT JOIN 	user B
+		ON 			A.user_id = B.user_id
+		LEFT JOIN 	reply_like C
+		ON			A.reply_num = C.reply_num
+	    LEFT JOIN	board D
+	    ON			D.board_num = A.board_num
+		WHERE 		A.board_num = #{param2}
+		GROUP BY 	A.reply_num
+		ORDER BY 	selected DESC, like_num DESC, A.reply_num
+		<!-- 정렬: 채택된 답변 > 좋아요순 > 오래된순 -->
+	</select>
 	<!-- 댓글 작성 -->
 	<insert id='replyWrite'>
 		INSERT 	reply(board_num, user_id, reply_coment, ip) 
@@ -57,21 +75,21 @@
 		LIMIT 	 1
 	</select>
 	<insert id='boardFileInsert'>
-		INSERT 	board_image(board_num, file1, file2, file3, file4, file5) 
-		VALUES	(#{board_num}, #{file1}, #{file2}, #{file3}, #{file4}, #{file5})
+		INSERT 	board_image(board_num, file1, file2, file3, file4) 
+		VALUES	(#{board_num}, #{file1}, #{file2}, #{file3}, #{file4})
 	</insert>
 	<insert id='boardTagInsert'>
 		INSERT board_hashtag(board_num, tag) 
-		VALUES (#{board_num}, 
-		<foreach collection="ChkList" item="item" separator=","> 
- 					#{item})
- 		</foreach>
+		VALUES  
+		<foreach collection="tag_list" item="item" separator=",">
+            (#{board_num}, #{item})
+        </foreach>
 	</insert>
 	<insert id='boardLangInsert'>
 		INSERT  board_lang_type(board_num, lang_type_num) 
-		VALUES (#{board_num}, 
-		<foreach collection="ChkList" item="item" separator=","> 
- 					#{item})
+		VALUES 
+		<foreach collection="lang_list" item="item" separator=","> 
+ 			(#{board_num}, #{item})
  		</foreach>
 	</insert>
 </mapper>

@@ -29,6 +29,12 @@ public class UserVO {
 	private int leave_type_num;
 	
 
+	public String getCareer_year() {
+		return career_year;
+	}
+	public void setCareer_year(String career_year) {
+		this.career_year = career_year;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -163,12 +169,5 @@ public class UserVO {
 	public void setLeave_type_num(int leave_type_num) {
 		this.leave_type_num = leave_type_num;
 	}
-	public String getCareer_year() {
-		return career_year;
-	}
-	public void setCareer_year(String career_year) {
-		this.career_year = career_year;
-	}
-	
 	
 }

@@ -90,11 +90,6 @@ public class QnaServiceImpl implements QnaService{
 	}
 
 	@Override
-	public List<BoardVO> QnaReplyList(String user_id, int board_num) {
-		return dao.QnaReplyList(user_id, board_num);
-	}
-
-	@Override
 	public int LikeUp(String user_id, int reply_num) {
 		return dao.LikeUp(user_id, reply_num);
 	}
@@ -112,6 +107,11 @@ public class QnaServiceImpl implements QnaService{
 	@Override
 	public int ReplySelectDel(int reply_num) {
 		return dao.ReplySelectDel(reply_num);
+	}
+
+	@Override
+	public int getSolved(int board_num) {
+		return dao.getSolved(board_num);
 	}
 	
 }
