@@ -134,7 +134,7 @@
 </select>
 <!-- 글 내용 -->
 <select id="QnaView" resultType="BoardVO">
-	SELECT 	  A.board_num, A.title, A.content, DATE_FORMAT(A.write_date, '%Y-%m-%d') AS write_date, 
+	SELECT 	  A.board_num, A.hit, A.title, A.content, DATE_FORMAT(A.write_date, '%Y-%m-%d') AS write_date, 
 			  B.user_id, B.user_nick, B.profile_img, count(case when C.selected=1 then 1 end) as solved,
 			  E.file1, E.file2, E.file3, E.file4
 	FROM 	  board A

@@ -84,4 +84,9 @@ public class BoardServiceImpl implements BoardService{
 		return dao.replyList(user_id, board_num);
 	}
 
+	@Override
+	public int hitUp(int board_num) {
+		return dao.hitUp(board_num);
+	}
+
 }

@@ -92,4 +92,9 @@
  			(#{board_num}, #{item})
  		</foreach>
 	</insert>
+	<update id='hitUp'>
+		UPDATE 	board
+		SET 	hit=hit+1
+		WHERE 	board_num=#{param1}
+	</update>
 </mapper>
