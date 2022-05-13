@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function(){
 			<ul class="category_list">
 				<li class="listStyle"><a href="/study/study_home">스터디 구하기</a></li>
 				<li class="listStyle"><a href="/qna/qnaList">Q & A</a></li>
-				<li class="listStyleLast"><a href="/notice/noticeList">공지사항</a></li>
+				<li class="listStyleLast"><a href="/notice/noticeList?pageNum=1">공지사항</a></li>
 			</ul>
 		</nav>
 	</div>

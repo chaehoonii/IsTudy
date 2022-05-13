@@ -16,13 +16,13 @@ public class NoticeServiceImpl implements NoticeService {
 	NoticeDAO dao;
 
 	@Override
-	public List<BoardVO> selectNoticeList(BoardVO vo, PagingVO pvo) {
-		return dao.selectNoticeList(vo, pvo);
+	public List<BoardVO> selectNoticeList(PagingVO pvo) {
+		return dao.selectNoticeList(pvo);
 	}
 
 	@Override
-	public BoardVO selectNoticeModal(int board_num) {
-		return dao.selectNoticeModal(board_num);
+	public BoardVO selectNoticeModal(int seletedNoticeNum){
+		return dao.selectNoticeModal(seletedNoticeNum);
 	}
 
 	@Override

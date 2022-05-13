@@ -11,7 +11,7 @@ import com.hot6.project.vo.PagingVO;
 @Mapper
 @Repository
 public interface NoticeDAO {
-	public List<BoardVO> selectNoticeList(BoardVO vo, PagingVO pvo);
-	public BoardVO selectNoticeModal(int board_num);
+	public List<BoardVO> selectNoticeList(PagingVO pvo);
+	public BoardVO selectNoticeModal(int seletedNoticeNum);
 	public int setTotalRecord(int board_type);
 }

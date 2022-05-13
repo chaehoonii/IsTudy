@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="/css/notice/noticeList.css" type="text/css">
-<script src="/js/notice/noticeList.js"></script>
-<div class="noticeContainer">
-	<h1 class="noticeTitle">공지사항</h1>
-	<div class="noticeBoard">
-		<ul class="noticeListTop">
+<link rel="stylesheet" href="/css/admin/adminNotice.css" type="text/css">
+<script src="/js/admin/adminNotice.js"></script>
+<div class="adminNoticeContainer">
+	<h1 class="adminNoticeTitle">공지사항</h1>
+	<div class="noticeBtnArea">
+		<button class="noticeBtn btn" onclick="window.location.href='/admin/adminNoticeWrite'">글등록</button>
+	</div>
+	<div class="adminNoticeBoard">
+		<ul class="adminNoticeListTop">
 			<li>번호</li>
 			<li>제목</li>
 			<li>날짜</li>
 			<li>조회수</li>
 			<c:forEach var="vo" items="${noticeList}">
-				<ul class="noticeList">
+				<ul class="adminNoticeList">
 					<li>${vo.board_num}</li>
 					<li data-toggle="modal" data-target="#noticeModal" >${vo.title}</li>
 					<li>${vo.write_date}</li>
@@ -36,7 +39,6 @@
 			</c:forEach>
 		</ul>
 	</div>
-	<br/>
 	<div class="pagingContainer">
 		<ul class="pagination justify-content-center" id="paging">
 			<c:if test="${pvo.pageNum==1}">
