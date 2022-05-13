@@ -33,7 +33,6 @@ public class QnaController {
 	        List<BoardVO> qnalist = Qservice.QnaList();
 	        for(BoardVO vo:qnalist) {
 	        	vo.setLang_list(Qservice.QnaLangType(vo.getBoard_num()));
-	        	System.out.println(vo.getLang_list());
 	        }
 	        for(BoardVO vo:qnalist) {
 	        	vo.setTag_list(Qservice.QnaTag(vo.getBoard_num()));

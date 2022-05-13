@@ -52,9 +52,16 @@
             background-color: white;
             border: 1px solid #ddd;
         }
+        .userNickname{
+        	position: absolute;
+            top : 340px;
+            left: 50%;
+            transform: translate(-50%,0%); 
+            font-size: 20px;
+        }
         .userid{
             position: absolute;
-            top : 370px;
+            top : 390px;
             left: 50%;
             transform: translate(-50%,0%); 
             font-size: 20px;
@@ -181,7 +188,7 @@
         	color: #080807;
         }
         .commentDate{
-        	flex:1;
+        	flex:0.7;
         }
         .commentDelete{
         	flex:0.5;
@@ -216,20 +223,38 @@
         }
         
     </style>
-
+    <script>   
+    	 function BoardDel(board_num){
+    	     if(confirm("글을 삭제하시겠습니까?")){
+    	          location.href = "/board/boardDelete?board_num="+board_num;
+    	        }
+    	     return false;
+    	  }
+    	 
+    	 function ReplyDel(reply_num){
+    		 if(confirm("댓글을 삭제하시겠습니까?")){
+    			 location.href = '/board/replyDel?reply_num='+reply_num;
+    		 }
+    		 return false;
+    	 } 
+    </script>
+    
     <div id="mypage">
         <div class="profilePage">
             <div class="userProfile">
                 <div class="userPhoto">
                 </div>
+                <div class="userNickname">
+                	${nickName} 
+                </div>
                 <div class="userid">
-                    ${id}
+                	(${id})
                 </div>
                 <div class="userDesc">
                     <div class="category">
                         <ul>
 	                    	<li><a href="${url}/users/mypage/viewWrite">글관리</a></li>
-                    	  	<li><a href="${url}/users/mypage/study">스터디</a></li>
+                    	  	<li><a href="${url}/users/mypage/study">스터디관리</a></li>
                           	<li><a href="${url}/users/userEdit">회원 수정</a></li>
 	                    </ul>  
                     </div>
@@ -239,7 +264,7 @@
         <div class="contentPage">
           
             <div class="contentBox">
-            	<div class="title">작성한 글 &nbsp; <span class="numColor">${cntArticle}</span></div><hr/>
+            	<div class="title">작성한 글&nbsp; <span class="numColor">${cntArticle}</span></div><hr/>
             	<div class="contents">
             		<ul>
             		<li class="eachContent">
@@ -261,10 +286,14 @@
             		</li>
             			<c:forEach var="vo" items="${article}">
 		            		<li class="eachContent">
-		            				<div class="articleInfo">
-			            				
+		            				<div class="articleInfo">		            				
 			            				<div class="articleTitle">
-			            					<a href='#'>${vo.title}</a>
+			            					<c:if test="${vo.board_type_num==2}">
+			            						<a href='${url}/qna/qnaView?board_num=${vo.board_num}'>${vo.title}</a>
+			            					</c:if>
+			            					<c:if test="${vo.board_type_num==1}">
+			            						<a href='#'>${vo.title}</a>
+			            					</c:if>
 			            				</div>
 			            				<div class="articleCategory">
 			            					<span>${vo.board_type_name}</span>
@@ -273,7 +302,7 @@
 			            					<span>${vo.write_date}</span>
 			            				</div>
 			            				<div class="articleDelete">
-		            						<a href="#">삭제하기</a>
+		            						<a href="javascript:BoardDel(${vo.board_num})">삭제하기</a>
 		            					</div>
 			            			</div><hr/>
 		            		</li>
@@ -290,7 +319,7 @@
 		                    <li><a href="#">5</a></li>
 		                </ul>
 		        </div>
-            	<div class="title">댓글단 글 &nbsp; <span class="numColor">${cntComment}</span></div><hr/>
+            	<div class="title">댓글단 글&nbsp; <span class="numColor">${cntComment}</span></div><hr/>
             	<div class="contents">
             		<ul>
             		<li class="eachContent">
@@ -317,10 +346,20 @@
 	            				<div class="articleInfo">
 		            				
 		            				<div class="commentTitle">
-		            					<a href='#'>${vo.title}</a>
+		            					<c:if test="${vo.board_type_num==2}">
+			            					<a href='${url}/qna/qnaView?board_num=${vo.board_num}'>${vo.title}</a>
+			            				</c:if>
+			            				<c:if test="${vo.board_type_num==1}">
+			            					<a href='#'>${vo.title}</a>
+			            				</c:if>
 		            				</div>
 		            				<div class="comment">
-		            					<a href='#'>${vo.reply_coment}</a>
+		            					<c:if test="${vo.board_type_num==2}">
+			            					<a href='${url}/qna/qnaView?board_num=${vo.board_num}'>${vo.reply_coment}</a>
+			            				</c:if>
+			            				<c:if test="${vo.board_type_num==1}">
+			            					<a href='#'>${vo.title}</a>
+			            				</c:if>
 		            				</div>
 		            				<div class="commentCategory" >
 		            					<span>${vo.board_type_name}</span>
@@ -329,7 +368,7 @@
 		            					<span>${vo.reply_date}</span>
 		            				</div>
 		            				<div class="commentDelete">
-	            						<a href="#">삭제하기</a>
+	            						<a href="javascript:ReplyDel(${vo.reply_num})">삭제하기</a>
 	            					</div>
 		            			</div><hr/>
 	            			</li>
@@ -348,4 +387,4 @@
             </div>
             
         </div>
-    </div>
+        </div>

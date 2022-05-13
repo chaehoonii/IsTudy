@@ -74,5 +74,9 @@
 		color_num=#{color_num}
 		WHERE plan_num=#{plan_num};
 	</update>
-
+	<!-- 스터디 게시판 글 등록 -->
+	<insert id='StudyboardInsert'>
+		INSERT 	board(study_num, user_id, title, content, board_type_num, ip) 
+		VALUES 	(#{study_num}, #{user_id}, #{title}, #{content}, #{board_type_num}, #{ip});
+	</insert>
 </mapper>

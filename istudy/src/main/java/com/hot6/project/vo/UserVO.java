@@ -28,6 +28,12 @@ public class UserVO {
 	private String leave_detail;
 	private int leave_type_num;
 
+	public String getCareer_year() {
+		return career_year;
+	}
+	public void setCareer_year(String career_year) {
+		this.career_year = career_year;
+	}
 	public String getEmail() {
 		return email;
 	}

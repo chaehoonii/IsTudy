@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.hot6.project.dao.StudyDAO;
+import com.hot6.project.vo.BoardVO;
 import com.hot6.project.vo.StudyVO;
 
 @Service
@@ -53,6 +54,11 @@ public class StudyServiceImpl implements StudyService{
 	@Override
 	public List<String> StudyTag(int study_num) {
 		return dao.StudyTag(study_num);
+	}
+
+	@Override
+	public int StudyboardInsert(BoardVO vo) {
+		return dao.StudyboardInsert(vo);
 	}
 
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.hot6.project.dao.AdminUserDAO">
+  
+  	<!-- 전체 회원 정보 -->
+  	<select id="getUserInfo" resultType="UserVO">	
+  		select user_nick, user_id, user_name, tel, email, date_format(register_date,'%Y.%m.%d') as register_date, permission, want, career_year, career
+  		from user	
+  	</select>
+  	
+  	<!-- 전체 회원 수 -->
+  	<select id="getAllCnt" resultType="int">
+  		select count(user_id) from user
+  	</select> 	  
+  	
+  	<!-- 일반 회원 수 -->
+  	<select id="getUserCnt" resultType="int">
+  		select count(user_id) from user where permission = "user"
+  	</select>	
+  	
+  	<!-- 멘토 회원 수 -->
+  	<select id="getMentorCnt" resultType="int">
+  		select count(user_id) from user where permission = "mentor"
+  	</select>	
+  	
+  	<!-- 관리자 수 -->
+  	<select id="getAdminCnt" resultType="int">
+  		select count(user_id) from user where permission="admin"
+  	</select>
+ </mapper>
+ 
