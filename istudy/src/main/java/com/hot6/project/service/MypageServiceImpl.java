@@ -55,7 +55,5 @@ public class MypageServiceImpl implements MypageService {
 	public int cntComment(String user_id) {
 		return dao.cntComment(user_id);
 	}
-	
-	
 
 }

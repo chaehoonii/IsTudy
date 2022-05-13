@@ -30,5 +30,5 @@ public interface MypageService {
 		
 	//마이페이지 댓글 단 개수
 	public int cntComment(String user_id);
-
+	
 }
