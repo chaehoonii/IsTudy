@@ -9,6 +9,15 @@
 		LEFT JOIN board_type B
 		ON A.board_type_num=B.board_type_num
 		WHERE A.board_type_num="3"
-		ORDER BY A.board_num DESC;
+		ORDER BY A.board_num DESC
+		LIMIT ${onePageRecord} offset ${offsetIndex};
+	</select>
+	<select id="selectNoticeModal" resultType="BoardVO">
+		SELECT *
+		FROM board
+		WHERE board_num = #{param1}
+	</select>
+	<select id="setTotalRecord" resultType="int">
+		SELECT count(*) from board where board_type_num = ${param1}
 	</select>
 </mapper> 
