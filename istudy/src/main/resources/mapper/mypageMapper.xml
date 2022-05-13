@@ -65,9 +65,4 @@
 		INNER JOIN board_type ON board.board_type_num = board_type.board_type_num
 	</select>
 	
-	<!-- 닉네임  -->
-	<select id="getNickname" resultType="String">
-		SELECT user_nick FROM user WHERE user_id=#{param1}
-	</select>
-  
   </mapper>

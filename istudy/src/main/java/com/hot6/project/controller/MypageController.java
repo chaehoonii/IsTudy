@@ -30,6 +30,8 @@ public class MypageController {
 		ModelAndView mav = new ModelAndView();
 			
 		String id = (String)session.getAttribute("logId");
+		
+		String nickName = (String)session.getAttribute("logNickname");
 			
 		mav.addObject("Jstudy", Mservice.joinStudy(id));
 			
@@ -41,7 +43,7 @@ public class MypageController {
 		
 		mav.addObject("id", id);
 		
-		mav.addObject("nickName", Mservice.getNickname(id));
+		mav.addObject("nickName", nickName);
 			
 		mav.setViewName("users/mypage/study");
 		
@@ -57,6 +59,8 @@ public class MypageController {
 		ModelAndView mav = new ModelAndView();
 			
 		String id = (String)session.getAttribute("logId");
+		
+		String nickName = (String)session.getAttribute("logNickname");
 			
 		mav.addObject("article", Mservice.getArticles(id));
 		
@@ -68,7 +72,7 @@ public class MypageController {
 		
 		mav.addObject("id", id);
 		
-		mav.addObject("nickName", Mservice.getNickname(id));
+		mav.addObject("nickName", nickName);
 		
 		mav.setViewName("users/mypage/viewWrite");
 		return mav;
