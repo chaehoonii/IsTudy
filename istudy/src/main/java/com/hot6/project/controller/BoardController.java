@@ -2,10 +2,7 @@ package com.hot6.project.controller;
 
 import java.io.File;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -65,7 +62,7 @@ public class BoardController {
 			Bservice.boardInsert(vo);
 			int board_num = Bservice.boardNum(vo.getUser_id()); //유저의 최신글 번호 가져오기
 			vo.setBoard_num(board_num);
-			//qna 게시판
+		//qna 게시판
 			if(vo.getBoard_type_num()==2) { 
 				path = request.getSession().getServletContext().getRealPath("/upload/qna");
 				msg += "location.href='/qna/qnaList';</script>";
