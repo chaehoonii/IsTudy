@@ -15,50 +15,29 @@ public class StudyServiceImpl implements StudyService{
 	@Inject
 	StudyDAO dao;
 
-	@Override
-	public List<StudyVO> CalendarList(int study_num) {
-		return dao.CalendarList(study_num);
-	}
-
-	@Override
-	public int PlanInsert(StudyVO vo) {
-		return dao.PlanInsert(vo);
-	}
 
 	@Override
 	public List<StudyVO> StudyRecommend(String user_id) {
 		return dao.StudyRecommend(user_id);
 	}
 
-	@Override
-	public StudyVO CalendarDetail(int plan_num) {
-		return dao.CalendarDetail(plan_num);
-	}
-
-	@Override
-	public int CalendarDel(int plan_num) {
-		return dao.CalendarDel(plan_num);
-	}
-
-	@Override
-	public int CalendarEdit(StudyVO vo) {
-		return dao.CalendarEdit(vo);
-	}
-	
 
 	@Override
 	public List<String> StudyLangType(int study_num) {
 		return dao.StudyLangType(study_num);
 	}
 
+
 	@Override
 	public List<String> StudyTag(int study_num) {
 		return dao.StudyTag(study_num);
 	}
 
+
 	@Override
 	public int StudyboardInsert(BoardVO vo) {
-		return dao.StudyboardInsert(vo);
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
