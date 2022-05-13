@@ -27,7 +27,6 @@ public class UserVO {
 	private String leave_type_name;
 	private String leave_detail;
 	private int leave_type_num;
-	
 
 	public String getEmail() {
 		return email;
@@ -139,6 +138,12 @@ public class UserVO {
 	public void setLeave_date(String leave_date) {
 		this.leave_date = leave_date;
 	}
+	public String getCareer_year() {
+		return career_year;
+	}
+	public void setCareer_year(String career_year) {
+		this.career_year = career_year;
+	}
 	public String getIs_forced() {
 		return is_forced;
 	}
@@ -163,11 +168,6 @@ public class UserVO {
 	public void setLeave_type_num(int leave_type_num) {
 		this.leave_type_num = leave_type_num;
 	}
-	public String getCareer_year() {
-		return career_year;
-	}
-	public void setCareer_year(String career_year) {
-		this.career_year = career_year;
-	}
+	
 	
 }

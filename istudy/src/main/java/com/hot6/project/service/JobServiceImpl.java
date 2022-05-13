@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.hot6.project.dao.JobDAO;
-import com.hot6.project.dao.StudyDAO;
+import com.hot6.project.dao.CalendarDAO;
 import com.hot6.project.vo.JobVO;
 
 @Service

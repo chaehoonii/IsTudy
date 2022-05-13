@@ -1,7 +1,7 @@
 <link href='/lib/main.css' rel='stylesheet' />
 <script src='/lib/main.js'></script>
 <link rel="stylesheet" href="/css/study/studyCalendar.css" type="text/css" />
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script>
 	$(document).ready(function(){
 		var calendar;
@@ -37,6 +37,7 @@
 					console.log(aJsonArray);
 					let today = new Date();
 					console.log("today: "+today);
+					
 				    var calendarEl = document.getElementById('calendar');
 				   	calendar = new FullCalendar.Calendar(calendarEl, {
 					      headerToolbar: {
@@ -44,12 +45,45 @@
 					        center: 'title',
 					        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
 					      },
+					      titleFormat: { // will produce something like "Tuesday, September 18, 2018"
+	                    	    month: '2-digit',
+	                    	    year: 'numeric',
+	                    	    day: '2-digit',
+	                    	    weekday: 'narrow'
+	                      },
 					      initialDate: today,
 					      navLinks: true, // can click day/week names to navigate views
 					      businessHours: true, // display business hours
 					      editable: true,
 					      selectable: true,
-					      events: aJsonArray	//JsonArray 불러오기
+					      events: aJsonArray,	//JsonArray 불러오기
+	                      droppable: true, // this allows things to be dropped onto the calendar
+	 
+	                      
+	                       //드래그로 일정 수정하기
+
+	                        eventDrop: function (info){
+	                            if(confirm("'"+ info.event.title +"' 일정을 수정하시겠습니까 ?")){
+	                            	var plan_start = moment(info.event._instance.range.start).format('YYYY/MM/DD');
+	                            	var plan_finish = moment(info.event._instance.range.end).format('YYYY/MM/DD');
+		                            var param = {
+		                            	"plan_num" : info.event.groupId,
+		                           	 	"plan_start" : plan_start,
+		                            	"plan_finish" :  plan_finish
+		                            } 
+		                            console.log(param);
+		                            
+	                                $.ajax({
+	                                    url: "/study/calendar/calendarDrag",
+	                                    method: "POST",
+	                                    data: param,
+	                                    success: function(){
+	                                    	console.log("일정 수정 성공");
+	
+	                                    }
+	                                })
+	                            }
+	                        }
 				    });
 				   	
 			  		calendar.render();
@@ -70,9 +104,9 @@
 					 	
 					 	$.ajax({
 							url : '/study/calendar/calendarDetail',
-							type : 'GET',
-							dataType : 'json',
-							data :param1,
+							type : 'GET',	//매핑방식
+							dataType : 'json',	//받는 데이터의 형식
+							data :param1,	//보내는 데이터
 							success : function(r){
 								console.log("start detail");
 								$("#study_num02").val(r.study_num);
@@ -131,7 +165,7 @@
 								    }
 							 	});
 					 		}
-					 	    
+					 	    return false;
 						}); //일정 수정	
 					}); //일정 상세
 					

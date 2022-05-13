@@ -8,13 +8,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IsTudy</title>
 
+<link rel="shortcut icon" type="image/png" href="/images/lamp02.png">
+
 <!-- 부트스트랩 CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
 	integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
 	crossorigin="anonymous">
+
 <!-- 제이쿼리, 플러그인 CDN -->
 <link rel="stylesheet" href="/jquery-ui/jquery-ui.min.css">
 <script
@@ -85,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function(){
 			<ul class="category_list">
 				<li class="listStyle"><a href="/study/study_home">스터디 구하기</a></li>
 				<li class="listStyle"><a href="/qna/qnaList">Q & A</a></li>
-				<li class="listStyle"><a href="/notice/noticeList">공지사항</a></li>
+				<li class="listStyleLast"><a href="/notice/noticeList?pageNum=1">공지사항</a></li>
 			</ul>
 		</nav>
 	</div>
