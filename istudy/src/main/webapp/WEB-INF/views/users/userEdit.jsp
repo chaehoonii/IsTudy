@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="${url}/css/users/userEdit.css" type="text/css">
+
 <script src="${url}/js/users/userEdit.js"></script>
 <script>
 function userDel() {
@@ -56,8 +57,10 @@ function userDel() {
                   <li>분류</li>
                   <li>
                      <ul id="radio_list">
-                        <li><input type="radio" name="permission" id="study_type1" value="1" />일반</li>
-                        <li><input type="radio" name="permission" id="study_type2" value="2" />멘토</li>
+                        <li><input type="radio" name="permission" id="study_type1" value="1"
+                        <c:if test="${vo.permission eq 'user'}">checked</c:if> />일반</li>
+                        <li><input type="radio" name="permission" id="study_type2" value="2"
+                        <c:if test="${vo.permission eq 'mentor'}">checked</c:if> />멘토</li>
                         <li>
                            <ul style="display: none" id="career_list">
                               <select type="hidden" name="career" id="career">
@@ -71,16 +74,21 @@ function userDel() {
                         </li>
                      </ul>
                   </li>
-                  <li class="career_url"><input type="text" name="career" id="career_url" placeholder="경력을 증명할 수 있는 URL을 입력해주세요 (ex..github/blog)" /></li>
+                  <li class="career_url"><input type="text" name="career" id="career_url" placeholder="경력을 증명할 수 있는 URL을 입력해주세요 (ex..github/blog)" value="${vo.career }"/></li>
 
                   <li>관심분야</li>
                   <li>
                      <ul id="radio_list">
-                        <li><input type="radio" name="study_type_num" id="study_type_num_frontend" value="1" />프론트엔드</li>
-                        <li><input type="radio" name="study_type_num" id="study_type_num_backend" value="2" />백엔드</li>
-                        <li><input type="radio" name="study_type_num" id="study_type_num_algorithm" value="3" />알고리즘</li>
-                        <li><input type="radio" name="study_type_num" id="study_type_num_project" value="4" />프로젝트</li>
-                        <li><input type="radio" name="study_type_num" id="study_type_num_eng" value="5" />IT영어</li>
+                        <li><input type="radio" name="study_type_num" id="study_type_num_frontend" value="1"
+                        <c:if test="${vo.study_type_num eq '1'}">checked</c:if> />프론트엔드</li>
+                        <li><input type="radio" name="study_type_num" id="study_type_num_backend" value="2" 
+                        <c:if test="${vo.study_type_num eq '2'}">checked</c:if> />백엔드</li>
+                        <li><input type="radio" name="study_type_num" id="study_type_num_algorithm" value="3" 
+                        <c:if test="${vo.study_type_num eq '3'}">checked</c:if> />알고리즘</li>
+                        <li><input type="radio" name="study_type_num" id="study_type_num_project" value="4" 
+                        <c:if test="${vo.study_type_num eq '4'}">checked</c:if> />프로젝트</li>
+                        <li><input type="radio" name="study_type_num" id="study_type_num_eng" value="5" 
+                        <c:if test="${vo.study_type_num eq '5'}">checked</c:if> />IT영어</li>
                      </ul>
                   </li>
                </ul>

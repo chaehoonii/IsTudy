@@ -25,7 +25,8 @@
       tel, 
       email, 
       permission, 
-      career, 
+      career,
+      career_year, 
       profile_img, 
       study_type_num)
       VALUES(#{param1.user_name}, 
@@ -36,6 +37,7 @@
       #{param1.email}, 
       #{param1.permission},
       #{param1.career},
+      #{param1.career_year},
       #{param2},
       #{param1.study_type_num})      
    </insert>
