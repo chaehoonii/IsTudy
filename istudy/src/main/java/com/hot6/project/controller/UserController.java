@@ -173,7 +173,7 @@ public class UserController {
 				session.setAttribute("logStatus", "Y");
 				session.setAttribute("logPermission", user.getPermission());
 
-				String msg = "<script>alert('로그인 성공하였습니다.');location.href = '/';</script>";
+				String msg = "<script>location.href = '/';</script>";
 				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 
 			} else {

@@ -15,6 +15,7 @@ public class UserVO {
 	private String study_type_num;
 	private String want;
 	private String career;
+	private String career_year;
 	
 	private int exp_min;
 	private int exp_max;
@@ -26,7 +27,6 @@ public class UserVO {
 	private String leave_type_name;
 	private String leave_detail;
 	private int leave_type_num;
-	
 
 	public String getEmail() {
 		return email;
@@ -137,6 +137,12 @@ public class UserVO {
 	}
 	public void setLeave_date(String leave_date) {
 		this.leave_date = leave_date;
+	}
+	public String getCareer_year() {
+		return career_year;
+	}
+	public void setCareer_year(String career_year) {
+		this.career_year = career_year;
 	}
 	public String getIs_forced() {
 		return is_forced;

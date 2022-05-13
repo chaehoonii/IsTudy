@@ -1,6 +1,7 @@
 package com.hot6.project.vo;
 
 import java.util.List;
+import java.util.Map;
 
 public class BoardVO {
 	//board
@@ -14,6 +15,7 @@ public class BoardVO {
 	private int is_boardnotice;
 	private String ip;
 	private int count_reply;
+	private int solved;
 	
 	//board_type
 	private int board_type_num;
@@ -24,14 +26,17 @@ public class BoardVO {
 	private String file2;
 	private String file3;
 	private String file4;
-	private String file5;
 	
 	//board_hashtag
 	private String tag;
 
 	private List<String> lang_list;
 	private List<String> tag_list;
-	
+	private List<Map<Integer,String>> lang_list_map;
+    private Map<Integer,Object> lang_map;
+    private List<Map<Integer,String>> tag_list_map;
+    private Map<Integer,Object> tag_map;
+    
 	//user
 	private String user_nick;
 	private String profile_img;
@@ -46,6 +51,50 @@ public class BoardVO {
 	private String writer_id;
 	
 	
+    
+    
+	
+	
+	public List<Map<Integer, String>> getLang_list_map() {
+		return lang_list_map;
+	}
+
+	public void setLang_list_map(List<Map<Integer, String>> lang_list_map) {
+		this.lang_list_map = lang_list_map;
+	}
+
+	public Map<Integer, Object> getLang_map() {
+		return lang_map;
+	}
+
+	public void setLang_map(Map<Integer, Object> lang_map) {
+		this.lang_map = lang_map;
+	}
+
+	public List<Map<Integer, String>> getTag_list_map() {
+		return tag_list_map;
+	}
+
+	public void setTag_list_map(List<Map<Integer, String>> tag_list_map) {
+		this.tag_list_map = tag_list_map;
+	}
+
+	public Map<Integer, Object> getTag_map() {
+		return tag_map;
+	}
+
+	public void setTag_map(Map<Integer, Object> tag_map) {
+		this.tag_map = tag_map;
+	}
+
+	public int getSolved() {
+		return solved;
+	}
+
+	public void setSolved(int solved) {
+		this.solved = solved;
+	}
+
 	public String getWriter_id() {
 		return writer_id;
 	}
@@ -252,14 +301,6 @@ public class BoardVO {
 
 	public void setFile4(String file4) {
 		this.file4 = file4;
-	}
-
-	public String getFile5() {
-		return file5;
-	}
-
-	public void setFile5(String file5) {
-		this.file5 = file5;
 	}
 
 	public String getTag() {

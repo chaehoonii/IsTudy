@@ -53,9 +53,16 @@
             background-color: white;
             border: 1px solid #ddd;
         }
+        .userNickname{
+        	position: absolute;
+            top : 340px;
+            left: 50%;
+            transform: translate(-50%,0%); 
+            font-size: 20px;
+        }
         .userid{
             position: absolute;
-            top : 370px;
+            top : 390px;
             left: 50%;
             transform: translate(-50%,0%); 
             font-size: 20px;
@@ -205,14 +212,17 @@
             <div class="userProfile">
                 <div class="userPhoto">
                 </div>
+                <div class="userNickname">
+                	${nickName} 
+                </div>
                 <div class="userid">
-                    ${id}
+                	(${id})
                 </div>
                 <div class="userDesc">
                     <div class="category">
 	                    <ul>
 	                    	<li><a href="${url}/users/mypage/viewWrite">글관리</a></li>
-                    	  	<li><a href="${url}/users/mypage/study">스터디</a></li>
+                    	  	<li><a href="${url}/users/mypage/study">스터디관리</a></li>
                           	<li><a href="${url}/users/userEdit">회원 수정</a></li>
 	                    </ul>  
                     </div>
@@ -284,7 +294,7 @@
 		                    <li><a href="#">5</a></li>
 		                </ul>
 		        </div>
-            	<div class="title">완료 스터디 &nbsp; <span class="numColor">${cntFstudy}</span></div><hr/>
+            	<div class="title">완료 스터디&nbsp; <span class="numColor">${cntFstudy}</span></div><hr/>
             	<div class="contents">
             		<ul>
             		<li class="eachContent">

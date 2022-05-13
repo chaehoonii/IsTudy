@@ -5,9 +5,11 @@
 <configuration>
 <mappers>
   		<mapper resource="mapper/userMapper.xml"></mapper>
+  		<mapper resource="mapper/calendarMapper.xml"></mapper>
   		<mapper resource="mapper/studyMapper.xml"></mapper>
   		<mapper resource="mapper/jobMapper.xml"></mapper>
   		<mapper resource="mapper/qnaMapper.xml"></mapper>
   		<mapper resource="mapper/noticeMapper.xml"></mapper>
+  		<mapper resource="mapper/boardMapper.xml"></mapper>
 </mappers>
 </configuration>

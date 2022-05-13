@@ -3,6 +3,9 @@ package com.hot6.project.controller;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +21,7 @@ public class MypageController {
 	
 	@Inject 
 	MypageService Mservice;
-	
-	
-	
+
 	
 	//마이페이지(진행 스터디)로 이동
 	@GetMapping("mypage/study")
@@ -29,6 +30,8 @@ public class MypageController {
 		ModelAndView mav = new ModelAndView();
 			
 		String id = (String)session.getAttribute("logId");
+		
+		String nickName = (String)session.getAttribute("logNickname");
 			
 		mav.addObject("Jstudy", Mservice.joinStudy(id));
 			
@@ -39,6 +42,8 @@ public class MypageController {
 		mav.addObject("cntFstudy", Mservice.cntFinishStudy(id));
 		
 		mav.addObject("id", id);
+		
+		mav.addObject("nickName", nickName);
 			
 		mav.setViewName("users/mypage/study");
 		
@@ -54,6 +59,8 @@ public class MypageController {
 		ModelAndView mav = new ModelAndView();
 			
 		String id = (String)session.getAttribute("logId");
+		
+		String nickName = (String)session.getAttribute("logNickname");
 			
 		mav.addObject("article", Mservice.getArticles(id));
 		
@@ -65,11 +72,11 @@ public class MypageController {
 		
 		mav.addObject("id", id);
 		
+		mav.addObject("nickName", nickName);
+		
 		mav.setViewName("users/mypage/viewWrite");
 		return mav;
 					
 	}
 	
-	
-
 }

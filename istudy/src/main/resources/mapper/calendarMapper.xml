@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hot6.project.dao.CalendarDAO">
+	<!-- 달력 페이지 -->
+	<select id="CalendarList" resultType="StudyVO">
+		SELECT A.*, B.color_name
+		FROM calendar A
+		LEFT JOIN calendar_color B
+		ON A.color_num = B.color_num
+		WHERE study_num=#{param1}
+	</select>
+
+	<!-- 일정 등록 -->
+	<insert id="PlanInsert">
+		INSERT calendar(study_num, plan_name, plan_detail,
+		plan_start, plan_finish, start_time, finish_time, color_num)
+		VALUES
+		(#{study_num}, #{plan_name}, #{plan_detail}, #{plan_start},
+		#{plan_finish}, #{start_time}, #{finish_time}, #{color_num})
+	</insert>
+
+	<!-- 일정 상세 -->
+	<select id="CalendarDetail" resultType="StudyVO">
+		SELECT A.*, B.color_name
+		FROM calendar A
+		JOIN calendar_color B
+		ON B.color_num = A.color_num
+		WHERE
+		A.plan_num = #{param1}
+	</select>
+
+	<!-- 일정 삭제 -->
+	<delete id="CalendarDel">
+		DELETE FROM calendar
+		WHERE plan_num=#{param1}
+	</delete>
+
+	<!-- 일정 수정 -->
+	<update id="CalendarEdit">
+		UPDATE calendar
+		SET plan_name=#{plan_name}, plan_detail=#{plan_detail},
+		plan_start=#{plan_start}, plan_finish=#{plan_finish},
+		start_time=#{start_time}, finish_time=#{finish_time},
+		color_num=#{color_num}
+		WHERE plan_num=#{plan_num};
+	</update>
+	<!-- 일정 드래그 수정 -->
+	<update id='CalendarDrag'>
+		UPDATE 	calendar
+		SET		plan_start=#{plan_start}, plan_finish=#{plan_finish}
+		WHERE 	plan_num=#{plan_num}
+	</update>
+</mapper>

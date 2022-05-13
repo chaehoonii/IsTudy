@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hot6.project.service.StudyService;
+import com.hot6.project.service.CalendarService;
 import com.hot6.project.vo.StudyVO;
 
 @Controller
-public class StudyController {
+public class CalendarController {
 	@Inject
-	StudyService Sservice;
+	CalendarService service;
 
 	@GetMapping("/study/calendar/calendarList")
 	public ModelAndView CalendarList(int study_num) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("CalendarList", Sservice.CalendarList(study_num));
+		mav.addObject("CalendarList", service.CalendarList(study_num));
 		mav.setViewName("/study/calendar/calendarList");
 		return mav;
 	}
@@ -36,15 +36,15 @@ public class StudyController {
 	public List<StudyVO> calendarLists(@RequestParam("study_num") int study_num) {
 		System.out.println("ajax start");
 		System.out.println(study_num);
-		return Sservice.CalendarList(study_num);
+		return service.CalendarList(study_num);
 	}
 
 	// 일정 등록
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/study/calendar/calendarWrite", method = RequestMethod.POST)
-	public void PlanInsert(StudyVO vo) {
+	public int PlanInsert(StudyVO vo) {
 		System.out.println("add start");
-		Sservice.PlanInsert(vo);
+		return service.PlanInsert(vo);
 	}
 
 	// 일정 상세
@@ -52,26 +52,28 @@ public class StudyController {
 	@RequestMapping(value = "/study/calendar/calendarDetail", method = RequestMethod.GET)
 	public StudyVO calendarDetail(@RequestParam("plan_num") int plan_num) {
 		System.out.println("plan_num= " + plan_num);
-		return Sservice.CalendarDetail(plan_num);
+		return service.CalendarDetail(plan_num);
 	}
 
 	// 일정 삭제
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/study/calendar/calendarDel", method = RequestMethod.GET)
-	public void calendarDel(StudyVO vo, @RequestParam("plan_num") int plan_num,
-			@RequestParam("study_num") int study_num) {
-		System.out.println("plan_num= " + plan_num);
-		Sservice.CalendarDel(plan_num);
-		System.out.println("study_num= " + study_num);
-		System.out.println("delete start");
+	public int calendarDel(StudyVO vo, @RequestParam("plan_num") int plan_num, @RequestParam("study_num") int study_num) {
+		return service.CalendarDel(plan_num);
 	}
 
 	// 일정 수정
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/study/calendar/calendarEdit", method = RequestMethod.POST)
-	public void calendarEdit(StudyVO vo) {
-
-		System.out.println("edit start");
-		Sservice.CalendarEdit(vo);
+	public int calendarEdit(StudyVO vo) {
+		return service.CalendarEdit(vo);
+	}
+	
+	// 일정 드래그 수정
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/study/calendar/calendarDrag", method = RequestMethod.POST)
+	public int calendarDrag(StudyVO vo) {
+		System.out.println("get data");
+		return service.CalendarDrag(vo);
 	}
 }
