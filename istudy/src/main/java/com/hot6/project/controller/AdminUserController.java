@@ -17,7 +17,7 @@ public class AdminUserController {
 	@Inject
 	AdminUserService AUservice;
 	
-	@GetMapping("users")
+	@GetMapping("adminUsers")
 	public ModelAndView adminUser(HttpSession session) {
 		
 		ModelAndView mav = new ModelAndView();
@@ -37,7 +37,7 @@ public class AdminUserController {
 		mav.addObject("mentorCnt", AUservice.getMentorCnt());
 		mav.addObject("adminCnt", AUservice.getAdminCnt());
 		
-		mav.setViewName("admin/users");
+		mav.setViewName("admin/adminUsers");
 		
 		return mav;
 	}
