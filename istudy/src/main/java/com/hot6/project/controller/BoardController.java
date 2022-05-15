@@ -189,8 +189,25 @@ public class BoardController {
 			
 			// 2. 레코드 삭제
 			Bservice.boardDelete(board_num);
+
+			//***공지사항 등 업로드한 파일이 없는 게시판이 있을 경우 파일삭제 부분 코드는 실행하지 않도록 조건문 설정
+			if(dbFileVO!= null) {
+				// 3. 파일 삭제
+				if(dbFileVO.getFile1()!=null) {	
+					fileDelete(path, dbFileVO.getFile1());	
+				}
+				if(dbFileVO.getFile2()!=null) {
+					fileDelete(path, dbFileVO.getFile2());
+				}
+				if(dbFileVO.getFile3()!=null) {	
+					fileDelete(path, dbFileVO.getFile3());
+				}
+				if(dbFileVO.getFile4()!=null) {	
+					fileDelete(path, dbFileVO.getFile4());
+				}
+			}
 			
-			// 3. 파일 경로 설정/ 보낼 msg 입력
+			// ****삭제 실행 후 보낼 경로를 설정하는 코드. (해당코드를 파일 삭제 이후 실행되도록 수정)3. 파일 경로 설정/ 보낼 msg 입력
 			String msg = "<script>alert('글이 삭제되었습니다');";
 			if(type_num==1) {				
 				int study_num = Bservice.getStudy_num(board_num);
@@ -203,21 +220,6 @@ public class BoardController {
 				msg += "location.href='/notice/noticeList';</script>";
 				path = session.getServletContext().getRealPath("/upload/notice");
 			}
-			
-			// 3. 파일 삭제
-			if(dbFileVO.getFile1()!=null) {	
-				fileDelete(path, dbFileVO.getFile1());	
-			}
-			if(dbFileVO.getFile2()!=null) {
-				fileDelete(path, dbFileVO.getFile2());
-			}
-			if(dbFileVO.getFile3()!=null) {	
-				fileDelete(path, dbFileVO.getFile3());
-			}
-			if(dbFileVO.getFile4()!=null) {	
-				fileDelete(path, dbFileVO.getFile4());
-			}
-			
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 			
 		}catch(Exception e) {

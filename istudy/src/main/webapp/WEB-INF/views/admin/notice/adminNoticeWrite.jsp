@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/css/admin/notice/adminNoticeWrite.css"
 	type="text/css">
 <script src="/js/admin/notice/adminNotice.js"></script>
-<script src="/js/ckeditor/ckeditor.js"></script>
+<script src="//cdn.ckeditor.com/4.17.2/full/ckeditor.js"></script>
 <div class="noticeWriteContainer">
 	<h1 class="noticeTitle">공지사항 등록</h1>
 	<form method="post" action="/board/boardWriteOk" enctype="multipart/form-data">
@@ -14,7 +14,7 @@
 		</div>
 		<!-- ck에디터 -->
 		<div class="noticeTextArea">
-			<textarea id="noticeWrite" name="content"></textarea>
+			<textarea id="noticeWrite" name="content" placehohlder="공지사항을 입력해주세요"></textarea>
 		</div>
 		<br/>
 		<input type="file" name="filename">
@@ -29,7 +29,10 @@
 			  config.removePlugins = 'Image';
 			  config.extraPlugins = 'inserthtml';
 			  config.toolbar = 'Basic';
+			  config.allowedContent = true;
 			}
+		var editorContent = CKEDITOR.instance.editor.getData();
+		var convertContent = editorContent.replace(/(<([^>]+)>)/ig,"");
 	
 	});
 </script>

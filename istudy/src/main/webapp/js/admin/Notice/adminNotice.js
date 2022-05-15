@@ -17,3 +17,8 @@
 			}
 		})
 	});
+
+	$('.registBtn').click(function(){
+		location.href="/notice/noticeList";
+	})
+	

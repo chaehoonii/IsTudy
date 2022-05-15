@@ -36,7 +36,7 @@
 									<c:if test="${logPermission=='admin'}">
 										<button class="noticeModalBtn btn" onclick="window.location.href='#'">공지사항 수정</button>
 										&nbsp;&nbsp;&nbsp;
-										<button class="noticeModalBtn btn" onclick="window.location.href='/board/boardDelete'">공지사항 삭제</button>
+										<button class="noticeModalBtn btn" onclick="window.location.href='/board/boardDelete?board_num=${vo.board_num}'">공지사항 삭제</button>
 									</c:if>
 								</div>
 							<!-- 모달 푸터 -->
