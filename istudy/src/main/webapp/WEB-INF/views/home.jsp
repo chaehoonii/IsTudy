@@ -6,9 +6,10 @@
 
 <script src="/js/home/home.js"></script>
 <script src="/js/home/owl.carousel.js"></script>
+<script src="https://unpkg.com/scroll-out/dist/scroll-out.min.js"></script>
 
 <!-- 서비스 이미지 -->
-<div class="mainImageWrap">
+<div class="mainImageWrap" data-scroll>
 	<div id="mainImage">
 		<img src="/images/main.jpg">
 	</div>
@@ -17,9 +18,8 @@
 	</div>
 </div>
 <!-- 스터디추천 영역 -->
-<div style="clear:none";></div>
 <c:if test="${logStatus == 'Y'}">
-	<div class="studyRecommend">
+	<div class="studyRecommend" data-scroll>
 		<h1 class="studyTitle">스터디 추천</h1>
 		<div id="study_rec_list">
 			<c:forEach var="vo" items="${StudyList}">
@@ -51,8 +51,7 @@
 	</div>
 </c:if>
 <!-- 멘토추천 영역 -->
-<div class="mentoRecommend">
-	<div id='mento_div'>
+<div class="mentoRecommend" data-scroll>
 		<h1 id="mentoTitle">멘토추천</h1>
 		<div class="slideBtnArea col-lg-1">
 			<button class="customPrevBtn"><</button>
@@ -62,7 +61,7 @@
 				<div class="card item">
 					<img src="/upload/user/${vo.profile_img}" />
 					<div class="card-body">
-						<h4 class="card-title">${vo.user_nick}</h4>
+						<img src='${vo.level_icon}' style='width:30px; margin:0;display:inline;'><h4 class="card-title">${vo.user_nick}</h4>
 						<p class="card-text">${vo.career}</p>
 						<a href="#" class="btn profile">프로필 보기</a>
 					</div>
@@ -72,10 +71,9 @@
 		<div class="slideBtnArea col-lg-1">
 			<button class="customNextBtn">></button>
 		</div>
-	</div id='mento_div'>
 </div>
 <!-- 기업추천 영역 -->
-<div class="recruit">
+<div class="recruit" data-scroll>
 	<h1 class="recruitTitle">채용정보</h1>
 	<div class="recruitArea">
 		<c:forEach var="vo" items="${JobList}">
@@ -103,3 +101,6 @@
 		</c:forEach>
 	</div>
 </div>
+<script>
+	ScrollOut({ });
+</script>

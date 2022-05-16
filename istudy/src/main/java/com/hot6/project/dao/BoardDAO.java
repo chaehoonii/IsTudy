@@ -44,7 +44,11 @@ public interface BoardDAO {
 
 	public int boardFileInsert(BoardVO vo);
 
-	public int boardTagInsert(BoardVO vo);
+	// 조회수 올리기
+	public int hitUp(int board_num);
 
-	public int boardLangInsert(BoardVO vo);
+	// 글 수정
+	public int BoardUpdate(BoardVO vo);
+
+	public int BoardFileUpdate(BoardVO vo);
 }

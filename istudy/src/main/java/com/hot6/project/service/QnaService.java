@@ -14,34 +14,57 @@ public interface QnaService {
 	// 언어타입
 	public List<String> QnaLangType(int board_num);
 
+	public List<Integer> QnaLangNum(int board_num);
+
 	// 태그
 	public List<String> QnaTag(int board_num);
 
 	// 검색 기능
 	public int TotalQna_title(String searchWord);
+
 	public List<BoardVO> QnaList_title(String searchWord);
+
 	public int TotalQna_content(String searchWord);
+
 	public List<BoardVO> QnaList_content(String searchWord);
+
 	public int TotalQna_nick(String searchWord);
+
 	public List<BoardVO> QnaList_nick(String searchWord);
+
 	public int TotalQna_lang(String searchWord);
+
 	public List<BoardVO> QnaList_lang(String searchWord);
+
 	public int TotalQna_tag(String searchWord);
+
 	public List<BoardVO> QnaList_tag(String searchWord);
-	
-	//글 내용
+
+	// 글 내용
 	public BoardVO QnaView(int board_num);
-	
-	//좋아요 누르기
+
+	// 좋아요 누르기
 	public int LikeUp(String user_id, int reply_num);
-	//좋아요 취소
+
+	// 좋아요 취소
 	public int LikeDown(String user_id, int reply_num);
-	
-	//답변 채택
+
+	// 답변 채택
 	public int ReplySelect(int reply_num);
-	//답변 채택 취소
+
+	// 답변 채택 취소
 	public int ReplySelectDel(int reply_num);
-	
-	//채택여부
+
+	// 채택여부
 	public int getSolved(int board_num);
+
+	// 글 수정
+	public int qnaTagDelete(BoardVO vo);
+
+	public int qnaLangDelete(BoardVO vo);
+
+	// 글 등록
+	public int qnaTagInsert(BoardVO vo);
+
+	public int qnaLangInsert(BoardVO vo);
 }

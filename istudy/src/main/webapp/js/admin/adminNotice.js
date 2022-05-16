@@ -1,4 +1,4 @@
-	$(".noticeList").click(function() {
+	$(".adminNoticeList").click(function() {
 		
 		var board_num = $(this).children().first().text();
 		var param = {

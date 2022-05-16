@@ -1,6 +1,7 @@
 console.log("aaa");
 
 $(document).ready(function() {
+	
 	var owl = $('.owl-carousel');
 
 	owl.owlCarousel({

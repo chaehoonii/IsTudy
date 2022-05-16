@@ -65,12 +65,12 @@
 			document.getElementById("searchWord_box").value = '${searchWord}';
 		}
 	}
-       $(".search_icon").click(function() {
-          if ($(".searchWord").val() == "") {
-             alert("검색어를 입력하세요");
-             return false;
-          }else{
-        	  $(".searchFrm").submit();
-          } 
-       });
+	   $(".search_icon").click(function() {
+	      if ($(".searchWord").val() == "") {
+	         alert("검색어를 입력하세요");
+	         return false;
+	      }else{
+	    	  $(".searchFrm").submit();
+	      } 
+	   });
 </script>

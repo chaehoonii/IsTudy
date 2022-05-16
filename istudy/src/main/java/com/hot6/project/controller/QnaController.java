@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hot6.project.service.BoardService;
 import com.hot6.project.service.QnaService;
 import com.hot6.project.vo.BoardVO;
 
@@ -22,6 +22,9 @@ import com.hot6.project.vo.BoardVO;
 public class QnaController {
 	@Inject 
 	QnaService Qservice;
+	
+	@Inject
+	BoardService Bservice;
 	
 		//리스트
 		@RequestMapping(value = "/qna/qnaList", method = RequestMethod.GET)
@@ -92,6 +95,7 @@ public class QnaController {
 			BoardVO vo = Qservice.QnaView(board_num);
 			vo.setLang_list(Qservice.QnaLangType(board_num));
         	vo.setTag_list(Qservice.QnaTag(board_num));
+        	Bservice.hitUp(board_num);
         	mav.addObject("vo", vo);
 			mav.setViewName("/qna/qnaView");
 			return mav;
@@ -129,5 +133,24 @@ public class QnaController {
 			ModelAndView mav = new ModelAndView();
 			mav.setViewName("/qna/qnaWrite");
 			return mav;
+		}
+		//글 수정 폼
+		@RequestMapping(value = "/qna/qnaEdit", method = RequestMethod.GET)
+		public ModelAndView qnaEdit(int board_num) {
+			ModelAndView mav = new ModelAndView();
+			BoardVO vo = Qservice.QnaView(board_num);
+			vo.setLang_num_list(Qservice.QnaLangNum(board_num));
+        	vo.setTag_list(Qservice.QnaTag(board_num));
+        	mav.addObject("tagcnt", vo.getTag_list().size());
+        	mav.addObject("vo", vo);
+			
+			return mav;
+		}
+		//toast ui editor sample
+		@RequestMapping(value = "/qna/sample", method = RequestMethod.GET)
+		public ModelAndView sample() {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("/qna/sample");
+		return mav;
 		}
 }

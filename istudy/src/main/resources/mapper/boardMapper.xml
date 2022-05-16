@@ -27,7 +27,7 @@
 		SELECT 		A.*, B.user_nick, B.profile_img,
 					COUNT( case when ifnull(C.user_id, 0)= #{param1} then 1 end) AS like_type,
 					COUNT(C.user_id) AS like_num,
-	                D.user_id AS writer_id
+	                D.user_id AS writer_id, E.level_icon
 		FROM 		reply A
 		LEFT JOIN 	user B
 		ON 			A.user_id = B.user_id
@@ -35,6 +35,9 @@
 		ON			A.reply_num = C.reply_num
 	    LEFT JOIN	board D
 	    ON			D.board_num = A.board_num
+	    LEFT JOIN 	level E
+		on 			E.exp_min <![CDATA[<=]]> B.exp
+		AND 		B.exp <![CDATA[<=]]> E.exp_max
 		WHERE 		A.board_num = #{param2}
 		GROUP BY 	A.reply_num
 		ORDER BY 	selected DESC, like_num DESC, A.reply_num
@@ -78,18 +81,21 @@
 		INSERT 	board_image(board_num, file1, file2, file3, file4) 
 		VALUES	(#{board_num}, #{file1}, #{file2}, #{file3}, #{file4})
 	</insert>
-	<insert id='boardTagInsert'>
-		INSERT board_hashtag(board_num, tag) 
-		VALUES  
-		<foreach collection="tag_list" item="item" separator=",">
-            (#{board_num}, #{item})
-        </foreach>
-	</insert>
-	<insert id='boardLangInsert'>
-		INSERT  board_lang_type(board_num, lang_type_num) 
-		VALUES 
-		<foreach collection="lang_list" item="item" separator=","> 
- 			(#{board_num}, #{item})
- 		</foreach>
-	</insert>
+	<!-- 조회수 증가 -->
+	<update id='hitUp'>
+		UPDATE 	board
+		SET 	hit=hit+1
+		WHERE 	board_num=#{param1}
+	</update>
+	<!-- 글 수정 -->
+	<update id='BoardUpdate'>
+		UPDATE 	board
+		SET 	title=#{title}, content=#{content}, is_boardnotice=#{is_boardnotice}
+		WHERE 	board_num=#{board_num}
+	</update>
+	<update id='BoardFileUpdate'>
+		UPDATE 	board_image
+		SET 	file1=#{file1}, file2=#{file2}, file3=#{file3}, file4=#{file4}
+		WHERE 	board_num=#{board_num}
+	</update>
 </mapper>

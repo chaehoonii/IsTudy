@@ -20,7 +20,7 @@
 	WHERE 	  A.board_type_num=2
 	ORDER BY  board_num DESC
 </select>
-<!-- 질문 리스트 : 언어타입 -->
+<!-- 글 : 언어타입 -->
 <select id="QnaLangType" resultType="String">
 	SELECT 	A.lang_type_name 
 	FROM 	lang_type A 
@@ -28,7 +28,13 @@
 	ON 		A.lang_type_num = B.lang_type_num 
 	WHERE 	B.board_num=#{param1}
 </select>
-<!-- 질문 리스트 : 태그 -->
+<!-- 글 : 언어타입넘버 -->
+<select id="QnaLangNum" resultType="int">
+	SELECT 	lang_type_num 
+	FROM 	board_lang_type  
+	WHERE 	board_num=#{param1}
+</select>
+<!-- 글 : 태그 -->
 <select id="QnaTag" resultType="String">
 	SELECT 	tag 
 	FROM 	board_hashtag 
@@ -134,7 +140,7 @@
 </select>
 <!-- 글 내용 -->
 <select id="QnaView" resultType="BoardVO">
-	SELECT 	  A.board_num, A.title, A.content, DATE_FORMAT(A.write_date, '%Y-%m-%d') AS write_date, 
+	SELECT 	  A.board_num, A.board_type_num, A.hit, A.title, A.content, DATE_FORMAT(A.write_date, '%Y-%m-%d') AS write_date, 
 			  B.user_id, B.user_nick, B.profile_img, count(case when C.selected=1 then 1 end) as solved,
 			  E.file1, E.file2, E.file3, E.file4
 	FROM 	  board A
@@ -175,4 +181,28 @@
 	FROM reply  
 	WHERE board_num=#{param1}
 </select>
+<!-- 글 등록 -->
+<insert id='qnaTagInsert'>
+	INSERT board_hashtag(board_num, tag) 
+	VALUES  
+	<foreach collection="tag_list" item="item" separator=",">
+        (#{board_num}, #{item})
+    </foreach>
+</insert>
+<insert id='qnaLangInsert'>
+	INSERT  board_lang_type(board_num, lang_type_num) 
+	VALUES 
+	<foreach collection="lang_list" item="item" separator=","> 
+ 		(#{board_num}, #{item})
+ 	</foreach>
+</insert>
+<!-- 글 수정 --><!-- 언어, 태그 지우고 다시 등록하기 -->
+<delete id="qnaLangDelete">
+	DELETE 	FROM board_lang_type 
+	WHERE 	board_num=#{board_num}
+</delete>
+<delete id="qnaTagDelete">
+	DELETE 	FROM board_hashtag 
+	WHERE 	board_num=#{board_num}
+</delete>
 </mapper>

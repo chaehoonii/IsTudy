@@ -3,9 +3,7 @@ package com.hot6.project.controller;
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -65,12 +63,12 @@ public class BoardController {
 			Bservice.boardInsert(vo);
 			int board_num = Bservice.boardNum(vo.getUser_id()); //유저의 최신글 번호 가져오기
 			vo.setBoard_num(board_num);
-			//qna 게시판
+		//qna 게시판
 			if(vo.getBoard_type_num()==2) { 
 				path = request.getSession().getServletContext().getRealPath("/upload/qna");
 				msg += "location.href='/qna/qnaList';</script>";
 				if(vo.getLang_list()!=null) {
-					Bservice.boardLangInsert(vo); //언어
+					Qservice.qnaLangInsert(vo); //언어
 				}
 				
 				List<String> taglist = vo.getTag_list();
@@ -86,7 +84,7 @@ public class BoardController {
 							taglist.set(i, tag);
 						}
 					}
-					Bservice.boardTagInsert(vo); //태그
+					Qservice.qnaTagInsert(vo); //태그
 				}
 			//공지사항 게시판	
 			}else if(vo.getBoard_type_num()==3) { 
@@ -105,7 +103,7 @@ public class BoardController {
 			List<MultipartFile> files = mr.getFiles("filename");
 			System.out.println("업로드 파일 수 -> "+files.size());
 			
-			if(files.size()!=1) {	//if 111
+			if(files.size()!=0) {	//if 111
 				int cnt = 1;	// 4번에서 업로드 순서에 따라 filename1, filename2 파일명을 대입하기 위한 변수
 				//첨부파일수 만큼 반복하여 업로드한다.
 				for(int i=0; i<files.size(); i++) {	// for 222
@@ -202,9 +200,6 @@ public class BoardController {
 			}else if(type_num==2) {
 				msg += "location.href='/qna/qnaList';</script>";
 				path = session.getServletContext().getRealPath("/upload/qna");				
-			}else if(type_num==3) {			
-				msg += "location.href='/notice/noticeList';</script>";
-				path = session.getServletContext().getRealPath("/upload/notice");
 			}
 			
 			// 3. 파일 삭제
@@ -232,6 +227,60 @@ public class BoardController {
 		return entity;
 		
 	}
+		//글 수정============================================================================================================
+		@PostMapping("/board/boardEditOk")
+		public ResponseEntity<String> boardEditOk(BoardVO vo, HttpSession session, HttpServletRequest request) {
+			vo.setUser_id((String) session.getAttribute("logId"));
+			int board_num = vo.getBoard_num();
+			
+			String msg="";
+			///스터디 게시판			
+			if(vo.getBoard_type_num()==1) {	
+				int study_num = Bservice.getStudy_num(board_num);	//study_num 가져와야함!
+				//(url고치기)
+				msg += "location.href='/study/study_home/mystudy/studyList?study_num="+study_num+"';</script>";			
+			//qna 게시판
+			}else if(vo.getBoard_type_num()==2){
+				msg += "location.href='/qna/qnaView?board_num="+board_num+"';</script>";
+			//공지사항 게시판
+			}else if(vo.getBoard_type_num()==3){
+				msg += "location.href='/notice/noticeList';</script>";
+			}
+			ResponseEntity<String> entity = null;
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("Content-Type", "text/html; charset=UTF-8");
+
+			// DB update
+			//qna게시판
+			if(vo.getBoard_type_num()==2) {
+				//언어
+				if(vo.getLang_list()!=null) {
+					Qservice.qnaLangDelete(vo);
+					Qservice.qnaLangInsert(vo); 
+				}
+				//태그 공백제거					
+				List<String> taglist = vo.getTag_list();
+				if(taglist.size()!=0) {
+					for(int i=0; i<taglist.size(); i++) {
+						String tag = taglist.get(i).trim(); //공백제거한 태그
+						System.out.println(tag);
+						if(tag.equals("")) {
+							taglist.remove(i);	//비어있는 태그 지우기
+							i--;
+						}else {
+							taglist.set(i, tag);
+						}
+					}
+					Qservice.qnaTagDelete(vo);
+					Qservice.qnaTagInsert(vo); //태그
+				}
+			}
+			//공통 기능
+			Bservice.BoardUpdate(vo);
+
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+			return entity;
+		}
 	//파일지우기==============================================================================================
 	public void fileDelete(String p, String f) {
 		if(f != null) {	//파일명이 있을때만

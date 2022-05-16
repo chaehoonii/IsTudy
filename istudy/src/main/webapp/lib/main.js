@@ -7066,15 +7066,15 @@ var FullCalendar = (function (exports) {
             return { year: 'numeric' };
         }
         if (currentRangeUnit === 'month') {
-            return { year: 'numeric', month: 'long' }; // like "September 2014"
+            return { year: 'numeric', month: '2-digit' }; // like "September 2014"
         }
         var days = diffWholeDays(dateProfile.currentRange.start, dateProfile.currentRange.end);
         if (days !== null && days > 1) {
             // multi-day range. shorter, like "Sep 9 - 10 2014"
-            return { year: 'numeric', month: 'short', day: 'numeric' };
+            return { year: 'numeric', month: '2-digit', day: '2-digit' };
         }
         // one day. longer, like "September 9 2014"
-        return { year: 'numeric', month: 'long', day: 'numeric' };
+        return { year: 'numeric', month: '2-digit', day: '2-digit' };
     }
 
     // in future refactor, do the redux-style function(state=initial) for initial-state
@@ -12219,7 +12219,7 @@ var FullCalendar = (function (exports) {
         hour: 'numeric',
         minute: '2-digit',
         omitZeroMinute: true,
-        meridiem: 'narrow',
+        meridiem: 'short',
     });
     function hasListItemDisplay(seg) {
         var display = seg.eventRange.ui.display;
@@ -13034,7 +13034,7 @@ var FullCalendar = (function (exports) {
         hour: 'numeric',
         minute: '2-digit',
         omitZeroMinute: true,
-        meridiem: 'short',
+        meridiem: 'lowercase',
     });
     function TimeColsAxisCell(props) {
         var classNames = [

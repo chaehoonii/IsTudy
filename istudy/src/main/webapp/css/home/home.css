@@ -1,4 +1,16 @@
 @charset "UTF-8";
+[data-scroll] {
+	opacity:0;
+	will-change:transform, scale, opacity;
+	transition: all 2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+[data-scroll='in']{
+	opacity:1;
+}
+[data-scroll='out']{
+	opacity:0;
+}
+
 /*================================이미지, 글씨======================================*/
 .mainImageWrap{
 	height:100vh;
@@ -113,6 +125,11 @@
 }
 .card-text, .card-title{
 	margin:15px 0px;
+}
+.card-title{
+	width:80%;
+	display:inline;
+	margin:10px;
 }
 .profile{
 	background-color:rgba(85, 76, 66, 70%);

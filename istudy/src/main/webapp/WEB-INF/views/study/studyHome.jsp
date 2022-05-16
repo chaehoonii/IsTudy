@@ -16,7 +16,6 @@
 		padding-top: 1px;
 		margin-top: 15px;
 	}
-	
 	#contents{
 		width: 77%;
 		float:right;
