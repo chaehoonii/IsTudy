@@ -134,4 +134,23 @@ public class QnaController {
 			mav.setViewName("/qna/qnaWrite");
 			return mav;
 		}
+		//글 수정 폼
+		@RequestMapping(value = "/qna/qnaEdit", method = RequestMethod.GET)
+		public ModelAndView qnaEdit(int board_num) {
+			ModelAndView mav = new ModelAndView();
+			BoardVO vo = Qservice.QnaView(board_num);
+			vo.setLang_num_list(Qservice.QnaLangNum(board_num));
+        	vo.setTag_list(Qservice.QnaTag(board_num));
+        	mav.addObject("tagcnt", vo.getTag_list().size());
+        	mav.addObject("vo", vo);
+			
+			return mav;
+		}
+		//toast ui editor sample
+		@RequestMapping(value = "/qna/sample", method = RequestMethod.GET)
+		public ModelAndView sample() {
+			ModelAndView mav = new ModelAndView();
+			mav.setViewName("/qna/sample");
+		return mav;
+		}
 }
