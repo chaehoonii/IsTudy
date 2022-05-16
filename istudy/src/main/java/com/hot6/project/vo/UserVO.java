@@ -1,5 +1,7 @@
 package com.hot6.project.vo;
 
+import java.util.List;
+
 public class UserVO {
 	private String user_id;
 	private String user_pw;
@@ -28,7 +30,14 @@ public class UserVO {
 	private String leave_detail;
 	private int leave_type_num;
 	
+	private List<String> userList;
 
+	public List<String> getUserList() {
+		return userList;
+	}
+	public void setUserList(List<String> userList) {
+		this.userList = userList;
+	}
 	public String getCareer_year() {
 		return career_year;
 	}

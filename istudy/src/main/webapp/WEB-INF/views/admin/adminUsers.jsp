@@ -124,7 +124,7 @@
         }
         .contents{
         	width: 100%;
-        	height: 750px;
+        	height: 660px;
         	overflow: hidden;
         	margin-bottom: 30px;
         	border-bottom: 1px solid #ddd;    	
@@ -135,21 +135,22 @@
         .contents ul{
         	width: 100%;
         	height: 100%;
+        	
         }
         .contents ul li:first-child{
         	color: grey;
         	font-size: 17px;
         }
         .eachContent{
-        	height: 50px;
+        	height: 60px;
         	width: 100%;
-        	line-height: 50px;
+        	line-height: 60px;
         	font-size: 16px;
         }
         .eachContentTitle{
-        	height: 50px;
+        	height: 60px;
         	width: 100%;
-        	line-height: 50px;
+        	line-height: 60px;
         	font-size: 16px;
         }
         .userInfo{
@@ -202,29 +203,12 @@
 	        white-space:nowrap;
 	        margin-right: 20px;
         }
-        .paging{
-            width: 100%;
-            height: 30px;
-            margin: 0 auto;
-            font-size: 16px;
-            
-        }
-        .paging ul{
-            width: 250px;
-            height: 100%;
-            margin: 30px auto;
-        }
-        .paging ul li{
-            float: left;
-            width: 20%;
-            text-align: center;
-        }
-        
         .buttons{
         	width: 50%;
         	height: 50px;
         	float: left;
 			/* margin-top: 10px; */
+			margin-bottom: 20px;
         }
         .buttons input[type=button]{
         	width: 70px;
@@ -242,29 +226,26 @@
         	height: 50px;
         	float: right;
         }
-        .searchText{
+        #searchText{
         	float: right;
         	height: 35px;
         	width: 250px;
         	margin-right: 50px;
         	border-radius: 3px;
         }
-        .searchText::-webkit-input-placeholder{
-	        background-image: url('/images/admin_img/search.png');
-        	background-position: 10px;
-        	background-repeat: no-repeat;
+        #searchText::-webkit-input-placeholder{
+	        background-image: url(/images/admin_img/search.png);
         	background-size: contain;
-        	opacity: 0.5;
+	        background-position: 2px;
+	        background-repeat: no-repeat;
+	        text-indent: 2em;
+	        font-size: 14px;
     	}
         
-        /* .buttons input[type=button]:first-child{
-        	margin-right:15px;
-        } */
-        /* .buttons input[type=button]:nth-child(2){
-        	background-color: #f9f9f8;
+       .button-click{
+       		background-color: #f9f9f8;
         	box-shadow: 2px 2px 3px #c2c2bd;
-        	
-        } */
+       }
         .choose{
         	width: 100%;
         	height: 40px;
@@ -279,12 +260,30 @@
         	float: right;
         	margin: 15px;
         }
+        
+        /* =====================페이징============================== */
+		.pagingContainer{
+		    margin:0 auto;
+		     /* width: 100%;
+            height: 30px; */
+		}
+		.page-link{
+		    border:none !important;
+		    font-size:1.5em;
+		    color:black !important;
+		}
+		.page-link:hover{
+		    background-color:rgba(85, 76, 66, 70%) !important;
+		    color:white !important;
+		    border-radius:5px !important;
+		}
+		        
     </style>
     <script>
     
    $(function(){
 	   
-	   $(".searchText").keyup(function(){
+	   $("#searchText").keyup(function(){
 		   
 		   var val = $(this).val();
 		   
@@ -298,25 +297,64 @@
 		   
 	   })
 	   
+	   $("#approve").click(function(){
+			  
+		   var cntApp = 0
+		   
+		   $(".check").each(function(i, chk){
+			   
+			   if(chk.checked){
+				   cntApp++;
+			   }			   
+		   });		   
+		   if(cntApp<=0){
+			   alert("승인할 회원을 선택 후 승인 버튼을 누르세요.");
+			   return false;
+		   }		   
+		   if(confirm("해당 회원을 멘토로 승인하시겠습니까?")){
+			   
+			  $(".contents").attr("action","/admin/approveUser");
+			  
+			  $(".contents").submit();			   
+		   }		   			   
+	   });
 	   
+	   $("#sendBack").click(function(){
+		   
+		   var cntSend = 0
+		   
+		   $(".check").each(function(i, chk){			   
+			   if(chk.checked){
+				   cntSend++;
+			   }			   
+		   });
+		   
+		   if(cntSend<=0){
+			   alert("반려할 회원을 선택 후 반려 버튼을 누르세요.");
+			   return false;
+		   }		   
+		   if(confirm("해당 일반 회원의 멘토 신청을 반려하시겠습니까?")){
+			   
+				  $(".contents").attr("action","/admin/sendBackUser");
+				  
+				  $(".contents").submit();				   
+			}  
+	   })
+	   
+	   $(".types").click(function(){
+		   
+		   var button = document.querySelectorAll(".types");
+		   
+		   for(var i=0; i<button.length; i++){
+			   button[i].classList.remove("button-click");
+		   }
+		   
+		   this.classList.add('button-click');
+		   
+	   });
+
    }); 
-   
-   function approve(){
-	   
-	   if(confirm('멘토 신청을 승인하겠습니까?')){
-		   location.href="";
-	   }
-	   return false;
-   }
-   
-   function sendBack(){
-	   if(confirm('멘토 신청을 반려하겠습니까?')){
-		   location.href="";
-	   }
-	   return false;
-	   
-	   
-   }
+
     </script>
     
     <div class="adminUserPage">
@@ -334,7 +372,7 @@
                     <div class="category">
                         <ul>
 	                    	<li><a href="#">신고관리</a></li>
-                    	  	<li><a href="#">회원관리</a></li>
+                    	  	<li><a href="/admin/adminUsers">회원관리</a></li>
                           	<li><a href="#">공지사항 관리</a></li>
                           	<li><a href="#">데이터 랩</a></li>
 	                    </ul>  
@@ -351,15 +389,15 @@
             	</div>
             	
             	<div class="buttons">
-	            	<input type="button" onclick="location.href='#'" value="일반"/>
-	            	<input type="button" onclick="location.href='#'" value="멘토"/>
-	            	<input type="button" onclick="location.href='#'" value="멘토 신청"/>
+	            	<input type="button" class="types <c:if test="${param.permission=='user' && param.want!='T'}">button-click</c:if>" onclick="location.href='/admin/adminUsers?permission=user'" value="일반"/>
+	            	<input type="button" class="types <c:if test="${param.permission=='mentor'}">button-click</c:if>" onclick="location.href='/admin/adminUsers?permission=mentor'" value="멘토"/>
+	            	<input type="button" class="types <c:if test="${param.permission=='user' && param.want=='T'}">button-click</c:if>" onclick="location.href='/admin/adminUsers?permission=user&want=T'" value="멘토 신청"/>
 	            </div>
 	            <div class="search">
-	            	<input type="text" class="searchText"/>
+	            	<input type="text" id="searchText" placeholder="검색"/>
 	            </div>
             	
-            	<div class="contents"><hr/>
+            	<form class="contents" method="post"><hr/>
             		<ul>
             		<li class="eachContentTitle">
             				<div class="userInfo">	     
@@ -399,16 +437,23 @@
 	            			</div><hr/>
             		</li>
             			<c:forEach var="vo" items="${users}">
-		            		<li class="eachContent">
+		            		<li class="eachContent" <c:if test="${vo.permission eq 'user' && vo.want eq 'T'}">style="color:blue;"</c:if>>
 		            				<div class="userInfo">	  
 		            					<div class="checkbox">
-            								<input type="checkbox" name="${vo.user_id}"/>
+			            					<c:choose>
+					            					<c:when test="${vo.permission eq 'user' && vo.want eq 'T'}">
+					            						<input type="checkbox" name="userList" value="${vo.user_id}" class="check"/>
+					            					</c:when>
+					            					<c:otherwise>
+					            						<input type="checkbox" disabled /> 
+					            					</c:otherwise>
+				            				</c:choose>
             							</div>    
 		            					<div class="nicknames">
-			            					<span>${vo.user_nick}</span>
+			            					<a href="/users/mypage/study?user_id=${vo.user_id}&admin=True" target="_blank" onclick="window.open(this.href,'_blank', 'width=1400, height=800, scrollbar=yes')">${vo.user_nick}</a>
 			            				</div>
 			            				<div class="id">
-			            					<span>${vo.user_id}</span>
+			            					<a href="#">${vo.user_id}</a>
 			            				</div>
 			            				<div class="name">
 			            					<span>${vo.user_name}</span>
@@ -459,20 +504,45 @@
             			</c:forEach>
             		</ul>
             		
-            	</div>
-            	<div class="paging">
-		                <ul>
-		                    <li><a href="#">1</a></li>
-		                    <li><a href="#">2</a></li>
-		                    <li><a href="#">3</a></li>
-		                    <li><a href="#">4</a></li>
-		                    <li><a href="#">5</a></li>
-		                </ul>
-		        </div>
+            	</form>
+		        <div class="pagingContainer">
+			        <ul class="pagination justify-content-center" id="paging">
+			            <c:if test="${pvo.pageNum==1}">
+			                <li class="page-item disabled"><a class="page-link"
+			                    id="prevBtn"><i class="fa fa-angle-left"></i></a></li>
+			            </c:if>
+			            <c:if test="${pvo.pageNum>1}">
+			                <li class="page-item"><a class="page-link"
+			                    href="/admin/adminUsers?pageNum=${pvo.pageNum-1}" id="prevBtn"><i
+			                        class="fa fa-angle-left"></i></a></li>
+			            </c:if>
+			            <c:forEach var="p" begin="${pvo.startPage}" end="${pvo.totalPage}">
+			                <c:if test="${p<=pvo.totalPage}">
+			                    <c:choose>
+			                        <c:when test="${p==pvo.pageNum}">
+			                            <li class="page-item disabled"><a class="page-link">${p}</a></li>
+			                        </c:when>
+			                        <c:when test="${p!=pvo.pageNum}">
+			                            <li class="page-item"><a class="page-link"
+			                                href="/admin/adminUsers?pageNum=${p}">${p}</a></li>
+			                        </c:when>
+			                    </c:choose>
+			                </c:if>
+			            </c:forEach>
+			            <c:if test="${pvo.pageNum==pvo.totalPage}">
+			                <li class="page-item disabled"><a class="page-link"
+			                    id="nextBtn"><i class="fa fa-angle-right"></i></a></li>
+			            </c:if>
+			            <c:if test="${pvo.pageNum<pvo.totalPage}">
+			                <li class="page-item"><a class="page-link"
+			                    href="/admin/adminUsers?pageNum=${pvo.pageNum+1}" id="nextBtn"><i class="fa fa-angle-right"></i></a></li>
+			            </c:if>
+			        </ul>
+			    </div>
 		        <div class="choose">
-		        	<input type="button" onclick="approve()" value="승인"/>
-	            	<input type="button" onclick="sendBack()" value="반려"/>
+		        	<input type="button" id="approve" value="승인"/>
+	            	<input type="button" id="sendBack" value="반려"/>
 		        </div>
-            </div>           
+            </div>  
         </div>
    </div>
