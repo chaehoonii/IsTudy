@@ -76,10 +76,12 @@
 	display:inline-block;
 	background-color:#eee;
 	border-radius:10px;
-	height:80px;
+	height:70px;
 	padding:15px;
 	padding-left:20px;
 	padding-right:30px;
+	font-size:12px;
+	
 }
 #qna_profile {
 	width: 50px;
