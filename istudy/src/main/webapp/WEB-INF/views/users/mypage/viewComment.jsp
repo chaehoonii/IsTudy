@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
 	@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
-        ul, li, body{
+		ul, li, body{
             padding: 0;
             margin: 0;
             list-style-type: none;
@@ -116,7 +115,10 @@
         	border: 1px solid #ddd;
         	margin-right:15px;
         	line-height: 35px;
-        	
+        }
+        #comment_click{
+        	background-color: #f9f9f8;
+        	box-shadow: 2px 2px 3px #c2c2bd;
         }
         .search{
         	width: 50%;
@@ -144,6 +146,7 @@
         	margin: 0 auto;
         	margin-top: 30px;
         }
+        
         .title{
         	font-size: 20px;
         	height: 60px;
@@ -157,8 +160,6 @@
         .contents{
         	width: 100%;
         	height: 660px;
-        	/*overflow: scroll;*/
-        	/* overflow: hidden; */
         	margin-bottom: 30px;
         	border-bottom: 1px solid #ddd;    	
         }
@@ -179,84 +180,105 @@
         	line-height: 60px;
         	font-size: 17px;
         	color: grey;        	
-        }       
+        }   
         .eachContent{
         	height: 60px;
+        	width: 100%;
         	line-height: 60px;
         	font-size: 16px;
         }
-        .studyInfo{
+        .articleInfo{
         	display: flex;
         }
-        .studyImg{
-        	width: 80px;
-        	position: relative;
-        }
-        .photo{
-        	width: 40px;
-        	height: 40px;
-        	border-radius: 50%;
-        	border: 1px solid gray;
-        	position: absolute;
-        	top: 5px;
-        	left: 50%;
-        	transform: translate(-50%,0%); 
-        	overflow: hidden;
-        }
-        .photo img{
-        	object-fit: cover;
-        	width: 100%;
-        	height: 100%;
-        	background-position: center;
-        	position: absolute;
-        	top: 0px;
-        }
-        .studyName{
+        .articleTitle{
         	flex:2;
+        	margin-left:20px;
+        	overflow:hidden;
+	        text-overflow:ellipsis;
+	        white-space:nowrap;
+	        margin-right: 20px;
         }
-        .studyStart{
-        	flex:1.2;
+        .commentTitle{
+        	flex:1.3;
+        	margin-left:20px;
+        	overflow:hidden;
+	        text-overflow:ellipsis;
+	        white-space:nowrap;
+	        margin-right: 20px;
+        
         }
-        .studyEnd{
-        	flex:1.2;
+        .comment{
+        	flex:1.5;
+        	overflow:hidden;
+	        text-overflow:ellipsis;
+	        white-space:nowrap;
+	        margin-right: 50px;
+	        padding: 0 10px;
+	        
         }
-        .studyCategory{
-        	flex:1.2;
+        .articleCategory{
+        	flex: 1;
         }
-        .studyLeader{
-        	flex : 0.5;	
+        .commentCategory{
+        	margin-left:35px;
+        	flex: 0.7;
+        	padding: 0 20px;
+        }
+        .writeDate{
+        	flex : 1;	
+        }
+        .articleDelete{
+        	flex: 0.5;
+        }
+        .articleDelete a{
+        	color: #7f7f75;
+        }
+        .articleDelete a:hover{
+        	color: #080807;
+        }
+        .commentDate{
+        	flex:0.7;
+        }
+        .commentDelete{
+        	flex:0.5;
+        }
+        .commentDelete a{
+        	color: #7f7f75;
+        }
+        .commmentDelete a:hover{
+        	color: #080807;
         }
         .numColor{
         	color:#392f31;
         	font-size: 22px;
         }
-        .button-click{
-       		background-color: #f9f9f8;
-        	box-shadow: 2px 2px 3px #c2c2bd;
-       }
+        
     </style>
-     <script>
+    <script>   
+    	 function ReplyDel(reply_num){
+    		 if(confirm("댓글을 삭제하시겠습니까?")){
+    			 location.href = '/board/replyDel?reply_num='+reply_num;
+    		 }
+    		 return false;
+    	 } 
+    	 
+    	 $(function(){
+  		   
+  		   $("#searchText").keyup(function(){
+  			   
+  			   var val = $(this).val();
+  			   
+  			   if(val==""){
+  				   $(".eachContent").show();
+  				   
+  			   }else{			   
+  				   $(".eachContent").hide();
+  				   $(".eachContent:contains('"+val+"')").show();			   
+  			   } 			   
+  		   })		   
+  	   }); 
+    </script>
     
-   $(function(){
-	   
-	   $("#searchText").keyup(function(){
-		   
-		   var val = $(this).val();
-		   
-		   if(val==""){
-			   $(".eachContent").show();
-			   
-		   }else{			   
-			   $(".eachContent").hide();
-			   $(".eachContent:contains('"+val+"')").show();			   
-		   }
-		   
-	   })
-	   
-   }); 
-
-   </script>
-
     <div id="mypage">
         <div class="profilePage">
             <div class="userProfile">
@@ -270,7 +292,7 @@
                 </div>
                 <div class="userDesc">
                     <div class="category">
-	                    <ul>
+                        <ul>
 	                    	<li><a href="${url}/users/mypage/viewWrite<c:if test="${logPermission=='admin'}">?user_id=${id}&admin=True</c:if>">글관리</a></li>
                     	  	<li><a href="${url}/users/mypage/study<c:if test="${logPermission=='admin'}">?user_id=${id}&admin=True</c:if>">스터디관리</a></li>
                           	<li><a href="${url}/users/userEdit">회원 수정</a></li>
@@ -278,88 +300,77 @@
                     </div>
                 </div>
             </div>
-        </div>       
+        </div>
         <div class="contentPage">
         	<div class="buttons">
-            	<input type="button" class="<c:if test="${param.type!='end' && param.type!='like'}">button-click</c:if>" onclick="location.href='${url}/users/mypage/study<c:if test="${logPermission=='admin'}">?user_id=${id}&admin=True</c:if>'" value="진행 스터디"/>          	
-            	<input type="button" class="<c:if test="${param.type=='end'}">button-click</c:if>" onclick="location.href='${url}/users/mypage/study?type=end<c:if test="${logPermission=='admin'}">&user_id=${id}&admin=True</c:if>'" value="완료 스터디"/>
-            	<input type="button" class="<c:if test="${param.type=='like'}">button-click</c:if>" onclick="location.href='${url}/users/mypage/study?type=like<c:if test="${logPermission=='admin'}">&user_id=${id}&admin=True</c:if>'" value="찜한 스터디"/>
+            	<input type="button"  onclick="location.href='${url}/users/mypage/viewWrite<c:if test="${logPermission=='admin'}">?user_id=${id}&admin=True</c:if>'" value="작성한 글"/>          	
+            	<input type="button" id="comment_click" onclick="location.href='${url}/users/mypage/viewComment<c:if test="${logPermission=='admin'}">&user_id=${id}&admin=True</c:if>'" value="댓글단 글"/>
             </div>
             
-            <div class="contentBox"> 
-            	<div class="title">
-            		<c:choose>
-					  	<c:when test="${param.type!='end' && param.type!='like'}">
-					         진행 스터디
-					    </c:when>
-					    <c:when test="${param.type=='end'}">
-					         완료 스터디
-					    </c:when>
-					    <c:otherwise>
-					         찜한 스터디
-					    </c:otherwise>
-				  </c:choose>&nbsp; 
-            	
-            	<span class="numColor">${cnt_study}</span>         	
-            	</div>
+          
+            <div class="contentBox">
+            	<div class="title">댓글단 글 &nbsp; <span class="numColor">${cntComment}</span></div>
             	<div class="search">
 	            	<input type="text" id="searchText" placeholder="검색"/>
-	        	</div>
-	        	<div style="clear:both"></div>
-            	<div class="contents"><hr/>
-            		
+	        	</div>   
+	        	<div style="clear:both"></div> 
+            	
+            	<div class="contents"><hr/>           		
             		<div class="eachContentTitle">
-            				<div class="studyInfo">
-	            				<div class="studyImg">
-	            					
+            				<div class="articleInfo">
+	            				<div class="commentTitle">
+	            					<a>제목</a>
 	            				</div>
-	            				<div class="studyName">
-	            					<a>스터디명</a>
+	            				<div class="comment">
+	            					<span>댓글</span>
 	            				</div>
-	            				<div class="studyStart">
-	            					<span>시작일</span>
-	            				</div>
-	            				<div class="studyEnd">
-	            					<span>종료일</span>
-	            				</div>
-	            				<div class="studyCategory">
+	            				<div class="commentCategory">
 	            					<span>분류</span>
 	            				</div>
-	            				<div class="studyLeader">
-	            					<span>스터디장</span>
+	            				<div class="commentDate">
+	            					<span>작성일</span>
+	            				</div>
+	            				<div class="commentDelete">
+	            					<span>댓글 삭제</span>
 	            				</div>
 	            			</div><hr/>
             		</div>
             		<ul>
-            		<c:forEach var="vo" items="${study}">
-	            		<li class="eachContent">
-	            				<div class="studyInfo">
-		            				<div class="studyImg">
-		            					<div class="photo">
-		            						<img src="${url}/images/mypage_img/exstudy1.jpg"/>
-		            					</div>
+            		<c:forEach var="vo" items="${comment}">
+            			<li class="eachContent">
+	            				<div class="articleInfo">
+		            				
+		            				<div class="commentTitle">
+		            					<c:if test="${vo.board_type_num==2}">
+			            					<a href='${url}/qna/qnaView?board_num=${vo.board_num}'>${vo.title}</a>
+			            				</c:if>
+			            				<c:if test="${vo.board_type_num==1}">
+			            					<a href='#'>${vo.title}</a>
+			            				</c:if>
 		            				</div>
-		            				<div class="studyName">
-		            					<a href='${url}/study_home/study_room/${vo.study_num}'>${vo.study_name}</a>
+		            				<div class="comment">
+		            					<c:if test="${vo.board_type_num==2}">
+			            					<a href='${url}/qna/qnaView?board_num=${vo.board_num}'>${vo.reply_coment}</a>
+			            				</c:if>
+			            				<c:if test="${vo.board_type_num==1}">
+			            					<a href='#'>${vo.title}</a>
+			            				</c:if>
 		            				</div>
-		            				<div class="studyStart">
-		            					<span>${vo.start_date}</span>
+		            				<div class="commentCategory" >
+		            					<span>${vo.board_type_name}</span>
 		            				</div>
-		            				<div class="studyEnd">
-		            					<span>${vo.finish_date}</span>
+		            				<div class="commentDate">
+		            					<span>${vo.reply_date}</span>
 		            				</div>
-		            				<div class="studyCategory">
-		            					<span>${vo.study_type_name}</span>
-		            				</div>
-		            				<div class="studyLeader">
-		            					<span>${vo.host_id}</span>
-		            				</div>
+		            				<div class="commentDelete">
+	            						<a href="javascript:ReplyDel(${vo.reply_num})">삭제하기</a>
+	            					</div>
 		            			</div><hr/>
-	            		</li>
-            		</c:forEach>
+	            			</li>
+	            		</c:forEach>
             		</ul>
-            		
-            	</div>         	   
-            </div>         
+            	</div>
+            </div>
+            
         </div>
-    </div>
+        </div>
