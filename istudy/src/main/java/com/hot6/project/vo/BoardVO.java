@@ -32,10 +32,7 @@ public class BoardVO {
 
 	private List<String> lang_list;
 	private List<String> tag_list;
-	private List<Map<Integer,String>> lang_list_map;
-    private Map<Integer,Object> lang_map;
-    private List<Map<Integer,String>> tag_list_map;
-    private Map<Integer,Object> tag_map;
+	private List<Integer> lang_num_list;
     
 	//user
 	private String user_nick;
@@ -52,39 +49,13 @@ public class BoardVO {
 	
 	
     
-    
-	
-	
-	public List<Map<Integer, String>> getLang_list_map() {
-		return lang_list_map;
+
+	public List<Integer> getLang_num_list() {
+		return lang_num_list;
 	}
 
-	public void setLang_list_map(List<Map<Integer, String>> lang_list_map) {
-		this.lang_list_map = lang_list_map;
-	}
-
-	public Map<Integer, Object> getLang_map() {
-		return lang_map;
-	}
-
-	public void setLang_map(Map<Integer, Object> lang_map) {
-		this.lang_map = lang_map;
-	}
-
-	public List<Map<Integer, String>> getTag_list_map() {
-		return tag_list_map;
-	}
-
-	public void setTag_list_map(List<Map<Integer, String>> tag_list_map) {
-		this.tag_list_map = tag_list_map;
-	}
-
-	public Map<Integer, Object> getTag_map() {
-		return tag_map;
-	}
-
-	public void setTag_map(Map<Integer, Object> tag_map) {
-		this.tag_map = tag_map;
+	public void setLang_num_list(List<Integer> lang_num_list) {
+		this.lang_num_list = lang_num_list;
 	}
 
 	public int getSolved() {

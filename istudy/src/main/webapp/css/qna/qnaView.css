@@ -41,6 +41,12 @@
 	padding:80px;
 	padding-bottom:10px;
 }
+#content_box img{
+	max-width:100%;
+	min-width:40%;
+	max-height:80%;
+	min-height:40%;	
+}
 #qna_title li, #qna_content li{
   	font-size:14px;
 }
