@@ -126,6 +126,11 @@
 .card-text, .card-title{
 	margin:15px 0px;
 }
+.card-title{
+	width:80%;
+	display:inline;
+	margin:10px;
+}
 .profile{
 	background-color:rgba(85, 76, 66, 70%);
 	color:white !important;

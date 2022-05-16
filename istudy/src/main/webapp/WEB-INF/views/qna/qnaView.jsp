@@ -38,14 +38,19 @@
 							}
 						}
 						tag += "<li>"+data[i].reply_coment+"</li>";
-						tag += "<li><span id='qna_profile_span'><img src='/upload/user/"+data[i].profile_img+"' id='qna_profile' />&nbsp;&nbsp;&nbsp;"+data[i].user_nick+"</span></li>";
+						tag += "<li><span id='qna_profile_span'>";
+						tag += "<img src='/upload/user/"+data[i].profile_img+"' id='qna_profile' />";
+						tag += data[i].user_nick;
+						if('${logPermission}'=='mentor'){
+							tag += "<img src='"+data[i].level_icon+"' style='width:20px; margin-right:10px;'/>"
+						}
+						tag += "</span></li>";
 						tag += "<li>"+data[i].reply_date+"</li>";
 						if('${logId}'== data[i].user_id){
 							tag += "<li><input type='hidden' value='"+data[i].reply_num+"'/><span class='reply_edit edit_btns'>수정</span>&nbsp;&nbsp;<span class='reply_del del_btns' onclick='ReplyDel("+data[i].reply_num+")'>삭제</span></li>";
 						}
 						tag += "</ul></div>";	
 					}
-					console.log('${logStatus}');
 					$("#reply_div").html(tag);
 					
 					//댓글 등록=========================================================================================
