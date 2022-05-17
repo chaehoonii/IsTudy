@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.hot6.project.dao.AdminUserDAO;
+import com.hot6.project.vo.PagingVO;
 import com.hot6.project.vo.UserVO;
 
 @Service
@@ -16,65 +17,28 @@ public class AdminUserServiceImpl implements AdminUserService {
 	AdminUserDAO dao;
 
 	@Override
-	public List<UserVO> getUserInfo() {
-		return dao.getUserInfo();
+	public List<UserVO> getUserInfo(String permission, String want, PagingVO pvo) {
+		return dao.getUserInfo(permission, want, pvo);
 	}
-
-	@Override
-	public int getAllCnt() {
-		return dao.getAllCnt();
-	}
-
-	@Override
-	public int getUserCnt() {
-		return dao.getUserCnt();
-	}
-
-	@Override
-	public int getMentorCnt() {
-		return dao.getMentorCnt();
-	}
-
-	@Override
-	public int getAdminCnt() {
-		return dao.getAdminCnt();
-	}
-
-//	@Override
-//	public int getReport_type_num() {
-//		return dao.getReport_type_num();
-//	}
-//
-//	@Override
-//	public String getUser_id() {
-//		return dao.getUser_id();
-//	}
-//
-//	@Override
-//	public String getReport_content() {
-//		return dao.getReport_content();
-//	}
-//
-//	@Override
-//	public String getReport_time() {
-//		return dao.getReport_time();
-//	}
-//
-//	@Override
-//	public String getReport_writing() {
-//		return dao.getReport_writing();
-//	}
-//
-//	@Override
-//	public String getWriter() {
-//		return dao.getWriter();
-//	}
-//
-//	@Override
-//	public String getProcess_status() {
-//		return dao.getProcess_status();
-//	}
 	
+	@Override
+	public int getAllCnt(String permission, String want, PagingVO pvo) {
+		return dao.getAllCnt(permission, want, pvo);
+	}
+
+	@Override
+	public int getPermissionCnt(String permission, String want) {
+		return dao.getPermissionCnt(permission, want);
+	}
 	
+	@Override
+	public int approveUserStatus(UserVO vo) {
+		return dao.approveUserStatus(vo);
+	}
+
+	@Override
+	public int sendBackStatus(UserVO vo) {
+		return dao.sendBackStatus(vo);
+	}
 
 }
