@@ -1,5 +1,7 @@
 package com.hot6.project.vo;
 
+import java.util.List;
+
 public class UserVO {
 	private String user_id;
 	private String user_pw;
@@ -27,6 +29,7 @@ public class UserVO {
 	private String leave_type_name;
 	private String leave_detail;
 	private int leave_type_num;
+	private List<String> userList;
 
 	public String getEmail() {
 		return email;
@@ -168,6 +171,11 @@ public class UserVO {
 	public void setLeave_type_num(int leave_type_num) {
 		this.leave_type_num = leave_type_num;
 	}
-	
-	
+	public List<String> getUserList() {
+		return userList;
+	}
+	public void setUserList(List<String> userList) {
+		this.userList = userList;
+	}
+
 }
