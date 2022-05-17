@@ -23,7 +23,7 @@ ul, li * {
 
 #user_img_wrap {
 	border-radius: 50%;
-	border: 1.5px solid gray;
+	border: 0.5px solid gray;
 	width: 250px;
 	height: 250px;
 	margin: 0 auto;

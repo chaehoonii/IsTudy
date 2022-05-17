@@ -51,7 +51,6 @@
             left: 50%;
             transform: translate(-50%, 0%);
             background-color: white;
-            border: 1px solid #ddd;
         }
         .userNickname{
         	position: absolute;
@@ -205,12 +204,20 @@
         	/*font-weight: bold;*/
         	font-size: 22px;
         }
+        #mypage_profile_img {
+		width: 200px;
+		height: 200px;
+		/*height: 60%;*/
+		border-radius: 50%;
+}
+        
     </style>
 
     <div id="mypage">
         <div class="profilePage">
             <div class="userProfile">
                 <div class="userPhoto">
+                	<img src="/upload/user/${logImg}" id="mypage_profile_img" />
                 </div>
                 <div class="userNickname">
                 	${nickName} 
