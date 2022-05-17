@@ -41,6 +41,12 @@
 	padding:80px;
 	padding-bottom:10px;
 }
+#content_box img{
+	max-width:100%;
+	min-width:40%;
+	max-height:80%;
+	min-height:40%;	
+}
 #qna_title li, #qna_content li{
   	font-size:14px;
 }
@@ -70,10 +76,12 @@
 	display:inline-block;
 	background-color:#eee;
 	border-radius:10px;
-	height:80px;
+	height:70px;
 	padding:15px;
 	padding-left:20px;
 	padding-right:30px;
+	font-size:12px;
+	
 }
 #qna_profile {
 	width: 50px;

@@ -1,16 +1,8 @@
 @charset "UTF-8";
 
-@font-face {
-	font-family: 'paybooc-Bold';
-	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/paybooc-Bold.woff')
-		format('woff');
-	font-weight: normal;
-	font-style: normal;
-}
-
 body * {
-	font-family: 'paybooc-Bold';
+	font-family: "NanumSquare";
+	transform: skew(-0.03deg);
 }
 
 ul, li * {
@@ -31,7 +23,7 @@ ul, li * {
 
 #user_img_wrap {
 	border-radius: 50%;
-	border: 1.5px solid gray;
+	border: 0.5px solid gray;
 	width: 250px;
 	height: 250px;
 	margin: 0 auto;
@@ -52,7 +44,7 @@ ul, li * {
 fieldset {
 	padding: 40px; 
 	margin-bottom: 20px;
-	border: 1px solid gray;
+	border: 1px solid rgb(200,200,200);
 	margin-top: 80px;
 }
 

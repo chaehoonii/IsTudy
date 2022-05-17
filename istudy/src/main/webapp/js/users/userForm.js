@@ -7,6 +7,13 @@ function userCheck() {
 
 
 	let userid = document.getElementById("user_id");
+	var regid = /^[a-zA-Z0-9]{6,16}$/;
+
+	if (!regid.test(userid.value)) {
+		alert("아이디는 6~16자리 영문 또는 숫자입니다.");
+		userid.focus();
+		return false;
+	}
 	if (userid.value == '') {
 		alert("아이디를 입력하세요.");
 		userid.focus();
@@ -20,8 +27,17 @@ function userCheck() {
 	}
 
 	//비밀번호 입력 여부 + 확인란 체크
+	var regpwd = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
 	let userpwd = document.getElementById("user_pw");
-	let userpwd2 = document.getElementById("user_pw2");
+	let userpwd2 = document.getElementById("pwd2");
+
+
+
+	if (!regpwd.test(userpwd.value)) {
+		alert("비밀번호를 잘못 입력하셨습니다.\n비밀번호는 영문 숫자 조합 8자리 이상입니다.\n");
+		userpwd.focus();
+		return false;
+	}
 	if (userpwd.value == '' || userpwd2.value == '') {
 		alert("비밀번호와 비밀번호 확인란을 모두 입력해주세요.");
 		userpwd.focus();
@@ -61,11 +77,13 @@ function userCheck() {
 
 
 $(function() {
+	let userid = document.getElementById("user_id");
 	//아이디 중복검사
+	var regid = /^[a-zA-Z0-9]{6,16}$/;
 	$("#user_id").keyup(function() {
 		var id = $("#user_id").val();
 		//공백이 아니고 && 6글자 이상일 때만 가능
-		if (id != '' && id.length >= 6 && id.length <= 16) {		// + 정규표현식도 맞춰주기!
+		if (regid.test(userid.value)) {		// + 정규표현식도 맞춰주기!
 			var url = "/users/userIdCheck"
 			$.ajax({
 				url: url,
@@ -92,16 +110,22 @@ $(function() {
 
 	//유효성 검사
 	//비밀번호
+	let userpwd = document.getElementById("user_pw");
+	let userpwd2 = document.getElementById("user_pw2");
+	var regpwd = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
+
 	$("#user_pw").keyup(function() {
-		if ($("#user_pw").val().length < 8) {
-			$("#pwdChk").html("취약한 비밀번호입니다.").css('color', 'red').css("font-size", "14px");
-		} else {
-			$("#pwdChk").html("사용 가능한 비밀번호입니다.").css('color', 'blue').css("font-size", "14px");
+		if ($("#user_pw").val().length > 0) {
+			if (!regpwd.test(userpwd.value)) {
+				$("#pwdChk").html("취약한 비밀번호입니다.").css('color', 'red').css("font-size", "14px");
+			} else {
+				$("#pwdChk").html("사용 가능한 비밀번호입니다.").css('color', 'blue').css("font-size", "14px");
+			}
 		}
 	});
 
 	//비밀번호 확인
-	$("#user_pw2").keyup(function() {
+	$("#pwd2").keyup(function() {
 		if ($("#user_pw").val() != $("#pwd2").val()) {
 			$("#pwd2Chk").html("비밀번호가 일치하지 않습니다.").css('color', 'red').css("font-size", "14px");
 		} else {
