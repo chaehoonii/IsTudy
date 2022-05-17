@@ -73,7 +73,7 @@ public class AdminUserController {
 		
 		AUservice.approveUserStatus(vo);
 		
-		mav.setViewName("redirect:AdminUsers");
+		mav.setViewName("redirect:adminUsers");
 		
 		return mav;
 		
@@ -87,7 +87,7 @@ public class AdminUserController {
 		
 		AUservice.sendBackStatus(vo);
 		
-		mav.setViewName("redirect:AdminUsers");
+		mav.setViewName("redirect:adminUsers");
 		
 		return mav;
 	}
