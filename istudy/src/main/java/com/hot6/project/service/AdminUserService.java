@@ -21,5 +21,5 @@ public interface AdminUserService {
   	
     //멘토 신청 반려
   	public int sendBackStatus(UserVO vo);
-
+   
 }

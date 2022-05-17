@@ -27,4 +27,8 @@ public interface AdminUserDAO {
 	//멘토 신청 반려
 	public int sendBackStatus(UserVO vo);
 
+	//관리자 수
+	public int getAdminCnt();
+
+	
 }

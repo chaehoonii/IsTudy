@@ -177,4 +177,5 @@ public class UserVO {
 	public void setUserList(List<String> userList) {
 		this.userList = userList;
 	}
+
 }

@@ -252,6 +252,11 @@
         	color:#392f31;
         	font-size: 22px;
         }
+        #mypage_profile_img {
+		width: 200px;
+		height: 200px;
+		/*height: 60%;*/
+		border-radius: 50%;
         
     </style>
     <script>   
@@ -284,6 +289,7 @@
         <div class="profilePage">
             <div class="userProfile">
                 <div class="userPhoto">
+                	<img src="/upload/user/${logImg}" id="mypage_profile_img" />
                 </div>
                 <div class="userNickname">
                 	${nickName} 

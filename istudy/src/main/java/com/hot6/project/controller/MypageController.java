@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hot6.project.service.MypageService;
+import com.hot6.project.service.UserService;
+import com.hot6.project.vo.UserVO;
 
 
 
@@ -22,7 +24,9 @@ public class MypageController {
 	
 	@Inject 
 	MypageService Mservice;
-
+	
+	@Inject
+	UserService Uservice;
 	
 	//마이페이지(진행 스터디)로 이동
 	@GetMapping("mypage/study")
@@ -38,6 +42,10 @@ public class MypageController {
 		}else {
 			id= user_id;
 		}
+		
+		UserVO userVO =Uservice.userSelect(id);
+		session.setAttribute("logImg", userVO.getProfile_img());
+
 			
 		if(type.equals("like")) {
 			//찜한 스터디
