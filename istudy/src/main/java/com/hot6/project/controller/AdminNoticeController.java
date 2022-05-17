@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -92,14 +93,35 @@ public class AdminNoticeController {
 	public ModelAndView noticeEdit(int board_num) {
 		// DB에 있는 첨부파일 수 구하기(새로 변경한 파일이 생기면 --해줘야 하기 때문)
 		BoardVO vo = Nservice.selectNoticeModal(board_num);
+		System.out.println(board_num);
 		mav.addObject("vo", vo);
 		mav.setViewName("/admin/notice/adminNoticeEdit");
 		return mav;
 	}
 	
-	@PutMapping(value="/notice/noticeEditOk")
-	public void noticeEditOk() {
+	//글 수정
+	@PostMapping(value="/notice/noticeEditOk")
+	public ResponseEntity<String> noticeEditOk(BoardVO vo, HttpSession session, HttpServletRequest request) {
+		vo.setUser_id((String) session.getAttribute("logId"));
 		
+		String msg = "<script>";
+		
+		ResponseEntity<String> entity = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Content-Type", "text/html; charset=UTF-8");
+		
+		int updateCount = Bservice.BoardUpdate(vo);
+		
+		if(updateCount>0) {
+			msg += "alert('글 수정 성공했습니다');";
+			msg += "location.href='/notice/noticeList';</script>";
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+		} else {
+			msg += "alert('글 수정 실패하였습니다');";
+			msg +=  "history.back();</script>";
+			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
+		}
+		return entity;
 	}
 	
 	//CKeditor 서버로 이미지 전송하기
@@ -122,8 +144,8 @@ public class AdminNoticeController {
 			byte[] bytes = upload.getBytes();
 
 			// 업로드 경로
-			String path = request.getServletContext().getRealPath("/ckUpload/notice");
-			String ckUploadPath = path + uid + "_" + fileName;
+			String path = request.getServletContext().getRealPath("/ckUpload/");
+			String ckUploadPath = path + "/notice/" + uid + "_" + fileName;
 			File folder = new File(path);
 
 			// 해당 디렉토리 확인
@@ -169,7 +191,7 @@ public class AdminNoticeController {
 			HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// 서버에 저장된 이미지 경로
-		String path = request.getServletContext().getRealPath("/ckUpload/notice");
+		String path = request.getServletContext().getRealPath("/ckUpload/notice/");
 		String sDirPath = path + uid + "_" + fileName;
 		File imgFile = new File(sDirPath);
 

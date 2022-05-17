@@ -208,7 +208,7 @@ public class BoardController {
 				path = session.getServletContext().getRealPath("/upload/qna");
 			} else if (type_num == 3) {
 				msg += "location.href='/notice/noticeList';</script>";
-				path = session.getServletContext().getRealPath("/ckUpload/notice");
+				path = session.getServletContext().getRealPath("/ckUpload/notice/");
 			}
 
 			// ***공지사항 등 업로드한 파일이 없는 게시판이 있을 경우 파일삭제 부분 코드는 실행하지 않도록 조건문 설정
@@ -236,6 +236,7 @@ public class BoardController {
 			String msg = "<script>alert('글 삭제에 실패하였습니다.');history.back();</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
 		}
+		System.out.println(board_num);
 		return entity;
 
 	}

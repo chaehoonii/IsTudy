@@ -4,14 +4,14 @@ $(".adminNoticeList").click(function() {
 	var param = {
 		"board_num": board_num
 	}
-	console.log(param);
 	$.ajax({
 		type: 'GET',
 		url: '/notice/noticeListModal',
 		data: param,
 		success: function(data) {
 			$('#modalTitle').text(data.title);
-			$('#modalContent').text(data.content);
+			$('#modalContent').html(data.content);
+			
 		},
 		error: function(e) {
 		}
