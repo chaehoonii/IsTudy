@@ -29,5 +29,18 @@
   	<select id="getAdminCnt" resultType="int">
   		select count(user_id) from user where permission="admin"
   	</select>
+  	
+  	<!-- 신고 관리 정보 -->
+  	<select id="getAdminUserInfo" resultType="AdminUserVO">	
+  		select board.title,board.user_id as writer,report.user_id,report.report_content,report.report_time,report.report_type_num
+  		from report
+  		INNER JOIN board
+  		ON report.board_num = board.board_num
+  	</select>
+  	
+  	<!-- 전체 신고 수 -->
+  	<select id="getAllReportCnt" resultType="int">
+  		select count(*) from report
+  	</select> 
  </mapper>
  
