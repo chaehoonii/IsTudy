@@ -38,14 +38,19 @@
 							}
 						}
 						tag += "<li>"+data[i].reply_coment+"</li>";
-						tag += "<li><span id='qna_profile_span'><img src='/upload/user/"+data[i].profile_img+"' id='qna_profile' />&nbsp;&nbsp;&nbsp;"+data[i].user_nick+"</span></li>";
+						tag += "<li><span id='qna_profile_span'>";
+						tag += "<img src='/upload/user/"+data[i].profile_img+"' id='qna_profile' />";
+						tag += data[i].user_nick;
+						if('${logPermission}'=='mentor'){
+							tag += "<img src='"+data[i].level_icon+"' style='width:20px; margin-right:10px;'/>"
+						}
+						tag += "</span></li>";
 						tag += "<li>"+data[i].reply_date+"</li>";
 						if('${logId}'== data[i].user_id){
 							tag += "<li><input type='hidden' value='"+data[i].reply_num+"'/><span class='reply_edit edit_btns'>수정</span>&nbsp;&nbsp;<span class='reply_del del_btns' onclick='ReplyDel("+data[i].reply_num+")'>삭제</span></li>";
 						}
 						tag += "</ul></div>";	
 					}
-					console.log('${logStatus}');
 					$("#reply_div").html(tag);
 					
 					//댓글 등록=========================================================================================
@@ -127,6 +132,13 @@
 	function BoardDel(){
 		if(confirm("글을 삭제하시겠습니까?")){
 	   		location.href = "/board/boardDelete?board_num="+${vo.board_num};     
+	    }
+	    return false;
+	}
+	// 게시글 수정폼으로 이동================================================================================================
+	function BoardEdit(){
+		if(confirm("글을 수정하시겠습니까?")){
+	   		location.href = "/qna/qnaEdit?board_num="+${vo.board_num};     
 	    }
 	    return false;
 	}
@@ -217,21 +229,7 @@
 				</li>
 				<li>
 					<ul id="qna_content">
-						<li>${vo.content}</li>
-						<li>
-							<c:if test="${vo.file1 != null && vo.file1 != ''}">
-								<img src='/upload/qna/${vo.file1}' class='qna_img'/>
-							</c:if>
-							<c:if test="${vo.file2 != null && vo.file2 != ''}">
-								<img src='/upload/qna/${vo.file2}' class='qna_img'/>
-							</c:if>
-							<c:if test="${vo.file3 != null && vo.file3 != ''}">
-								<img src='/upload/qna/${vo.file3}' class='qna_img'/>
-							</c:if>
-							<c:if test="${vo.file4 != null && vo.file4 != ''}">
-								<img src='/upload/qna/${vo.file4}' class='qna_img'/>
-							</c:if>
-						</li>
+						<li id='content_box'>${vo.content}</li>
 						<li class='nocenter'>
 							<br/><br/>
 							<c:forEach var="lang_list" items="${vo.lang_list}">
@@ -243,7 +241,7 @@
 						</li>
 						<li><br/><br/><span id='qna_profile_span'><img src='/upload/user/${vo.profile_img}' id='qna_profile' />&nbsp;&nbsp;&nbsp;${vo.user_nick}</span></li>
 						<c:if test="${logId == vo.user_id}">
-							<li><span class='edit_btns'>수정</span>&nbsp;&nbsp;<span class='del_btns' onclick="BoardDel()">삭제</span></li>
+							<li><span class='edit_btns' onclick="BoardEdit()">수정</span>&nbsp;&nbsp;<span class='del_btns' onclick="BoardDel()">삭제</span></li>
 						</c:if>
 					</ul>						
 					

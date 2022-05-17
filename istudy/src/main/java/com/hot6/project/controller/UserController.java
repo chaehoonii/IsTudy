@@ -1,13 +1,23 @@
 package com.hot6.project.controller;
 
+import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.SecureRandom;
+import java.util.Date;
 
 import javax.inject.Inject;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,19 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import java.security.SecureRandom;
-import java.util.Date;
-import java.util.Random;
-import javax.mail.internet.MimeMessage;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hot6.project.service.UserService;
@@ -38,7 +35,7 @@ import com.hot6.project.vo.UserVO;
 @RequestMapping("/users/")
 public class UserController {
 
-	@Value("/profiles/")
+	@Value("/upload/user/")
 	private String fileRealPath;
 
 	@Inject
@@ -52,30 +49,42 @@ public class UserController {
 
 	// 회원등록
 	@PostMapping("joinOk")
-	public String joinOk(UserVO vo, Model model, @RequestParam("user_img") MultipartFile user_img) {
+	public String joinOk(UserVO vo, Model model, @RequestParam("user_img") MultipartFile user_img, HttpSession session) {
 
-		Path filePath;
+		//Path filePath;
 		String pathName;
 
 		// 프로필 이미지 설정 X -> profile 자동설정
 		if (user_img.isEmpty()) {
-			pathName = "\\profiles\\profile_default.jpg";
+			pathName = "profile_default.png";
 			int cnt = service.userInsert(vo, pathName);
+			session.setAttribute("logImg", pathName);
 			model.addAttribute("cnt", cnt);
 			return "users/joinResult";
 		}
 
-		filePath = Paths.get(fileRealPath + user_img.getName());
-
+		String filePath = session.getServletContext().getRealPath("/upload/user");//Paths.get(fileRealPath + user_img.getName());
+		String fileName=user_img.getOriginalFilename();
+		int idx=fileName.lastIndexOf(".");
+		if(idx>0) {
+			fileName=fileName.substring(0, idx)+"_"+vo.getUser_id()+fileName.substring(idx);//test_hong.png
+			System.out.println("fileName: "+fileName);
+		}
+		
+		
+		//\\upload\\user\\test_hong.png
 		try {
-			Files.write(filePath, user_img.getBytes());
+			//Files.write(filePath, user_img.getBytes());
+			user_img.transferTo(new File(filePath, fileName));//파일 업로드 	
 			System.out.println(filePath + "경로에 이미지가 저장됨");
 			// getBytes가 이미지 실체고 이걸 파일로 변환해서 저장해야한다.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		pathName = "\\profiles\\profileImg";
-		int cnt = service.userInsert(vo, pathName);
+		int cnt = service.userInsert(vo, fileName);
+		session.setAttribute("logImg", fileName);
 		model.addAttribute("cnt", cnt);
 		return "users/joinResult";
 	}
@@ -103,15 +112,17 @@ public class UserController {
 
 	// 회원정보 수정
 	@PostMapping("userEditOk")
-	public ModelAndView userEditOk(UserVO vo, HttpSession session, @RequestParam("user_img") MultipartFile user_img) {
+	public ModelAndView userEditOk(UserVO vo, HttpSession session,
+			@RequestParam("user_img") MultipartFile user_img) {
 		vo.setUser_id((String) session.getAttribute("logId"));
 		ModelAndView mav = new ModelAndView();
 
 		Path filePath;
 		String pathName;
-
+		System.out.println("user_img.isEmpty(): "+user_img.isEmpty());
 		if (user_img.isEmpty()) {
-			pathName = "\\profiles\\profile_default.jpg";
+			pathName = "profile_default.png";
+			vo.setProfile_img(pathName);
 			int cnt = service.userUpdate(vo, pathName);
 			// mav.setViewName(pathName);
 			mav.setViewName("redirect:/");
@@ -119,19 +130,27 @@ public class UserController {
 			session.setAttribute("logImg", pathName);
 			return mav;
 		}
-
-		filePath = Paths.get(fileRealPath + user_img.getName() + vo.getUser_id());
+		String fileName=user_img.getOriginalFilename();
+		System.out.println("fileName;"+fileName);
+		int idx=fileName.lastIndexOf(".");
+		if(idx>0) {
+			fileName=fileName.substring(0, idx)+"_"+vo.getUser_id()+fileName.substring(idx);//test_hong.png
+			System.out.println("fileName: "+fileName);
+		}
+		filePath = Paths.get(fileRealPath + fileName);
+		//\\upload\\user\\test_hong.png
 		try {
-			Files.write(filePath, user_img.getBytes());
+			//Files.write(filePath, user_img.getBytes());
+			user_img.transferTo(new File(filePath.toString()));//파일 업로드 	
 			System.out.println(filePath + "경로에 이미지가 저장됨");
 			// getBytes가 이미지 실체고 이걸 파일로 변환해서 저장해야한다.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		pathName = "\\profiles\\profile_img" + vo.getUser_id();
-		service.userUpdate(vo, pathName);
+		vo.setProfile_img(fileName);
+		service.userUpdate(vo, fileName);
 
-		session.setAttribute("logImg", pathName);
+		session.setAttribute("logImg", fileName); 
 		mav.setViewName("redirect:/");
 		return mav;
 	}

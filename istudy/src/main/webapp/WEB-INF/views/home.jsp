@@ -61,7 +61,7 @@
 				<div class="card item">
 					<img src="/upload/user/${vo.profile_img}" />
 					<div class="card-body">
-						<h4 class="card-title">${vo.user_nick}</h4>
+						<img src='${vo.level_icon}' style='width:30px; margin:0;display:inline;'><h4 class="card-title">${vo.user_nick}</h4>
 						<p class="card-text">${vo.career}</p>
 						<a href="#" class="btn profile">프로필 보기</a>
 					</div>

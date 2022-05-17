@@ -70,16 +70,6 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int boardTagInsert(BoardVO vo) {
-		return dao.boardTagInsert(vo);
-	}
-
-	@Override
-	public int boardLangInsert(BoardVO vo) {
-		return dao.boardLangInsert(vo);
-	}
-
-	@Override
 	public List<BoardVO> replyList(String user_id, int board_num) {
 		return dao.replyList(user_id, board_num);
 	}
@@ -90,9 +80,13 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public BoardVO boardEdit(int board_num) {
-		// TODO Auto-generated method stub
-		return null;
+	public int BoardUpdate(BoardVO vo) {
+		return dao.BoardUpdate(vo);
+	}
+
+	@Override
+	public int BoardFileUpdate(BoardVO vo) {
+		return dao.BoardFileUpdate(vo);
 	}
 
 }

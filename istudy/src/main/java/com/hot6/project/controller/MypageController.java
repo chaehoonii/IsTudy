@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hot6.project.service.MypageService;
+import com.hot6.project.service.UserService;
+import com.hot6.project.vo.UserVO;
 
 
 
@@ -21,7 +23,9 @@ public class MypageController {
 	
 	@Inject 
 	MypageService Mservice;
-
+	
+	@Inject
+	UserService Uservice;
 	
 	//마이페이지(진행 스터디)로 이동
 	@GetMapping("mypage/study")
@@ -30,8 +34,9 @@ public class MypageController {
 		ModelAndView mav = new ModelAndView();
 			
 		String id = (String)session.getAttribute("logId");
-		
 		String nickName = (String)session.getAttribute("logNickname");
+		UserVO userVO =Uservice.userSelect(id);
+		session.setAttribute("logImg", userVO.getProfile_img());
 			
 		mav.addObject("Jstudy", Mservice.joinStudy(id));
 			
