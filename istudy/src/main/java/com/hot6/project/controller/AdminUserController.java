@@ -39,26 +39,24 @@ public class AdminUserController {
 		
 		mav.addObject("nickName", nickName);
 	
-		int allCnt = AUservice.getAllCnt(permission,want);
+		//해당 레코드 수
+		int allCnt = AUservice.getAllCnt(permission,want,pvo);
 		System.out.println(allCnt);
 		pvo.setTotalRecord(allCnt);
 			
-		if(permission.equals("all")) { //전체 회원
-			mav.addObject("users", AUservice.getUserInfo(pvo));
-		}else if(want==null){ //일반 회원, 멘토 회원
-			mav.addObject("users", AUservice.userPermission(permission,pvo));
-		}else { //일반회원인데 멘토 신청 회원
-			mav.addObject("users", AUservice.userWant(permission, want,pvo));
+		mav.addObject("users", AUservice.getUserInfo(permission, want, pvo));
+		
+		if(pvo.getSearchWord()!=null) {
+			mav.addObject("word", pvo.getSearchWord());
 		}
 		
-		//해당 회원 수
-		mav.addObject("allCnt",allCnt );
+		
 		//일반 회원수
-		mav.addObject("userCnt", AUservice.getUserCnt());
+		mav.addObject("userCnt", AUservice.getPermissionCnt("user", null));
 		//멘토 회원수
-		mav.addObject("mentorCnt", AUservice.getMentorCnt());
+		mav.addObject("mentorCnt", AUservice.getPermissionCnt("mentor", null));
 		//관리자 수
-		mav.addObject("adminCnt", AUservice.getAdminCnt());
+		mav.addObject("adminCnt", AUservice.getPermissionCnt("admin", null));
 		
 		mav.addObject("pvo", pvo);
 		

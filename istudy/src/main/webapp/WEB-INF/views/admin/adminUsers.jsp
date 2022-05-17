@@ -23,7 +23,8 @@
     	}
         .adminUserPage{
             width: 100%;
-            height: 1100px;
+            /* height: 1100px; */
+            height: 100vh;
             margin-top:60px;
         }
         body::-webkit-scrollbar{
@@ -86,11 +87,14 @@
             color:white;
             width: 100%;
         }
+        
+        .category ul{
+        	text-align:center;
+        }
         .category li{
         	margin: 60px;
         	text-align:center;
-        	font-size: 18px;
-        	
+        	font-size: 18px;       	
         }
         .category a{
         	color:white;
@@ -204,10 +208,9 @@
 	        margin-right: 20px;
         }
         .buttons{
-        	width: 50%;
+        	width: 70%;
         	height: 50px;
         	float: left;
-			/* margin-top: 10px; */
 			margin-bottom: 20px;
         }
         .buttons input[type=button]{
@@ -222,16 +225,29 @@
         	width: 80px;
         }
         .search{
-        	width: 50%;
+        	width: 30%;
         	height: 50px;
-        	float: right;
+        	float: right;       	
+        }
+        .search_form{
+        	float: right:
+        	width: 300px;
+        	height: 40px;
+        	margin: 0 auto;
+        	
+        }
+        .search_form input[type=submit]{
+        	width: 50px;
+        	border-radius: 5px;
+        	border: 1px solid #ddd;
+        	height: 100%;
+        	font-size: 16px;
         }
         #searchText{
-        	float: right;
-        	height: 35px;
-        	width: 250px;
-        	margin-right: 50px;
+        	width: 300px;
         	border-radius: 3px;
+        	height: 100%;
+        	font-size: 16px;
         }
         #searchText::-webkit-input-placeholder{
 	        background-image: url(/images/admin_img/search.png);
@@ -240,8 +256,7 @@
 	        background-repeat: no-repeat;
 	        text-indent: 2em;
 	        font-size: 14px;
-    	}
-        
+    	}       
        .button-click{
        		background-color: #f9f9f8;
         	box-shadow: 2px 2px 3px #c2c2bd;
@@ -259,13 +274,10 @@
         	line-height: 35px;
         	float: right;
         	margin: 15px;
-        }
+        }       
         
-        /* =====================페이징============================== */
 		.pagingContainer{
 		    margin:0 auto;
-		     /* width: 100%;
-            height: 30px; */
 		}
 		.page-link{
 		    border:none !important;
@@ -282,21 +294,6 @@
     <script>
     
    $(function(){
-	   
-	   $("#searchText").keyup(function(){
-		   
-		   var val = $(this).val();
-		   
-		   if(val==""){
-			   $(".eachContent").show();
-			   
-		   }else{			   
-			   $(".eachContent").hide();
-			   $(".eachContent:contains('"+val+"')").show();			   
-		   }
-		   
-	   })
-	   
 	   $("#approve").click(function(){
 			  
 		   var cntApp = 0
@@ -385,7 +382,8 @@
             <div class="contentBox">
             	<div class="title">
             		회원 목록 
-            		<span class="userCount"> *전체 회원 :${allCnt} , 일반: ${userCnt} , 멘토: ${mentorCnt} , 관리자: ${adminCnt} </span>
+            		<c:set var="total" value="${userCnt + mentorCnt + adminCnt }" />
+            		<span class="userCount"> *전체 회원 :${total} , 일반: ${userCnt} , 멘토: ${mentorCnt} , 관리자: ${adminCnt} </span>
             	</div>
             	
             	<div class="buttons">
@@ -394,9 +392,11 @@
 	            	<input type="button" class="types <c:if test="${param.permission=='user' && param.want=='T'}">button-click</c:if>" onclick="location.href='/admin/adminUsers?permission=user&want=T'" value="멘토 신청"/>
 	            </div>
 	            <div class="search">
-	            	<input type="text" id="searchText" placeholder="검색"/>
-	            </div>
-            	
+		            <form  class="search_form" method="get" action="/admin/adminUsers">
+		            	<input type="text" id="searchText" placeholder="아이디, 이름, 닉네임, 연락처, 가입일, URL" name="searchWord" value="${word}"/>
+		            	<input type="submit" value="검색"/>
+		            </form>
+            	</div>
             	<form class="contents" method="post"><hr/>
             		<ul>
             		<li class="eachContentTitle">
@@ -450,7 +450,7 @@
 				            				</c:choose>
             							</div>    
 		            					<div class="nicknames">
-			            					<a href="/users/mypage/study?user_id=${vo.user_id}&admin=True" target="_blank" onclick="window.open(this.href,'_blank', 'width=1400, height=800, scrollbar=yes')">${vo.user_nick}</a>
+			            					<a href="/users/mypage/study?user_id=${vo.user_id}&admin=True" target="_blank" onclick="window.open(this.href,'_blank', 'width=1200, height=800, scrollbar=yes')">${vo.user_nick}</a>
 			            				</div>
 			            				<div class="id">
 			            					<a href="#">${vo.user_id}</a>
@@ -493,7 +493,7 @@
 			            				</div>
 			            				<div class="careerURL">
 			            					<c:if test="${vo.career!=null}">
-			            						<span>${vo.career}</span>
+			            						<a href="${vo.career}">${vo.career}</a>
 			            					</c:if>
 			            					<c:if test="${vo.career==null}">
 			            						<span>-</span>
@@ -502,8 +502,7 @@
 			            		</div><hr/>
 		            		</li>
             			</c:forEach>
-            		</ul>
-            		
+            		</ul>        		
             	</form>
 		        <div class="pagingContainer">
 			        <ul class="pagination justify-content-center" id="paging">
@@ -513,7 +512,9 @@
 			            </c:if>
 			            <c:if test="${pvo.pageNum>1}">
 			                <li class="page-item"><a class="page-link"
-			                    href="/admin/adminUsers?pageNum=${pvo.pageNum-1}" id="prevBtn"><i
+			                    href="/admin/adminUsers?<c:if test='${param.permission=="user" && param.want!="T"}'>permission=user&</c:if>
+			                    <c:if test='${param.permission=="mentor"}'>permission=mentor&</c:if><c:if test='${param.permission=="user" && param.want=="T"}'>permission=user&want=T&</c:if>
+			                    <c:if test='${pvo.searchWord!=null}'>searchWord=${pvo.searchWord}&</c:if>pageNum=${pvo.pageNum-1}" id="prevBtn"><i
 			                        class="fa fa-angle-left"></i></a></li>
 			            </c:if>
 			            <c:forEach var="p" begin="${pvo.startPage}" end="${pvo.totalPage}">
@@ -524,7 +525,9 @@
 			                        </c:when>
 			                        <c:when test="${p!=pvo.pageNum}">
 			                            <li class="page-item"><a class="page-link"
-			                                href="/admin/adminUsers?pageNum=${p}">${p}</a></li>
+			                                href="/admin/adminUsers?<c:if test='${param.permission=="user" && param.want!="T"}'>permission=user&</c:if>
+			                                <c:if test='${param.permission=="mentor"}'>permission=mentor&</c:if><c:if test='${param.permission=="user" && param.want=="T"}'>permission=user&want=T&</c:if>
+			                                <c:if test='${pvo.searchWord!=null}'>searchWord=${pvo.searchWord}&</c:if>pageNum=${p}">${p}</a></li>
 			                        </c:when>
 			                    </c:choose>
 			                </c:if>
@@ -535,7 +538,9 @@
 			            </c:if>
 			            <c:if test="${pvo.pageNum<pvo.totalPage}">
 			                <li class="page-item"><a class="page-link"
-			                    href="/admin/adminUsers?pageNum=${pvo.pageNum+1}" id="nextBtn"><i class="fa fa-angle-right"></i></a></li>
+			                    href="/admin/adminUsers?<c:if test='${param.permission=="user" && param.want!="T"}'>permission=user&</c:if>
+			                    <c:if test='${param.permission=="mentor"}'>permission=mentor&</c:if><c:if test='${param.permission=="user" && param.want=="T"}'>permission=user&want=T&</c:if>
+			                    <c:if test='${pvo.searchWord!=null}'>searchWord=${pvo.searchWord}&</c:if>pageNum=${pvo.pageNum+1}" id="nextBtn"><i class="fa fa-angle-right"></i></a></li>
 			            </c:if>
 			        </ul>
 			    </div>
@@ -546,3 +551,5 @@
             </div>  
         </div>
    </div>
+   <div style="clear:both"></div>
+   

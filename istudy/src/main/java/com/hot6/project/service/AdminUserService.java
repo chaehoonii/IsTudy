@@ -7,27 +7,15 @@ import com.hot6.project.vo.UserVO;
 
 public interface AdminUserService {
 	
-	//전체 회원 정보 가져오기
-	public List<UserVO> getUserInfo(PagingVO pvo);
+	//회원 정보 가져오기
+	public List<UserVO> getUserInfo(String permission, String want, PagingVO pvo);
 	
-	//전체 회원 수
-	public int getAllCnt(String permission, String want);
+	//레코드 수
+	public int getAllCnt(String permission, String want, PagingVO pvo);
 	
-	//일반 회원 수
-	public int getUserCnt();
-	
-	//멘토 회원 수
-	public int getMentorCnt();
-	
-	//관리자 수
-    public int getAdminCnt();
+	//해당 회원 수
+	public int getPermissionCnt(String permission, String want);
     
-    //해당 회원
-  	public List<UserVO> userPermission(String permission, PagingVO pvo);
-  	
-    //멘토 신청 결과 대기 회원
-  	public List<UserVO> userWant(String permission, String want, PagingVO pvo);
-  	
     //멘토 신청 승인
   	public int approveUserStatus(UserVO vo);
   	

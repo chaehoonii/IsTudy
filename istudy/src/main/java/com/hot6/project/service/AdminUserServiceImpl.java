@@ -17,35 +17,20 @@ public class AdminUserServiceImpl implements AdminUserService {
 	AdminUserDAO dao;
 
 	@Override
-	public List<UserVO> getUserInfo(PagingVO pvo) {
-		return dao.getUserInfo(pvo);
+	public List<UserVO> getUserInfo(String permission, String want, PagingVO pvo) {
+		return dao.getUserInfo(permission, want, pvo);
+	}
+	
+	@Override
+	public int getAllCnt(String permission, String want, PagingVO pvo) {
+		return dao.getAllCnt(permission, want, pvo);
 	}
 
 	@Override
-	public int getUserCnt() {
-		return dao.getUserCnt();
+	public int getPermissionCnt(String permission, String want) {
+		return dao.getPermissionCnt(permission, want);
 	}
-
-	@Override
-	public int getMentorCnt() {
-		return dao.getMentorCnt();
-	}
-
-	@Override
-	public int getAdminCnt() {
-		return dao.getAdminCnt();
-	}
-
-	@Override
-	public List<UserVO> userPermission(String permission, PagingVO pvo) {
-		return dao.userPermission(permission, pvo);
-	}
-
-	@Override
-	public List<UserVO> userWant(String permission, String want, PagingVO pvo) {
-		return dao.userWant(permission, want, pvo);
-	}
-
+	
 	@Override
 	public int approveUserStatus(UserVO vo) {
 		return dao.approveUserStatus(vo);
@@ -55,11 +40,5 @@ public class AdminUserServiceImpl implements AdminUserService {
 	public int sendBackStatus(UserVO vo) {
 		return dao.sendBackStatus(vo);
 	}
-
-	@Override
-	public int getAllCnt(String permission, String want) {
-		return dao.getAllCnt(permission, want);
-	}
-
 
 }
