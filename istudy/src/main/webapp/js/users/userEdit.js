@@ -1,4 +1,28 @@
 function editCheck() {
+	
+	//비밀번호 입력 여부 + 확인란 체크
+	var regpwd = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
+	let userpwd = document.getElementById("user_pw");
+	let userpwd2 = document.getElementById("pwd2");
+
+
+
+	if (!regpwd.test(userpwd.value)) {
+		alert("비밀번호를 잘못 입력하셨습니다.\n비밀번호는 영문 숫자 조합 8자리 이상입니다.\n");
+		userpwd.focus();
+		return false;
+	}
+	if (userpwd.value == '' || userpwd2.value == '') {
+		alert("비밀번호와 비밀번호 확인란을 모두 입력해주세요.");
+		userpwd.focus();
+		return false;
+	}
+	if (userpwd.value != userpwd2.value) {
+		alert("비밀번호가 비밀번호 확인란과 일치하지 않습니다.");
+		userpwd2.focus();
+		return false;
+	}
+	
 	let tel = document.querySelector("#tel");
 	if (tel.value == '') {
 		alert("전화번호를 입력하세요");
@@ -67,6 +91,32 @@ function editCheck() {
 }
 
 $(function() {
+	
+	//유효성 검사
+	//비밀번호
+	let userpwd = document.getElementById("user_pw");
+	let userpwd2 = document.getElementById("user_pw2");
+	var regpwd = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
+
+	$("#user_pw").keyup(function() {
+		if ($("#user_pw").val().length > 0) {
+			if (!regpwd.test(userpwd.value)) {
+				$("#pwdChk").html("취약한 비밀번호입니다.").css('color', 'red').css("font-size", "14px");
+			} else {
+				$("#pwdChk").html("사용 가능한 비밀번호입니다.").css('color', 'blue').css("font-size", "14px");
+			}
+		}
+	});
+
+	//비밀번호 확인
+	$("#pwd2").keyup(function() {
+		if ($("#user_pw").val() != $("#pwd2").val()) {
+			$("#pwd2Chk").html("비밀번호가 일치하지 않습니다.").css('color', 'red').css("font-size", "14px");
+		} else {
+			$("#pwd2Chk").html("비밀번호가 일치합니다.").css('color', 'blue').css("font-size", "14px");
+		}
+	});
+
 	//전화번호 확인
 	let regTel2 = /^(010|011|016|019|02|031|032|041|051)[0-9]{3,4}[0-9]{4}$/;
 	$("#tel").keyup(function() {

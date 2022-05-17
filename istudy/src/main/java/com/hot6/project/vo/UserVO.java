@@ -169,4 +169,5 @@ public class UserVO {
 		this.leave_type_num = leave_type_num;
 	}
 	
+	
 }
