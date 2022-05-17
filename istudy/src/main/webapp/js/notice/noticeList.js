@@ -11,7 +11,7 @@
 			data: param,
 			success: function(data) {
 				$('#modalTitle').text(data.title);
-				$('#modalContent').text(data.content);
+				$('#modalContent').html(data.content);
 			},
 			error: function(e) {
 			}
