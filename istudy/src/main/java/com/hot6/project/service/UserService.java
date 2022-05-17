@@ -37,4 +37,7 @@ public interface UserService {
 	
 	//임의로 생성한 비밀번호로 업데이트
 	public int pwdUpdate(String newPwd, UserVO vo);
+	
+	//id로 닉네임 가져오기
+	public String selectNickById(String user_id);
 }

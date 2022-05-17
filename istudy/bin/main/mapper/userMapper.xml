@@ -94,4 +94,10 @@
       update user set user_pw=#{param1} where user_id=#{param2.user_id}
    </update>
    
+   <!-- id로 닉네임 가져오기 -->
+	<select id='selectNickById' resultType='String'>
+		select user_nick
+		from user
+		where user_id=#{param1}
+	</select>
 </mapper>

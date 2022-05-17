@@ -2,7 +2,6 @@ package com.hot6.project.controller;
 
 import java.io.File;
 import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
