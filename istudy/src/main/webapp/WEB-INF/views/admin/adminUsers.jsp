@@ -3,7 +3,6 @@
 
 <link rel="stylesheet" href="/css/admin/adminUsers.css" type="text/css">  
 <script src="${url}/js/admin/adminUsers.js"></script>
-
     
     <div class="adminUserPage">
         <div class="profilePage">
@@ -101,10 +100,10 @@
 				            				</c:choose>
             							</div>    
 		            					<div class="nicknames">
-			            					<a href="/users/mypage/study?user_id=${vo.user_id}&admin=True" target="_blank" onclick="window.open(this.href,'_blank', 'width=1200, height=800, scrollbar=yes')">${vo.user_nick}</a>
+			            					<a href="/users/mypage/study?user_id=${vo.user_id}&admin=True" target="_blank" onclick="window.open(this.href,'_blank', 'width=1200, height=800, scrollbar=yes')" <c:if test="${vo.permission eq 'user' && vo.want eq 'T'}">style="color:blue;"</c:if>>${vo.user_nick}</a>
 			            				</div>
 			            				<div class="id">
-			            					<a href="#">${vo.user_id}</a>
+			            					<a href="/users/mypage/study?user_id=${vo.user_id}&admin=True" target="_blank" onclick="window.open(this.href,'_blank', 'width=1200, height=800, scrollbar=yes')" <c:if test="${vo.permission eq 'user' && vo.want eq 'T'}">style="color:blue;"</c:if>>${vo.user_id}</a>
 			            				</div>
 			            				<div class="name">
 			            					<span>${vo.user_name}</span>
