@@ -89,4 +89,10 @@ public class BoardServiceImpl implements BoardService{
 		return dao.hitUp(board_num);
 	}
 
+	@Override
+	public BoardVO boardEdit(int board_num) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

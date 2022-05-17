@@ -34,7 +34,7 @@
 							<div class="modal-body" id="modalContent"></div>
 								<div class="noticeBottonArea">
 									<c:if test="${logPermission=='admin'}">
-										<button class="noticeModalBtn btn" onclick="window.location.href='#'">공지사항 수정</button>
+										<button class="noticeModalBtn btn" onclick="window.location.href='/admin/notice/noticeEdit?board_num=${vo.board_num}'">공지사항 수정</button>
 										&nbsp;&nbsp;&nbsp;
 										<button class="noticeModalBtn btn" onclick="window.location.href='/board/boardDelete?board_num=${vo.board_num}'">공지사항 삭제</button>
 									</c:if>

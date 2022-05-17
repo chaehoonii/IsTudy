@@ -42,6 +42,9 @@ public interface BoardService {
 	public int boardTagInsert(BoardVO vo);
 
 	public int boardLangInsert(BoardVO vo);
+	
+	//글 수정
+	public BoardVO boardEdit(int board_num); 
 
 	// 조회수 올리기
 	public int hitUp(int board_num);

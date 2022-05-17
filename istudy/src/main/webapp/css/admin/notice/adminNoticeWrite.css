@@ -27,10 +27,19 @@
 	height:40px;
 	border:0.5px solid rgba(85, 76, 66, 80%);
 	border-radius:10px;
+	font-size:1.5em;
+	padding-left:10px;
 }
 .noticeTextArea{
 	width:1000px;
 	margin:0 auto;
+}
+.ck.ckeditor{
+	min-width:1000px;
+}
+.ck-editor__editable{
+	max-width:1000px;
+	min-height:500px;
 }
 .registBtn{
 	width:100px;
