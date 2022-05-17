@@ -134,7 +134,7 @@
 			}
 		}
 
-		conn.onopen = function() { // 소켓 열었을때
+		conn.onopen = function() { // 소켓 열었을때(캔버스 눌렀을 때)
 			console.log("Connected to the signaling server");
 			console.log("Current User:" + myName);
 			send({ // name을 server에 알려서 broadcast

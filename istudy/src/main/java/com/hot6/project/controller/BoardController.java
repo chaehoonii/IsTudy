@@ -59,7 +59,7 @@ public class BoardController {
 			Sservice.StudyboardInsert(vo);
 			vo.setBoard_num(Bservice.boardNum(vo.getUser_id())); //유저의 최신글 번호 가져오기
 			int study_num = Bservice.getStudy_num(vo.getBoard_num());	//study_num 가져와야함!
-			path = request.getSession().getServletContext().getRealPath("/upload/study");
+			path = request.getSession().getServletContext().getRealPath("/ckUpload/study");
 			msg += "location.href='/study/study_home/mystudy/studyList?study_num="+study_num+"';</script>";			
 		}else {
 			Bservice.boardInsert(vo);
@@ -67,7 +67,7 @@ public class BoardController {
 			vo.setBoard_num(board_num);
 		//qna 게시판
 			if(vo.getBoard_type_num()==2) { 
-				path = request.getSession().getServletContext().getRealPath("/upload/qna");
+				path = request.getSession().getServletContext().getRealPath("/ckUpload/qna");
 				msg += "location.href='/qna/qnaList';</script>";
 				if(vo.getLang_list()!=null) {
 					Qservice.qnaLangInsert(vo); //언어
@@ -90,7 +90,7 @@ public class BoardController {
 				}
 			//공지사항 게시판	
 			}else if(vo.getBoard_type_num()==3) { 
-				path = request.getSession().getServletContext().getRealPath("/upload/notice");
+				path = request.getSession().getServletContext().getRealPath("/ckUpload/notice");
 				msg += "location.href='/notice/noticeList';</script>";
 			}
 		}
@@ -245,8 +245,7 @@ public class BoardController {
 			///스터디 게시판			
 			if(vo.getBoard_type_num()==1) {	
 				int study_num = Bservice.getStudy_num(board_num);	//study_num 가져와야함!
-				path = request.getSession().getServletContext().getRealPath("/upload/study");
-				//(url고치기)
+				path = request.getSession().getServletContext().getRealPath("/ckUpload/study");
 				msg += "location.href='/study/study_home/mystudy/studyList?study_num="+study_num+"';</script>";			
 			//qna 게시판
 			}else if(vo.getBoard_type_num()==2){

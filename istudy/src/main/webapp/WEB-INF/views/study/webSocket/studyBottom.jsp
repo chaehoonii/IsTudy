@@ -32,7 +32,7 @@
 		</div>
 		
 		<div class="icon">
-			<div class="icon compilerbtn" style="padding:0;"><a onclick="openCompiler()" href="#"><i class="fa-solid fa-c fa-3x c"></i></a>
+			<div class="icon compilerbtn" style="padding:0;"><a onclick="openCompiler()" href="#"><i class="fa-solid fa-binary fa-3x c"></i></a>
 				<div class="compilerExplain">
 					컴파일러
 				</div>

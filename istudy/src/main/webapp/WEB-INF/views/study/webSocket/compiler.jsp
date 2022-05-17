@@ -166,7 +166,7 @@
 
 			console.log(e.value);
 			if (e.value === "java") {
-				editor.setValue("public class MentoMenti {\n\tpublic static void main(String args[]) {\n\n\t}\n}");
+				editor.setValue("public class Istudy {\n\tpublic static void main(String args[]) {\n\n\t}\n}");
 			}
 		}
 
