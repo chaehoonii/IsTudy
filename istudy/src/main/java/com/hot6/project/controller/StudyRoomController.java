@@ -40,7 +40,7 @@ public class StudyRoomController {
 	    }
 		
 	    //화이트보드
-	    @RequestMapping(value="/study/webSocket/canvas", method = RequestMethod.GET)
+	    @RequestMapping(value="/canvas", method = RequestMethod.GET)
 	    public String canvas() {
 	    	return "/study/webSocket/canvas";
 	    }
@@ -78,7 +78,8 @@ public class StudyRoomController {
 	    	ModelAndView mav = new ModelAndView();
 	    	StudyVO vo = Sservice.getStudyByStudynum(study_num);
 	    	String logId = (String) session.getAttribute("logId");
-	    	session.setAttribute("my_id", "user"+Integer.toString((int)(Math.random() * 10000)));	    	
+	    	session.setAttribute("my_id", "user"+Integer.toString((int)(Math.random() * 10000)));	
+	    	String your_id = request.getParameter("your_id");
 			vo.setUser_nick(Uservice.selectNickById(logId));
 			
 	    	//그룹에 참여한 멘티 목록
@@ -86,9 +87,10 @@ public class StudyRoomController {
 	    	//자신이 개설 or 가입한 스터디 페이지에만 접근
 	    	for(StudyVO mate : studymates) {
 	    		System.out.println("mate:"+mate.getUser_id());
-	    		if((mate.getUser_id()).equals(logId) || logId.equals(vo.getHost_id())){
+	    		if((mate.getUser_id()).equals(logId) || logId.equals(vo.getHost_id())){//멤버이거나 호스트일때
 	    			mav.addObject("vo", vo);
 			    	mav.addObject("nick", vo.getUser_nick());
+			    	mav.addObject("your_id", your_id);
 			    	mav.setViewName("/study/webSocket/studyPage");
 			    	System.out.println("yes");
 			    	break;

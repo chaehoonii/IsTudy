@@ -34,19 +34,21 @@
 	width: 100%;
 	height: 90%;
 	float: right;
+	font-size:13px;
 }
 
 .execute {
 	margin: 20px;
 	float: right;
 }
-
+#topBar{display:none;}
+.bottom{display:none;}
 </style>
 </head>
 <script>
 	
 </script>
-<body onresize="parent.resizeTo(500,700)" onload="parent.resizeTo(500,700)">
+<body onresize="parent.resizeTo(500,800)" onload="parent.resizeTo(500,800)">
 	<div class="main">
 		<div class="coding">
 			<div class="codingFunc">
@@ -57,16 +59,15 @@
 						<option value="java">java</option>
 					</select>
 				</div>
-				<form name="compileView" style="width: 100%; height: 70%;"
-					method="post" action="">
-					<div class="compiler img-rounded" style="padding: 5px">
+				<form name="compileView" style="width: 100%; height: 70%;" method="post">
+					<div class="compiler img-rounded" style="padding: 5px; height: 40vh;">
 						<label>코드 작성</label>
-						<textarea style="width: 100%; height: 100%;" name="CodeText"
+						<textarea style="width: 100%; height: 30vh; resize:none;" name="CodeText"
 							id="editor"></textarea>
 					</div>
-					<div class="input img-rounded" style="padding: 5px">
+					<div class="input img-rounded" style="padding: 5px; height: 15vh;">
 						<label> 입력값 </label>
-						<textarea style="width: 100%; height: 100%;" name="InputText"
+						<textarea style="width: 100%; height: 15vh;" name="InputText"
 							id="input"></textarea>
 					</div>
 					<input type="button" class="btn"
@@ -74,9 +75,9 @@
 						onclick="processCompile();">
 				</form>
 
-				<div class="result img-rounded" style="padding: 5px">
+				<div class="result img-rounded" style="padding: 5px; height: 15vh;">
 					<label>결과</label>
-					<textarea style="width: 100%; height: 100%;" name="ResultText"
+					<textarea style="width: 100%; height: 15vh;" name="ResultText"
 						id="result"></textarea>
 				</div>
 			</div>

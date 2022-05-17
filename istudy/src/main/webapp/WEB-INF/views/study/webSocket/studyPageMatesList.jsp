@@ -10,7 +10,7 @@
 </style>
 
 <div class="list">
-	<h3>참여자 [수업 페이지]</h3>
+	<h3 style='text-align:center;'>[&nbsp;&nbsp;${vo.study_name}&nbsp;&nbsp;]</h3>
 	<table class="table">
 		<thead>
 			<tr>

@@ -144,14 +144,14 @@
 		</div>
 	</div>
 
-	<script src="/js/study/painter2.js"></script>
-  <script>
+<script src="/js/study/painter2.js"></script>
+<script>
 		var src = request.getParameter("src");
 		if (src == null) 
 			src = "";
-		var conn = new WebSocket('wss://localhost:8060/WBsocket');
+		var conn = new WebSocket('ws://localhost:8060/WBsocket');
 	    var myName = '${logId}'; // 자기 id 저장
-	    var yourName = '<%=request.getParameter("your_id")%>';
+	    var yourName = '${your_id}';
 	    var myCanvas = document.getElementById("canvas");
 	    var myCtx = myCanvas.getContext("2d");
 	    var mysrc = src;
@@ -161,7 +161,6 @@
 	    image.onload = function() {
 			myCtx.drawImage(image, 0, 0);
 		}
-		
 		
 		function uploadFile(inputElement) {
 			var file = inputElement.files[0];

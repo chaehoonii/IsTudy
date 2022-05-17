@@ -8,9 +8,6 @@
 		height:90%;
 		background:black;
 	}
-	.main{
-		margin-top:100px;
-	}
 </style>
 	<!-- 사이드바=채팅 & 멘티리스트 -->
 	<%@include file="studySidebar.jsp"%>
@@ -22,7 +19,7 @@
 	</div>
 	
 	  <script>
-		var conn = new WebSocket('wss://localhost:8060/socket');
+		var conn = new WebSocket('ws://localhost:8060/socket');
 	    var myName = '${logId}' // 자기 id 저장
 	    var myNick = '${nick}';
 	    var mentoName = '${vo.host_id}';

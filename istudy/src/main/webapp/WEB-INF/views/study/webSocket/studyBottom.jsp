@@ -7,7 +7,7 @@
 <div class="function">
 	<div class="icon-box">
 		<div class="icon">
-			<div class="icon movebtn" style="padding:0;"><a onclick="movePractice()" href="#"><i class="fas fa-exchange-alt fa-3x change"></i></a>
+			<div class="icon movebtn" style="padding:0;"><a href="#"><i class="fa-light fa-message-smile fa-3x chaticon"></i></a>
 				<div class="moveExplain">
 					채팅
 				</div>
@@ -32,7 +32,7 @@
 		</div>
 		
 		<div class="icon">
-			<div class="icon compilerbtn" style="padding:0;"><a onclick="openCompiler()" href="#"><i class="fas fa-laptop-code fa-3x change"></i></a>
+			<div class="icon compilerbtn" style="padding:0;"><a onclick="openCompiler()" href="#"><i class="fa-solid fa-c fa-3x c"></i></a>
 				<div class="compilerExplain">
 					컴파일러
 				</div>
@@ -47,14 +47,6 @@
 	function exit(){
 		if(confirm("스터디방에서 나가시겠습니까?")){
 			location.replace("/study?study_num=${vo.study_num}");
-		}else{
-			
-		}
-	}
-	
-	function movePractice(){
-		if(confirm("피드백페이지로 이동하시겠습니까?")){
-			location.replace("/practiceMento?study_num=${vo.study_num}");
 		}else{
 			
 		}

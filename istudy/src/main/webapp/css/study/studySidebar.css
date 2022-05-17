@@ -1,6 +1,10 @@
 /*사이드바 + 사이드바 내부 컨텐츠(멘티리스트 및 채팅)*/
 @charset "UTF-8";
 
+/*top, bottom 지우기*/
+#topBar{display:none;}
+.bottom{display:none}
+
 /*사이드바 및 버튼*/
 div[class="sidebar"]{
 	width:300px;
@@ -13,11 +17,9 @@ div[class="sidebar"]{
 	transition:all .35s;
 	opacity: 1.0;
 	box-shadow: 2px 0px 10px rgba(0,0,0,0.5);
-	margin-top:100px;
 }
 input[id="menuicon"]:checked +label + div{
 	left:0;
-	margin-top:100px;
 }
 input[id="menuicon"] +label {
 	display:block;
@@ -28,7 +30,6 @@ input[id="menuicon"] +label {
 	left:20px;
 	transition:all .35s;
 	cursor:pointer;
-	margin-top:100px;
 }
 input[id="menuicon"]:checked +label {
 	z-index:2;
@@ -98,4 +99,5 @@ input[id="menuicon"]:checked + label span:nth-child(3){
 }
 th, td{
 	text-align:center;
+	color:white;
 }

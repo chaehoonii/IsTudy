@@ -16,3 +16,4 @@
 		<%@include file="studyPageChat.jsp"%>
 	</div>
 </div>
+<div style="clear:both"></div>

@@ -128,7 +128,7 @@
 	var textarea = document.getElementById("messageWindow");
 	var inputmsg = document.getElementById("inputMessage");
 	
-	var webSocket = new WebSocket("wss://localhost:8060/chating"); 
+	var webSocket = new WebSocket("ws://localhost:8060/chating"); 
 	var inputMessage = document.getElementById('inputMessage');
 	var btn_submit = document.getElementById("btn-submit");
 	
