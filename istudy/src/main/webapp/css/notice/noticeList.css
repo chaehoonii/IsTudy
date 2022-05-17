@@ -56,8 +56,11 @@
 	letter-spacing:1px;
 }
 /* =====================모달============================== */
+.modal{
+	text-align:center;
+}
 .modal-content{
-	width:700px;
+	width:900px;
 	height:700px;
 }
 .modal-header{
@@ -67,9 +70,11 @@
 	font-size:1.7em;
 	padding:10px;
 	height:300px;
+	overflow:scroll;
+	overflow-x: hidden;
 }
 .noticeBottonArea{
-	margin-bottom:20px;
+	margin:20px 0px;
 }
 .noticeModalBtn{
 	width:140px !important;

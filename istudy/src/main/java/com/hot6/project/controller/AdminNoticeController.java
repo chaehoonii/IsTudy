@@ -36,6 +36,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hot6.project.service.BoardService;
+import com.hot6.project.service.NoticeService;
 import com.hot6.project.service.QnaService;
 import com.hot6.project.service.StudyService;
 import com.hot6.project.vo.BoardVO;
@@ -45,6 +46,8 @@ import com.hot6.project.vo.BoardVO;
 public class AdminNoticeController {
 	@Inject
 	BoardService Bservice;
+	@Inject
+	NoticeService Nservice;
 
 	ModelAndView mav = new ModelAndView();
 	
@@ -85,12 +88,18 @@ public class AdminNoticeController {
 	}
 	
 	//글 수정
-	@PutMapping(value ="/notice/noticeEdit")
-	public ModelAndView rentEdit(int no) {
+	@GetMapping(value ="/notice/noticeEdit")
+	public ModelAndView noticeEdit(int board_num) {
 		// DB에 있는 첨부파일 수 구하기(새로 변경한 파일이 생기면 --해줘야 하기 때문)
-		
+		BoardVO vo = Nservice.selectNoticeModal(board_num);
+		mav.addObject("vo", vo);
 		mav.setViewName("/admin/notice/adminNoticeEdit");
 		return mav;
+	}
+	
+	@PutMapping(value="/notice/noticeEditOk")
+	public void noticeEditOk() {
+		
 	}
 	
 	//CKeditor 서버로 이미지 전송하기

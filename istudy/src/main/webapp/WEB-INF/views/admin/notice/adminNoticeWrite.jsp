@@ -20,23 +20,20 @@
 		<!-- ck에디터 -->
 		<div class="noticeTextArea" id="noticeTextArea" name="content">
 			<textarea class="notice_editor" id="notice_editor" name="content" 
-			placeholder="코드블럭(markdown)이용 시 백틱(`)을 사용하세요 ex)``` 코드 ``` "></textarea>
+			placeholder="코드블럭(markdown)이용 시 백틱(`)을 사용하세요"></textarea>
 		</div>
-		<br /> <br /> <input type="submit" class="btn registBtn"
-			value="등록하기">
+		<br /><br /><input type="submit" class="btn registBtn" value="등록하기">
 	</form>
 </div>
 <script>
 	$(document).ready(function() {
 		CKEDITOR.replace("notice_editor", {
-
 			height : '400px',
 			filebrowserUploadUrl : '/admin/imageUpload', // 이미지 업로드
 			//filebrowserUploadMethod:'form',
 			extraPlugin : 'autograw',
 			extraPlugin : 'markdown',
 			extraPlugin : 'confighelper',
-
 		});
 
 		CKEDITOR.on('dialogDefinition', function(ev) {
@@ -52,7 +49,6 @@
 				dialogDefinition.removeContents('Link'); // 링크탭 제거 
 			}
 		});
-		
 		$('#noticeForm').submit(function() {
 			if ($(".noticeWriteTitleBox").val() == '') {
 				alert("제목을 입력해주세요");
