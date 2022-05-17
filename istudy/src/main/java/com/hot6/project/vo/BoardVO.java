@@ -37,6 +37,7 @@ public class BoardVO {
 	//user
 	private String user_nick;
 	private String profile_img;
+	private String level_icon;
 	
 	//reply
 	private int selected;
@@ -49,6 +50,14 @@ public class BoardVO {
 	
 	
     
+
+	public String getLevel_icon() {
+		return level_icon;
+	}
+
+	public void setLevel_icon(String level_icon) {
+		this.level_icon = level_icon;
+	}
 
 	public List<Integer> getLang_num_list() {
 		return lang_num_list;
