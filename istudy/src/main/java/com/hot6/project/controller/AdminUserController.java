@@ -58,8 +58,9 @@ public class AdminUserController {
 		//관리자 수
 		mav.addObject("adminCnt", AUservice.getPermissionCnt("admin", null));
 		
+
 		mav.addObject("pvo", pvo);
-		
+
 		mav.setViewName("admin/adminUsers");
 		
 		return mav;
