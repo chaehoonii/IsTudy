@@ -3,6 +3,8 @@ package com.hot6.project.controller;
 import java.io.File;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -55,17 +57,17 @@ public class BoardController {
 		// 스터디 게시판
 		if (vo.getBoard_type_num() == 1) {
 			Sservice.StudyboardInsert(vo);
-			vo.setBoard_num(Bservice.boardNum(vo.getUser_id())); // 유저의 최신글 번호 가져오기
-			int study_num = Bservice.getStudy_num(vo.getBoard_num()); // study_num 가져와야함!
-			path = request.getSession().getServletContext().getRealPath("/upload/study");
-			msg += "location.href='/study/study_home/mystudy/studyList?study_num=" + study_num + "';</script>";
-		} else {
+			vo.setBoard_num(Bservice.boardNum(vo.getUser_id())); //유저의 최신글 번호 가져오기
+			int study_num = Bservice.getStudy_num(vo.getBoard_num());	//study_num 가져와야함!
+			path = request.getSession().getServletContext().getRealPath("/ckUpload/study");
+			msg += "location.href='/study/study_home/mystudy/studyList?study_num="+study_num+"';</script>";			
+		}else {
 			Bservice.boardInsert(vo);
 			int board_num = Bservice.boardNum(vo.getUser_id()); // 유저의 최신글 번호 가져오기
 			vo.setBoard_num(board_num);
-			// qna 게시판
-			if (vo.getBoard_type_num() == 2) {
-				path = request.getSession().getServletContext().getRealPath("/upload/qna");
+		//qna 게시판
+			if(vo.getBoard_type_num()==2) { 
+				path = request.getSession().getServletContext().getRealPath("/ckUpload/qna");
 				msg += "location.href='/qna/qnaList';</script>";
 				if(vo.getLang_list()!=null) {
 					Qservice.qnaLangInsert(vo); //언어
@@ -86,9 +88,9 @@ public class BoardController {
 					}
 					Qservice.qnaTagInsert(vo); //태그
 				}
-				// 공지사항 게시판
-			} else if (vo.getBoard_type_num() == 3) {
-				path = request.getSession().getServletContext().getRealPath("/upload/notice");
+			//공지사항 게시판	
+			}else if(vo.getBoard_type_num()==3) { 
+				path = request.getSession().getServletContext().getRealPath("/ckUpload/notice");
 				msg += "location.href='/notice/noticeList';</script>";
 			}
 		}
@@ -201,14 +203,14 @@ public class BoardController {
 			String msg = "<script>alert('글이 삭제되었습니다');";
 			if (type_num == 1) {
 				int study_num = Bservice.getStudy_num(board_num);
-				msg += "location.href='/study/study_home/mystudy/studyList?study_num=" + study_num + "';</script>";
-				path = session.getServletContext().getRealPath("/upload/study");
-			} else if (type_num == 2) {
+				msg += "location.href='/study/study_home/mystudy/studyList?study_num="+study_num+"';</script>";
+				path = session.getServletContext().getRealPath("/ckUpload/study");
+			}else if(type_num==2) {
 				msg += "location.href='/qna/qnaList';</script>";
-				path = session.getServletContext().getRealPath("/upload/qna");
-			} else if (type_num == 3) {
+				path = session.getServletContext().getRealPath("/ckUpload/qna");				
+			}else if(type_num==3) {
 				msg += "location.href='/notice/noticeList';</script>";
-				path = session.getServletContext().getRealPath("/ckUpload/notice");
+				path = session.getServletContext().getRealPath("/ckUpload/notice");				
 			}
 
 			// ***공지사항 등 업로드한 파일이 없는 게시판이 있을 경우 파일삭제 부분 코드는 실행하지 않도록 조건문 설정
@@ -245,52 +247,146 @@ public class BoardController {
 			vo.setUser_id((String) session.getAttribute("logId"));
 			int board_num = vo.getBoard_num();
 			
-			String msg="";
+			// 파일업로드를 위한 업로드 위치의 절대주소
+			String path="";
+			String msg = "<script>alert('글이 수정되었습니다');";
+			
 			///스터디 게시판			
 			if(vo.getBoard_type_num()==1) {	
 				int study_num = Bservice.getStudy_num(board_num);	//study_num 가져와야함!
-				//(url고치기)
+				path = request.getSession().getServletContext().getRealPath("/ckUpload/study");
 				msg += "location.href='/study/study_home/mystudy/studyList?study_num="+study_num+"';</script>";			
 			//qna 게시판
 			}else if(vo.getBoard_type_num()==2){
+				path = request.getSession().getServletContext().getRealPath("/ckUpload/qna");
 				msg += "location.href='/qna/qnaView?board_num="+board_num+"';</script>";
 			//공지사항 게시판
 			}else if(vo.getBoard_type_num()==3){
+				path = request.getSession().getServletContext().getRealPath("/ckUpload/notice");
 				msg += "location.href='/notice/noticeList';</script>";
 			}
 			ResponseEntity<String> entity = null;
 			HttpHeaders headers = new HttpHeaders();
 			headers.add("Content-Type", "text/html; charset=UTF-8");
 
-			// DB update
-			//qna게시판
-			if(vo.getBoard_type_num()==2) {
-				//언어
-				if(vo.getLang_list()!=null) {
-					Qservice.qnaLangDelete(vo);
-					Qservice.qnaLangInsert(vo); 
-				}
-				//태그 공백제거					
-				List<String> taglist = vo.getTag_list();
-				if(taglist.size()!=0) {
-					for(int i=0; i<taglist.size(); i++) {
-						String tag = taglist.get(i).trim(); //공백제거한 태그
-						System.out.println(tag);
-						if(tag.equals("")) {
-							taglist.remove(i);	//비어있는 태그 지우기
-							i--;
-						}else {
-							taglist.set(i, tag);
+			List<String> newUpload = new ArrayList<String>(); // 폼에서 온 파일중 게시물에 없는 파일만 넣은 리스트
+			try {
+				// DB에서 파일명 가져오기
+				BoardVO dbfileVO = Bservice.getFileName(board_num);
+
+				// 새로 업로드 하기
+				MultipartHttpServletRequest mr = (MultipartHttpServletRequest) request;
+
+				// 새로 업로드된 MultipartFile객체를 얻어오기
+				List<MultipartFile> newFileList = mr.getFiles("filename");
+				if (newFileList != null) { // 새로 업로드 된 파일이 있으면
+					for (int i = 0; i < newFileList.size(); i++) {
+						MultipartFile newMf = newFileList.get(i);
+						String newUploadFilename = newMf.getOriginalFilename();
+						System.out.println((i + 1) + "번째 파일 -> " + newUploadFilename);
+						// 리네임 작업
+						if (newUploadFilename != null && !newUploadFilename.equals("")) {
+							File f = new File(path, newUploadFilename);
+
+							if (f.exists()) {
+								// 있으면 여기서 rename
+								for (int n = 1;; n++) {
+									int point = newUploadFilename.lastIndexOf(".");
+									String fileNameNoExt = newUploadFilename.substring(0, point);
+									String ext = newUploadFilename.substring(point + 1);
+
+									// 새로운 파일명 만들어 존재유무 확인
+									String nf = fileNameNoExt + " (" + n + ")." + ext;
+									f = new File(path, nf);
+									if (!f.exists()) { // 없으면
+										newUploadFilename = nf;
+										break;
+									}
+								} // for
+							}
+							// 업로드
+							try {
+								newMf.transferTo(f);
+								newUpload.add(newUploadFilename);
+							} catch (Exception ee) {
+								ee.printStackTrace();
+							}
+
+							if(i==0) {
+								if(dbfileVO.getFile1()!=null) {
+									fileDelete(path, dbfileVO.getFile1());
+								}
+								dbfileVO.setFile1(newUploadFilename);
+							}
+							if(i==1) {
+								if(dbfileVO.getFile2()!=null) {
+									fileDelete(path, dbfileVO.getFile2());
+								}
+								dbfileVO.setFile2(newUploadFilename);
+							}
+							if(i==2) {
+								if(dbfileVO.getFile3()!=null) {
+									fileDelete(path, dbfileVO.getFile3());
+								}
+								dbfileVO.setFile3(newUploadFilename);
+							}
+							if(i==3) {
+								if(dbfileVO.getFile4()!=null) {
+									fileDelete(path, dbfileVO.getFile4());
+								}
+								dbfileVO.setFile4(newUploadFilename);
+							}
+						} // if
+						else {
 						}
 					}
-					Qservice.qnaTagDelete(vo);
-					Qservice.qnaTagInsert(vo); //태그
 				}
-			}
-			//공통 기능
-			Bservice.BoardUpdate(vo);
+				dbfileVO.setBoard_num(board_num);
+				// DB update
+				//qna게시판
+				if(vo.getBoard_type_num()==2) {
+					//언어
+					if(vo.getLang_list()!=null) {
+						Qservice.qnaLangDelete(vo);
+						Qservice.qnaLangInsert(vo); 
+					}
+					//태그 공백제거					
+					List<String> taglist = vo.getTag_list();
+					if(taglist.size()!=0) {
+						for(int i=0; i<taglist.size(); i++) {
+							String tag = taglist.get(i).trim(); //공백제거한 태그
+							System.out.println(tag);
+							if(tag.equals("")) {
+								taglist.remove(i);	//비어있는 태그 지우기
+								i--;
+							}else {
+								taglist.set(i, tag);
+							}
+						}
+						Qservice.qnaTagDelete(vo);
+						Qservice.qnaTagInsert(vo); //태그
+					}
+				}
+				//공통 기능
+				Bservice.BoardUpdate(vo);
+				Bservice.BoardFileUpdate(dbfileVO);
 
-			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				// DB잘못수정했을때
+				for (String fname : newUpload) {
+					fileDelete(path, fname);
+				}
+
+				// 수정페이지로 이동
+				msg = "<script>";
+				msg += "alert('글 수정 실패하였습니다'\\n수정폼으로 이동합니다)";
+				msg += "history.back();</script>";
+				entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
+			}
+
 			return entity;
 		}
 	//파일지우기==============================================================================================

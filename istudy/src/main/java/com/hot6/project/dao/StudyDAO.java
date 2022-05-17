@@ -20,4 +20,10 @@ public interface StudyDAO {
 
 	// 스터디 게시판 등록
 	public int StudyboardInsert(BoardVO vo);
+
+	// study_num으로 스터디 가져오기
+	public StudyVO getStudyByStudynum(int study_num);
+
+	// 스터디원 리스트
+	public List<StudyVO> StudyMates(int study_num);
 }
