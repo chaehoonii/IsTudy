@@ -198,10 +198,13 @@ public class BoardController {
 			if(type_num==1) {				
 				int study_num = Bservice.getStudy_num(board_num);
 				msg += "location.href='/study/study_home/mystudy/studyList?study_num="+study_num+"';</script>";
-				path = session.getServletContext().getRealPath("/upload/study");
+				path = session.getServletContext().getRealPath("/ckUpload/study");
 			}else if(type_num==2) {
 				msg += "location.href='/qna/qnaList';</script>";
-				path = session.getServletContext().getRealPath("/upload/qna");				
+				path = session.getServletContext().getRealPath("/ckUpload/qna");				
+			}else if(type_num==3) {
+				msg += "location.href='/notice/noticeList';</script>";
+				path = session.getServletContext().getRealPath("/ckUpload/notice");				
 			}
 			
 			// 3. 파일 삭제
@@ -229,37 +232,6 @@ public class BoardController {
 		return entity;
 		
 	}
-		//글 수정============================================================================================================
-		@PostMapping("/board/boardEditOk")
-		public ResponseEntity<String> boardEditOk(BoardVO vo, HttpSession session, HttpServletRequest request) {
-			vo.setUser_id((String) session.getAttribute("logId"));
-			int board_num = vo.getBoard_num();
-			
-			String msg="";
-			///스터디 게시판			
-			if(vo.getBoard_type_num()==1) {	
-				int study_num = Bservice.getStudy_num(board_num);	//study_num 가져와야함!
-				//(url고치기)
-				msg += "location.href='/study/study_home/mystudy/studyList?study_num="+study_num+"';</script>";			
-			//qna 게시판
-			}else if(vo.getBoard_type_num()==2){
-				msg += "location.href='/qna/qnaView?board_num="+board_num+"';</script>";
-			//공지사항 게시판
-			}else if(vo.getBoard_type_num()==3){
-				msg += "location.href='/notice/noticeList';</script>";
-			}
-			ResponseEntity<String> entity = null;
-			HttpHeaders headers = new HttpHeaders();
-			headers.add("Content-Type", "text/html; charset=UTF-8");
-
-			// DB update
-			
-			//공통 기능
-			Bservice.BoardUpdate(vo);
-
-			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
-			return entity;
-		}
 		//글 수정============================================================================================================
 		@PostMapping("/board/boardEditOk")
 		public ResponseEntity<String> boardEditOk(BoardVO vo, HttpSession session, HttpServletRequest request) {
