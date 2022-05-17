@@ -22,7 +22,7 @@
     	}
         #mypage{
             width: 100%;
-            height: 1000px;
+            height: 95vh;
             margin-top:60px;
         }
         body::-webkit-scrollbar{
@@ -83,7 +83,7 @@
             left: 50%;
             transform: translate(-50%,0%);
             color:white;
-            
+            width: 100%;
         }
         .category li{
         	margin: 60px;
@@ -133,6 +133,7 @@
         	margin-right: 50px;
         	border-radius: 3px;
         	margin-top: 10px;
+        	font-size: 16px;
         }
         #searchText::-webkit-input-placeholder{
 	        background-image: url(/images/admin_img/search.png);
@@ -140,7 +141,6 @@
 	        background-position: 2px;
 	        background-repeat: no-repeat;
 	        text-indent: 2em;
-	        font-size: 14px;
     	}
         .contentBox{
         	width: 90%;
@@ -306,9 +306,7 @@
         	<div class="buttons">
             	<input type="button" id="article_click" onclick="location.href='${url}/users/mypage/viewWrite<c:if test="${logPermission=='admin'}">?user_id=${id}&admin=True</c:if>'" value="작성한 글"/>          	
             	<input type="button" onclick="location.href='${url}/users/mypage/viewComment<c:if test="${logPermission=='admin'}">?user_id=${id}&admin=True</c:if>'" value="댓글단 글"/>
-            </div>
-            
-          
+            </div>         
             <div class="contentBox">
             	<div class="title">작성한 글 &nbsp; <span class="numColor">${cntArticle}</span></div>
             	<div class="search">
@@ -358,11 +356,9 @@
 			            			</div><hr/>
 		            		</li>
             			</c:forEach>
-            		</ul>
-            		
-            	</div>
-            	 
-            </div>
-            
+            		</ul>           		
+            	</div>            	 
+            </div>            
         </div>
-        </div>
+   </div>
+   <div style="clear:both"></div>
