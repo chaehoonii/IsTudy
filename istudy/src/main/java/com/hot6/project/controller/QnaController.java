@@ -146,11 +146,4 @@ public class QnaController {
 			
 			return mav;
 		}
-		//toast ui editor sample
-		@RequestMapping(value = "/qna/sample", method = RequestMethod.GET)
-		public ModelAndView sample() {
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("/qna/sample");
-		return mav;
-		}
 }
