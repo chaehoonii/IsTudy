@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 
 <style>
+#topBar{display:none;}
+.bottom{display:none;}
 	body{
 		margin:0;
 		padding:0;
@@ -138,7 +140,6 @@
 					</div>	
 						<input id="slider1" class="form-range" type="range" min="1" max="20" value="3" onchange="lineWidth(this.value);" />
 						<input id="input-file" class="btn" type="file" style="margin-top:10px; width:100%;" onchange="uploadFile(this);" />
-					<div style="position:relative; width:100%; height:100%;"><img src="resources/img/logo3.png" style="position:absolute; margin:0 auto; top: 50%; left: 50%; transform: translate(-50%, -50%); width:170px;"></div>
 				</div>
 			</div>
 		</div>
@@ -146,18 +147,17 @@
 
 <script src="/js/study/painter2.js"></script>
 <script>
-		var src = request.getParameter("src");
-		if (src == null) 
-			src = "";
 		var conn = new WebSocket('ws://localhost:8060/WBsocket');
-	    var myName = '${logId}'; // 자기 id 저장
+	    var myName = '${my_id}'; // 자기 id 저장
 	    var yourName = '${your_id}';
 	    var myCanvas = document.getElementById("canvas");
 	    var myCtx = myCanvas.getContext("2d");
-	    var mysrc = src;
 	    var image = new Image();
 	    var usage = false;
 		
+	    console.log("myName="+myName);
+	    console.log("yourName="+yourName);
+	    
 	    image.onload = function() {
 			myCtx.drawImage(image, 0, 0);
 		}
@@ -182,7 +182,6 @@
 				from: myName,
 				to: yourName
 			});
-			console.log(yourName);
 		}
 		
 		conn.onmessage = function(msg) {
