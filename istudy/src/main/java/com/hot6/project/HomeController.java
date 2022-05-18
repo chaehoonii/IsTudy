@@ -45,7 +45,7 @@ public class HomeController {
         for(StudyVO vo:studylist) {
         	vo.setTag_list(Sservice.StudyTag(vo.getStudy_num()));
         }	
-        mav.addObject("CalendarList", Cservice.CalendarList(1));
+        //mav.addObject("CalendarList", Cservice.CalendarList(1));
         mav.addObject("StudyList", studylist);
         mav.setViewName("home");
         return mav;

@@ -18,8 +18,6 @@
 	</div>
 </div>
 <!-- 스터디추천 영역 -->
-<div style="width:500px; height:500px">
-<%@include file="/WEB-INF/views/study/calendar/calendarList.jsp"%></div>
 <c:if test="${logStatus == 'Y'}">
 	<div class="studyRecommend" data-scroll>
 		<h1 class="studyTitle">스터디 추천</h1>
