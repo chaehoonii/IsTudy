@@ -99,6 +99,7 @@ public class BoardController {
 			}
 		}
 		if (insertChk > 0) {
+			Bservice.expUpBoard(vo.getUser_id());
 			msg += "<script>alert('글이 등록되었습니다');";
 			msg += "location.href='/notice/noticeList';</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK); // 200
@@ -215,12 +216,11 @@ public class BoardController {
 		}
 	}
 
-	// 글
-	// 삭제==============================================================================================
+	// 글 삭제==============================================================================================
 	@GetMapping("/board/boardDelete")
 	public ResponseEntity<String> boardDelete(int board_num, HttpSession session) {
 		int type_num = Bservice.getType_num(board_num);
-
+		String user_id = Bservice.getIdByBoardnum(board_num);
 		ResponseEntity<String> entity = null;
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "text/html; charset=utf-8");
@@ -241,9 +241,12 @@ public class BoardController {
 			}
 
 			// 2. 게시글 삭제
-			Bservice.boardDelete(board_num);
-			entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
-
+			int delChk = Bservice.boardDelete(board_num);
+			
+			if(delChk>0) {
+				Bservice.expDownBoard(user_id);
+				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			String msg = "<script>alert('글 삭제에 실패하였습니다.');history.back();</script>";
@@ -347,8 +350,11 @@ public class BoardController {
 	public int ReplyWrite(BoardVO vo, HttpSession session, HttpServletRequest request) {
 		vo.setUser_id((String) session.getAttribute("logId"));
 		vo.setIp(request.getRemoteAddr()); // 접속자 아이피
-
-		return Bservice.replyWrite(vo);
+		int Chk = Bservice.replyWrite(vo);
+		if(Chk>0) {
+			Bservice.expUpReply(vo.getUser_id());
+		}
+		return Chk;
 	}
 
 	// 댓글
@@ -356,8 +362,14 @@ public class BoardController {
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/board/replyDel", method = RequestMethod.GET)
 	public int replyDel(@RequestParam("reply_num") int reply_num) {
-
-		return Bservice.replyDel(reply_num);
+		String user_id = Bservice.getIdByReplynum(reply_num);
+		int Chk = Bservice.replyDel(reply_num);
+		
+		if(Chk>0) {
+			Bservice.expDownReply(user_id);
+		}
+		
+		return Chk;
 	}
 
 	// 댓글
