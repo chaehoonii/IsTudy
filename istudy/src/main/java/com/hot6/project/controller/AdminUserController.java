@@ -5,10 +5,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hot6.project.service.AdminUserService;
+import com.hot6.project.vo.PagingVO;
+import com.hot6.project.vo.UserVO;
 
 @Controller
 @RequestMapping("/admin/")
@@ -18,7 +22,12 @@ public class AdminUserController {
 	AdminUserService AUservice;
 	
 	@GetMapping("adminUsers")
-	public ModelAndView adminUser(HttpSession session) {
+	public ModelAndView adminUser(@RequestParam(name = "permission",defaultValue = "all") String permission, String want,  PagingVO pvo, HttpSession session) {
+		
+		
+		System.out.println(permission);
+		
+		System.out.println(want);
 		
 		ModelAndView mav = new ModelAndView();
 		
@@ -29,59 +38,60 @@ public class AdminUserController {
 		mav.addObject("id", id);
 		
 		mav.addObject("nickName", nickName);
+	
+		//해당 레코드 수
+		int allCnt = AUservice.getAllCnt(permission,want,pvo);
+		System.out.println(allCnt);
+		pvo.setTotalRecord(allCnt);
+			
+		mav.addObject("users", AUservice.getUserInfo(permission, want, pvo));
 		
-		mav.addObject("users", AUservice.getUserInfo());
+		if(pvo.getSearchWord()!=null) {
+			mav.addObject("word", pvo.getSearchWord());
+		}
 		
-		mav.addObject("allCnt", AUservice.getAllCnt());
-		mav.addObject("userCnt", AUservice.getUserCnt());
-		mav.addObject("mentorCnt", AUservice.getMentorCnt());
-		mav.addObject("adminCnt", AUservice.getAdminCnt());
 		
+		//일반 회원수
+		mav.addObject("userCnt", AUservice.getPermissionCnt("user", null));
+		//멘토 회원수
+		mav.addObject("mentorCnt", AUservice.getPermissionCnt("mentor", null));
+		//관리자 수
+		mav.addObject("adminCnt", AUservice.getPermissionCnt("admin", null));
+		
+
+		mav.addObject("pvo", pvo);
+
 		mav.setViewName("admin/adminUsers");
 		
 		return mav;
 	}
 	
-	@GetMapping("adminReport")
-	public ModelAndView adminReport(HttpSession session) {
+	//멘토 신청 승인
+	@PostMapping("approveUser")
+	public ModelAndView approveUser(UserVO vo) {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		String id = (String)session.getAttribute("logId");
+		AUservice.approveUserStatus(vo);
 		
-		String nickName = (String)session.getAttribute("logNickname");
+		mav.setViewName("redirect:adminUsers");
 		
-		mav.addObject("id", id);
-		mav.addObject("nickName", nickName);
-		mav.addObject("users", AUservice.getUserInfo());
+		return mav;
 		
-		mav.addObject("allCnt", AUservice.getAllCnt());
-		mav.addObject("userCnt", AUservice.getUserCnt());
-		mav.addObject("mentorCnt", AUservice.getMentorCnt());
-		mav.addObject("adminCnt", AUservice.getAdminCnt());
+	}
+	
+	//멘토 신청 반려
+	@PostMapping("sendBackUser")
+	public ModelAndView sendBackUser(UserVO vo) {
 		
-		mav.setViewName("admin/adminReport");
+		ModelAndView mav = new ModelAndView();
+		
+		AUservice.sendBackStatus(vo);
+		
+		mav.setViewName("redirect:adminUsers");
 		
 		return mav;
 	}
-	
-//	@GetMapping("adminReport")
-//	public ModelAndView adminReport(HttpSession session) {
-//		
-//		ModelAndView mav = new ModelAndView();
-//		
-//		mav.addObject("report_type_num", AUservice.getReport_type_num());
-//		mav.addObject("user_id", AUservice.getUser_id());
-//		mav.addObject("report_content", AUservice.getReport_content());
-//		mav.addObject("report_time", AUservice.getReport_time());
-//		mav.addObject("report_writing", AUservice.getReport_writing());
-//		mav.addObject("writer", AUservice.getWriter());
-//		mav.addObject("process_status", AUservice.getProcess_status());
-//		
-//		mav.setViewName("admin/adminReport");
-//		
-//		return mav;
-//	}
 	
 
 }
