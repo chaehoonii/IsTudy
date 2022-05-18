@@ -74,4 +74,9 @@ public class UserServiceImpl implements UserService {
 		return dao.pwdUpdate(newPwd, vo);
 	}
 
+	@Override
+	public String selectNickById(String user_id) {
+		return dao.selectNickById(user_id);
+	}
+
 }

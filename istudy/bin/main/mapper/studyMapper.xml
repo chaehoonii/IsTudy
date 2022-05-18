@@ -35,4 +35,20 @@
 		INSERT 	board(study_num, user_id, title, content, board_type_num, ip) 
 		VALUES 	(#{study_num}, #{user_id}, #{title}, #{content}, #{board_type_num}, #{ip});
 	</insert>
+	<!-- study_num 으로 스터디 가져오기 -->
+	<select id='getStudyByStudynum' resultType='StudyVO'>
+		SELECT 		A.*, B.user_nick
+		FROM 		study_room A
+		LEFT JOIN 	user B
+		ON 			A.host_id = B.user_id
+		WHERE 		A.study_num=#{param1}
+	</select>
+	<!-- 스터디원 리스트 -->
+	<select id='StudyMates' resultType='StudyVO'>
+		SELECT 	A.user_id, A.user_nick
+		FROM 	user A
+		JOIN 	study_mate B
+		ON 		A.user_id=B.user_id
+		WHERE 	B.study_num=#{param1}
+	</select>
 </mapper>

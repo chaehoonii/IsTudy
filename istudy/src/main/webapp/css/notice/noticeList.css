@@ -1,7 +1,7 @@
 @charset "UTF-8";
 .noticeContainer{
 	width:100%;
-	height:78.9vh;
+	height:855px;
 	position:relative;
 	text-align:center;
 }
@@ -37,6 +37,9 @@
 	text-overflow:elipsis;
 	white-space:nowrap;
 }
+.noticeList li:nth-child(2){
+	cursor: pointer;
+}
 .noticeBtnArea{
 	width:1200px;
 	float:right;
@@ -44,7 +47,7 @@
 	position:relative;
 }
 .noticeBtn{
-	width:80px !important;
+	width:140px !important;
 	height:40px !important;
 	background-color:rgba(85, 76, 66, 80%);
 	color:white;
@@ -53,9 +56,12 @@
 	letter-spacing:1px;
 }
 /* =====================모달============================== */
+.modal{
+	text-align:center;
+}
 .modal-content{
-	width:600px;
-	height:800px;
+	width:900px;
+	height:700px;
 }
 .modal-header{
 	height:50px;
@@ -64,8 +70,23 @@
 	font-size:1.7em;
 	padding:10px;
 	height:300px;
+	overflow:scroll;
+	overflow-x: hidden;
+}
+.noticeBottonArea{
+	margin:20px 0px;
+}
+.noticeModalBtn{
+	width:140px !important;
+	height:40px !important;
+	background-color:rgba(85, 76, 66, 80%);
+	color:white;
+	border-radius:8px;
+	font-size:1.4em;
+	letter-spacing:1px;
 }
 .modal-footer{
+	float:left;
 	height:70px;
 }
 .modalclose{
