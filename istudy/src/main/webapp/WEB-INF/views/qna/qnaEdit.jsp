@@ -2,13 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="/css/qna/qnaEdit.css" type="text/css">  
-  
-<!-- TOAST UI Editor CDN URL(CSS)-->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css" />
-<link rel="stylesheet"
-	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-
+<script src="/js/ckeditor/ckeditor.js"></script>
 
 <div class='qna_back00'>
 	<img src='/images/back02.png' id="back_btn" onclick="location.href='/qna/qnaList'"/>
@@ -93,7 +87,7 @@
 			extraPlugin : 'confighelper',
 
 		});
-
+		
 		CKEDITOR.on('dialogDefinition', function(ev) {
 			let dialogName = ev.data.name;
 			let dialog = ev.data.definition.dialog;
