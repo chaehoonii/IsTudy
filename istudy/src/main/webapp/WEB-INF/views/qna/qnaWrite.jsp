@@ -2,12 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="/css/qna/qnaWrite.css" type="text/css">
-<!-- TOAST UI Editor CDN URL(CSS)-->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css" />
-<link rel="stylesheet"
-	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-
+<script src="/js/ckeditor/ckeditor.js"></script>
 <script>
 	var cnt=1;
 	//태그 플러스
@@ -31,7 +26,6 @@
 		<div class='qna_back02'>
 			<form method='post' action='/board/boardWriteOk' id='qnaWriteForm' enctype="multipart/form-data">
 				<input type='hidden' value='2' name='board_type_num'/>
-				<input type='hidden' name='content' id='content_hidden'/>
 				<ul>
 					<li>
 						<ul id="qna_title">
@@ -40,8 +34,11 @@
 					</li>
 					<li>
 						<ul id="qna_content">
-							<!-- TOAST UI Editor가 들어갈 div태그 -->
-							<li><div id="editor"></div></li>
+							<!-- ck에디터 -->
+							<li><div class="qnaTextArea" id="qnaTextArea" name="content">
+								<textarea class="qna_editor" id="qna_editor" name="content" 
+								placeholder="코드블럭(markdown)이용 시 백틱(`)을 사용하세요"></textarea>
+							</div></li>
 							<li>
 								<ul id='lang_ul'>
 									<li><input type='checkbox' name='lang_list' value='1' class='chk'><label >&nbsp;&nbsp;HTML</label></li>
@@ -74,41 +71,38 @@
 		</div>
 	</div>
 </div>
-
-<!-- TOAST UI Editor CDN URL(JS) -->
-<script
-	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-<!-- TOAST UI Editor 생성 JavaScript 코드 -->
 <script>
-const editor = new toastui.Editor({
-	el : document.querySelector('#editor'),
-	previewStyle : 'vertical',
-	height : '1000px',
-	initialEditType: 'wysiwyg'
-	
+$(document).ready(function() {
+	CKEDITOR.replace("qna_editor", {
+		height : '400px',
+		filebrowserUploadUrl : '/board/imageUpload', // 이미지 업로드
+		//filebrowserUploadMethod:'form',
+		extraPlugin : 'autograw',
+		extraPlugin : 'markdown',
+		extraPlugin : 'confighelper',
+	});
+
+	CKEDITOR.on('dialogDefinition', function(ev) {
+		let dialogName = ev.data.name;
+		let dialog = ev.data.definition.dialog;
+		let dialogDefinition = ev.data.definition;
+
+		if (dialogName == 'image') {
+			dialog.on('show', function() {
+				this.selectPage('Upload'); // 이미지 클릭시 업로드탭으로 시작
+			});
+			dialogDefinition.removeContents('advanced'); // 자세히 탭 제거
+			dialogDefinition.removeContents('Link'); // 링크탭 제거 
+		}
+	});
 });
 //글 등록
 $("#submit_btn").click(function(){
-	/* if($("#title_box").text().trim()==""){
-		alert('제목을 입력해주세요');
-		$("#title_box").focus();
-		return false;
-	}else{
-		if($("#content_box").text().trim()==""){
-			alert('글 내용을 입력해주세요');
-			$("#content_box").focus();
-			return false;
-		}else{ */
-
 				if(confirm('글을 등록하시겠습니까?')){
-					
-					// editor.getHtml()을 사용해서 에디터 내용 받아오기
-					$("#content_hidden").val(editor.getHTML());
 					$("#qnaWriteForm").submit();
 				}
 				return false;
-	/* 	}
-	} */
-});//submit
+
+});
 	
 </script>
