@@ -11,7 +11,6 @@ $(".adminNoticeList").click(function() {
 		success: function(data) {
 			$('#modalTitle').text(data.title);
 			$('#modalContent').html(data.content);
-			
 		},
 		error: function(e) {
 		}

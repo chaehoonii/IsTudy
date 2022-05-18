@@ -56,10 +56,9 @@ public class AdminNoticeController {
 	@GetMapping(value = "/notice/noticeWrite")
 	public ModelAndView noticeWrite() {
 
-		mav.setViewName("/admin/notice/adminNoticeWrite");
+		mav.setViewName("/notice/adminNoticeWrite");
 		return mav;
 	}
-
 	//글 등록
 	@PostMapping("/notice/noticeWriteOk")
 	public ResponseEntity<String> boardWriteOk(BoardVO vo, HttpServletRequest request) {
@@ -85,17 +84,16 @@ public class AdminNoticeController {
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST); // 400
 		}
 		return entity;
-
 	}
 	
 	//글 수정
-	@GetMapping(value ="/notice/noticeEdit")
+	@GetMapping(value ="/noticeEdit")
 	public ModelAndView noticeEdit(int board_num) {
 		// DB에 있는 첨부파일 수 구하기(새로 변경한 파일이 생기면 --해줘야 하기 때문)
 		BoardVO vo = Nservice.selectNoticeModal(board_num);
 		System.out.println(board_num);
 		mav.addObject("vo", vo);
-		mav.setViewName("/admin/notice/adminNoticeEdit");
+		mav.setViewName("/notice/adminNoticeEdit");
 		return mav;
 	}
 	
@@ -184,7 +182,7 @@ public class AdminNoticeController {
 		}
 		return;
 	}
-
+	
 	// CKEditor 서버로 전송된 이미지 뿌려주기
 	@RequestMapping(value = "/imageSubmit", method = RequestMethod.GET)
 	public void ckSubmit(@RequestParam(value = "uid") String uid, @RequestParam(value = "fileName") String fileName,
@@ -214,7 +212,6 @@ public class AdminNoticeController {
 				while ((readByte = fileInputStream.read(buf)) != -1) {
 					outputStream.write(buf, 0, readByte);
 				}
-
 				imgBuf = outputStream.toByteArray();
 				length = imgBuf.length;
 				out.write(imgBuf, 0, length);
@@ -228,5 +225,4 @@ public class AdminNoticeController {
 			}
 		}
 	}
-	
 }

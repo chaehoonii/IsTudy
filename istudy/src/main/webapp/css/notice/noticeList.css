@@ -56,12 +56,17 @@
 	letter-spacing:1px;
 }
 /* =====================모달============================== */
-.modal{
-	text-align:center;
+.modal-dialog {
+width: 100%;
+max-width:1000px;
+height: 70%;
+padding: 0;
+margin:0 auto;
+top:10%;
 }
-.modal-content{
-	width:900px;
-	height:700px;
+.modal-content {
+height: 100%;
+overflow:auto;
 }
 .modal-header{
 	height:50px;
