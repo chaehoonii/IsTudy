@@ -27,7 +27,7 @@ public class ServerConfigurer implements WebMvcConfigurer {
 	 */
 
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/ckUpload/**").addResourceLocations("/ckUpload/notice/");
+		registry.addResourceHandler("/ckUpload/**").addResourceLocations("/ckUpload/");
 	}
 
 	@Bean
