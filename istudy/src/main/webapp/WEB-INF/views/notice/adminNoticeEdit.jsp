@@ -7,8 +7,7 @@
 <script src="/js/ckeditor/ckeditor.js"></script>
 <div class="noticeEditContainer">
 	<h1 class="noticeTitle">공지사항 수정</h1>
-	<form id="noticeForm" method="POST"
-		action="/admin/notice/noticeEditOk" enctype="multipart/form-data">
+	<form id="noticeForm" method="post" action="/board/boardEditOk" enctype="multipart/form-data">
 		<input type="hidden" name="board_type_num" value="3">
 		<input type="hidden" name="board_num" value="${vo.board_num}">
 		<!-- 글 제목 -->
@@ -19,11 +18,10 @@
 			</div>
 		</div>
 		<!-- ck에디터 -->
-		<div class="noticeTextArea" id="noticeTextArea" name="content">
+		<div class="noticeTextArea" id="noticeTextArea">
 			<textarea class="notice_editor" id="notice_editor" name="content">${vo.content}</textarea>
 		</div>
-		<br /> <br /> <input type="submit" class="btn registBtn"
-			value="등록하기">
+		<br /> <br /> <input type="submit" class="btn registBtn" value="등록하기">
 	</form>
 </div>
 <script>
@@ -31,7 +29,8 @@
 		CKEDITOR.replace("notice_editor", {
 
 			height : '400px',
-			filebrowserUploadUrl : '/admin/imageUpload', // 이미지 업로드
+			filebrowserUploadUrl : '/board/imageUpload', // 이미지 업로드
+			//filebrowserUploadMethod:'form',
 			extraPlugin : 'autograw',
 			extraPlugin : 'markdown',
 			extraPlugin : 'confighelper',

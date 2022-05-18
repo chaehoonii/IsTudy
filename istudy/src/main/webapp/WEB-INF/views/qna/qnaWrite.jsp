@@ -2,9 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="/css/qna/qnaWrite.css" type="text/css">
-<!-- TOAST UI Editor CDN URL(CSS)-->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css" />
-<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 <script src="/js/ckeditor/ckeditor.js"></script>
 <script>
 	var cnt=1;
@@ -81,7 +78,7 @@
 $(document).ready(function() {
 	CKEDITOR.replace("qna_editor", {
 		height : '400px',
-		filebrowserUploadUrl : '/admin/imageUpload', // 이미지 업로드
+		filebrowserUploadUrl : '/board/imageUpload', // 이미지 업로드
 		//filebrowserUploadMethod:'form',
 		extraPlugin : 'autograw',
 		extraPlugin : 'markdown',

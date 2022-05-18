@@ -8,7 +8,7 @@
 <div class="noticeWriteContainer">
 	<h1 class="noticeTitle">공지사항 등록</h1>
 	<form id="noticeForm" method="post"
-		action="/admin/notice/noticeWriteOk" enctype="multipart/form-data">
+		action="/board/boardWriteOk" enctype="multipart/form-data">
 		<input type="hidden" name="board_type_num" value="3">
 		<!-- 글 제목 -->
 		<div class="noticeWriteTitleContainer">
@@ -18,7 +18,7 @@
 			</div>
 		</div>
 		<!-- ck에디터 -->
-		<div class="noticeTextArea" id="noticeTextArea" name="content">
+		<div class="noticeTextArea" id="noticeTextArea">
 			<textarea class="notice_editor" id="notice_editor" name="content" 
 			placeholder="코드블럭(markdown)이용 시 백틱(`)을 사용하세요"></textarea>
 		</div>
@@ -29,7 +29,7 @@
 	$(document).ready(function() {
 		CKEDITOR.replace("notice_editor", {
 			height : '400px',
-			filebrowserUploadUrl : '/admin/imageUpload', // 이미지 업로드
+			filebrowserUploadUrl : '/board/imageUpload', // 이미지 업로드
 			//filebrowserUploadMethod:'form',
 			extraPlugin : 'autograw',
 			extraPlugin : 'markdown',

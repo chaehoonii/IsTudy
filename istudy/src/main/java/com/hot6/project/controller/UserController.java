@@ -187,6 +187,7 @@ public class UserController {
 
 			if (user != null) {
 				session.setAttribute("logId", user.getUser_id());
+				session.setAttribute("my_id", user.getUser_id());
 				session.setAttribute("logNickname", user.getUser_nick());
 				session.setAttribute("logName", user.getUser_name());
 				session.setAttribute("logStatus", "Y");
