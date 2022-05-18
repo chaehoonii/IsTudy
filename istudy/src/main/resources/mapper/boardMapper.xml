@@ -98,4 +98,72 @@
 		SET 	file1=#{file1}, file2=#{file2}, file3=#{file3}, file4=#{file4}
 		WHERE 	board_num=#{board_num}
 	</update>
+	<!-- board_num 으로 아이디 가져오기 -->
+	<select id='getIdByBoardnum' resultType='string'>
+		select user_id
+		from board
+		where board_num=#{param1}
+	</select>
+	<!-- reply_num 으로 아이디 가져오기 -->
+	<select id='getIdByReplynum' resultType='string'>
+		select user_id
+		from reply
+		where reply_num=#{param1}
+	</select>
+	<!-- 점수 올리기(글) -->
+	<update id='expUpBoard'>
+		UPDATE 	user 
+		SET 	exp=exp+3 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
+	<!-- 점수 올리기(댓글) -->
+	<update id='expUpReply'>
+		UPDATE 	user 
+		SET 	exp=exp+1 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
+	<!-- 점수 올리기(댓글좋아요) -->
+	<update id='expUpLike'>
+		UPDATE 	user 
+		SET 	exp=exp+1 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
+	<!-- 점수 올리기(댓글채택) -->
+	<update id='expUpSelected'>
+		UPDATE 	user 
+		SET 	exp=exp+5 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
+	<!-- 점수 내리기(글삭제) -->
+	<update id='expDownBoard'>
+		UPDATE 	user 
+		SET 	exp=exp-3 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
+	<!-- 점수 내리기(댓글삭제) -->
+	<update id='expDownReply'>
+		UPDATE 	user 
+		SET 	exp=exp-1 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
+	<!-- 점수 내리기(댓글좋아요취소) -->
+	<update id='expDownLike'>
+		UPDATE 	user 
+		SET 	exp=exp-1 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
+	<!-- 점수 내리기(댓글채택취소) -->
+	<update id='expDownSelected'>
+		UPDATE 	user 
+		SET 	exp=exp-5 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
 </mapper>
