@@ -60,7 +60,6 @@ public class NoticeController {
 			mav.setViewName("/notice/adminNoticeEdit");
 			return mav;
 		}
-	
 
 	@ResponseBody // Ajax
 	@RequestMapping(value = "noticeListModal", method = RequestMethod.GET)
