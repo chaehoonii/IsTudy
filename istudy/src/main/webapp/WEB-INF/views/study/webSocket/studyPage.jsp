@@ -22,6 +22,7 @@
 		var conn = new WebSocket('ws://localhost:8060/socket');
 	    var myName = '${logId}' // 자기 id 저장
 	    var myNick = '${nick}';
+	    console.log("myNick="+myNick);
 	    var mentoName = '${vo.host_id}';
 	    var myGroup = '${vo.study_num}';
 	    var myoffer;
@@ -207,14 +208,14 @@
 			conn.send(JSON.stringify(message));
 		}
 		
-		
+		//피어커넥션 서버?
 		function createPeerConnection(target) {
 			var configuration = {
 				    "iceServers" : [ {
 				        	"url" : "stun:stun2.1.google.com:19302"
 				   		 },
 					    {
-						 	"url" : "turn:kgu.mentomenti.kro.kr?transport=tcp",
+						 	"url" : "turn:localhost:8060?transport=tcp",
 						 	"username":"root",
 						 	"credential":"1234"
 					 	}
