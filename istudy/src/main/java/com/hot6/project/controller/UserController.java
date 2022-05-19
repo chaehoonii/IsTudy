@@ -332,7 +332,7 @@ public class UserController {
 	public ModelAndView logout(HttpSession session, HttpServletRequest request) {
 		session.invalidate();
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:"+request.getHeader("referer"));
+		mav.setViewName("redirect:/");
 		return mav;
 	}
 
