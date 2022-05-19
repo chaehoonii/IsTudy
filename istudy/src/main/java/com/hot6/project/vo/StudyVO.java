@@ -51,6 +51,8 @@ public class StudyVO {
 	private List<String> lang_list;
 	private List<String> tag_list;
 	
+	//데이터랩-> 인기 있는 스터디 (좋아요 수)
+	private int cnt;
 	
 	public List<String> getLang_list() {
 		return lang_list;
@@ -250,6 +252,12 @@ public class StudyVO {
 	}
 	public void setTag(String tag) {
 		this.tag = tag;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 
 }
