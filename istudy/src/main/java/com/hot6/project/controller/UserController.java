@@ -329,10 +329,10 @@ public class UserController {
 
 	// 로그아웃
 	@GetMapping("logout")
-	public ModelAndView logout(HttpSession session, HttpServletRequest request) {
+	public ModelAndView logout(HttpSession session) {
 		session.invalidate();	
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/");
+		mav.setViewName("redirect:/");
 		return mav;
 	}
 

@@ -22,7 +22,7 @@
     	}
     	#level_info{
     		position: absolute;
-            top : 400px;
+            top : 380px;
             left: 50%;
             transform: translate(-50%,0%); 
             font-size: 14px;
@@ -30,8 +30,25 @@
             display:none;
             background-color:white;
             padding:30px;
+            padding-left:40px;
             color:black;
             border-radius:10px;
+            line-height:25px;
+            width:14vw;
+    	}
+    	#level_info ul li:nth-child(1){
+    	    line-height:40px;
+    	}
+    	#level_info ul li:nth-child(6){
+    		line-height:40px;
+    	}
+    	#level_info ul li:nth-child(2n+7){
+    		float:left;
+    		width:50%;
+    	}
+    	#level_info ul li:nth-child(2n+8){
+    		float:right;
+    		width:50%;
     	}
         #mypage{
             width: 100%;

@@ -24,15 +24,19 @@
                 <div id="level_info">
 					<ul>
 						<li>[ 레벨 ]</li>
-						<li>level 1 &nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 ~ 100</li>
-						<li>level 2 &nbsp;:&nbsp; 101 ~ 200</li>
-						<li>level 3 &nbsp;:&nbsp; 201 ~ 300</li>
-						<li>level 4 &nbsp;:&nbsp; 301 ~ </li>
+						<li>level 1 &nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 ~ 100</li>
+						<li>level 2 &nbsp;&nbsp;:&nbsp;&nbsp; 101 ~ 200</li>
+						<li>level 3 &nbsp;&nbsp;:&nbsp;&nbsp; 201 ~ 300</li>
+						<li>level 4 &nbsp;&nbsp;:&nbsp;&nbsp; 301 ~ </li>
 						<li><br/>[ 점수 기준 ]</li>
-						<li>게시글 + 3점</li>
-						<li>댓글 + 1점</li>
-						<li>내댓글 좋아요 + 1점</li>
-						<li>내댓글 채택 + 5점</li>
+						<li>게시글</li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;+ 3점</li>
+						<li>댓글</li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;+ 1점</li>
+						<li>내댓글 좋아요</li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;+ 1점</li>
+						<li>내댓글 채택</li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;+ 5점</li>
 					</ul>
 				</div>
                 <div class="userid">
