@@ -30,4 +30,13 @@ public class StudyInfoServiceImpl implements StudyInfoService{
 	public List<String> StudyTag(int study_num){
 		return dao.StudyTag(study_num);
 	}
+
+	public StudyVO studyPeople(int study_num) {
+		return dao.studyPeople(study_num);
+	}
+	@Override
+	public int totalRecord(PagingVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

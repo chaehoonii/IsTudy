@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.hot6.project.vo.PagingVO;
 import com.hot6.project.vo.StudyVO;
 
 @Mapper
@@ -28,6 +29,8 @@ public interface StudyDAO {
 	
 	//일정 수정
 	public int CalendarEdit(StudyVO vo);
+
+	public int totalRecord(PagingVO vo);
 	
 	
 }

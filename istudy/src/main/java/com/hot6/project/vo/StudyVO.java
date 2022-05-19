@@ -35,6 +35,7 @@ public class StudyVO {
 	private int want_num;
 	private String user_id;
 	private String want_ok;
+	private String want_coment;
 	
 	//calendar
 	private int plan_num;
@@ -250,6 +251,12 @@ public class StudyVO {
 	}
 	public void setTag(String tag) {
 		this.tag = tag;
+	}
+	public String getWant_coment() {
+		return want_coment;
+	}
+	public void setWant_coment(String want_coment) {
+		this.want_coment = want_coment;
 	}
 
 }

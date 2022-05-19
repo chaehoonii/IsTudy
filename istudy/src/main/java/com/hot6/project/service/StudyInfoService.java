@@ -10,7 +10,8 @@ public interface StudyInfoService {
 	public List<StudyVO> studyHome(PagingVO vo);
 	public List<String> studyLang(int study_num);
 	public List<StudyVO> langAll();
-
 	public List<String> StudyTag(int study_num);
+	public StudyVO studyPeople(int study_num);
+	public int totalRecord(PagingVO vo);
 	
 }
