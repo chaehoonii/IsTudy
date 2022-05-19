@@ -89,7 +89,54 @@ public class QnaServiceImpl implements QnaService{
 		return dao.QnaView(board_num);
 	}
 
+	@Override
+	public int LikeUp(String user_id, int reply_num) {
+		return dao.LikeUp(user_id, reply_num);
+	}
 
-	
+	@Override
+	public int LikeDown(String user_id, int reply_num) {
+		return dao.LikeDown(user_id, reply_num);
+	}
+
+	@Override
+	public int ReplySelect(int reply_num) {
+		return dao.ReplySelect(reply_num);
+	}
+
+	@Override
+	public int ReplySelectDel(int reply_num) {
+		return dao.ReplySelectDel(reply_num);
+	}
+
+	@Override
+	public int getSolved(int board_num) {
+		return dao.getSolved(board_num);
+	}
+
+	@Override
+	public List<Integer> QnaLangNum(int board_num) {
+		return dao.QnaLangNum(board_num);
+	}
+
+	@Override
+	public int qnaTagDelete(BoardVO vo) {
+		return dao.qnaTagDelete(vo);
+	}
+
+	@Override
+	public int qnaLangDelete(BoardVO vo) {
+		return dao.qnaLangDelete(vo);
+	}
+
+	@Override
+	public int qnaTagInsert(BoardVO vo) {
+		return dao.qnaTagInsert(vo);
+	}
+
+	@Override
+	public int qnaLangInsert(BoardVO vo) {
+		return dao.qnaLangInsert(vo);
+	}
 	
 }

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.hot6.project.dao.AdminUserDAO">
+  
+  	<!-- 전체 회원 정보 -->
+  	<select id="getUserInfo" resultType="UserVO">	
+  		select user_nick, user_id, user_name, tel, email, date_format(register_date,'%Y.%m.%d') as register_date, permission, want, career_year, career
+  		from user 
+  		<where>
+  			<!-- user, mentor -->
+  			<if test="param1 !=null and param1!='all'">permission=#{param1}</if>
+  			
+  			<!-- mentor 신청 -->
+  			<if test="param2!=null">AND want='T'</if>
+  			
+  			<if test="param3.searchWord!=null">
+	  			and user_nick like '%${param3.searchWord}%' or user_id like '%${param3.searchWord}%' or user_name like '%${param3.searchWord}%'
+	  			or tel like '%${param3.searchWord}%' or email like '%${param3.searchWord}%' or register_date like '%${param3.searchWord}%' 
+	  			or career_year like '%${param3.searchWord}%' or career like '%${param3.searchWord}%'
+  			</if>
+  		</where>
+  		
+  		order by user_id limit ${param3.onePageRecord} offset ${param3.offsetIndex}
+  	</select>
+  	
+  	<!-- 해당 레코드 수 -->
+  	<select id="getAllCnt" resultType="int">
+  		select count(user_id) from user
+  		<where>
+  			<!-- user, mentor, admin -->
+  			<if test="param1 !=null and param1!='all'"> permission=#{param1}</if>
+  			<!--  mentor 신청 -->		
+  			<if test="param2!=null">AND want='T'</if>
+  			<if test="param3.searchWord!=null">
+	  			and user_nick like '%${param3.searchWord}%' or user_id like '%${param3.searchWord}%' or user_name like '%${param3.searchWord}%'
+	  			or tel like '%${param3.searchWord}%' or email like '%${param3.searchWord}%' or register_date like '%${param3.searchWord}%' 
+	  			or career_year like '%${param3.searchWord}%' or career like '%${param3.searchWord}%'
+  			</if>
+  		</where>
+  		
+  	</select> 
+  	
+  	<!-- 해당 회원 수 -->
+  	<select id="getPermissionCnt" resultType="int">
+  		select count(user_id) from user
+  		<where>
+  			<!-- user, mentor, admin -->
+  			<if test="param1 !=null and param1!='all'"> permission=#{param1}</if>
+  			<!--  mentor 신청 -->		
+  			<if test="param2!=null">AND want='T'</if>
+  		</where>
+  		
+  	</select> 	  
+  	
+  	<!-- 멘토 신청 승인 -->
+  	<update id="approveUserStatus">
+  		update user set permission="mentor"
+  			<where>
+  				<foreach item="item" collection="userList" open="user_id in (" separator="," close=")">
+  					 #{item}
+  				</foreach>
+  			</where>
+  	</update>
+  	
+  	<!-- 멘토 신청 반려 -->
+  	<update id="sendBackStatus">
+  		update user set want="F"
+  			<where>
+  				<foreach item="item" collection="userList" open="user_id in(" separator="," close=")">
+  					#{item}
+  				</foreach>		
+  			</where>
+  	</update>
+ </mapper>
+ 

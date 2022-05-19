@@ -35,7 +35,40 @@ public class MypageServiceImpl implements MypageService {
 	public List<BoardVO> getComments(String user_id) {
 		return dao.getComments(user_id);
 	}
-	
-	
+
+	@Override
+	public int cntJoinStudy(String user_id) {	
+		return dao.cntJoinStudy(user_id);
+	}
+
+	@Override
+	public int cntFinishStudy(String user_id) {
+		return dao.cntFinishStudy(user_id);
+	}
+
+	@Override
+	public int cntArticle(String user_id) {
+		return dao.cntArticle(user_id);
+	}
+
+	@Override
+	public int cntComment(String user_id) {
+		return dao.cntComment(user_id);
+	}
+
+	@Override
+	public List<StudyVO> getLikeStudy(String user_id) {
+		return dao.getLikeStudy(user_id);
+	}
+
+	@Override
+	public String getNickname(String user_id) {
+		return dao.getNickname(user_id);
+	}
+
+	@Override
+	public int cntLikeStudy(String user_id) {
+		return dao.cntLikeStudy(user_id);
+	}
 
 }

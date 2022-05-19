@@ -31,7 +31,6 @@
 	$( function() {
 		$( "#datepicker1" ).datepicker({
 		});
-		
 	});
 	$( function() {
 		$( "#datepicker2" ).datepicker({
@@ -111,7 +110,6 @@
 		console.log(typeof result3)
 		ajaxSend('#langlist',result3)
 		//document.getElementById('study_list').innerText= result;
-	
 	}
 	function ajaxSend(param, value){
 		//alert(typeof value)

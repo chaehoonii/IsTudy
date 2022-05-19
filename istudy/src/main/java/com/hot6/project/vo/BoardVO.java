@@ -1,6 +1,7 @@
 package com.hot6.project.vo;
 
 import java.util.List;
+import java.util.Map;
 
 public class BoardVO {
 	//board
@@ -14,6 +15,7 @@ public class BoardVO {
 	private int is_boardnotice;
 	private String ip;
 	private int count_reply;
+	private int solved;
 	
 	//board_type
 	private int board_type_num;
@@ -24,26 +26,79 @@ public class BoardVO {
 	private String file2;
 	private String file3;
 	private String file4;
-	private String file5;
 	
 	//board_hashtag
 	private String tag;
 
 	private List<String> lang_list;
 	private List<String> tag_list;
-	
+	private List<Integer> lang_num_list;
+    
 	//user
 	private String user_nick;
 	private String profile_img;
+	private String level_icon;
 	
 	//reply
 	private int selected;
-	public int reply_num;
-	public String reply_coment;
-	public String reply_date;
-	public String selected_id;
+	private int reply_num;
+	private String reply_coment;
+	private String reply_date;
+	private int like_num;
+	private int like_type;
+	private String writer_id;
 	
 	
+    
+
+	public String getLevel_icon() {
+		return level_icon;
+	}
+
+	public void setLevel_icon(String level_icon) {
+		this.level_icon = level_icon;
+	}
+
+	public List<Integer> getLang_num_list() {
+		return lang_num_list;
+	}
+
+	public void setLang_num_list(List<Integer> lang_num_list) {
+		this.lang_num_list = lang_num_list;
+	}
+
+	public int getSolved() {
+		return solved;
+	}
+
+	public void setSolved(int solved) {
+		this.solved = solved;
+	}
+
+	public String getWriter_id() {
+		return writer_id;
+	}
+
+	public void setWriter_id(String writer_id) {
+		this.writer_id = writer_id;
+	}
+
+	public int getLike_num() {
+		return like_num;
+	}
+
+	public void setLike_num(int like_num) {
+		this.like_num = like_num;
+	}
+
+	public int getLike_type() {
+		return like_type;
+	}
+
+	public void setLike_type(int like_type) {
+		this.like_type = like_type;
+	}
+
 	public int getReply_num() {
 		return reply_num;
 	}
@@ -66,14 +121,6 @@ public class BoardVO {
 
 	public void setReply_date(String reply_date) {
 		this.reply_date = reply_date;
-	}
-
-	public String getSelected_id() {
-		return selected_id;
-	}
-
-	public void setSelected_id(String selected_id) {
-		this.selected_id = selected_id;
 	}
 
 	public int getSelected() {
@@ -234,14 +281,6 @@ public class BoardVO {
 
 	public void setFile4(String file4) {
 		this.file4 = file4;
-	}
-
-	public String getFile5() {
-		return file5;
-	}
-
-	public void setFile5(String file5) {
-		this.file5 = file5;
 	}
 
 	public String getTag() {

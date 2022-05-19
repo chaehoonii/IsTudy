@@ -18,5 +18,26 @@ public interface MypageService {
 		
 	//마이페이지 댓글 단 글
 	public List<BoardVO> getComments(String user_id);
-
+	
+	//마이페이지 진행 중인 스터디 개수
+	public int cntJoinStudy(String user_id);
+		
+	//마이페이지 완료된 스터디 개수
+	public int cntFinishStudy(String user_id);
+	
+	//마이페이지 작성한 글 개수
+	public int cntArticle(String user_id);
+		
+	//마이페이지 댓글 단 개수
+	public int cntComment(String user_id);
+	
+	//마이페이지 찜한 스터디
+	public List<StudyVO> getLikeStudy(String user_id);
+	
+	//닉네임
+	public String getNickname(String user_id);
+	
+	//찜한 스터디 개수
+	public int cntLikeStudy(String user_id);
+	
 }

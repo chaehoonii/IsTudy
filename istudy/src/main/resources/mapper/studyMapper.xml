@@ -15,7 +15,7 @@
 	    ON		  	G.study_num=A.study_num
 	    WHERE 		user_id=#{param1}
 	    ORDER BY  	remain, A.study_num
-	    LIMIT 6;
+	    LIMIT 		6
 	</select>
 	<!-- 스터디 추천: 언어타입 -->
 	<select id="StudyLangType" resultType="string">
@@ -30,49 +30,25 @@
 		FROM study_hashtag
 		WHERE study_num=#{param1}
 	</select>
-
-	<!-- 달력 페이지 -->
-	<select id="CalendarList" resultType="StudyVO">
-		SELECT A.*, B.color_name
-		FROM calendar A
-		LEFT JOIN calendar_color B
-		ON A.color_num = B.color_num
-		WHERE study_num=#{param1}
-	</select>
-
-	<!-- 일정 등록 -->
-	<insert id="PlanInsert">
-		INSERT calendar(study_num, plan_name, plan_detail,
-		plan_start, plan_finish, start_time, finish_time, color_num)
-		VALUES
-		(#{study_num}, #{plan_name}, #{plan_detail}, #{plan_start},
-		#{plan_finish}, #{start_time}, #{finish_time}, #{color_num})
+	<!-- 스터디 게시판 글 등록 -->
+	<insert id='StudyboardInsert'>
+		INSERT 	board(study_num, user_id, title, content, board_type_num, ip) 
+		VALUES 	(#{study_num}, #{user_id}, #{title}, #{content}, #{board_type_num}, #{ip});
 	</insert>
-
-	<!-- 일정 상세 -->
-	<select id="CalendarDetail" resultType="StudyVO">
-		SELECT A.*, B.color_name
-		FROM calendar A
-		JOIN calendar_color B
-		ON B.color_num = A.color_num
-		WHERE
-		A.plan_num = #{param1}
+	<!-- study_num 으로 스터디 가져오기 -->
+	<select id='getStudyByStudynum' resultType='StudyVO'>
+		SELECT 		A.*, B.user_nick
+		FROM 		study_room A
+		LEFT JOIN 	user B
+		ON 			A.host_id = B.user_id
+		WHERE 		A.study_num=#{param1}
 	</select>
-
-	<!-- 일정 삭제 -->
-	<delete id="CalendarDel">
-		DELETE FROM calendar
-		WHERE plan_num=#{param1}
-	</delete>
-
-	<!-- 일정 수정 -->
-	<update id="CalendarEdit">
-		UPDATE calendar
-		SET plan_name=#{plan_name}, plan_detail=#{plan_detail},
-		plan_start=#{plan_start}, plan_finish=#{plan_finish},
-		start_time=#{start_time}, finish_time=#{finish_time},
-		color_num=#{color_num}
-		WHERE plan_num=#{plan_num};
-	</update>
-
+	<!-- 스터디원 리스트 -->
+	<select id='StudyMates' resultType='StudyVO'>
+		SELECT 	A.user_id, A.user_nick
+		FROM 	user A
+		JOIN 	study_mate B
+		ON 		A.user_id=B.user_id
+		WHERE 	B.study_num=#{param1}
+	</select>
 </mapper>

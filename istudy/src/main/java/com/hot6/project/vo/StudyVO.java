@@ -34,6 +34,7 @@ public class StudyVO {
 	//study_mate
 	private int want_num;
 	private String user_id;
+	private String user_nick;
 	private String want_ok;
 	private String want_coment;
 	
@@ -52,7 +53,15 @@ public class StudyVO {
 	private List<String> lang_list;
 	private List<String> tag_list;
 	
+	//데이터랩-> 인기 있는 스터디 (좋아요 수)
+	private int cnt;
 	
+	public String getUser_nick() {
+		return user_nick;
+	}
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
+	}
 	public List<String> getLang_list() {
 		return lang_list;
 	}
@@ -257,6 +266,12 @@ public class StudyVO {
 	}
 	public void setWant_coment(String want_coment) {
 		this.want_coment = want_coment;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 
 }

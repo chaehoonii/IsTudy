@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.hot6.project.dao.BoardDAO">
+	<select id="getFileName" resultType="BoardVO">
+		SELECT 	* 
+		FROM 	board_image 
+		WHERE 	board_num=#{board_num}
+	</select>
+	<select id="getType_num" resultType="int">
+		SELECT 	board_type_num
+		FROM 	board
+		WHERE 	board_num = #{param1}
+	</select>
+	<delete id="boardDelete">
+		DELETE 	FROM board 
+		WHERE 	board_num=#{param1}
+	</delete>
+	<select id="getStudy_num" resultType="int">
+		SELECT 	study_num
+		FROM 	board
+		WHERE 	board_num = #{param1}
+	</select>
+	<!-- 댓글 리스트 -->
+	<select id="replyList" resultType="BoardVO">
+		SELECT 		A.*, B.user_nick, B.profile_img,
+					COUNT( case when ifnull(C.user_id, 0)= #{param1} then 1 end) AS like_type,
+					COUNT(C.user_id) AS like_num,
+	                D.user_id AS writer_id, E.level_icon
+		FROM 		reply A
+		LEFT JOIN 	user B
+		ON 			A.user_id = B.user_id
+		LEFT JOIN 	reply_like C
+		ON			A.reply_num = C.reply_num
+	    LEFT JOIN	board D
+	    ON			D.board_num = A.board_num
+	    LEFT JOIN 	level E
+		on 			E.exp_min <![CDATA[<=]]> B.exp
+		AND 		B.exp <![CDATA[<=]]> E.exp_max
+		WHERE 		A.board_num = #{param2}
+		GROUP BY 	A.reply_num
+		ORDER BY 	selected DESC, like_num DESC, A.reply_num
+		<!-- 정렬: 채택된 답변 > 좋아요순 > 오래된순 -->
+	</select>
+	<!-- 댓글 작성 -->
+	<insert id='replyWrite'>
+		INSERT 	reply(board_num, user_id, reply_coment, ip) 
+		VALUES	(#{board_num}, #{user_id}, #{reply_coment}, #{ip})
+	</insert>
+	<!-- 댓글 삭제 -->
+	<delete id="replyDel">
+		DELETE 	FROM reply
+		WHERE 	reply_num=#{param1}
+	</delete>
+	<!-- 댓글 수정폼 -->
+	<select id="getOneReply" resultType="BoardVO">
+		SELECT 	* 
+		FROM 	reply 
+		WHERE 	reply_num = #{param1}
+	</select>
+	<!-- 댓글 수정 -->
+	<update id="replyEditOk">
+		UPDATE 	reply 
+		SET 	reply_coment=#{reply_coment} 
+		WHERE 	reply_num=#{reply_num}
+	</update>
+	<!-- 글 등록 -->
+	<insert id='boardInsert'>
+		INSERT 	board(user_id, title, content, board_type_num, ip) 
+		VALUES 	(#{user_id}, #{title}, #{content}, #{board_type_num}, #{ip});
+	</insert>
+	<select id="boardNum" resultType="int">
+		SELECT 	 board_num 
+		FROM 	 board 
+		WHERE 	 user_id = #{param1}
+		ORDER BY board_num DESC
+		LIMIT 	 1
+	</select>
+	<insert id='boardFileInsert'>
+		INSERT 	board_image(board_num, file1, file2, file3, file4) 
+		VALUES	(#{board_num}, #{file1}, #{file2}, #{file3}, #{file4})
+	</insert>
+	<!-- 조회수 증가 -->
+	<update id='hitUp'>
+		UPDATE 	board
+		SET 	hit=hit+1
+		WHERE 	board_num=#{param1}
+	</update>
+	<!-- 글 수정 -->
+	<update id='BoardUpdate'>
+		UPDATE 	board
+		SET 	title=#{title}, content=#{content}, is_boardnotice=#{is_boardnotice}
+		WHERE 	board_num=#{board_num}
+	</update>
+	<update id='BoardFileUpdate'>
+		UPDATE 	board_image
+		SET 	file1=#{file1}, file2=#{file2}, file3=#{file3}, file4=#{file4}
+		WHERE 	board_num=#{board_num}
+	</update>
+	<!-- board_num 으로 아이디 가져오기 -->
+	<select id='getIdByBoardnum' resultType='string'>
+		select user_id
+		from board
+		where board_num=#{param1}
+	</select>
+	<!-- reply_num 으로 아이디 가져오기 -->
+	<select id='getIdByReplynum' resultType='string'>
+		select user_id
+		from reply
+		where reply_num=#{param1}
+	</select>
+	<!-- 점수 올리기(글) -->
+	<update id='expUpBoard'>
+		UPDATE 	user 
+		SET 	exp=exp+3 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
+	<!-- 점수 올리기(댓글) -->
+	<update id='expUpReply'>
+		UPDATE 	user 
+		SET 	exp=exp+1 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
+	<!-- 점수 올리기(댓글좋아요) -->
+	<update id='expUpLike'>
+		UPDATE 	user 
+		SET 	exp=exp+1 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
+	<!-- 점수 올리기(댓글채택) -->
+	<update id='expUpSelected'>
+		UPDATE 	user 
+		SET 	exp=exp+5 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
+	<!-- 점수 내리기(글삭제) -->
+	<update id='expDownBoard'>
+		UPDATE 	user 
+		SET 	exp=exp-3 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
+	<!-- 점수 내리기(댓글삭제) -->
+	<update id='expDownReply'>
+		UPDATE 	user 
+		SET 	exp=exp-1 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
+	<!-- 점수 내리기(댓글좋아요취소) -->
+	<update id='expDownLike'>
+		UPDATE 	user 
+		SET 	exp=exp-1 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
+	<!-- 점수 내리기(댓글채택취소) -->
+	<update id='expDownSelected'>
+		UPDATE 	user 
+		SET 	exp=exp-5 
+		WHERE 	user_id=#{param1}
+		AND 	permission='mentor'
+	</update>
+</mapper>

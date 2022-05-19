@@ -13,10 +13,10 @@
 		<c:forEach var="vo" items="${qnaList}">
 			<ul class='qna_ul' onclick="location.href='/qna/qnaView?board_num=${vo.board_num}'">
 				<li><span class='gray_border'>&nbsp;Q&nbsp;</span>&nbsp;&nbsp;
-					<c:if test="${vo.selected==0}">
+					<c:if test="${vo.solved==0}">
 					<span class="not_selected">&nbsp;?&nbsp;</span>
 					</c:if>
-					<c:if test="${vo.selected==1}">
+					<c:if test="${vo.solved==1}">
 					<span class="is_selected">&nbsp;✔&nbsp;</span>
 					</c:if>
 					&nbsp;&nbsp;${vo.title}
@@ -50,7 +50,7 @@
 				        <option value="tag">태그</option>
 				    </select>
 			    </li>
-			    <li><input type="text" name="searchWord" class="searchWord"  id='searchWord_box'/></li>
+			    <li>&nbsp;<input type="text" name="searchWord" class="searchWord"  id='searchWord_box'/></li>
 			    <li>&nbsp;<img src='/images/search.png' class='search_icon'/></li>
 			</ul>
 		</form>
@@ -65,12 +65,12 @@
 			document.getElementById("searchWord_box").value = '${searchWord}';
 		}
 	}
-       $(".search_icon").click(function() {
-          if ($(".searchWord").val() == "") {
-             alert("검색어를 입력하세요");
-             return false;
-          }else{
-        	  $(".searchFrm").submit();
-          } 
-       });
+	   $(".search_icon").click(function() {
+	      if ($(".searchWord").val() == "") {
+	         alert("검색어를 입력하세요");
+	         return false;
+	      }else{
+	    	  $(".searchFrm").submit();
+	      } 
+	   });
 </script>

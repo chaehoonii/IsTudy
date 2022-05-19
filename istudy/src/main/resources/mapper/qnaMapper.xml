@@ -11,18 +11,16 @@
 </select>
 <!-- 질문 리스트 & 채택된 답변이 있는지 여부(0:없음/ 1:있음)-->
 <select id="QnaList" resultType="BoardVO">
-	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(D.selected,0) AS selected
+	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(C.selected,0) AS solved
 	FROM 	  board A
     LEFT JOIN user B
     ON 		  A.user_id=B.user_id
-    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply FROM reply GROUP BY board_num) C
+    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply, COUNT(case when selected=1 then 1 end) AS selected FROM reply GROUP BY board_num) C
     ON		  C.board_num=A.board_num
-    LEFT JOIN (SELECT board_num,COUNT(board_num) AS selected FROM select_reply GROUP BY board_num) D
-    ON 		  A.board_num = D.board_num
 	WHERE 	  A.board_type_num=2
-	ORDER BY  board_num DESC;
+	ORDER BY  board_num DESC
 </select>
-<!-- 질문 리스트 : 언어타입 -->
+<!-- 글 : 언어타입 -->
 <select id="QnaLangType" resultType="String">
 	SELECT 	A.lang_type_name 
 	FROM 	lang_type A 
@@ -30,15 +28,17 @@
 	ON 		A.lang_type_num = B.lang_type_num 
 	WHERE 	B.board_num=#{param1}
 </select>
-<!-- 질문 리스트 : 태그 -->
+<!-- 글 : 언어타입넘버 -->
+<select id="QnaLangNum" resultType="int">
+	SELECT 	lang_type_num 
+	FROM 	board_lang_type  
+	WHERE 	board_num=#{param1}
+</select>
+<!-- 글 : 태그 -->
 <select id="QnaTag" resultType="String">
 	SELECT 	tag 
 	FROM 	board_hashtag 
 	WHERE 	board_num=#{param1}
-</select>
-<!-- 채택된 답변이 있는지 여부(0:없음/ 1:있음) -->
-<select id="IsSelected" resultType="int">
-	select count(board_num) as selected from select_reply where board_num=#{param1}
 </select>
 <!-- 검색 -->
 <select id="TotalQna_title" resultType="int">
@@ -48,14 +48,12 @@
 	and		title LIKE CONCAT('%', #{param1}, '%')
 </select>
 <select id="QnaList_title" resultType="BoardVO">
-	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(D.selected,0) AS selected
+	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(C.selected,0) AS selected
 	FROM 	  board A
     LEFT JOIN user B
     ON 		  A.user_id=B.user_id
-    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply FROM reply GROUP BY board_num) C
+    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply, COUNT(case when selected=1 then 1 end) AS selected FROM reply GROUP BY board_num) C
     ON		  C.board_num=A.board_num
-    LEFT JOIN (SELECT board_num,COUNT(board_num) AS selected FROM select_reply GROUP BY board_num) D
-    ON 		  A.board_num = D.board_num
 	WHERE 	  A.board_type_num=2
     AND 	  A.title LIKE CONCAT('%', #{param1}, '%')
 	ORDER BY  board_num DESC;
@@ -67,14 +65,12 @@
 	and		content LIKE CONCAT('%', #{param1}, '%')
 </select>
 <select id="QnaList_content" resultType="BoardVO">
-	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(D.selected,0) AS selected
+	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(C.selected,0) AS selected
 	FROM 	  board A
     LEFT JOIN user B
     ON 		  A.user_id=B.user_id
-    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply FROM reply GROUP BY board_num) C
+    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply, COUNT(case when selected=1 then 1 end) AS selected FROM reply GROUP BY board_num) C
     ON		  C.board_num=A.board_num
-    LEFT JOIN (SELECT board_num,COUNT(board_num) AS selected FROM select_reply GROUP BY board_num) D
-    ON 		  A.board_num = D.board_num
 	WHERE 	  A.board_type_num=2
     AND 	  A.content LIKE CONCAT('%', #{param1}, '%')
 	ORDER BY  board_num DESC;
@@ -86,14 +82,12 @@
 	and		user_nick LIKE CONCAT('%', #{param1}, '%')
 </select>
 <select id="QnaList_id" resultType="BoardVO">
-	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(D.selected,0) AS selected
+	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(C.selected,0) AS selected
 	FROM 	  board A
     LEFT JOIN user B
     ON 		  A.user_id=B.user_id
-    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply FROM reply GROUP BY board_num) C
+    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply, COUNT(case when selected=1 then 1 end) AS selected FROM reply GROUP BY board_num) C
     ON		  C.board_num=A.board_num
-    LEFT JOIN (SELECT board_num,COUNT(board_num) AS selected FROM select_reply GROUP BY board_num) D
-    ON 		  A.board_num = D.board_num
 	WHERE 	  A.board_type_num=2
     AND 	  B.user_nick LIKE CONCAT('%', #{param1}, '%')
 	ORDER BY  board_num DESC;
@@ -109,20 +103,18 @@
     AND 	  C.lang_type_name LIKE CONCAT('%', #{param1}, '%')
 </select>
 <select id="QnaList_lang" resultType="BoardVO">
-	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(D.selected,0) AS selected
+	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(C.selected,0) AS selected
 	FROM 	  board A
     LEFT JOIN user B
     ON 		  A.user_id=B.user_id
-    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply FROM reply GROUP BY board_num) C
+    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply, COUNT(case when selected=1 then 1 end) AS selected FROM reply GROUP BY board_num) C
     ON		  C.board_num=A.board_num
-    LEFT JOIN (SELECT board_num,COUNT(board_num) AS selected FROM select_reply GROUP BY board_num) D
-    ON 		  A.board_num = D.board_num
-    LEFT JOIN board_lang_type E
-    ON 		  E.board_num = A.board_num
-    LEFT JOIN lang_type F
-    ON		  F.lang_type_num = E.lang_type_num
+    LEFT JOIN board_lang_type D
+    ON 		  D.board_num = A.board_num
+    LEFT JOIN lang_type E
+    ON		  E.lang_type_num = D.lang_type_num
 	WHERE 	  A.board_type_num=2
-    AND 	  F.lang_type_name LIKE CONCAT('%', #{param1}, '%')
+    AND 	  E.lang_type_name LIKE CONCAT('%', #{param1}, '%')
 	ORDER BY  board_num DESC
 </select>
 <select id="TotalQna_tag" resultType="int">
@@ -134,32 +126,83 @@
 	AND		tag LIKE CONCAT('%', #{param1}, '%')
 </select>
 <select id="QnaList_tag" resultType="BoardVO">
-	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(D.selected,0) AS selected
-	FROM 	  board A
-    LEFT JOIN user B
-    ON 		  A.user_id=B.user_id
-    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply FROM reply GROUP BY board_num) C
-    ON		  C.board_num=A.board_num
-    LEFT JOIN (SELECT board_num,COUNT(board_num) AS selected FROM select_reply GROUP BY board_num) D
-    ON 		  A.board_num = D.board_num
-    LEFT JOIN	board_hashtag E
-    on 			E.board_num = A.board_num
-	WHERE 	  A.board_type_num=2
-    AND 	  E.tag LIKE CONCAT('%', #{param1}, '%')
-	ORDER BY  board_num DESC;
+	SELECT 	  	A.*, B.*, IFNULL(C.count_reply,0) AS count_reply, IFNULL(C.selected,0) AS selected
+	FROM 	  	board A
+    LEFT JOIN 	user B
+    ON 		  	A.user_id=B.user_id
+    LEFT JOIN 	(SELECT board_num,COUNT(reply_num) AS count_reply, COUNT(case when selected=1 then 1 end) AS selected FROM reply GROUP BY board_num) C
+    ON		  	C.board_num=A.board_num
+    LEFT JOIN	board_hashtag D
+    on 			D.board_num = A.board_num
+	WHERE 	  	A.board_type_num=2
+    AND 	  	D.tag LIKE CONCAT('%', #{param1}, '%')
+	ORDER BY  	board_num DESC;
 </select>
 <!-- 글 내용 -->
 <select id="QnaView" resultType="BoardVO">
-	SELECT 	  A.title, A.content, DATE_FORMAT(A.write_date, '%Y-%m-%d') AS write_date, 
-			  B.user_nick, B.profile_img, IFNULL(D.selected,0) AS selected, 
-			  E.file1, E.file2, E.file3, E.file4, E.file5
+	SELECT 	  A.board_num, A.board_type_num, A.hit, A.title, A.content, DATE_FORMAT(A.write_date, '%Y-%m-%d') AS write_date, 
+			  B.user_id, B.user_nick, B.profile_img, count(case when C.selected=1 then 1 end) as solved,
+			  E.file1, E.file2, E.file3, E.file4
 	FROM 	  board A
     LEFT JOIN user B
     ON 		  A.user_id=B.user_id
-    LEFT JOIN (SELECT board_num,COUNT(board_num) AS selected FROM select_reply GROUP BY board_num) D
-    ON 		  A.board_num = D.board_num
+    LEFT JOIN reply C
+    on		  C.board_num = A.board_num
     LEFT JOIN board_image E
     on		  E.board_num = A.board_num
 	WHERE 	  A.board_num=#{param1}
 </select>
+<!-- 좋아요 누르기 -->
+<insert id='LikeUp'>
+	INSERT reply_like(user_id, reply_num) 
+	VALUES(#{param1}, #{param2});
+</insert>
+<!-- 좋아요 취소 -->
+<delete id='LikeDown'>
+	DELETE 	FROM reply_like
+	WHERE 	user_id=#{param1}
+	AND		reply_num=#{param2}
+</delete>
+<!-- 답변 채택 -->
+<update id="ReplySelect">
+	UPDATE 	reply 
+	SET 	selected=1 
+	WHERE 	reply_num=#{reply_num}
+</update>
+<!-- 답변 채택 취소-->
+<update id="ReplySelectDel">
+	UPDATE 	reply 
+	SET 	selected=0 
+	WHERE 	reply_num=#{reply_num}
+</update>
+<!-- 질문 해결 여부(0:없음/ 1:있음)-->
+<select id='getSolved' resultType='int'>
+	SELECT COUNT(CASE WHEN selected=1 THEN 1 END) AS solved 
+	FROM reply  
+	WHERE board_num=#{param1}
+</select>
+<!-- 글 등록 -->
+<insert id='qnaTagInsert'>
+	INSERT board_hashtag(board_num, tag) 
+	VALUES  
+	<foreach collection="tag_list" item="item" separator=",">
+        (#{board_num}, #{item})
+    </foreach>
+</insert>
+<insert id='qnaLangInsert'>
+	INSERT  board_lang_type(board_num, lang_type_num) 
+	VALUES 
+	<foreach collection="lang_list" item="item" separator=","> 
+ 		(#{board_num}, #{item})
+ 	</foreach>
+</insert>
+<!-- 글 수정 --><!-- 언어, 태그 지우고 다시 등록하기 -->
+<delete id="qnaLangDelete">
+	DELETE 	FROM board_lang_type 
+	WHERE 	board_num=#{board_num}
+</delete>
+<delete id="qnaTagDelete">
+	DELETE 	FROM board_hashtag 
+	WHERE 	board_num=#{board_num}
+</delete>
 </mapper>
