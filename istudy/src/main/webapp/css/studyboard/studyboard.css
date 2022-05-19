@@ -1,1 +1,126 @@
-@charset "EUC-KR";
+/*-------------List---------------*/
+.white_border {
+	line-height: 30px;
+	border-radius: 5px;
+	padding: 5px;
+	border: 1px solid #fff;
+	font-size:15px;
+}
+
+/*-------------Post-it---------------*/
+div#react-container {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 400;
+    font-size: 1em;
+    line-height: 1.2em;
+    color: #30096b;
+    background-color: #246996;
+} 
+
+#outer {        
+   display: inline;
+}
+
+h1 {
+   text-align: center;
+   font-size: 2.6em;
+   font-weight: 400;
+   line-height: 1.0em;
+   color: #C49510;
+}
+
+h2 {
+   font-family: 'Roboto', sans-serif;
+   font-weight: bold;
+   font-size: 1.6em;
+}
+
+h1 {
+   text-shadow: 1px 1px 1px rgb(221, 222, 229);
+   margin: 20px 0;
+}
+
+#h1-span {
+   font-size: 0.7em; 
+   text-shadow: 1px 1px 1px rgb(100, 100, 100);
+}
+
+#header h2 {
+   text-align: center;
+}
+
+#lynda-link {
+   font-family: 'Roboto', sans-serif;
+   font-size: 0.9em;
+   float: right;
+   margin: -40px 40px 0 0;
+}
+
+#header {
+   border-bottom: 2px solid #C7C7AB;
+   background-color: #246996;
+}
+
+div.board {
+    background-color: 'brown';
+    width: 100%;
+    background: #eab92d;
+}
+
+div.note {
+    height: 150px;
+    width: 150px;
+    background-color: yellow;
+    margin: 2px 0;
+    position: absolute;
+    cursor: -webkit-grab;
+    box-shadow: 5px 5px 15px 0 rgba(0, 0, 0, .2);
+    overflow: hidden;
+}
+
+div.note:active {
+    cursor: -webkit-grabbing;
+}
+
+div.note p {
+    margin: 0;
+    font-size: 22px;
+    padding: 5px;
+    font-family: "Shadows Into Light", Arial;
+    line-height: 1.1;
+}
+
+div.note:hover > span {
+    opacity: 1;
+}
+
+div.note > span {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    opacity: 0;
+    transition: opacity .25s linear;
+}
+
+div.note button {
+    margin: 2px;
+}
+
+div.note textarea {
+    height: 75%;
+    background: rgba(255, 255, 255, .5);
+}
+
+.board > button {
+    position: fixed;
+    top: 190px;
+    right: 16px;
+    font-size: 1.5em;
+}

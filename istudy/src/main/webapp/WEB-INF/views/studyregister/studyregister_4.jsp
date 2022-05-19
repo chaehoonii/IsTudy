@@ -105,7 +105,7 @@
 			</div>
 			<script src="/js/studyregister/tagSelect.js"></script>
 		</div>
-		<input type="submit" value="확인" id="register_page4_btn" />
+		<input type="button" value="저장" id="register_page4_btn" />
 	</form>
 	<input type="button" value="PREVIOUS" id="previous_button1"
 		onclick="asyncMovePage('studyregister_3')">

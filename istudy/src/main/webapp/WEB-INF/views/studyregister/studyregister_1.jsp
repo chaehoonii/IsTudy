@@ -41,7 +41,7 @@
 			</div>
 			</div>
 		</div>
-		<input type="submit" value="확인" id="register_page1_btn" />
+		<input type="button" value="저장" id="register_page1_btn" />
 		<hr/>
 	</div>
 	<input type="button" value="NEXT" id="next_button1" onclick="asyncMovePage('studyregister_2')">

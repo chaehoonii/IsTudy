@@ -3,6 +3,7 @@ package com.hot6.project.dao;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.hot6.project.vo.BoardVO;
 import com.hot6.project.vo.StudyVO;
 
 @Mapper
@@ -12,6 +13,8 @@ public interface StudyRegisterDAO {
 	public int studyInsert(StudyVO vo);
 	//스터디 룸 이름 중복 체크
 	public int studynameCheck(String name);
-	//
+	
+	public int studyTagInsert(StudyVO vo);		
+	public int studyLangInsert(StudyVO vo);
 	
 }

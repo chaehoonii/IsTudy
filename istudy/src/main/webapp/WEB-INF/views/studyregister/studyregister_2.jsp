@@ -26,7 +26,7 @@
 				<textarea id="info_2"></textarea><br/>
 			</div>
 		</div>
-		<input type="submit" value="확인" id="register_page2_btn" />
+		<input type="button" value="저장" id="register_page2_btn" />
 	</div>
 	<div class="moving_button">
 		<input type="button" value="PREVIOUS" id="previous_button" onclick="asyncMovePage('studyregister_1')">

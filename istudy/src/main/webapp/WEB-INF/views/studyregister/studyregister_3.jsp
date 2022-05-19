@@ -32,6 +32,6 @@
 			<input type="button" value="PREVIOUS" id="previous_button" onclick="asyncMovePage('studyregister_2')"> 
 			<input type="button" value="NEXT" id="next_button" onclick="asyncMovePage('studyregister_4')">
 		</div>
-		<input type="submit" value="확인" id="register_page3_btn" />
+		<input type="button" value="저장" id="register_page3_btn" />
 	</div>
 </div>

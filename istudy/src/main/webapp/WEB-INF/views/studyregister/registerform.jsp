@@ -46,8 +46,11 @@
     
   </div>
 </div>
-	<div id="register_content"></div>
+	<form id="register_form" action="studyRegisterOk" method="post" enctype="multipart/form-data">
+		<div id="register_content"></div>
+	</form>
 </div>
+<script src="/js/studyregister/roomUpload.js"></script>
 <div style="clear: both"></div>
 
 
