@@ -67,7 +67,7 @@ public class MypageController {
 		}
 
 		mav.addObject("id", id);
-		
+		mav.addObject("level_icon", Mservice.getIcon(id));
 		mav.addObject("nickName", Mservice.getNickname(id));
 			
 		mav.setViewName("users/mypage/study");
