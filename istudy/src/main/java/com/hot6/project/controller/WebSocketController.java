@@ -21,7 +21,7 @@ import com.hot6.project.service.UserService;
 import com.hot6.project.vo.StudyVO;
 
 @Controller
-public class StudyRoomController {
+public class WebSocketController {
 	@Inject
 	StudyService Sservice;
 	@Inject
@@ -37,14 +37,21 @@ public class StudyRoomController {
 		@RequestMapping(value="/study/webSocket/audio", method = RequestMethod.GET) 
 	    public String audio() {
 	    	return "/study/webSocket/audio";
-	    }
-		
-	    //화이트보드
+	    }		
+	    //캔버스 공유
 	    @RequestMapping(value="/canvas", method = RequestMethod.GET)
-	    public String canvas() {
-	    	return "/study/webSocket/canvas";
-	    }
-	    
+	    public ModelAndView canvas(@RequestParam("my_id") String my_id, @RequestParam("your_id") String your_id) {
+	    	ModelAndView mav = new ModelAndView();
+			try {
+				mav.addObject("my_id", my_id);
+				mav.addObject("your_id", your_id);
+				mav.setViewName("/study/webSocket/canvas");
+			}catch(Exception e){
+				e.printStackTrace();
+				mav.setViewName("home");
+			}
+	    	return mav;
+	    }	    
 	    //채팅
 	    @RequestMapping(value="/study/webSocket/chatPage", method = RequestMethod.GET)
 	    public String chatPage() {
@@ -79,26 +86,28 @@ public class StudyRoomController {
 	    	StudyVO vo = Sservice.getStudyByStudynum(study_num);
 	    	String logId = (String) session.getAttribute("logId");
 	    	session.setAttribute("my_id", "user"+Integer.toString((int)(Math.random() * 10000)));	
-	    	String your_id = request.getParameter("your_id");
+	    	String my_id = (String) session.getAttribute("my_id");
 			vo.setUser_nick(Uservice.selectNickById(logId));
 			
-	    	//그룹에 참여한 멘티 목록
-	    	List<StudyVO> studymates = Sservice.StudyMates(study_num);
-	    	//자신이 개설 or 가입한 스터디 페이지에만 접근
-	    	for(StudyVO mate : studymates) {
-	    		System.out.println("mate:"+mate.getUser_id());
-	    		if((mate.getUser_id()).equals(logId) || logId.equals(vo.getHost_id())){//멤버이거나 호스트일때
-	    			mav.addObject("vo", vo);
-			    	mav.addObject("nick", vo.getUser_nick());
-			    	mav.addObject("your_id", your_id);
-			    	mav.setViewName("/study/webSocket/studyPage");
-			    	System.out.println("yes");
-			    	break;
-	    		}else {
-		    		mav.setViewName("home");
-		    		System.out.println("no");
-	    		}
-	    	}
+			mav.setViewName("home");
+
+			try {
+		    	//그룹에 참여한 멘티 목록
+		    	List<StudyVO> studymates = Sservice.StudyMates(study_num);
+		    	//자신이 개설 or 가입한 스터디 페이지에만 접근
+		    	for(StudyVO mate : studymates) {
+		    		System.out.println("mate:"+mate.getUser_id());
+		    		if((mate.getUser_id()).equals(logId) || logId.equals(vo.getHost_id())){//멤버이거나 호스트일때
+		    			mav.addObject("vo", vo);
+				    	mav.addObject("nick", vo.getUser_nick());
+				    	mav.addObject("my_id", my_id);
+				    	mav.setViewName("/study/webSocket/studyPage");
+				    	break;
+		    		}
+		    	}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 	    	return mav;
 	    }
 }

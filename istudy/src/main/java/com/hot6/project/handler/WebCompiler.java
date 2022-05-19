@@ -7,20 +7,21 @@ import java.util.ArrayList;
 
 public class WebCompiler {
 	public static WebCompiler instance = null;
-	public String shared_document = "/docshare";
-	// local에서 컴파일할때는 c:/Temp로 수정하면 됨.
+	public String shared_document = "c:/Temp"; //local에서 컴파일 시
+	// /docshare로 수정하면 됨.
 	
 	public boolean[] docker_status = {false, false, false};
 	
 	public static WebCompiler getInstance() {
 		if (instance == null)
 			instance = new WebCompiler();
+		System.out.println("instance="+instance);
 		return instance;
 	}
 	
 	public String getJavaDefault() {
 		String java_default = 
-				"public class MentoMenti {\n\t"+
+				"public class Istudy {\n\t"+
 				"public static void main(String args[]) {\n\n\t"+
 		    	"}\n"+
 				"}";
@@ -125,13 +126,13 @@ public class WebCompiler {
 		FileWriter fw = null;
 
 		if (mode.contentEquals("python")) {
-		 	fw = new FileWriter(shared_document + "/" + docker + "/MentoMenti.py");
+		 	fw = new FileWriter(shared_document + "/" + docker + "/istudy.py");
 		 	fw.write(SRC);
 		} else if (mode.contentEquals("C")) {
-		 	fw = new FileWriter(shared_document + "/" + docker + "/MentoMenti.c");
+		 	fw = new FileWriter(shared_document + "/" + docker + "/istudy.c");
 		 	fw.write(SRC);
 		} else if (mode.contentEquals("java")) {
-		 	fw = new FileWriter(shared_document + "/" + docker + "/MentoMenti.java");
+		 	fw = new FileWriter(shared_document + "/" + docker + "/istudy.java");
 		 	fw.write(SRC);
 		}
 		

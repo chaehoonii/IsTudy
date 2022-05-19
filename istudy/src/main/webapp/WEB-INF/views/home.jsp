@@ -18,8 +18,6 @@
 	</div>
 </div>
 <!-- 스터디추천 영역 -->
-<div style="width:500px; height:500px">
-<%@include file="/WEB-INF/views/study/calendar/calendarList.jsp"%></div>
 <c:if test="${logStatus == 'Y'}">
 	<div class="studyRecommend" data-scroll>
 		<h1 class="studyTitle">스터디 추천</h1>
@@ -65,7 +63,7 @@
 					<div class="card-body">
 						<img src='${vo.level_icon}' style='width:30px; margin:0;display:inline;'><h4 class="card-title">${vo.user_nick}</h4>
 						<p class="card-text">${vo.career}</p>
-						<a href="#" class="btn profile">프로필 보기</a>
+						<a href="/studyHome" class="btn profile">스터디 보기</a>
 					</div>
 				</div>
 			</c:forEach>

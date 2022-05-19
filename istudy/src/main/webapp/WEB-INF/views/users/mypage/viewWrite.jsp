@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="url" value="<%=request.getContextPath()%>"/>
 
 <link rel="stylesheet" href="/css/mypage/viewWrite.css" type="text/css">  
 <script src="${url}/js/mypage/mypage.js"></script>
@@ -63,10 +64,12 @@
 		            				<div class="articleInfo">		            				
 			            				<div class="articleTitle">
 			            					<c:if test="${vo.board_type_num==2}">
-			            						<a href='${url}/qna/qnaView?board_num=${vo.board_num}'>${vo.title}</a>
+			            						<c:if test="${logPermission=='admin'}"><a href="${url}/qna/qnaView?board_num=${vo.board_num}" target="_blank" onclick="window.open(this.href,'_blank', 'width=1200, height=700, scrollbar=yes')">${vo.title}</a></c:if>
+			            						<c:if test="${logPermission!='admin'}"><a href='${url}/qna/qnaView?board_num=${vo.board_num}'>${vo.title}</a></c:if>			            						
 			            					</c:if>
 			            					<c:if test="${vo.board_type_num==1}">
-			            						<a href='#'>${vo.title}</a>
+			            						<c:if test="${logPermission=='admin'}"><a href='#'>${vo.title}</a></c:if>
+			            						<c:if test="${logPermission!='admin'}"><a href='#'>${vo.title}</a></c:if>
 			            					</c:if>
 			            				</div>
 			            				<div class="articleCategory">

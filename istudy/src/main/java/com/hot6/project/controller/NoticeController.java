@@ -47,6 +47,7 @@ public class NoticeController {
 	@ResponseBody // Ajax
 	@RequestMapping(value = "noticeListModal", method = RequestMethod.GET)
 	public BoardVO noticeModal(@RequestParam("board_num") int board_num) {
+		BoardService.hitUp(board_num);
 		return NoticeService.selectNoticeModal(board_num);
 	}
 }

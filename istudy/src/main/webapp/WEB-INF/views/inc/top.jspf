@@ -91,5 +91,5 @@ document.addEventListener('DOMContentLoaded', function(){
 			</ul>
 		</nav>
 	</div>
-	<script src="./js/inc/top.js"></script>
+	<script src="/js/inc/top.js"></script>
 
