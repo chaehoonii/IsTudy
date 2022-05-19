@@ -35,7 +35,7 @@
     	}
         #mypage{
             width: 100%;
-            height: 95vh;
+            height: 1000px;
             margin-top:60px;
         }
         body::-webkit-scrollbar{

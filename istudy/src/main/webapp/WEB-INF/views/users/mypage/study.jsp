@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<c:set var="url" value="<%=request.getContextPath()%>"/>
+
 <link rel="stylesheet" href="/css/mypage/study.css" type="text/css">  
 <script src="/js/mypage/mypage.js"></script>
     <div id="mypage">
