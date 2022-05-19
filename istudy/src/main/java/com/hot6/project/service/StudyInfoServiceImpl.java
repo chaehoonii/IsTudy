@@ -6,9 +6,9 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.hot6.project.vo.PagingVO;
 import com.hot6.project.dao.StudyInfoDAO;
-import com.hot6.project.vo.StudyInfoVO;
+import com.hot6.project.vo.PagingVO;
+import com.hot6.project.vo.StudyVO;
 
 @Service
 public class StudyInfoServiceImpl implements StudyInfoService{
@@ -17,14 +17,26 @@ public class StudyInfoServiceImpl implements StudyInfoService{
 	
 	// 스터디글 정보페이지
 	@Override
-	public List<StudyInfoVO> studyHome(PagingVO vo) {
+	public List<StudyVO> studyHome(PagingVO vo) {
 		return dao.studyHome(vo);
 	}
 	public List<String> studyLang(int study_num){
 		return dao.studyLang(study_num);
 	}
-
-	public List<StudyInfoVO> langAll(){
+	public List<StudyVO> langAll(){
 		return dao.langAll();
+	}
+
+	public List<String> StudyTag(int study_num){
+		return dao.StudyTag(study_num);
+	}
+
+	public StudyVO studyPeople(int study_num) {
+		return dao.studyPeople(study_num);
+	}
+	@Override
+	public int totalRecord(PagingVO vo) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
