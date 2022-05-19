@@ -32,7 +32,7 @@
 				<div class="qna_title">
 					<div class="col-lg-4 qna_titlespan">글 제목&nbsp;</div>
 					<div class="col-lg-8">
-						<input type="text" class="qna_titlebox" name="title" />
+						<input type="text" class="qna_titlebox" name="title" value="${vo.title}"/>
 					</div>
 				</div>
 				<div>
@@ -41,7 +41,7 @@
 						<div class="qnaTextArea" id="qnaTextArea" name="content">
 							<!--CKEDITOR 4 -->
 							<textarea class="qna_editor" id="qna_editor" name="content" 
-							placeholder="코드블럭(markdown)이용 시 백틱(`)을 사용하세요"></textarea>
+							placeholder="코드블럭(markdown)이용 시 백틱(`)을 사용하세요">${vo.content}</textarea>
 						</div>
 					</li>
 					<li>

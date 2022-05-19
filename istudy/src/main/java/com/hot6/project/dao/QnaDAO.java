@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.hot6.project.vo.BoardVO;
+import com.hot6.project.vo.PagingVO;
 
 @Mapper
 @Repository
@@ -71,5 +72,7 @@ public interface QnaDAO {
 	public int qnaTagInsert(BoardVO vo);
 	public int qnaLangInsert(BoardVO vo);
 	
+	//페이징
+	public List<BoardVO> selectQnaList(PagingVO pvo);
 	
 }

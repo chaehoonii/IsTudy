@@ -19,6 +19,7 @@
     ON		  C.board_num=A.board_num
 	WHERE 	  A.board_type_num=2
 	ORDER BY  board_num DESC
+	LIMIT ${onePageRecord} offset ${offsetIndex};
 </select>
 <!-- 글 : 언어타입 -->
 <select id="QnaLangType" resultType="String">
@@ -205,4 +206,13 @@
 	DELETE 	FROM board_hashtag 
 	WHERE 	board_num=#{board_num}
 </delete>
+<select id="selectQnaList" resultType="BoardVO">
+	SELECT A.*, B.*
+	FROM board A
+	LEFT JOIN board_type B
+	ON A.board_type_num=B.board_type_num
+	WHERE A.board_type_num="2"
+	ORDER BY A.board_num DESC
+	LIMIT ${onePageRecord} offset ${offsetIndex};
+</select>
 </mapper>

@@ -6,8 +6,8 @@
 }
 #back_btn{
 	display:inline-block;
-	width:50px;
-	height:50px;
+	width:35px;
+	height:35px;
 	border: 4px solid #ddd;
 	border-radius: 50%;
 	padding:5px;
@@ -184,13 +184,18 @@
 	font-size:14px;
 }
 #reply_coment{
-	height:150px;
+	height:40px;
 	width:80%;
 }
-#addReplybtn {
-	background: none;
-	border: 2px solid #bbb;
-	border-radius: 5px;
+#addReplybtn, .edit_btns, .del_btns {
+	margin-top:50px;
+	width:100px;
+	height:40px;
+	letter-spacing:1px;
+	background-color:rgba(85, 76, 66, 80%);
+	border-radius:10px;
+	border:none;
+	color:white;
 }
 .graySquare {
 	resize: none;

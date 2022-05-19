@@ -123,3 +123,17 @@
 	font-size:12px;
 	background-color: RGB(222,239,255);
 }
+/* =====================페이징============================== */
+.pagingContainer{
+	margin:0 auto;
+}
+.page-link{
+	border:none !important;
+	font-size:1.5em;
+	color:black !important;
+}
+.page-link:hover{
+	background-color:rgba(85, 76, 66, 70%) !important;
+	color:white !important;
+	border-radius:5px !important;
+}

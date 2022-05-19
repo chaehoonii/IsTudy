@@ -221,10 +221,21 @@
 		<div class='qna_back02'>
 			<ul>
 				<li>
+					<table>
+						<tr>
+							<td rowspan="2">${vo.title}</td>
+							<td colspan="2"><span id='qna_profile_span'><img src='/upload/user/${vo.profile_img}' id='qna_profile' />&nbsp;&nbsp;&nbsp;${vo.user_nick}</span></td>
+						</tr>					
+						<tr>
+							<td>작성일&nbsp;: &nbsp;${vo.write_date}</td>
+							<td>조회수&nbsp;: &nbsp;${vo.hit}</td>
+						</tr>					
+					</table>
 					<ul id="qna_title">
 						<li>${vo.title}</li>
 						<li>작성일&nbsp;: &nbsp;${vo.write_date}</li>
 						<li>조회수&nbsp;: &nbsp;${vo.hit}</li>
+						<li><br/><br/><span id='qna_profile_span'><img src='/upload/user/${vo.profile_img}' id='qna_profile' />&nbsp;&nbsp;&nbsp;${vo.user_nick}</span></li>
 					</ul>
 				</li>
 				<li>
@@ -239,9 +250,8 @@
 								<span class="tag_list">${tag_list}</span>&nbsp;&nbsp;
 							</c:forEach>
 						</li>
-						<li><br/><br/><span id='qna_profile_span'><img src='/upload/user/${vo.profile_img}' id='qna_profile' />&nbsp;&nbsp;&nbsp;${vo.user_nick}</span></li>
 						<c:if test="${logId == vo.user_id}">
-							<li><span class='edit_btns' onclick="BoardEdit()">수정</span>&nbsp;&nbsp;<span class='del_btns' onclick="BoardDel()">삭제</span></li>
+							<li><span class='edit_btns' onclick="BoardEdit()">글 수정</span>&nbsp;&nbsp;<span class='del_btns' onclick="BoardDel()">글 삭제</span></li>
 						</c:if>
 					</ul>						
 					
@@ -255,7 +265,7 @@
 				<form method='post' id='replyWriteForm'>
 					<input type='hidden' name='board_num' id='board_num_box' value='${vo.board_num}'/>
 					<ul class='reply_write_ul'>
-						<li><textarea name="reply_coment" class="graySquare" id="reply_coment"></textarea></li>
+						<li><input type="text" name="reply_coment" class="graySquare" id="reply_coment"/></li>
 						<li><input type='button' value='댓글 등록' id="addReplybtn" /></li>
 					</ul>
 				</form>

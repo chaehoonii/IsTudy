@@ -3,6 +3,7 @@ package com.hot6.project.service;
 import java.util.List;
 
 import com.hot6.project.vo.BoardVO;
+import com.hot6.project.vo.PagingVO;
 
 public interface QnaService {
 	// 총 질문 수
@@ -67,4 +68,7 @@ public interface QnaService {
 	public int qnaTagInsert(BoardVO vo);
 
 	public int qnaLangInsert(BoardVO vo);
+	
+	//페이징
+	public List<BoardVO> selectQnaList(PagingVO pvo);
 }

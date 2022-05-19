@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.hot6.project.dao.QnaDAO;
 import com.hot6.project.vo.BoardVO;
+import com.hot6.project.vo.PagingVO;
 
 @Service
 public class QnaServiceImpl implements QnaService{
@@ -137,6 +138,11 @@ public class QnaServiceImpl implements QnaService{
 	@Override
 	public int qnaLangInsert(BoardVO vo) {
 		return dao.qnaLangInsert(vo);
+	}
+
+	@Override
+	public List<BoardVO> selectQnaList(PagingVO pvo) {
+		return dao.selectQnaList(pvo);
 	}
 	
 }

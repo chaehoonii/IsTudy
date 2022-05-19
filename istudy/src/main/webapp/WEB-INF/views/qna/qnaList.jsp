@@ -36,6 +36,41 @@
 			</ul>
 				<hr/>
 		</c:forEach>
+		<div class="pagingContainer">
+		<ul class="pagination justify-content-center" id="paging">
+			<c:if test="${pvo.pageNum==1}">
+				<li class="page-item disabled"><a class="page-link"
+					id="prevBtn"><i class="fa fa-angle-left"></i></a></li>
+			</c:if>
+			<c:if test="${pvo.pageNum>1}">
+				<li class="page-item"><a class="page-link"
+					href="/qna/qnaList?pageNum=${pvo.pageNum-1}" 
+					id="prevBtn"><i class="fa fa-angle-left"></i></a></li>
+			</c:if>
+			<c:forEach var="p" begin="${pvo.startPage}" end="${pvo.totalPage}">
+				<c:if test="${p<=pvo.totalPage}">
+					<c:choose>
+						<c:when test="${p==pvo.pageNum}">
+							<li class="page-item disabled"><a class="page-link">${p}</a></li>
+						</c:when>
+						<c:when test="${p!=pvo.pageNum}">
+							<li class="page-item"><a class="page-link"
+								href="/qna/qnaList?pageNum=${p}">${p}</a></li>
+						</c:when>
+					</c:choose>
+				</c:if>
+			</c:forEach>
+			<c:if test="${pvo.pageNum==pvo.totalPage}">
+				<li class="page-item disabled"><a class="page-link"
+					id="nextBtn"><i class="fa fa-angle-right"></i></a></li>
+			</c:if>
+			<c:if test="${pvo.pageNum<pvo.totalPage}">
+				<li class="page-item"><a class="page-link"
+					href="/qna/qnaList?pageNum=${pvo.pageNum+1}" id="nextBtn"><i
+						class="fa fa-angle-right"></i></a></li>
+			</c:if>
+		</ul>
+	</div>
 	</div>
 	<div class='search_div'>
 		<br/>
