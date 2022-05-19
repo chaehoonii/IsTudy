@@ -25,7 +25,7 @@
 			<form method='post' action='/board/boardWriteOk' id='qnaWriteForm' enctype="multipart/form-data">
 				<input type='hidden' value='2' name='board_type_num'/>
 				<input type='hidden' name='content' id='content_hidden'/>
-				<h1>Q & A</h1>
+				<h1>Q & A 등록</h1>
 				<br/>
 				<br/>
 				<!-- <div id="qna_title"><span id="titleSpan">제목</span>&nbsp;&nbsp;<input type="text" id="qna_titlebox" name='title'></textarea></div> -->						

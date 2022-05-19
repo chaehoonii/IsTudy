@@ -219,44 +219,33 @@
 	<img src='/images/back02.png' id="back_btn" onclick="location.href='/qna/qnaList'"/>
 	<div class='qna_back01'>
 		<div class='qna_back02'>
-			<ul>
-				<li>
-					<table>
-						<tr>
-							<td rowspan="2">${vo.title}</td>
-							<td colspan="2"><span id='qna_profile_span'><img src='/upload/user/${vo.profile_img}' id='qna_profile' />&nbsp;&nbsp;&nbsp;${vo.user_nick}</span></td>
-						</tr>					
-						<tr>
-							<td>작성일&nbsp;: &nbsp;${vo.write_date}</td>
-							<td>조회수&nbsp;: &nbsp;${vo.hit}</td>
-						</tr>					
-					</table>
-					<ul id="qna_title">
-						<li>${vo.title}</li>
-						<li>작성일&nbsp;: &nbsp;${vo.write_date}</li>
-						<li>조회수&nbsp;: &nbsp;${vo.hit}</li>
-						<li><br/><br/><span id='qna_profile_span'><img src='/upload/user/${vo.profile_img}' id='qna_profile' />&nbsp;&nbsp;&nbsp;${vo.user_nick}</span></li>
-					</ul>
-				</li>
-				<li>
-					<ul id="qna_content">
-						<li id='content_box'>${vo.content}</li>
-						<li class='nocenter'>
-							<br/><br/>
+					<div id="qna_title">
+						<div class="titleSection">${vo.title}</div>
+						<div class="titleSection_child">
+							<span id='qna_profile_span'><img src='/upload/user/${vo.profile_img}' id='qna_profile' />&nbsp;&nbsp;&nbsp;${vo.user_nick}</span>&emsp;&emsp;&emsp;&emsp;
+							<span>작성일&nbsp;: &nbsp;${vo.write_date}</span>&emsp;&emsp;&emsp;&emsp;
+							<span>조회수&nbsp;: &nbsp;${vo.hit}</span>
+						</div>
+						<div class="tagBox">
+							<hr/>
+							<span class="tag_title">사용 언어 &nbsp;:&nbsp; </span>
 							<c:forEach var="lang_list" items="${vo.lang_list}">
 								<span class="lang_list">${lang_list}</span>&nbsp;&nbsp;
 							</c:forEach> 
 							<c:forEach var="tag_list" items="${vo.tag_list}">
 								<span class="tag_list">${tag_list}</span>&nbsp;&nbsp;
 							</c:forEach>
-						</li>
+							<hr/>	
+						</div>
+					</div>
+					<div id="qna_content">
+						<div id='content_box'>${vo.content}</div>
+						<div>
 						<c:if test="${logId == vo.user_id}">
-							<li><span class='edit_btns' onclick="BoardEdit()">글 수정</span>&nbsp;&nbsp;<span class='del_btns' onclick="BoardDel()">글 삭제</span></li>
+							<div><span class='edit_btns' onclick="BoardEdit()">글 수정</span>&nbsp;&nbsp;<span class='del_btns' onclick="BoardDel()">글 삭제</span></div>
 						</c:if>
-					</ul>						
-					
-				</li>
-			</ul>
+						</div>
+					</div>						
 		</div>
 		<div id='reply_div'>
 		</div>
