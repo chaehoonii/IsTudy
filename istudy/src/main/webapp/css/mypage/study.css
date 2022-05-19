@@ -20,6 +20,19 @@
     		font-family: "NanumSquare";
     		transform: skew(-0.03deg);
     	}
+    	#level_info{
+    		position: absolute;
+            top : 400px;
+            left: 50%;
+            transform: translate(-50%,0%); 
+            font-size: 14px;
+            z-index:10;
+            display:none;
+            background-color:white;
+            padding:30px;
+            color:black;
+            border-radius:10px;
+    	}
         #mypage{
             width: 100%;
             height: 95vh;

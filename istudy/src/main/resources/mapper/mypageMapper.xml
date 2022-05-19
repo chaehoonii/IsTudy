@@ -74,14 +74,28 @@
 	
 	<!-- 닉네임 -->
 	<select id="getNickname" resultType="String">
-		select user_nick from user where user_id=#{param1};
+		SELECT 	user_nick 
+		FROM 	user 
+		WHERE 	user_id=#{param1};
 	</select>
 	
 	<!-- 찜한 스터디 개수 -->
 	<select id="cntLikeStudy" resultType="int">
-		SELECT COUNT(study_room.study_name) FROM study_room INNER JOIN study_type
-		ON study_room.study_type_num = study_type.study_type_num 
-		INNER JOIN study_like ON study_like.study_num= study_room.study_num AND study_like.user_id=#{param1}
+		SELECT 		COUNT(study_room.study_name) 
+		FROM 		study_room 
+		INNER JOIN 	study_type
+		ON 			study_room.study_type_num = study_type.study_type_num 
+		INNER JOIN 	study_like 
+		ON 			study_like.study_num= study_room.study_num 
+		AND 		study_like.user_id=#{param1}
 	</select>
-	
+	<!-- 레벨아이콘 -->
+	<select id='getIcon' resultType='String'>
+		select 		A.level_icon
+		from 		level A
+		LEFT JOIN 	user B
+		ON 			A.exp_min <![CDATA[<=]]> B.exp
+		AND 		B.exp <![CDATA[<=]]> A.exp_max
+		WHERE 		user_id=#{param1}
+	</select>
   </mapper>

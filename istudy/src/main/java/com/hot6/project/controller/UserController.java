@@ -330,9 +330,9 @@ public class UserController {
 	// 로그아웃
 	@GetMapping("logout")
 	public ModelAndView logout(HttpSession session, HttpServletRequest request) {
-		session.invalidate();
+		session.invalidate();	
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:"+request.getHeader("referer"));
+		mav.setViewName("/");
 		return mav;
 	}
 

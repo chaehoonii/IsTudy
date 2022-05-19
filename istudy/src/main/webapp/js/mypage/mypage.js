@@ -28,3 +28,10 @@
     	        }
     	     return false;
     	}
+   $(document).ready(function(){
+	    $("#icon_hover").hover(function(){
+			$("#level_info").css("display","block");
+		}, function(){
+			$("#level_info").css("display","none");
+		})
+	}) 	
