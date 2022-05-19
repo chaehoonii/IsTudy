@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.hot6.project.dao.AdminDataDAO">
+ 
+ 	<select id="get_study_cnt" resultType="int">
+ 		select count(study_name), study_type.study_type_name  from study_room inner join study_type 
+		on study_room.study_type_num = study_type.study_type_num and study_type.study_type_num=#{param1}
+ 	</select>
+ 	
+ 	<select id="get_popular_study" resultType="StudyVO">	
+ 		select study_room.study_name,count(study_like.study_num) as cnt from study_like inner join study_room
+		on study_like.study_num = study_room.study_num group by study_like.study_num order by cnt desc limit 7
+ 	
+ 	</select>
+ 	
+ 	<select id="get_new_member" resultType="UserVO">
+ 		select date_format(user.register_date, '%Y.%m') register_date , count(user_id) cnt
+		from user group by date_format(user.register_date, '%Y.%m') order by register_date asc
+ 	</select>
+ 
+ </mapper>
