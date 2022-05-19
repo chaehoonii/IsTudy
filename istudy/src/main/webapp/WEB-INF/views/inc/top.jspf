@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function(){
 					onclick="window.location.href='/users/logout'">로그아웃</button>
 	            	&nbsp;&nbsp;&nbsp;
 	               <button class="adminBtn btn"
-					onclick="window.location.href='#'">관리자 페이지</button>
+					onclick="window.location.href='/admin/adminUsers'">관리자 페이지</button>
 			</c:if>
 		</div>
 	</div>
@@ -91,5 +91,5 @@ document.addEventListener('DOMContentLoaded', function(){
 			</ul>
 		</nav>
 	</div>
-	<script src="./js/inc/top.js"></script>
+	<script src="/js/inc/top.js"></script>
 

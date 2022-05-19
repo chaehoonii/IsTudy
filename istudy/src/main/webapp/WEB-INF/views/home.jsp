@@ -63,7 +63,7 @@
 					<div class="card-body">
 						<img src='${vo.level_icon}' style='width:30px; margin:0;display:inline;'><h4 class="card-title">${vo.user_nick}</h4>
 						<p class="card-text">${vo.career}</p>
-						<a href="#" class="btn profile">프로필 보기</a>
+						<a href="/studyHome" class="btn profile">스터디 보기</a>
 					</div>
 				</div>
 			</c:forEach>
@@ -101,6 +101,8 @@
 		</c:forEach>
 	</div>
 </div>
+
+
 <script>
 	ScrollOut({ });
 </script>

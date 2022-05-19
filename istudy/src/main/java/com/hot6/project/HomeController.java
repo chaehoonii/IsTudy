@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hot6.project.service.CalendarService;
 import com.hot6.project.service.JobService;
 import com.hot6.project.service.StudyService;
 import com.hot6.project.service.UserService;
@@ -23,7 +24,8 @@ public class HomeController {
 	JobService Jservice;
 	@Inject
 	StudyService Sservice;
-	
+	@Inject
+	CalendarService Cservice;
 	//메인페이지
 	@RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home(HttpSession session) {
@@ -43,7 +45,7 @@ public class HomeController {
         for(StudyVO vo:studylist) {
         	vo.setTag_list(Sservice.StudyTag(vo.getStudy_num()));
         }	
-        
+        //mav.addObject("CalendarList", Cservice.CalendarList(1));
         mav.addObject("StudyList", studylist);
         mav.setViewName("home");
         return mav;

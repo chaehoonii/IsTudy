@@ -34,6 +34,7 @@ public class StudyVO {
 	//study_mate
 	private int want_num;
 	private String user_id;
+	private String user_nick;
 	private String want_ok;
 	
 	//calendar
@@ -54,6 +55,12 @@ public class StudyVO {
 	//데이터랩-> 인기 있는 스터디 (좋아요 수)
 	private int cnt;
 	
+	public String getUser_nick() {
+		return user_nick;
+	}
+	public void setUser_nick(String user_nick) {
+		this.user_nick = user_nick;
+	}
 	public List<String> getLang_list() {
 		return lang_list;
 	}

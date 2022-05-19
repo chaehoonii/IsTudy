@@ -2,13 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="/css/qna/qnaEdit.css" type="text/css">  
-  
-<!-- TOAST UI Editor CDN URL(CSS)-->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css" />
-<link rel="stylesheet"
-	href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
-
+<script src="/js/ckeditor/ckeditor.js"></script>
 
 <div class='qna_back00'>
 	<img src='/images/back02.png' id="back_btn" onclick="location.href='/qna/qnaList'"/>
@@ -26,8 +20,11 @@
 					</li>
 					<li>
 						<ul id="qna_content">
-							<li><!-- TOAST UI Editor가 들어갈 div태그 -->
-								<div id="editor"></div></li>
+							<li><!-- ck에디터 -->
+								<div class="qnaTextArea" id="qnaTextArea" name="content">
+									<textarea class="qna_editor" id="qna_editor" name="content">${vo.content}</textarea>
+								</div>
+							</li>
 							
 							<li>
 								<ul id='lang_ul'>
@@ -64,10 +61,8 @@
 		</div>
 	</div>
 </div>
-<!-- TOAST UI Editor CDN URL(JS) -->
-<script
-	src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
-	<script>
+
+<script>
 	var cnt = ${tagcnt};
 	//태그 플러스
 	function PlusTag(){
@@ -82,14 +77,30 @@
 		}
 	}
 	$(document).ready(function(){ 
-		const editor = new toastui.Editor({
-			el : document.querySelector('#editor'),
-			previewStyle : 'vertical',
-			height : '1000px',
-			initialEditType: 'wysiwyg' 
-		});
-		editor.setHTML('${vo.content}');
+		CKEDITOR.replace("qna_editor", {
 
+			height : '400px',
+			filebrowserUploadUrl : '/board/imageUpload', // 이미지 업로드
+			//filebrowserUploadMethod:'form',
+			extraPlugin : 'autograw',
+			extraPlugin : 'markdown',
+			extraPlugin : 'confighelper',
+
+		});
+		
+		CKEDITOR.on('dialogDefinition', function(ev) {
+			let dialogName = ev.data.name;
+			let dialog = ev.data.definition.dialog;
+			let dialogDefinition = ev.data.definition;
+
+			if (dialogName == 'image') {
+				dialog.on('show', function() {
+					this.selectPage('Upload'); // 이미지 클릭시 업로드탭으로 시작
+				});
+				dialogDefinition.removeContents('advanced'); // 자세히 탭 제거
+				dialogDefinition.removeContents('Link'); // 링크탭 제거 
+			}
+		});
 		//선택한 언어 불러오기==============================================================================================
 		var lang_num_list = ${vo.lang_num_list};
 		
@@ -102,8 +113,6 @@
 		//submit=========================================================================================================
 		$("#submit_btn").click(function(){
 			if(confirm('수정하시겠습니까?')){
-				// editor.getHtml()을 사용해서 에디터 내용 받아오기
-				$("#content_hidden").val(editor.getHTML());
 				$("#qnaEditForm").submit();
 			}
 		})	

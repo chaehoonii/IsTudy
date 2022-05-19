@@ -34,6 +34,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
               jspPropertyGroup.setDefaultContentType("text/html");
               JspPropertyGroupDescriptorImpl jspPropertyGroupDescriptor = new JspPropertyGroupDescriptorImpl(jspPropertyGroup);
               context.setJspConfigDescriptor(new JspConfigDescriptorImpl(Collections.singletonList(jspPropertyGroupDescriptor), Collections.emptyList()));
+
           }
       };
    }

@@ -46,4 +46,19 @@ public interface BoardService {
 	public int BoardUpdate(BoardVO vo);
 
 	public int BoardFileUpdate(BoardVO vo);
+	
+	//아이디 가져오기
+	public String getIdByBoardnum(int board_num);
+	public String getIdByReplynum(int reply_num);
+	
+	//점수 올리기
+	public int expUpBoard(String user_id);
+	public int expUpReply(String user_id);
+	public int expUpLike(String user_id);
+	public int expUpSelected(String user_id);
+	//점수 내리기
+	public int expDownBoard(String user_id);
+	public int expDownReply(String user_id);
+	public int expDownLike(String user_id);
+	public int expDownSelected(String user_id);
 }

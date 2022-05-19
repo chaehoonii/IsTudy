@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hot6.project.service.BoardService;
 import com.hot6.project.service.NoticeService;
 import com.hot6.project.vo.BoardVO;
 import com.hot6.project.vo.PagingVO;
@@ -21,16 +22,21 @@ import com.hot6.project.vo.StudyVO;
 @RequestMapping("/notice/")
 public class NoticeController {
 	@Inject
-	NoticeService service;
+	NoticeService NoticeService;
+	
+	@Inject
+	BoardService BoardService;
+	
 	ModelAndView mav = new ModelAndView();
 	
 	//공지사항 리스트
 	@GetMapping(value="noticeList")
 	public ModelAndView noticeMain(BoardVO vo, PagingVO pvo){
 		
-		pvo.setTotalRecord(service.setTotalRecord(3));
+		pvo.setTotalRecord(NoticeService.setTotalRecord(3));
 		
-		List<BoardVO> noticeList = service.selectNoticeList(pvo);
+		List<BoardVO> noticeList = NoticeService.selectNoticeList(pvo);
+		
 		
 		mav.addObject("pvo", pvo);
 		mav.addObject("noticeList", noticeList);
@@ -41,6 +47,7 @@ public class NoticeController {
 	@ResponseBody // Ajax
 	@RequestMapping(value = "noticeListModal", method = RequestMethod.GET)
 	public BoardVO noticeModal(@RequestParam("board_num") int board_num) {
-		return service.selectNoticeModal(board_num);
+		BoardService.hitUp(board_num);
+		return NoticeService.selectNoticeModal(board_num);
 	}
 }
