@@ -3,6 +3,7 @@ package com.hot6.project.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -25,7 +26,7 @@ public class CalendarController {
 	@GetMapping("/study/calendar/calendarList")
 	public ModelAndView CalendarList(int study_num) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("CalendarList", service.CalendarList(study_num));
+		mav.addObject("study_num", study_num);
 		mav.setViewName("/study/calendar/calendarList");
 		return mav;
 	}
