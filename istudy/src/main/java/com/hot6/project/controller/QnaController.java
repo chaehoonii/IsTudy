@@ -38,7 +38,7 @@ public class QnaController {
 	        //총 질문 수
 	        mav.addObject("totalQna", Qservice.TotalQna());
 	        //질문 리스트
-	        List<BoardVO> qnalist = Qservice.selectQnaList(pvo);
+	        List<BoardVO> qnalist = Qservice.QnaList(pvo);
 	        for(BoardVO vo:qnalist) {
 	        	vo.setLang_list(Qservice.QnaLangType(vo.getBoard_num()));
 	        }
@@ -47,6 +47,7 @@ public class QnaController {
 	        }
 	        pvo.setTotalRecord(Nservice.setTotalRecord(2));
 	        mav.addObject("pvo", pvo);
+	        
 	        mav.addObject("qnaList", qnalist);
 	        mav.setViewName("/qna/qnaList");
 	        return mav;

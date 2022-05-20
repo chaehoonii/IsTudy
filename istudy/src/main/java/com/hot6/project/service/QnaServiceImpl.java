@@ -21,8 +21,8 @@ public class QnaServiceImpl implements QnaService{
 	}
 
 	@Override
-	public List<BoardVO> QnaList() {
-		return dao.QnaList();
+	public List<BoardVO> QnaList(PagingVO pvo) {
+		return dao.QnaList(pvo);
 	}
 
 	@Override
@@ -139,10 +139,4 @@ public class QnaServiceImpl implements QnaService{
 	public int qnaLangInsert(BoardVO vo) {
 		return dao.qnaLangInsert(vo);
 	}
-
-	@Override
-	public List<BoardVO> selectQnaList(PagingVO pvo) {
-		return dao.selectQnaList(pvo);
-	}
-	
 }

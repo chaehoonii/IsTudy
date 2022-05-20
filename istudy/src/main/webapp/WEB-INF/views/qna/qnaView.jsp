@@ -17,39 +17,47 @@
 				success:function(data){
 					var tag = "";
 					for(var i=0; i<data.length; i++){
-						tag += "<div class='qna_back02'>";
-						tag += "<ul class='reply_ul'>";
-						if(data[i].like_type == 0){
-							tag += "<li><span class='like_span' onclick='LikeUp("+data[i].reply_num+")'><img src='/images/like_0_sky.png' class='qna_like' />&nbsp;"+data[i].like_num+"</span></li>";
-						}else{
-							tag += "<li><span class='like_span' onclick='LikeDown("+data[i].reply_num+")'><img src='/images/like_1_sky.png' class='qna_like' />&nbsp;"+data[i].like_num+"</span></li>";
+						tag += "<div class='qna_back03_reply'>";
+						//reply top
+						//프로필, 날짜
+						tag += "<div class='reply_top'>";
+						tag += "<div class='qna_profile_reply' style='display:inline-block;'><img src='/upload/user/"+data[i].profile_img+"' id='qna_profile'/>&emsp;";
+						tag += data[i].user_nick;
+						if('${logPermission}'=='mentor'){
+							tag += "&nbsp;<img src='"+data[i].level_icon+"'style='width:20px; margin-right:10px;'/>"
 						}
+						tag += "</div>"; //qna_profile_reply
+						//채택버튼
 						if(data[i].selected == 1){ //답변채택된 글일때
 							if('${logId}'== data[i].writer_id){	//로그인아이디가 작성자일때 > 채택취소
-								tag += "<li><span class='is_selected_01'><span class='is_selected_02' onclick='SelectReplyDel("+data[i].reply_num+")'>&nbsp;✔&nbsp;</span>채택됨</span></li>";
+								tag += "<div class='reply_date' style='display:inline-block;'><span class='is_selected_01'><span class='is_selected_02' onclick='SelectReplyDel("+data[i].reply_num+")'>&nbsp;✔&nbsp;</span>채택됨</span>&emsp;&emsp;";
 							}else{ //로그인아이디가 작성자 아닐때
-								tag += "<li><span class='is_selected_01'><span class='is_selected_02'>&nbsp;✔&nbsp;</span>채택됨</span></li>";
+								tag += "<div class='reply_date' style='display:inline-block;'><span class='is_selected_01'><span class='is_selected_02'>&nbsp;✔&nbsp;</span>채택됨</span>&emsp;&emsp;";
 							}
 						}else{ //답변채택되지 않은 글일때
 							if('${logId}'== data[i].writer_id && data[i].solved == 0){ //로그인아이디가 작성자일때 > 채택
-								tag += "<li><span id='select_btn' onclick='SelectReply("+data[i].reply_num+")'>채택하기</span></li>";
+								tag += "<div class='reply_date' style='display:inline-block;'><span id='select_btn' onclick='SelectReply("+data[i].reply_num+")'>채택하기</span>&emsp;&emsp;";
 							}else{
-								tag += "<li><span>&nbsp;&nbsp;&nbsp;</span></li>";
+								tag += "<div class='reply_date' style='display:inline-block;'><span>&nbsp;&nbsp;&nbsp;</span>&emsp;&emsp;";
 							}
 						}
-						tag += "<li>"+data[i].reply_coment+"</li>";
-						tag += "<li><span id='qna_profile_span'>";
-						tag += "<img src='/upload/user/"+data[i].profile_img+"' id='qna_profile' />";
-						tag += data[i].user_nick;
-						if('${logPermission}'=='mentor'){
-							tag += "<img src='"+data[i].level_icon+"' style='width:20px; margin-right:10px;'/>"
+						tag += ""+data[i].reply_date+"</div></div><hr/>";	//reply_top
+						
+						//reply bottom
+						//댓글 내용, 좋아요
+						tag += "<div class='reply_bottom'>";
+						if(data[i].like_type == 0){
+							tag += "&emsp;&emsp;<span class='like_span' onclick='LikeUp("+data[i].reply_num+")'><img src='/images/like_0_sky.png' class='qna_like' />&nbsp;"+data[i].like_num+"</span>";
+						}else{
+							tag += "&emsp;&emsp;<span class='like_span' onclick='LikeDown("+data[i].reply_num+")'><img src='/images/like_1_sky.png' class='qna_like' />&nbsp;"+data[i].like_num+"</span>";
 						}
-						tag += "</span></li>";
-						tag += "<li>"+data[i].reply_date+"</li>";
+						tag += "&emsp;&emsp;<div class='reply_content'>"+data[i].reply_coment;
+						
+						//수정삭제
 						if('${logId}'== data[i].user_id){
-							tag += "<li><input type='hidden' value='"+data[i].reply_num+"'/><span class='reply_edit edit_btns'>수정</span>&nbsp;&nbsp;<span class='reply_del del_btns' onclick='ReplyDel("+data[i].reply_num+")'>삭제</span></li>";
+							tag += "<div id='reply_btns'><input type='hidden' value='"+data[i].reply_num+"'/><span class='reply_edit edit_btns'>수정</span>&nbsp;&nbsp;<span class='reply_del del_btns' onclick='ReplyDel("+data[i].reply_num+")'>삭제</span></div>";
 						}
-						tag += "</ul></div>";	
+						tag += "</div></div>";	
 					}
 					$("#reply_div").html(tag);
 					
@@ -221,47 +229,46 @@
 		<div class='qna_back02'>
 					<div id="qna_title">
 						<div class="titleSection">${vo.title}</div>
-						<div class="titleSection_child">
-							<span id='qna_profile_span'><img src='/upload/user/${vo.profile_img}' id='qna_profile' />&nbsp;&nbsp;&nbsp;${vo.user_nick}</span>&emsp;&emsp;&emsp;&emsp;
-							<span>작성일&nbsp;: &nbsp;${vo.write_date}</span>&emsp;&emsp;&emsp;&emsp;
-							<span>조회수&nbsp;: &nbsp;${vo.hit}</span>
-						</div>
 						<div class="tagBox">
-							<hr/>
-							<span class="tag_title">사용 언어 &nbsp;:&nbsp; </span>
+							<span class="tag_title"></span>
 							<c:forEach var="lang_list" items="${vo.lang_list}">
 								<span class="lang_list">${lang_list}</span>&nbsp;&nbsp;
 							</c:forEach> 
 							<c:forEach var="tag_list" items="${vo.tag_list}">
 								<span class="tag_list">${tag_list}</span>&nbsp;&nbsp;
 							</c:forEach>
-							<hr/>	
+							<br/>
+							<div class="titleSection_child">
+								<span id='qna_profile_span'><img src='/upload/user/${vo.profile_img}' id='qna_profile' />&nbsp;&nbsp;&nbsp;${vo.user_nick}</span>&emsp;&emsp;
+								<span>조회수&nbsp;: &nbsp;${vo.hit}</span>&emsp;&emsp;
+								<span>${vo.write_date}</span>&emsp;&emsp;
+							</div>
 						</div>
 					</div>
+						<hr/>
 					<div id="qna_content">
 						<div id='content_box'>${vo.content}</div>
-						<div>
-						<c:if test="${logId == vo.user_id}">
-							<div><span class='edit_btns' onclick="BoardEdit()">글 수정</span>&nbsp;&nbsp;<span class='del_btns' onclick="BoardDel()">글 삭제</span></div>
-						</c:if>
-						</div>
+						
 					</div>						
-		</div>
-		<div id='reply_div'>
+						<div id="qna_content_btn">
+							<c:if test="${logId == vo.user_id}">
+								<div><span class='content_edit_btns' onclick="BoardEdit()">글 수정</span>&emsp;<span class='content_del_btns' onclick="BoardDel()">글 삭제</span></div>
+							</c:if>
+						</div>
 		</div>
 		<c:if test="${logStatus=='Y'}">
-			<div class='qna_back02'>
+			<div class='qna_back04'>
 				<form method='post' id='replyWriteForm'>
 					<input type='hidden' name='board_num' id='board_num_box' value='${vo.board_num}'/>
-					<ul class='reply_write_ul'>
-						<li><input type="text" name="reply_coment" class="graySquare" id="reply_coment"/></li>
-						<li><input type='button' value='댓글 등록' id="addReplybtn" /></li>
-					</ul>
+						<span><input type="text" name="reply_coment" class="graySquare" id="reply_coment"/></span>&emsp;
+						<span><input type='button' value='댓글 등록' id="addReplybtn" /></span>
 				</form>
 			</div>
 		</c:if>	
+		<div id='reply_div'>
+		</div>
 		<c:if test="${logStatus!='Y'}">
-			<div class='qna_back02'>
+			<div class='qna_back03'>
 					<ul class='reply_ul02'>
 						<li>로그인 후 댓글 등록이 가능합니다.</li>
 					</ul>

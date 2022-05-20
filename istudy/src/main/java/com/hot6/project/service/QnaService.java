@@ -10,7 +10,7 @@ public interface QnaService {
 	public int TotalQna();
 
 	// 질문 리스트
-	public List<BoardVO> QnaList();
+	public List<BoardVO> QnaList(PagingVO pvo);
 
 	// 언어타입
 	public List<String> QnaLangType(int board_num);
@@ -69,6 +69,4 @@ public interface QnaService {
 
 	public int qnaLangInsert(BoardVO vo);
 	
-	//페이징
-	public List<BoardVO> selectQnaList(PagingVO pvo);
 }

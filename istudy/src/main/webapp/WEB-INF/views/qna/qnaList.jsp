@@ -32,11 +32,11 @@
 			</ul>
 			<ul class='qna_ul2'>
 				<li style="font-size:14px">&nbsp;<span class='gray_border'>&nbsp;A&nbsp;</span>&nbsp;&nbsp;&nbsp;${vo.count_reply}</li>
-				<li><img src='/upload/user/${vo.profile_img}' id='qna_profile' />&nbsp;&nbsp;&nbsp;&nbsp;${vo.user_nick}</li>
+				<li><img src='/upload/user/${vo.profile_img}' id='qna_profile' />&nbsp;&nbsp;&nbsp;&nbsp;${vo.user_nick}-</li>
 			</ul>
 				<hr/>
 		</c:forEach>
-		<div class="pagingContainer">
+	<div class="pagingContainer">
 		<ul class="pagination justify-content-center" id="paging">
 			<c:if test="${pvo.pageNum==1}">
 				<li class="page-item disabled"><a class="page-link"
@@ -70,7 +70,7 @@
 						class="fa fa-angle-right"></i></a></li>
 			</c:if>
 		</ul>
-	</div>
+	</div> 
 	</div>
 	<div class='search_div'>
 		<br/>
