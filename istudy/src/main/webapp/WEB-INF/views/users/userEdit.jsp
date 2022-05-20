@@ -4,10 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${url}/css/users/userEdit.css"
-	type="text/css">
-
-<script src="${url}/js/users/userEdit.js"></script>
+<link rel="stylesheet" href="/css/users/userEdit.css" type="text/css">
+<script src="/js/users/userEdit.js"></script>
 <script>
 	function userDel() {
 		if (confirm("정말로 탈퇴하시겠습니까?")) {

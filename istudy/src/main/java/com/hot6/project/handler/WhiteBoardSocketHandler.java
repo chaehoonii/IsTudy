@@ -31,20 +31,41 @@ public class WhiteBoardSocketHandler extends TextWebSocketHandler {
     	JSONParser jsonParse = new JSONParser();
     	JSONObject jsonObj = null;
     	try {
+    		//받은 메세지 파싱
 			jsonObj = (JSONObject) jsonParse.parse(message.getPayload());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
     	
-    	/* 내 이름-세션정보 hashmap, 내 이름-상대 이름 hashmap */
+    	/* event: from내 이름-세션정보 hashmap, 내 이름-to상대 이름 hashmap */
     	String event = (String)jsonObj.get("event");
     	
+//    	if (event.contentEquals("namecall")) {
+//    		String myName = (String)jsonObj.get("from");
+//    		String yourName = (String)jsonObj.get("to");
+//    		if (sessionMap.get(yourName) != null) { // 상대가 누군가랑 연결이 되어있을 때
+//    			if (targetMap.get(sessionMap.get(yourName)).contentEquals(myName)) { //그게 자신이라면
+//    	    		sessionMap.replace(myName, session.getId()); //업데이트
+//    	    		targetMap.replace(session.getId(), yourName);
+//    	    		System.out.println("replace session!");	
+//    			}
+//    			System.out.println("replace no session!");	
+//     			return;
+//    		}else {// 상대가 연결 되어있지 않다면
+//    			System.out.println("put session!");
+//	    		sessionMap.put(myName, session.getId()); //put
+//	    		targetMap.put(session.getId(), yourName);
+//    		}
+//    		System.out.println("sessionMap="+sessionMap);
+//    		System.out.println("targetMap="+targetMap);
+//    		return;
+//    	}
     	if (event.contentEquals("namecall")) {
     		String myName = (String)jsonObj.get("from");
     		String yourName = (String)jsonObj.get("to");
-    		if (sessionMap.get(yourName) != null) { // 상대가 누군가랑 연결이 되어있으면 그게 자신인지 체크
-    			if (targetMap.get(sessionMap.get(yourName)).contentEquals(myName)) {
-    	    		sessionMap.put(myName, session.getId());
+    		if (sessionMap.get(yourName) != null) { // 상대가 누군가랑 연결이 되어있을 때
+    			if (targetMap.get(sessionMap.get(yourName)).contentEquals(myName)) { //그게 자신이라면
+    	    		sessionMap.put(myName, session.getId()); //세션맵에 세션 추가
     	    		targetMap.put(session.getId(), yourName);
     			}
         		System.out.println(sessionMap);
@@ -78,7 +99,6 @@ public class WhiteBoardSocketHandler extends TextWebSocketHandler {
                 		if (webSocketSession.getId().contentEquals(sessionMap.get(targetMap.get(session.getId()))))
                 			webSocketSession.sendMessage(new BinaryMessage(byteBuffer));
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
             	}
@@ -87,8 +107,9 @@ public class WhiteBoardSocketHandler extends TextWebSocketHandler {
     }
 
     @Override
+    //연결 종료 후
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-        sessions.remove(session);
+        sessions.remove(session); //세션 지우기
         Set<Entry<String, String>> keyset = sessionMap.entrySet();
         for (Entry<String, String> entry: keyset) {
         	if(entry.getValue().contentEquals(session.getId())) {

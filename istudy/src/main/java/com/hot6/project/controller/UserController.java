@@ -1,6 +1,9 @@
 package com.hot6.project.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,6 +12,8 @@ import java.util.Date;
 
 import javax.inject.Inject;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -166,8 +171,8 @@ public class UserController {
 
 	// 로그인 페이지 이동
 	@GetMapping("login")
-	public ModelAndView login() {
-
+	public ModelAndView login(HttpSession session, HttpServletRequest request) {
+		session.setAttribute("url", request.getHeader("referer"));
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("users/login");
 		return mav;
@@ -175,13 +180,10 @@ public class UserController {
 
 	// 로그인
 	@PostMapping("loginOk")
-	public ResponseEntity<String> loginOk(UserVO vo, HttpSession session) {
-
+	public ResponseEntity<String> loginOk(UserVO vo, HttpSession session) throws IOException {
 		ResponseEntity<String> entity = null;
-
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "text/html;charset=utf-8");
-
 		try {
 			UserVO user = service.loginCheck(vo);
 
@@ -192,21 +194,19 @@ public class UserController {
 				session.setAttribute("logName", user.getUser_name());
 				session.setAttribute("logStatus", "Y");
 				session.setAttribute("logPermission", user.getPermission());
-
-				String msg = "<script>location.href = '/';</script>";
+				String url = (String) session.getAttribute("url");
+				String msg = "<script>location.href = '"+url+"';</script>";
 				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 
 			} else {
 				throw new Exception();
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 
 			String msg = "<script>alert('로그인 실패하였습니다.\\n 다시 로그인하세요.');history.back();</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
 		}
-
 		return entity;
 	}
 
@@ -330,8 +330,7 @@ public class UserController {
 	// 로그아웃
 	@GetMapping("logout")
 	public ModelAndView logout(HttpSession session) {
-		session.invalidate();
-
+		session.invalidate();	
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:/");
 		return mav;

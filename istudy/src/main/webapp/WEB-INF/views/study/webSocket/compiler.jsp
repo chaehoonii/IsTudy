@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<link rel="stylesheet" type="text/css" href="/css/defaultStudyPractice.css">
+<link rel="stylesheet" type="text/css" href="/css/study/defaultStudyPractice.css">
 <link rel="stylesheet" type="text/css" href="/css/study/codemirror.css">
 <link rel="stylesheet" type="text/css" href="/css/study/mdn-like.css">
 <link rel="stylesheet" type="text/css" href="/css/study/dracula.css">
@@ -44,10 +44,6 @@
 #topBar{display:none;}
 .bottom{display:none;}
 </style>
-</head>
-<script>
-	
-</script>
 <body onresize="parent.resizeTo(500,800)" onload="parent.resizeTo(500,800)">
 	<div class="main">
 		<div class="coding">
@@ -173,8 +169,8 @@
 		function processCompile() {
 			var total_data = {
 				mode : set_mode,
-				src : editor.getValue(),
-				input : editor3.getValue(),
+				src : editor.getValue(), //editor
+				input : editor3.getValue(), //input
 			};
 
 			$.ajax({
@@ -183,7 +179,7 @@
 				async : true,
 				data : total_data,
 				success : function(data) {
-					editor2.setValue(data);
+					editor2.setValue(data); //result
 				}
 			});
 		}
