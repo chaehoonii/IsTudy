@@ -86,7 +86,7 @@
 	            				<div class="studyInfo">
 		            				<div class="studyImg">
 		            					<div class="photo">
-		            						<img src="${url}/images/mypage_img/exstudy1.jpg"/>
+		            						<img src="/upload/study_room/${vo.study_img}"/>
 		            					</div>
 		            				</div>
 		            				<div class="studyName">
