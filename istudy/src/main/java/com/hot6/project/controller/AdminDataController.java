@@ -49,18 +49,19 @@ public class AdminDataController {
 		List<UserVO> member_list = ADservice.get_new_member();
 		
 		if(member_list!=null) {
-			int j=0;
-			for(UserVO uvo:member_list) {
-				if(j==member_list.size()-1) {
-					date_str+="\'"+ uvo.getRegister_date()+"\'";
-					new_num+=" " + uvo.getCnt();
+			
+			for(int j=member_list.size()-1; j>=0; j--) {
+				if(j==0) {
+					date_str+="\'"+ member_list.get(j).getRegister_date()+"\'";
+					new_num+=" " + member_list.get(j).getCnt();
 				}else {
-					date_str+="\'"+ uvo.getRegister_date()+"\',";
-					new_num+=" "+uvo.getCnt()+",";
+					date_str+="\'"+ member_list.get(j).getRegister_date()+"\',";
+					new_num+=" "+member_list.get(j).getCnt()+",";
 				}
-				j++;
+				
 			}	
 		}
+		
 		
 		//가입일
 		mav.addObject("register_date",date_str);

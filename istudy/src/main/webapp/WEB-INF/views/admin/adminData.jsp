@@ -72,7 +72,7 @@
     		data: {
     			labels: [${register_date}],  //날짜 
     			datasets: [{
-    				label: '신규 회원 추이',   
+    				label: '신규 회원 추이(6개월)',   
     				data: [${new_cnt}],   //신규 회원 수 
     				backgroundColor: [  					
     					'rgba(193, 117, 255, 0.2)'
