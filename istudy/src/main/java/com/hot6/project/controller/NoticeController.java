@@ -16,34 +16,51 @@ import com.hot6.project.service.BoardService;
 import com.hot6.project.service.NoticeService;
 import com.hot6.project.vo.BoardVO;
 import com.hot6.project.vo.PagingVO;
-import com.hot6.project.vo.StudyVO;
 
 @Controller
 @RequestMapping("/notice/")
 public class NoticeController {
 	@Inject
 	NoticeService NoticeService;
-	
+
 	@Inject
 	BoardService BoardService;
-	
+
 	ModelAndView mav = new ModelAndView();
-	
-	//공지사항 리스트
-	@GetMapping(value="noticeList")
-	public ModelAndView noticeMain(BoardVO vo, PagingVO pvo){
-		
+
+	// 공지사항 리스트
+	@GetMapping(value = "noticeList")
+	public ModelAndView noticeMain(BoardVO vo, PagingVO pvo) {
+
 		pvo.setTotalRecord(NoticeService.setTotalRecord(3));
-		
+
 		List<BoardVO> noticeList = NoticeService.selectNoticeList(pvo);
-		
-		
+
 		mav.addObject("pvo", pvo);
 		mav.addObject("noticeList", noticeList);
 		mav.setViewName("/notice/noticeList");
 		return mav;
 	}
+
+	// 공지사항 글쓰기 페이지 이동
+	@GetMapping(value = "/noticeWrite")
+	public ModelAndView noticeWrite() {
+
+		mav.setViewName("/notice/adminNoticeWrite");
+		return mav;
+	}
 	
+	//글 수정
+		@GetMapping(value ="/noticeEdit")
+		public ModelAndView noticeEdit(int board_num) {
+			// DB에 있는 첨부파일 수 구하기(새로 변경한 파일이 생기면 --해줘야 하기 때문)
+			BoardVO vo = NoticeService.selectNoticeModal(board_num);
+			System.out.println(board_num);
+			mav.addObject("vo", vo);
+			mav.setViewName("/notice/adminNoticeEdit");
+			return mav;
+		}
+
 	@ResponseBody // Ajax
 	@RequestMapping(value = "noticeListModal", method = RequestMethod.GET)
 	public BoardVO noticeModal(@RequestParam("board_num") int board_num) {

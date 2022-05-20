@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.hot6.project.vo.BoardVO;
+import com.hot6.project.vo.PagingVO;
 
 @Mapper
 @Repository
@@ -14,7 +15,7 @@ public interface QnaDAO {
 	public int TotalQna();
 
 	// 질문 리스트
-	public List<BoardVO> QnaList();
+	public List<BoardVO> QnaList(PagingVO pvo);
 
 	// 언어타입
 	public List<String> QnaLangType(int board_num);
@@ -70,6 +71,5 @@ public interface QnaDAO {
 	//글 등록
 	public int qnaTagInsert(BoardVO vo);
 	public int qnaLangInsert(BoardVO vo);
-	
 	
 }
