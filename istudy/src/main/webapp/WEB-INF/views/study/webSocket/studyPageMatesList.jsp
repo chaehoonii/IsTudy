@@ -7,10 +7,17 @@
 	th{
 		font-weight:300px;
 	}
+	td{
+		text-align:left;
+	}
+	#list{
+		margin-bottom:20px !important;
+	}
 </style>
 
 <div class="list">
 	<h3 style='text-align:center;'>[&nbsp;&nbsp;${vo.study_name}&nbsp;&nbsp;]</h3>
+	<br/>
 	<table class="table">
 		<thead>
 			<tr>

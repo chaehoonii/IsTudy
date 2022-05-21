@@ -44,16 +44,15 @@ document.addEventListener('DOMContentLoaded', function(){
 </head>
 <body>
 	<div id="topBar">
-		<div class="col-lg-1">
+		<div>
 			<button type="button" class="menuBtn">
 				<i class="fas fa-bars"></i>
 			</button>
 		</div>
-		<div class="col-lg-2"></div>
-		<div class="col-lg-5 logoDiv">
+		<div class="logoDiv">
 			<a href="/"><img src="/images/logo.png" id="logo"></a>
 		</div>
-		<div class="col-lg-4 btnDiv">
+		<div class="btnDiv">
 			<c:if test="${logStatus != 'Y'}">
 				<button class="loginBtn btn"
 					onclick="window.location.href='/users/login'">로그인</button>
