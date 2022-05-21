@@ -206,8 +206,4 @@
 	DELETE 	FROM board_hashtag 
 	WHERE 	board_num=#{board_num}
 </delete>
-<<<<<<< HEAD
 </mapper>
-=======
-</mapper>
->>>>>>> 0d2565e783a3fa57a2937af9c054291314d32831

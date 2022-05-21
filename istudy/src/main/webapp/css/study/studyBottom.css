@@ -41,7 +41,9 @@
 		border-radius:30%;
 	}
 	.exit-box>a>i{
-		border : 1px solid #B1B1B1;
+		margin-top:5px;
+		margin-right:10px;
+		color:white;
 		border-radius:30%;
 	}
 /*기능 추가시마다 해당 기능 클래스 이름 추가필요*/

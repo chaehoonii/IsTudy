@@ -36,7 +36,7 @@
 		
 	</div>
 </div>
-<span class="exit-box"><a id="exitBtn" onclick="exit()" href="#"><i class="fas fa-sign-out-alt fa-2x exit"></i></a></span>
+<span class="exit-box"><a id="exitBtn" onclick="exit()" href="#"><i class="fas fa-sign-out-alt fa-3x exit"></i></a></span>
 
 
 <script>
