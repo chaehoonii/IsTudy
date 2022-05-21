@@ -30,7 +30,11 @@ public class UserVO {
 	private String leave_detail;
 	private int leave_type_num;
 	private List<String> userList;
+<<<<<<< HEAD
 	
+=======
+	private int cnt;
+>>>>>>> a0158b64a90f8c8f73cd560d0473032c724f666a
 
 	public String getEmail() {
 		return email;
@@ -178,7 +182,16 @@ public class UserVO {
 	public void setUserList(List<String> userList) {
 		this.userList = userList;
 	}
+<<<<<<< HEAD
 	
 
+=======
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+>>>>>>> a0158b64a90f8c8f73cd560d0473032c724f666a
 
 }

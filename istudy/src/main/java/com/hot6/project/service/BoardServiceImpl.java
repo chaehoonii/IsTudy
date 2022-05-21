@@ -89,4 +89,54 @@ public class BoardServiceImpl implements BoardService{
 		return dao.BoardFileUpdate(vo);
 	}
 
+	@Override
+	public int expUpBoard(String user_id) {
+		return dao.expUpBoard(user_id);
+	}
+
+	@Override
+	public int expUpReply(String user_id) {
+		return dao.expUpReply(user_id);
+	}
+
+	@Override
+	public int expUpLike(String user_id) {
+		return dao.expUpLike(user_id);
+	}
+
+	@Override
+	public int expUpSelected(String user_id) {
+		return dao.expUpSelected(user_id);
+	}
+
+	@Override
+	public int expDownBoard(String user_id) {
+		return dao.expDownBoard(user_id);
+	}
+
+	@Override
+	public int expDownReply(String user_id) {
+		return dao.expDownReply(user_id);
+	}
+
+	@Override
+	public int expDownLike(String user_id) {
+		return dao.expDownLike(user_id);
+	}
+
+	@Override
+	public int expDownSelected(String user_id) {
+		return dao.expDownSelected(user_id);
+	}
+
+	@Override
+	public String getIdByBoardnum(int board_num) {
+		return dao.getIdByBoardnum(board_num);
+	}
+
+	@Override
+	public String getIdByReplynum(int reply_num) {
+		return dao.getIdByReplynum(reply_num);
+	}
+
 }

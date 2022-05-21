@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hot6.project.service.BoardService;
+import com.hot6.project.service.NoticeService;
 import com.hot6.project.service.QnaService;
 import com.hot6.project.vo.BoardVO;
+import com.hot6.project.vo.PagingVO;
 
 @Controller
 public class QnaController {
@@ -26,20 +28,26 @@ public class QnaController {
 	@Inject
 	BoardService Bservice;
 	
+	@Inject
+	NoticeService Nservice;
+	
 		//리스트
 		@RequestMapping(value = "/qna/qnaList", method = RequestMethod.GET)
-	    public ModelAndView home(HttpSession session) {
+	    public ModelAndView home(HttpSession session, PagingVO pvo) {
 	        ModelAndView mav = new ModelAndView();
 	        //총 질문 수
 	        mav.addObject("totalQna", Qservice.TotalQna());
 	        //질문 리스트
-	        List<BoardVO> qnalist = Qservice.QnaList();
+	        List<BoardVO> qnalist = Qservice.QnaList(pvo);
 	        for(BoardVO vo:qnalist) {
 	        	vo.setLang_list(Qservice.QnaLangType(vo.getBoard_num()));
 	        }
 	        for(BoardVO vo:qnalist) {
 	        	vo.setTag_list(Qservice.QnaTag(vo.getBoard_num()));
-	        }	
+	        }
+	        pvo.setTotalRecord(Nservice.setTotalRecord(2));
+	        mav.addObject("pvo", pvo);
+	        
 	        mav.addObject("qnaList", qnalist);
 	        mav.setViewName("/qna/qnaList");
 	        return mav;
@@ -104,28 +112,48 @@ public class QnaController {
 		//좋아요 누르기
 		@ResponseBody // Ajax
 		@RequestMapping(value = "/qna/likeUp", method = RequestMethod.POST)
-		public void likeUp(@RequestParam("reply_num") int reply_num, HttpSession session) {
+		public int likeUp(@RequestParam("reply_num") int reply_num, HttpSession session) {
 			String user_id = (String)session.getAttribute("logId");
-			Qservice.LikeUp(user_id, reply_num);
+			int Chk = Qservice.LikeUp(user_id, reply_num);
+			if(Chk>0) {
+				String your_id = Bservice.getIdByReplynum(reply_num); //댓글작성자
+				Bservice.expUpLike(your_id);
+			}
+			return Chk;
 		}
 		//좋아요 취소
 		@ResponseBody // Ajax
 		@RequestMapping(value = "/qna/likeDown", method = RequestMethod.GET)
-		public void likeDown(@RequestParam("reply_num") int reply_num, HttpSession session) {
+		public int likeDown(@RequestParam("reply_num") int reply_num, HttpSession session) {
 			String user_id = (String)session.getAttribute("logId");
-			Qservice.LikeDown(user_id, reply_num);
+			int Chk = Qservice.LikeDown(user_id, reply_num);
+			if(Chk>0) {
+				String your_id = Bservice.getIdByReplynum(reply_num); //댓글작성자
+				Bservice.expDownLike(your_id);
+			}
+			return Chk;
 		}
 		//답변 채택
 		@ResponseBody // Ajax
 		@RequestMapping(value = "/qna/replySelect", method = RequestMethod.POST)
-		public void replySelect(@RequestParam("reply_num") int reply_num) {
-			Qservice.ReplySelect(reply_num);
+		public int replySelect(@RequestParam("reply_num") int reply_num) {
+			int Chk = Qservice.ReplySelect(reply_num);
+			if(Chk>0) {
+				String your_id = Bservice.getIdByReplynum(reply_num); //댓글작성자
+				Bservice.expUpSelected(your_id);
+			}
+			return Chk;
 		}
 		//답변 채택 취소
 		@ResponseBody // Ajax
 		@RequestMapping(value = "/qna/replySelectDel", method = RequestMethod.POST)
-		public void replySelectDel(@RequestParam("reply_num") int reply_num) {
-			Qservice.ReplySelectDel(reply_num);
+		public int replySelectDel(@RequestParam("reply_num") int reply_num) {
+			int Chk = Qservice.ReplySelectDel(reply_num);
+			if(Chk>0) {
+				String your_id = Bservice.getIdByReplynum(reply_num); //댓글작성자
+				Bservice.expDownSelected(your_id);
+			}
+			return Chk;
 		}
 		//글 등록 폼
 		@RequestMapping(value = "/qna/qnaWrite", method = RequestMethod.GET)
@@ -145,12 +173,5 @@ public class QnaController {
         	mav.addObject("vo", vo);
 			
 			return mav;
-		}
-		//toast ui editor sample
-		@RequestMapping(value = "/qna/sample", method = RequestMethod.GET)
-		public ModelAndView sample() {
-			ModelAndView mav = new ModelAndView();
-			mav.setViewName("/qna/sample");
-		return mav;
 		}
 }

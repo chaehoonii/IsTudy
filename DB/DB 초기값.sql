@@ -15,6 +15,7 @@ select * from level order by level;
 select * from study_room;
 select * from calendar_color order by color_num;
 select * from calendar order by plan_num;
+select * from board_image;
 
 insert study_type(study_type_name) values('Frontend');
 insert study_type(study_type_name) values('Backend');
@@ -35,7 +36,6 @@ insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, stud
 insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, exp) values('iiii0000', '장길동', 'ㅠㅠㅠㅠ', 'iiii1111', '01099999999', 'hong09@gmail.com', 'mentor', '5', 'T','(현)삼성 멀티캠퍼스 강사',0);
 insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, exp) values('jjjj0000', '나길동', '멘토오오오스', 'jjjj1111', '01011112222', 'hong10@gmail.com', 'mentor', '1', 'T','(현)삼성 멀티캠퍼스 강사',450);
 insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, exp) values('kkkk0000', '차길동', '개발인생', 'kkkk1111', '01022223333', 'hong11@gmail.com', 'mentor', '2', 'T','(현)삼성 멀티캠퍼스 강사',0);
-
 
 insert board_type(board_type_name) values('스터디 게시판');
 insert board_type(board_type_name) values('Q&A');
@@ -73,11 +73,10 @@ insert leave_type(leave_type_name) values('사용빈도가 낮아서');
 insert leave_type(leave_type_name) values('콘텐츠 불만');
 insert leave_type(leave_type_name) values('기타');
 
-insert level(exp_min, exp_max, level_icon) values(0, 100, '/images/level_icon/level01.png');
-insert level(exp_min, exp_max, level_icon) values(101, 200, '/images/level_icon/level02.png');
-insert level(exp_min, exp_max, level_icon) values(201, 300, '/images/level_icon/level03.png');
-insert level(exp_min, exp_max, level_icon) values(301, 400, '/images/level_icon/level04.png');
-insert level(exp_min, exp_max, level_icon) values(401, 500, '/images/level_icon/level05.png');
+insert level(exp_min, exp_max, level_icon) values(0, 100, '/images/level_icon/level02.png');
+insert level(exp_min, exp_max, level_icon) values(101, 200, '/images/level_icon/level03.png');
+insert level(exp_min, exp_max, level_icon) values(201, 300, '/images/level_icon/level04.png');
+insert level(exp_min, exp_max, level_icon) values(301, 10000, '/images/level_icon/level05.png');
 
 insert calendar_color(color_name) values('#B97687');
 insert calendar_color(color_name) values('#B57FB3');
@@ -108,35 +107,59 @@ insert study_room(study_type_num, study_name, study_img, study_rule, start_date,
 insert study_room(study_type_num, study_name, study_img, study_rule, start_date, finish_date, max, host_id, is_mentor, ip) values (1, '555초보개발자 스터디', 'study_default.jpg','기초부터 문제풀이까지 차근차근 함께해요. 주 2회 (매주 월, 수 밤 9:30) 공부하며, 멤버간 소통은 istudy채팅을 이용합니다. 참여 대상 : 자료구조 및 알고리즘에 대해 공부하실 분들, 그동안 공부한 내용을 정리하고 싶은 분들.  참여자 의무 : 정기 모임 참석, 일주일에 4-6시간 투자(평균 예상 시간, 전공, 경력 등에 따라 다를 수 있음) 스터디 운영 : 매주 정해진 주제에 대해 공부 후 모임을 통해 공유하며, 관련 문제 풀이를 통해 이해의 폭을 넓힙니다.', '2022-05-20', '2022-9-20', 5, 'gggg0000', 'T', 0);
 insert study_room(study_type_num, study_name, study_img, study_rule, start_date, finish_date, max, host_id, is_mentor, ip) values (1, '666초보개발자 스터디', 'study_default.jpg','기초부터 문제풀이까지 차근차근 함께해요. 주 2회 (매주 월, 수 밤 9:30) 공부하며, 멤버간 소통은 istudy채팅을 이용합니다. 참여 대상 : 자료구조 및 알고리즘에 대해 공부하실 분들, 그동안 공부한 내용을 정리하고 싶은 분들.  참여자 의무 : 정기 모임 참석, 일주일에 4-6시간 투자(평균 예상 시간, 전공, 경력 등에 따라 다를 수 있음) 스터디 운영 : 매주 정해진 주제에 대해 공부 후 모임을 통해 공유하며, 관련 문제 풀이를 통해 이해의 폭을 넓힙니다.', '2022-05-20', '2022-9-20', 4, 'hhhh0000', 'T', 0);
 insert study_room(study_type_num, study_name, study_img, study_rule, start_date, finish_date, max, host_id, is_mentor, ip) values (1, '777 스터디', 'study_default.jpg','기초부터 문제풀이까지 차근차근 함께해요. 주 2회 (매주 월, 수 밤 9:30) 공부하며, 멤버간 소통은 istudy채팅을 이용합니다. 참여 대상 : 자료구조 및 알고리즘에 대해 공부하실 분들, 그동안 공부한 내용을 정리하고 싶은 분들.  참여자 의무 : 정기 모임 참석, 일주일에 4-6시간 투자(평균 예상 시간, 전공, 경력 등에 따라 다를 수 있음) 스터디 운영 : 매주 정해진 주제에 대해 공부 후 모임을 통해 공유하며, 관련 문제 풀이를 통해 이해의 폭을 넓힙니다.', '2022-05-20', '2022-9-20', 6, 'iiii0000', 'T', 0);
+insert study_room(study_type_num, study_name, study_img, study_rule, start_date, finish_date, max, host_id, is_mentor, ip) values (6, 'etc 스터디', 'study_default.jpg','기초부터 문제풀이까지 차근차근 함께해요. 주 2회 (매주 월, 수 밤 9:30) 공부하며, 멤버간 소통은 istudy채팅을 이용합니다. 참여 대상 : 자료구조 및 알고리즘에 대해 공부하실 분들, 그동안 공부한 내용을 정리하고 싶은 분들.  참여자 의무 : 정기 모임 참석, 일주일에 4-6시간 투자(평균 예상 시간, 전공, 경력 등에 따라 다를 수 있음) 스터디 운영 : 매주 정해진 주제에 대해 공부 후 모임을 통해 공유하며, 관련 문제 풀이를 통해 이해의 폭을 넓힙니다.', '2022-05-20', '2022-9-20', 6, 'iiii0000', 'T', 0);
 
-insert study_mate(study_num, user_id, want_ok) values(1, 'bbbb0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(1, 'dddd0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(1, 'eeee0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(1, 'ffff0000', 'F');
-insert study_mate(study_num, user_id, want_ok) values(2, 'gggg0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(2, 'hhhh0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(2, 'iiii0000', 'F');
-insert study_mate(study_num, user_id, want_ok) values(3, 'kkkk0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(4, 'aaaa0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(4, 'bbbb0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(4, 'cccc0000', 'F');
-insert study_mate(study_num, user_id, want_ok) values(5, 'dddd0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(5, 'eeee0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(5, 'ffff0000', 'F');
-insert study_mate(study_num, user_id, want_ok) values(6, 'bbbb0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(6, 'dddd0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(6, 'eeee0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(6, 'ffff0000', 'F');
-insert study_mate(study_num, user_id, want_ok) values(7, 'gggg0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(7, 'hhhh0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(7, 'iiii0000', 'F');
-insert study_mate(study_num, user_id, want_ok) values(8, 'kkkk0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(9, 'aaaa0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(9, 'bbbb0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(9, 'cccc0000', 'F');
-insert study_mate(study_num, user_id, want_ok) values(10, 'dddd0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(10, 'eeee0000', 'T');
-insert study_mate(study_num, user_id, want_ok) values(10, 'ffff0000', 'F');
+insert study_like(study_num, user_id) values(1, 'aaaa0000');
+insert study_like(study_num, user_id) values(2, 'aaaa0000');
+insert study_like(study_num, user_id) values(3, 'aaaa0000');
+insert study_like(study_num, user_id) values(4, 'aaaa0000');
+insert study_like(study_num, user_id) values(5, 'aaaa0000');
+insert study_like(study_num, user_id) values(6, 'aaaa0000');
+insert study_like(study_num, user_id) values(7, 'aaaa0000');
+insert study_like(study_num, user_id) values(8, 'aaaa0000');
+insert study_like(study_num, user_id) values(9, 'aaaa0000');
+insert study_like(study_num, user_id) values(10, 'aaaa0000');
+insert study_like(study_num, user_id) values(1, 'bbbb0000');
+insert study_like(study_num, user_id) values(2, 'bbbb0000');
+insert study_like(study_num, user_id) values(3, 'bbbb0000');
+insert study_like(study_num, user_id) values(4, 'bbbb0000');
+insert study_like(study_num, user_id) values(5, 'bbbb0000');
+insert study_like(study_num, user_id) values(6, 'bbbb0000');
+insert study_like(study_num, user_id) values(1, 'cccc0000');
+insert study_like(study_num, user_id) values(2, 'cccc0000');
+insert study_like(study_num, user_id) values(3, 'cccc0000');
+insert study_like(study_num, user_id) values(1, 'dddd0000');
+insert study_like(study_num, user_id) values(3, 'dddd0000');
+insert study_like(study_num, user_id) values(4, 'dddd0000');
+
+insert study_mate(study_num, user_id, want_ok, want_coment) values(1, 'bbbb0000', 'T', '스터디신청합니다!222');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(1, 'dddd0000', 'T', '스터디신청합니다!3333');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(1, 'eeee0000', 'T', '스터디신청합니다!4444');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(1, 'ffff0000', 'F', '스터디신청합니다!1111');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(2, 'gggg0000', 'T', '스터디신청합니다!5555');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(2, 'hhhh0000', 'T', '스터디신청합니다!6666');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(2, 'iiii0000', 'F', '스터디신청합니다7777!');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(3, 'kkkk0000', 'T', '스터디신청합니다!8888');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(4, 'aaaa0000', 'T', '스터디신청합니다9999!');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(4, 'bbbb0000', 'T', '스터디신청합니다54645!');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(4, 'cccc0000', 'F', '스터디신청합니다!23423');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(5, 'dddd0000', 'T', '스터디신청합니다!123123');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(5, 'eeee0000', 'T', '스터디신청합니다!34545');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(5, 'ffff0000', 'F', '스터디신청합니다!5675');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(6, 'bbbb0000', 'T', '스터디신청합니다!678');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(6, 'dddd0000', 'T', '스터디신청합니다!3453');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(6, 'eeee0000', 'T', '스터디신청합니다!234');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(6, 'ffff0000', 'F', '스터디신청합니다!12323');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(7, 'gggg0000', 'T', '스터디신청합니다!456');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(7, 'hhhh0000', 'T', '스터디신청합니다!567');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(7, 'iiii0000', 'F', '스터디신청합니다!678');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(8, 'kkkk0000', 'T', '스터디신청합니다!789');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(9, 'aaaa0000', 'T', '스터디신청합니다!890');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(9, 'bbbb0000', 'T', '스터디신청합니다!567');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(9, 'cccc0000', 'F', '스터디신청합니다!345');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(10, 'dddd0000', 'T', '스터디신청합니다!234');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(10, 'eeee0000', 'T', '스터디신청합니다!123');
+insert study_mate(study_num, user_id, want_ok, want_coment) values(10, 'ffff0000', 'F', '스터디신청합니다!435');
 
 insert study_lang_type(study_num, lang_type_num)values (1, 1);
 insert study_lang_type(study_num, lang_type_num)values (1, 2);
@@ -227,8 +250,7 @@ insert board(user_id, title, content, ip, board_type_num) values ('dddd0000','�
 
 insert board_image(board_num, file1) values(1,'1651922690712.jpg');
 insert board_image(board_num, file1) values(3,'1651925182654.jpg');
-insert board_image(board_num, file1) values(4,'1651911713707.png');
-
+insert board_image(board_num, file1,file2) values(4,'1651911713707.png','다운로드.png');
 
 insert board_hashtag(board_num, tag) value (1, 'Spring-boot');
 insert board_hashtag(board_num, tag) value (1, '스프링부트');
@@ -254,8 +276,14 @@ insert reply(board_num, user_id, reply_coment, ip) values(2, 'eeee0000', '저장
 insert reply(board_num, user_id, reply_coment, ip) values(3, 'ffff0000', '새로고침하세요333','0');
 insert reply(board_num, user_id, reply_coment, ip) values(3, 'gggg0000', '저장하세요3333','0');
 
-insert select_reply(board_num, reply_num) values(1,1);
-insert select_reply(board_num, reply_num) values(3,2);
+insert reply_like(reply_num, user_id) values(2,'eeee0000');
+insert reply_like(reply_num, user_id) values(2,'bbbb0000');
+insert reply_like(reply_num, user_id) values(3,'aaaa0000');
+insert reply_like(reply_num, user_id) values(1,'eeee0000');
+
+select @@max_connections;
+SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST;
+CALL mysql.rds_kill(18009);
 
 set foreign_key_checks=1;
-truncate reply;
+truncate report;

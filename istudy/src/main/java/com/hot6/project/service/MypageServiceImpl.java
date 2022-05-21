@@ -71,4 +71,9 @@ public class MypageServiceImpl implements MypageService {
 		return dao.cntLikeStudy(user_id);
 	}
 
+	@Override
+	public String getIcon(String user_id) {
+		return dao.getIcon(user_id);
+	}
+
 }

@@ -4,6 +4,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script>
 	$(document).ready(function(){
+		
 		var calendar;
 		function setCalendar(){
 		  	var url = "/study/calendar/calendarLists";
@@ -11,8 +12,7 @@
 			var study_num = pathname.substring( pathname.indexOf('=')+1);
 			$('#study_num').val(study_num);
 			var param = {"study_num" : study_num};
-			console.log(param);
-		
+			
 		  	$.ajax({
 				url : url,
 				type : 'GET',
@@ -32,9 +32,7 @@
 						events.id = data[i].study_num;
 						  
 						 aJsonArray.push(events);		
-						 console.log(events);
 					}
-					console.log(aJsonArray);
 					let today = new Date();
 					console.log("today: "+today);
 					
@@ -46,10 +44,7 @@
 					        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
 					      },
 					      titleFormat: { // will produce something like "Tuesday, September 18, 2018"
-	                    	    month: '2-digit',
-	                    	    year: 'numeric',
-	                    	    day: '2-digit',
-	                    	    weekday: 'narrow'
+	                    	    month: 'long',
 	                      },
 					      initialDate: today,
 					      navLinks: true, // can click day/week names to navigate views
@@ -63,7 +58,6 @@
 	                       //드래그로 일정 수정하기
 
 	                        eventDrop: function (info){
-	                            if(confirm("'"+ info.event.title +"' 일정을 수정하시겠습니까 ?")){
 	                            	var plan_start = moment(info.event._instance.range.start).format('YYYY/MM/DD');
 	                            	var plan_finish = moment(info.event._instance.range.end).format('YYYY/MM/DD');
 		                            var param = {
@@ -71,7 +65,6 @@
 		                           	 	"plan_start" : plan_start,
 		                            	"plan_finish" :  plan_finish
 		                            } 
-		                            console.log(param);
 		                            
 	                                $.ajax({
 	                                    url: "/study/calendar/calendarDrag",
@@ -83,17 +76,20 @@
 	                                    }
 	                                })
 	                            }
-	                        }
+	                        
 				    });
 				   	
-			  		calendar.render();
-							
+			  		calendar.render(); //" onclick="location.href='sldkjlsd'""
+			  		$("button[title='This month']").parent().append("<img src='/images/study_room/room01.png' id='room_img' onclick=\"location.href='/study/studyRoom?study_num="+${study_num}+"\'\"/>");		
 			  	   
 			 		//날짜 클릭 시 플랜입력 모달 띄우기 
 				  	calendar.on('dateClick', function(info) {
+				  		//event.stopPropagation();
+				  		//console.log("'dateClick'", event.currentTarget);
 					 	$('#addPlanModal').modal();
 					 	$('#select_plan_start').val(info.dateStr);
 					 	$('#select_plan_finish').val(info.dateStr);
+					 	return false
 					 	
 					}); 
 			 		//일정 클릭 시 일정상세 모달 띄우기------------------------------------------------------------------------------------------------------
@@ -130,7 +126,6 @@
 							 		"plan_num": info.event.groupId,
 							 		"study_num": info.event.id
 							 	} 	//ajax로 보내기
-								console.log(param2);
 							 	$.ajax({
 									url : '/study/calendar/calendarDel',
 									type : 'GET',
@@ -150,7 +145,6 @@
 					 	$("#editPlanForm").off("submit").on("submit",function(){ 		
 					 		if(confirm('바꾼 내용으로 일정을 수정하시겠습니까?')){
 					 			 var param3 = $(this).serialize(); 	//ajax로 폼 내용 보내기
-								console.log(param3);
 							 	$.ajax({
 									url : '/study/calendar/calendarEdit',
 									type : 'POST',
@@ -215,23 +209,22 @@
 	
 	//등록폼 색상 select
 	function changeSelection() {
-		console.log("01");
 		$('.select_color').css('background-color', $('.select_color option:selected').css('background-color'));	//색 변경
 		$('.select_color').val($('.select_color option:selected').val());	//value 변경
 	}
 	//수정폼 색상 select
 	function changeSelection02() {
-		console.log("02");
 		$('.select_color02').val($('.select_color02 option:selected').val());	//value 변경
 		$('.select_color02').css('background-color', $('.select_color02 option:selected').css('background-color'));	//색 변경
 	}
+	
+	
 </script>
-<style>
 
-</style>
 <div id="calendar_container">
 	<div id='calendar'></div>
 </div>
+
 
 <!-- 입력 모달 -->
 <div id="addPlanModal" class="modal">

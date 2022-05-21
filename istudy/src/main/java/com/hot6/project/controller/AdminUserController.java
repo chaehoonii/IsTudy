@@ -60,6 +60,10 @@ public class AdminUserController {
 		mav.addObject("mentorCnt", AUservice.getPermissionCnt("mentor", null));
 		// 관리자 수
 		mav.addObject("adminCnt", AUservice.getPermissionCnt("admin", null));
+<<<<<<< HEAD
+=======
+		
+>>>>>>> a0158b64a90f8c8f73cd560d0473032c724f666a
 
 		mav.addObject("pvo", pvo);
 
@@ -131,9 +135,15 @@ public class AdminUserController {
 		ModelAndView mav = new ModelAndView();
 
 		AUservice.approveUserStatus(vo);
+<<<<<<< HEAD
 
 		mav.setViewName("redirect:AdminUsers");
 
+=======
+		
+		mav.setViewName("redirect:adminUsers");
+		
+>>>>>>> a0158b64a90f8c8f73cd560d0473032c724f666a
 		return mav;
 
 	}
@@ -145,9 +155,15 @@ public class AdminUserController {
 		ModelAndView mav = new ModelAndView();
 
 		AUservice.sendBackStatus(vo);
+<<<<<<< HEAD
 
 		mav.setViewName("redirect:AdminUsers");
 
+=======
+		
+		mav.setViewName("redirect:adminUsers");
+		
+>>>>>>> a0158b64a90f8c8f73cd560d0473032c724f666a
 		return mav;
 	}
 

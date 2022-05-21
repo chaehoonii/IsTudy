@@ -40,4 +40,6 @@ public interface MypageService {
 	//찜한 스터디 개수
 	public int cntLikeStudy(String user_id);
 	
+	//레벨아이콘
+	public String getIcon(String user_id);
 }

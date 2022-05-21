@@ -36,8 +36,20 @@ public class StudyServiceImpl implements StudyService{
 
 	@Override
 	public int StudyboardInsert(BoardVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.StudyboardInsert(vo);
 	}
+
+
+	@Override
+	public StudyVO getStudyByStudynum(int study_num) {
+		return dao.getStudyByStudynum(study_num);
+	}
+
+
+	@Override
+	public List<StudyVO> StudyMates(int study_num) {
+		return dao.StudyMates(study_num);
+	}
+
 
 }
