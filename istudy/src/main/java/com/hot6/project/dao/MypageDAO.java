@@ -36,5 +36,14 @@ public interface MypageDAO {
 	
 	//마이페이지 댓글 단 개수
 	public int cntComment(String user_id);
+	
+	//마이페이지 찜한 스터디
+	public List<StudyVO> getLikeStudy(String user_id);
+	
+	//닉네임
+	public String getNickname(String user_id);
+	
+	//찜한 스터디 개수
+	public int cntLikeStudy(String user_id);
 
 }

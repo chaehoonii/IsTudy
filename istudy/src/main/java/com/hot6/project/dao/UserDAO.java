@@ -42,5 +42,6 @@ public interface UserDAO {
 	public int pwdUpdate(String newPwd, UserVO vo);
 	
 	public List<UserVO> MentorRecommend();
+	
 }
 

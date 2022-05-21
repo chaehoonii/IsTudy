@@ -76,5 +76,4 @@ public class PagingVO {
 		public void setSearchWord(String searchWord) {
 			this.searchWord = searchWord;
 		}
-		
 }

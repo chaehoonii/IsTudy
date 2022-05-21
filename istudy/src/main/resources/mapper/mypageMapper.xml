@@ -65,4 +65,23 @@
 		INNER JOIN board_type ON board.board_type_num = board_type.board_type_num
 	</select>
 	
+	<!-- 찜한 스터디 -->
+	<select id="getLikeStudy" resultType="StudyVO">
+		SELECT study_room.*, study_type.study_type_name FROM study_room INNER JOIN study_type
+		ON study_room.study_type_num = study_type.study_type_num 
+		INNER JOIN study_like ON study_like.study_num= study_room.study_num AND study_like.user_id=#{param1}
+	</select>
+	
+	<!-- 닉네임 -->
+	<select id="getNickname" resultType="String">
+		select user_nick from user where user_id=#{param1};
+	</select>
+	
+	<!-- 찜한 스터디 개수 -->
+	<select id="cntLikeStudy" resultType="int">
+		SELECT COUNT(study_room.study_name) FROM study_room INNER JOIN study_type
+		ON study_room.study_type_num = study_type.study_type_num 
+		INNER JOIN study_like ON study_like.study_num= study_room.study_num AND study_like.user_id=#{param1}
+	</select>
+	
   </mapper>

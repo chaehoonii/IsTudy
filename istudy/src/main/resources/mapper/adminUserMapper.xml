@@ -4,43 +4,161 @@
   
  <mapper namespace="com.hot6.project.dao.AdminUserDAO">
   
-  	<!-- 전체 회원 정보 -->
-  	<select id="getUserInfo" resultType="UserVO">	
-  		select user_nick, user_id, user_name, tel, email, date_format(register_date,'%Y.%m.%d') as register_date, permission, want, career_year, career
-  		from user	
-  	</select>
-  	
-  	<!-- 전체 회원 수 -->
-  	<select id="getAllCnt" resultType="int">
-  		select count(user_id) from user
-  	</select> 	  
-  	
-  	<!-- 일반 회원 수 -->
-  	<select id="getUserCnt" resultType="int">
-  		select count(user_id) from user where permission = "user"
-  	</select>	
-  	
-  	<!-- 멘토 회원 수 -->
-  	<select id="getMentorCnt" resultType="int">
-  		select count(user_id) from user where permission = "mentor"
-  	</select>	
-  	
-  	<!-- 관리자 수 -->
-  	<select id="getAdminCnt" resultType="int">
-  		select count(user_id) from user where permission="admin"
-  	</select>
-  	
-  	<!-- 신고 관리 정보 -->
-  	<select id="getAdminUserInfo" resultType="AdminUserVO">	
-  		select board.title,board.user_id as writer,report.user_id,report.report_content,report.report_time,report.report_type_num
-  		from report
-  		INNER JOIN board
-  		ON report.board_num = board.board_num
-  	</select>
-  	
-  	<!-- 전체 신고 수 -->
-  	<select id="getAllReportCnt" resultType="int">
-  		select count(*) from report
-  	</select> 
- </mapper>
+     <!-- 전체 회원 정보 -->
+     <select id="getUserInfo" resultType="UserVO">   
+        select user_nick, user_id, user_name, tel, email, date_format(register_date,'%Y.%m.%d') as register_date, permission, want, career_year, career
+        from user 
+        <where>
+           <!-- user, mentor -->
+           <if test="param1 !=null and param1!='all'">permission=#{param1}</if>
+           
+           <!-- mentor 신청 -->
+           <if test="param2!=null">AND want='T'</if>
+           
+           <if test="param3.searchWord!=null">
+              and user_nick like '%${param3.searchWord}%' or user_id like '%${param3.searchWord}%' or user_name like '%${param3.searchWord}%'
+              or tel like '%${param3.searchWord}%' or email like '%${param3.searchWord}%' or register_date like '%${param3.searchWord}%' 
+              or career_year like '%${param3.searchWord}%' or career like '%${param3.searchWord}%'
+           </if>
+        </where>
+        
+        order by user_id limit ${param3.onePageRecord} offset ${param3.offsetIndex}
+     </select>
+     
+     <!-- 해당 레코드 수 -->
+     <select id="getAllCnt" resultType="int">
+        select count(user_id) from user
+        <where>
+           <!-- user, mentor, admin -->
+           <if test="param1 !=null and param1!='all'"> permission=#{param1}</if>
+           <!--  mentor 신청 -->      
+           <if test="param2!=null">AND want='T'</if>
+           <if test="param3.searchWord!=null">
+              and user_nick like '%${param3.searchWord}%' or user_id like '%${param3.searchWord}%' or user_name like '%${param3.searchWord}%'
+              or tel like '%${param3.searchWord}%' or email like '%${param3.searchWord}%' or register_date like '%${param3.searchWord}%' 
+              or career_year like '%${param3.searchWord}%' or career like '%${param3.searchWord}%'
+           </if>
+        </where>
+        
+     </select> 
+     
+     <!-- 해당 회원 수 -->
+     <select id="getPermissionCnt" resultType="int">
+        select count(user_id) from user
+        <where>
+           <!-- user, mentor, admin -->
+           <if test="param1 !=null and param1!='all'"> permission=#{param1}</if>
+           <!--  mentor 신청 -->      
+           <if test="param2!=null">AND want='T'</if>
+        </where>
+        
+     </select>      
+     
+     <!-- 멘토 신청 승인 -->
+     <update id="approveUserStatus">
+        update user set permission="mentor"
+           <where>
+              <foreach item="item" collection="userList" open="user_id in (" separator="," close=")">
+                  #{item}
+              </foreach>
+           </where>
+     </update>
+     
+     <!-- 멘토 신청 반려 -->
+     <update id="sendBackStatus">
+        update user set want="F"
+           <where>
+              <foreach item="item" collection="userList" open="user_id in(" separator="," close=")">
+                 #{item}
+              </foreach>      
+           </where>
+     </update>
  
+ 
+
+	<!-- 관리자 수 -->
+	<select id="getAdminCnt" resultType="int">
+		select count(user_id) from user where permission="admin"
+	</select>
+
+	<!-- 신고 관리 정보 -->
+	<select id="getAdminUserInfo" resultType="AdminUserVO">
+		select board.board_num,report.report_num,board.title,board.user_id as
+		writer,report.user_id,report.report_content,date_format(report.report_time,'%Y.%m.%d')
+		AS report_time, report.report_type_num,report.confirm
+		from report
+		INNER JOIN board
+		ON report.board_num = board.board_num
+		<where>
+			<if test="param1 !=null and param1!='all'">confirm=#{param1}</if>
+			<if test="param2.searchWord!=null">
+				and board.board_num like '%${param2.searchWord}%' or report.user_id like
+				'%${param2.searchWord}%' or report.report_content like '%${param2.searchWord}%'
+				or report.report_time like '%${param2.searchWord}%' or report.report_type_num like
+				'%${param2.searchWord}%' or report.confirm like
+				'%${param2.searchWord}%'
+			</if>
+		</where>
+		order by report.report_num limit ${param2.onePageRecord} offset
+		${param2.offsetIndex}
+		
+	</select>
+
+	<!-- 전체 신고 수 -->
+	<select id="getAllReportCnt" resultType="int">
+		SELECT count(confirm) FROM report
+	</select>
+
+	<!-- 대기 신고 수 -->
+	<select id="getStandbyReportCnt" resultType="int">
+		SELECT count(confirm) FROM report where confirm = '0'
+	</select>
+
+	<!-- 확인 신고 수 -->
+	<select id="getConfirmReportCnt" resultType="int">
+		SELECT count(confirm) FROM report where confirm = '1'
+	</select>
+
+	<!-- 신고 글 모달창 -->
+	<select id="getReportWritingModal" resultType="BoardVO">
+		SELECT *
+		FROM board
+		WHERE board_num = #{param1}
+	</select>
+
+	<!-- 모달창 -->
+	<select id="getReportContentModal" resultType="AdminUserVO">
+		SELECT *
+		FROM
+		report
+		WHERE report_num = #{param1}
+	</select>
+
+	<!-- 신고받은 유저 확인 -->
+	<update id="getConfirmUpdate">
+		update report set confirm = '1' where report_num = #{report_num}
+	</update>
+
+	<!-- 회원 탈퇴 -->
+	<delete id="getAdminDelete">
+		delete user from user               
+		INNER JOIN board
+		ON user.user_id = board.user_id
+		where board.board_num = (select board_num from report where report_num =#{report_num})
+	</delete>
+
+	<!-- 신고 수 페이징용 -->
+	<select id="getAllReportPagingCnt" resultType="int">
+		SELECT count(confirm) FROM report
+		<where>
+			<if test="param1 !=null and param1!='all'">confirm=#{param1}</if>
+			<if test="param2.searchWord!=null">
+				and board_num like '%${param2.searchWord}%' or user_id like
+				'%${param2.searchWord}%' or report_content like '%${param2.searchWord}%'
+				or report_time like '%${param2.searchWord}%' or report_type_num like
+				'%${param2.searchWord}%' or confirm like
+				'%${param2.searchWord}%'
+			</if>
+		</where>
+	</select>
+</mapper>

@@ -7,50 +7,64 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.hot6.project.dao.AdminUserDAO;
+
 import com.hot6.project.vo.AdminUserVO;
+import com.hot6.project.vo.BoardVO;
+import com.hot6.project.vo.PagingVO;
+
 import com.hot6.project.vo.UserVO;
 
 @Service
 public class AdminUserServiceImpl implements AdminUserService {
-	
+
 	@Inject
 	AdminUserDAO dao;
 
 	@Override
-	public List<UserVO> getUserInfo() {
-		return dao.getUserInfo();
+	public List<UserVO> getUserInfo(String permission, String want, PagingVO pvo) {
+		return dao.getUserInfo(permission, want, pvo);
 	}
 
 	@Override
-	public int getAllCnt() {
-		return dao.getAllCnt();
+	public int getAllCnt(String permission, String want, PagingVO pvo) {
+		return dao.getAllCnt(permission, want, pvo);
 	}
 
 	@Override
-	public int getUserCnt() {
-		return dao.getUserCnt();
+	public int getPermissionCnt(String permission, String want) {
+		return dao.getPermissionCnt(permission, want);
 	}
 
 	@Override
-	public int getMentorCnt() {
-		return dao.getMentorCnt();
+	public int approveUserStatus(UserVO vo) {
+		return dao.approveUserStatus(vo);
 	}
 
 	@Override
-	public int getAdminCnt() {
-		return dao.getAdminCnt();
-	}
-	
-	@Override
-	public List<AdminUserVO> getAdminUserInfo() {
-		return dao.getAdminUserInfo();
+	public int sendBackStatus(UserVO vo) {
+		return dao.sendBackStatus(vo);
 	}
 
 	@Override
-	public int getAllReportCnt() {
-		return dao.getAllCnt();
+	public List<AdminUserVO> getAdminUserInfo(String confirm, PagingVO pvo) {
+		return dao.getAdminUserInfo(confirm, pvo);
 	}
-	
+
+	@Override
+	public int getAllReportCnt(String confirm, PagingVO pvo) {
+		return dao.getAllReportCnt(confirm, pvo);
+	}
+
+	@Override
+	public int getBoard_num() {
+		return dao.getBoard_num();
+	}
+
+	@Override
+	public int getReport_num() {
+		return dao.getReport_num();
+	}
+
 	@Override
 	public int getReport_type_num() {
 		return dao.getReport_type_num();
@@ -82,8 +96,42 @@ public class AdminUserServiceImpl implements AdminUserService {
 	}
 
 	@Override
-	public String getProcess_status() {
-		return dao.getProcess_status();
+	public int getStandbyReportCnt() {
+		return dao.getStandbyReportCnt();
 	}
 
+	@Override
+	public int getConfirmReportCnt() {
+		return dao.getConfirmReportCnt();
+	}
+
+	@Override
+	public String getConfirm() {
+		return dao.getConfirm();
+	}
+
+	@Override
+	public BoardVO getReportWritingModal(int getBoardnum) {
+		return dao.getReportWritingModal(getBoardnum);
+	}
+
+	@Override
+	public AdminUserVO getReportContentModal(int getReportnum) {
+		return dao.getReportContentModal(getReportnum);
+	}
+
+	@Override
+	public int getConfirmUpdate(AdminUserVO vo) {
+		return dao.getConfirmUpdate(vo);
+	}
+
+	@Override
+	public int getAdminDelete(AdminUserVO vo) {
+		return dao.getAdminDelete(vo);
+	}
+
+	@Override
+	public int getAllReportPagingCnt(String confirm, PagingVO pvo) {
+		return dao.getAllReportPagingCnt(confirm, pvo);
+	}
 }
