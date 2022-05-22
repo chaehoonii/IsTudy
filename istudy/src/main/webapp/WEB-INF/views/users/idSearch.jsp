@@ -2,12 +2,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="url" value="<%=request.getContextPath()%>"/>
 <link rel="stylesheet" href="/css/users/loginIdPassword.css" type="text/css">  
-<script src="${url}/js/users/idSearch.js"></script>
+<script src="/js/users/idSearch.js"></script>
 <title>아이디 찾기</title>
 
 <style>
 	#username::-webkit-input-placeholder{
-        background-image: url(${url}/images/login_icon/user.png);
+        background-image: url(/images/login_icon/user.png);
         background-size: contain;
         background-position: 2px;
         background-repeat: no-repeat;
@@ -15,7 +15,7 @@
     }
 
     #tel::-webkit-input-placeholder{
-        background-image: url(${url}/images/login_icon/phone.png);
+        background-image: url(/images/login_icon/phone.png);
         background-size: contain;
         background-position: 2px;
         background-repeat: no-repeat;
@@ -27,7 +27,7 @@
 <div class="page">
         <div class="content">
         <h2>아이디 찾기</h2>  
-            <form method="post" action="${url}/users/idSearchOk" class="userForm" onsubmit="return idSearchCheck()">
+            <form method="post" action="/users/idSearchOk" class="userForm" onsubmit="return idSearchCheck()">
                 <ul>
                     <li><input type="text" placeholder="이름" name="user_name" id="username"></li>
                     <li><input type="text" placeholder="- 를 제외하고 입력하세요" name="tel" id="tel"></li>
@@ -36,9 +36,9 @@
             </form>
             <div class="userLink">
                 <ul>
-                    <li><a href="${url}/users/login">로그인</a></li>
-                    <li><a href="${url}/users/pwdSearch">비밀번호 찾기</a></li>
-                    <li><a href="${url}/users/userForm">회원가입</a></li>
+                    <li><a href="/users/login">로그인</a></li>
+                    <li><a href="/users/pwdSearch">비밀번호 찾기</a></li>
+                    <li><a href="/users/userForm">회원가입</a></li>
                 </ul>
             </div>
         </div>
