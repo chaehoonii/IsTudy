@@ -24,6 +24,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		if(logStatus!=null && logStatus.equals("Y")) {
 			return true;
 		}else {
+			
 			response.sendRedirect("/users/login");
 		}
 		

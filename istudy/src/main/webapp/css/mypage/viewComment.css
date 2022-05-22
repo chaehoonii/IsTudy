@@ -50,7 +50,6 @@
             left: 50%;
             transform: translate(-50%, 0%);
             background-color: white;
-            border: 1px solid #ddd;
         }
         .userNickname{
         	position: absolute;
@@ -252,4 +251,9 @@
         	color:#392f31;
         	font-size: 22px;
         }
+        #mypage_profile_img {
+		width: 200px;
+		height: 200px;
+		border-radius: 50%;
+		}
         

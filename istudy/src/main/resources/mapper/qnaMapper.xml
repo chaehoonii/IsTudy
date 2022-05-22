@@ -19,6 +19,7 @@
     ON		  C.board_num=A.board_num
 	WHERE 	  A.board_type_num=2
 	ORDER BY  board_num DESC
+	LIMIT ${onePageRecord} offset ${offsetIndex};
 </select>
 <!-- 글 : 언어타입 -->
 <select id="QnaLangType" resultType="String">

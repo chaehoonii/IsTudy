@@ -19,6 +19,9 @@ public class StudyVO {
 	private int in_people;	//현재 스터디원 수(select count)
 	private int remain;	//남은 인원
 	
+	//user
+	private String profile_img;
+	
 	//calender_color
 	private int color_num;
 	private String color_name;
@@ -272,6 +275,12 @@ public class StudyVO {
 	}
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
+	}
+	public String getProfile_img() {
+		return profile_img;
+	}
+	public void setProfile_img(String profile_img) {
+		this.profile_img = profile_img;
 	}
 
 }

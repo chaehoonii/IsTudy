@@ -3,13 +3,14 @@ package com.hot6.project.service;
 import java.util.List;
 
 import com.hot6.project.vo.BoardVO;
+import com.hot6.project.vo.PagingVO;
 
 public interface QnaService {
 	// 총 질문 수
 	public int TotalQna();
 
 	// 질문 리스트
-	public List<BoardVO> QnaList();
+	public List<BoardVO> QnaList(PagingVO pvo);
 
 	// 언어타입
 	public List<String> QnaLangType(int board_num);
@@ -67,4 +68,5 @@ public interface QnaService {
 	public int qnaTagInsert(BoardVO vo);
 
 	public int qnaLangInsert(BoardVO vo);
+	
 }

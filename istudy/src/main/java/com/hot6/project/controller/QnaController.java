@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hot6.project.service.BoardService;
+import com.hot6.project.service.NoticeService;
 import com.hot6.project.service.QnaService;
 import com.hot6.project.vo.BoardVO;
+import com.hot6.project.vo.PagingVO;
 
 @Controller
 public class QnaController {
@@ -26,20 +28,26 @@ public class QnaController {
 	@Inject
 	BoardService Bservice;
 	
+	@Inject
+	NoticeService Nservice;
+	
 		//리스트
 		@RequestMapping(value = "/qna/qnaList", method = RequestMethod.GET)
-	    public ModelAndView home(HttpSession session) {
+	    public ModelAndView home(HttpSession session, PagingVO pvo) {
 	        ModelAndView mav = new ModelAndView();
 	        //총 질문 수
 	        mav.addObject("totalQna", Qservice.TotalQna());
 	        //질문 리스트
-	        List<BoardVO> qnalist = Qservice.QnaList();
+	        List<BoardVO> qnalist = Qservice.QnaList(pvo);
 	        for(BoardVO vo:qnalist) {
 	        	vo.setLang_list(Qservice.QnaLangType(vo.getBoard_num()));
 	        }
 	        for(BoardVO vo:qnalist) {
 	        	vo.setTag_list(Qservice.QnaTag(vo.getBoard_num()));
-	        }	
+	        }
+	        pvo.setTotalRecord(Nservice.setTotalRecord(2));
+	        mav.addObject("pvo", pvo);
+	        
 	        mav.addObject("qnaList", qnalist);
 	        mav.setViewName("/qna/qnaList");
 	        return mav;

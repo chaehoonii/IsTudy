@@ -16,10 +16,14 @@ public class StudyDetailServiceImpl implements StudyDetailService{
 
 	// 스터디글 상세보기
 	@Override
-	public List<StudyVO> studydetail(int study_num) {
+	public StudyVO studydetail(int study_num) {
 		return dao.studydetail(study_num);
 	}
 	public List<StudyVO> studyuser(int study_num){
 		return dao.studyuser(study_num);
+	}
+	@Override
+	public StudyVO studyRoom(int study_num) {
+		return dao.studyRoom(study_num);
 	}
 }

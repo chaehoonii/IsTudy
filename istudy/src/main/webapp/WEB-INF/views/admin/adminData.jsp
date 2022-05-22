@@ -20,9 +20,8 @@
                 <div class="userDesc">
                     <div class="category">
                         <ul>
-	                    	<li><a href="#">신고관리</a></li>
+	                    	<li><a href="/admin/adminReport">신고관리</a></li>
                     	  	<li><a href="/admin/adminUsers">회원관리</a></li>
-                          	<li><a href="#">공지사항 관리</a></li>
                           	<li><a href="/admin/adminData">데이터 랩</a></li>
 	                    </ul>  
                     </div>

@@ -252,6 +252,7 @@ public class BoardController {
 			String msg = "<script>alert('글 삭제에 실패하였습니다.');history.back();</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
 		}
+		System.out.println(board_num);
 		return entity;
 
 	}

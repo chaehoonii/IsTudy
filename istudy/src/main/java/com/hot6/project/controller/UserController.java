@@ -102,6 +102,30 @@ public class UserController {
 		int cnt = service.idCheck(id);
 		return cnt;
 	}
+	// 닉네임 중복검사
+	@PostMapping("userNickCheck")
+	@ResponseBody
+	public int nickCheck(String nick) {
+		// id가 DB에 존재하는지 확인
+		int cnt = service.nickCheck(nick);
+		return cnt;
+	}
+	// 이메일 중복검사
+	@PostMapping("userEmailCheck")
+	@ResponseBody
+	public int emailCheck(String email) {
+		// id가 DB에 존재하는지 확인
+		int cnt = service.emailCheck(email);
+		return cnt;
+	}
+	// 번호 중복검사
+	@PostMapping("userTelCheck")
+	@ResponseBody
+	public int telCheck(String tel) {
+		// id가 DB에 존재하는지 확인
+		int cnt = service.telCheck(tel);
+		return cnt;
+	}
 	
 	// 회원정보수정 폼
 	   @GetMapping("userEdit")
@@ -172,7 +196,8 @@ public class UserController {
 	// 로그인 페이지 이동
 	@GetMapping("login")
 	public ModelAndView login(HttpSession session, HttpServletRequest request) {
-		session.setAttribute("url", request.getHeader("referer"));
+		session.setAttribute("url", request.getHeader("referer")); //세션에 이전 페이지 저장
+		System.out.println("url : "+session.getAttribute("url")); 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("users/login");
 		return mav;
@@ -195,7 +220,7 @@ public class UserController {
 				session.setAttribute("logStatus", "Y");
 				session.setAttribute("logPermission", user.getPermission());
 				String url = (String) session.getAttribute("url");
-				String msg = "<script>location.href = '"+url+"';</script>";
+				String msg = "<script>location.href = '"+url+"';</script>"; //이전페이지로 보내기
 				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 
 			} else {
@@ -335,7 +360,13 @@ public class UserController {
 		mav.setViewName("redirect:/");
 		return mav;
 	}
-
+	@GetMapping("null")
+	public ModelAndView home() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+	
 	// 비밀번호 난수 생성 함수
 	public String createPw() {
 
@@ -356,5 +387,7 @@ public class UserController {
 		}
 		return buffer.toString();
 	}
+	
+	
 
 }
