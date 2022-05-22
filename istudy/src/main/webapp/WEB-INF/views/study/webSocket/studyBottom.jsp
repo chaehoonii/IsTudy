@@ -3,11 +3,13 @@
     pageEncoding="UTF-8"%>
 <link href="/css/study/studyBottom.css" rel="stylesheet" type="text/css"> 
 
+<%@include file="studyPageChat.jsp"%>
+
 
 <div class="iconSection">
 	<div class="icon-box">
 		<div class="icon">
-			<div class="icon movebtn" style="padding:0;"><a href="#"><i class="fa-solid fa-comment-dots fa-3x"></i></a>
+			<div class="icon movebtn" style="padding:0;"><a id="chat" href="#"><i class="fa-regular fa-comment-dots fa-3x"></i></a>
 				<div class="moveExplain">
 					채팅
 				</div>
@@ -38,7 +40,10 @@
 </div>
 <span class="exit-box"><a id="exitBtn" onclick="exit()" href="#"><i class="fas fa-sign-out-alt fa-3x exit"></i></a></span>
 
-
+<div class="chattingBar">
+		<!-- 멘티리스트 -->
+		<%@include file="studyPageChat.jsp"%>
+</div>
 <script>
 	function exit(){
 		if(confirm("스터디방에서 나가시겠습니까?")){
@@ -69,4 +74,21 @@
 		  this.classList.toggle('inactive');
 		  this.classList.toggle('active');
 		});
+	
+	//채팅 슬라이드
+	document.addEventListener('DOMContentLoaded', function(){
+	    document.querySelector("#chat").addEventListener("click", function(e){
+	        if ( document.querySelector('.chattingBar').classList.contains('on') ){
+	            //메뉴닫힘
+	            document.querySelector('.chattingBar').classList.remove('on');
+	            document.querySelector('#chat i').classList.remove('fa-solid')
+	            document.querySelector('#chat i').classList.add('fa-regular');
+	        } else {
+	            //메뉴펼침
+	            document.querySelector('.chattingBar').classList.add('on');
+	            document.querySelector('#chat i').classList.remove('fa-regular');
+	            document.querySelector('#chat i').classList.add('fa-solid');
+	        }
+	    });
+	});
 </script>

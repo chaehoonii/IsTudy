@@ -45,7 +45,7 @@
 		vertical-align: bottom;
 		border: 1px solid black;
 		margin:5px;
-		height:100%;
+		height:60vh;
 		overflow: scroll;
 		overflow-x:hidden;
 		background: #F7F7F7;
@@ -86,7 +86,7 @@
 	
 	/*채팅 메세지 입력 부분 div*/
 	#bottom-container{
-		margin:10px;
+		margin:50px 10px;
 	}
 	
 	/*채팅 시간 감싸는 div*/

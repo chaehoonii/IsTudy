@@ -89,7 +89,7 @@ a, a:visited, a:hover, a:active{
     top:0;
     left: -20%; /* 너비 300px 인 사이드바를 왼쪽으로 300px 이동시켜 화면에 보이지 않게 함 */
     width: 20%; /* 너비 */
-    height:90vh;
+    height:100%;
     line-height:30vh;
     text-align:center;
     font-size:2em;
