@@ -88,9 +88,8 @@
 			return false;
 		}
 		//스터디 사용 언어
-		if($('#seleted_lang').val() == null) {
+		if($('#seleted_lang') == null) {
 			alert("123!");
-    		$("#seleted_lang").focus();
     		return;
 		}
 		

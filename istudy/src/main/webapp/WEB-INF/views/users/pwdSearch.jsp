@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<link rel="stylesheet" href="/css/users/loginIdPassword.css" type="text/css">   
+<link rel="stylesheet" href="/css/users/loginIdPassword.css" type="text/css"> 
+
 <script src="/js/users/pwdSearch.js"></script>
 
 <title>비밀번호 찾기</title>
