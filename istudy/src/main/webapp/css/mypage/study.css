@@ -190,8 +190,6 @@
         .contents{
         	width: 100%;
         	height: 660px;
-        	/*overflow: scroll;*/
-        	/* overflow: hidden; */
         	margin-bottom: 30px;
         	border-bottom: 1px solid #ddd;    	
         }
@@ -264,8 +262,7 @@
         	font-size: 22px;
         }
         .button-click{
-       		/* background-color: #f9f9f8; */
-        	box-shadow: 2px 2px 3px #c2c2bd;
+        	box-shadow: 2px 2px 3px #888888;
        }
         #mypage_profile_img {
 		width: 200px;
