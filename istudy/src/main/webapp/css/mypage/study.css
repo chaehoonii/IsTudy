@@ -142,11 +142,13 @@
         .buttons input[type=button]{
         	width: 110px;
         	height: 35px;
-        	font-size: 16px;
         	border-radius:15px;
-        	border: 1px solid #ddd;
+        	border: none;
         	margin-right:15px;
         	line-height: 35px;
+        	background-color:rgb(230, 223, 215);
+		    color:rgba(85, 76, 66, 80%);
+		    font-size:16px;
         	
         }
         .search{
@@ -262,7 +264,7 @@
         	font-size: 22px;
         }
         .button-click{
-       		background-color: #f9f9f8;
+       		/* background-color: #f9f9f8; */
         	box-shadow: 2px 2px 3px #c2c2bd;
        }
         #mypage_profile_img {
