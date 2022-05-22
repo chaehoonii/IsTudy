@@ -27,7 +27,7 @@ public class StudyRoomController {
     public ModelAndView studyRoom(int study_num) {
 		mav.addObject("study_num", study_num);
 		mav.addObject("vo", SDservice.studyRoom(study_num));
-		mav.addObject("mateList", SDservice.studyuser(study_num));
+		mav.addObject("mateList", SDservice.mateList(study_num));
 		mav.setViewName("/study/studyRoom");
 		
 		return mav;

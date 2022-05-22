@@ -45,10 +45,14 @@
 	</select>
 	<!-- 스터디원 리스트 -->
 	<select id='StudyMates' resultType='StudyVO'>
-		SELECT 	A.user_id, A.user_nick
+		SELECT 	A.user_id, A.user_nick, IFNULL(C.contribute,0) AS contribute
 		FROM 	user A
 		JOIN 	study_mate B
 		ON 		A.user_id=B.user_id
+        JOIN	(SELECT user_id, count(*) AS contribute FROM board WHERE board_type_num=1 GROUP BY user_id) C
+        ON		C.user_id=A.user_id
 		WHERE 	B.study_num=#{param1}
+        AND		B.want_ok='T'
+        ORDER BY contribute DESC
 	</select>
 </mapper>
