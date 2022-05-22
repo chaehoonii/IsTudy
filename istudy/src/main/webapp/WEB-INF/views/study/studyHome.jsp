@@ -39,7 +39,7 @@
 	// 스터디 종류
 	let result = [];
 	function getTypeValue(){
-		alert(event.target.checked)
+		//alert(event.target.checked)
 	  	if(event.target.checked)  {
 		    result.push(event.target.value);
 		}else {
@@ -50,7 +50,7 @@
 		    	}
 			}
 		}
-	  	alert(result)
+	  	//alert(result)
 	  	console.log(typeof result)
 	  	ajaxSend('smentor', result)
 		//document.getElementById('study_list').innerText= result;
@@ -132,12 +132,15 @@
 				$(value).each(function(idx, vo){
 					tag+='<div class="info">'
 					tag+=	'<div class="simg">'
-					tag+=		'<img src="/images/study_info/'+vo.study_img+ 'class="img img-thumbnail">'
+					tag+=		'<img src="/images/study_info/'+vo.study_img+ '" class="img img-thumbnail">'
 					tag+=	'</div>'
 					tag+=	'<div class="sinfo">'
 					tag+=		'<span class="sname">'+vo.study_name+'</span><br/>'	
 					tag+=		'<span class="sid">'+vo.host_id+'</span>'	
-					tag+=		'<span class="smentor">'+vo.is_mentor+'</span>'	
+					tag+=		'<span class="smentor">'
+					tag+=			'<c:if test="${'+vo.is_mentor+'=='T'}">멘토</c:if>'
+					tag+=			'<c:if test="${'+vo.is_mentor+'=='F'}">일반</c:if>'
+					tag+=		'</span>'	
 					tag+=		'<span class="smax">'+vo.in_people+'/'+vo.max+'</span>'	
 					tag+=		'<span class="sname">'+vo.study_type_name+'</span><br/>'
 					tag+=		'<span class="sdate">'+vo.start_date+ '~'+vo.finish_date+'</span>'
@@ -163,10 +166,6 @@
 			error:function(e){
 				console.log(e.responseText)
 			}		
-		})
-		
-		$.ajax({
-			
 		})
 	}
 </script>
@@ -205,13 +204,12 @@
 		</div>
 		<div id="first_menu"> 
 			<h1>스터디 언어</h1>
-				<select id="langList">
-					<c:forEach var="vo" items="${langList}">
-							<option value="${vo.lang_type_num}" selected onclick="getLangValue()">${vo.lang_type_name}</option>
-						<%-- <input type="checkbox" name="lang" id="lang" value="${vo.lang_type_num}"><label>${vo.lang_type_name}</label></span> --%>
-					</c:forEach>
-				</select>
-			
+			<select id="langList">
+				<c:forEach var="vo" items="${langList}">
+						<option value="${vo.lang_type_num}" selected onclick="getLangValue()">${vo.lang_type_name}</option>
+					<%-- <input type="checkbox" name="lang" id="lang" value="${vo.lang_type_num}"><label>${vo.lang_type_name}</label></span> --%>
+				</c:forEach>
+			</select>
 		</div>
 		<div id="first_menu"> 
 			<h1>스터디 기간</h1>
@@ -232,9 +230,7 @@
 	<!-- 반복문 안에서는 id x class o -->
 		<div class="info">
 			<div class="simg">
-				<a href="/study/study_home/${vo.study_num}">
-					<img src="/images/study_info/${vo.study_img}" class="img img-thumbnail">
-				</a>
+				<img src="/images/study_info/${vo.study_img}" class="img img-thumbnail">
 			</div>
 			<div class="sinfo">
 				<span class="sname">${vo.study_name}</span><br/>
@@ -252,6 +248,12 @@
 				<c:forEach var="tag_list" items="${vo.tag_list}" end="2">
 					<span class="tag_list">&nbsp;${tag_list}&nbsp;</span>&nbsp;
 				</c:forEach>
+				<!-- 스터디 자세히 보기 버튼 -->
+				<div class="study_more">
+					<a href="/study/study_home/${vo.study_num}">
+						<input type="button" class="mbutton" value="스터디 자세히 보기">
+					</a>
+				</div>
 			</div>
 		</div>	
 		<hr>
@@ -299,6 +301,6 @@
 </div>
 <!-- 스터디 등록 버튼 -->
 <div id="study_register">
-	<input type="button" id="button" onclick="location.href='http://localhost:8060/studyregister/studyregister_0';" value="스터디 등록">
+	<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister/studyregister_0';" value="스터디 등록">
 </div>
 <div style="clear:both"></div>

@@ -32,6 +32,7 @@ public class UserVO {
 	private List<String> userList;
 	private int cnt;
 
+
 	public String getEmail() {
 		return email;
 	}
