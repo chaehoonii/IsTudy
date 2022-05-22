@@ -88,14 +88,14 @@ $(document).ready(function(){
 		<table id='mate_table'>
 			<thead>
 				<tr>
-					<td>순위</td>
 					<td>스터디원</td>
+					<td>게시글 수</td>
 				</tr>
 			</thead>
-			<c:forEach var='vo' items='${mateList}' varStatus="status">
+			<c:forEach var='vo' items='${mateList}'>
 				<tr>					
-					<td>${status.count}</td>
 					<td>${vo.user_nick}</td>
+					<td>${vo.contribute}</td>
 				</tr>
 			</c:forEach>		
 		</table>
