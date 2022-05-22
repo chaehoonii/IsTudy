@@ -64,7 +64,7 @@
 		            				<div class="articleInfo">		            				
 			            				<div class="articleTitle">
 			            					<c:if test="${vo.board_type_num==2}">
-			            						<c:if test="${logPermission=='admin'}"><a href="${url}/qna/qnaView?board_num=${vo.board_num}" target="_blank" onclick="window.open(this.href,'_blank', 'width=1200, height=700, scrollbar=yes')">${vo.title}</a></c:if>
+			            						<c:if test="${logPermission=='admin'}"><a href="javascript:window.open('${url}/qna/qnaView?board_num=${vo.board_num}','_blank', 'width=1200, height=700, scrollbar=yes')" >${vo.title}</a></c:if>
 			            						<c:if test="${logPermission!='admin'}"><a href='${url}/qna/qnaView?board_num=${vo.board_num}'>${vo.title}</a></c:if>			            						
 			            					</c:if>
 			            					<c:if test="${vo.board_type_num==1}">
