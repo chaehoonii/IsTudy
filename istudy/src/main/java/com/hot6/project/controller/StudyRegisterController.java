@@ -28,30 +28,7 @@ public class StudyRegisterController {
 		
 		return mav;
 	}
-	@GetMapping("studyregister_1")
-	public ModelAndView studyRegisterWrite1() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("studyregister/studyregister_1");
-		return mav;
-	}
-	@GetMapping("studyregister_2")
-	public ModelAndView studyRegisterWrite2() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("studyregister/studyregister_2");
-		return mav;
-	}
-	@GetMapping("studyregister_3")
-	public ModelAndView studyRegisterWrite3() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("studyregister/studyregister_3");
-		return mav;
-	}
-	@GetMapping("studyregister_4")
-	public ModelAndView studyRegisterWrite4() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("studyregister/studyregister_4");
-		return mav;
-	}
+
 ////////////////////////////////////////스터디 등록/////////////////////////////////////////////
 	@PostMapping("studyRegisterOk")
 	public ResponseEntity studyRegisterOk(StudyVO vo,HttpServletRequest request) {

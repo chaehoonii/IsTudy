@@ -27,12 +27,13 @@
 .header {
 	position: fixed;
 	width: 20%;
-	height: 100vh;
-	background-color: rgba(119,112,104,100%);
+	height:100vh;
+	background-color:#fff;
+	
 }
 
 .logo {
-	font: 300 2em;
+	font: 200 1.5em;
 	text-align: center;
 	padding: 0;
 	margin-top: 25%;
@@ -41,13 +42,13 @@
 .logo a {
 	display: block;
 	padding: 1em 0;
-	color: #DFDBD9;
+	color: #408080;
 	text-decoration: none;
 	transition: .15s linear color;
 }
 
 .logo a:hover {
-	color: #fff;
+	color: #808080;
 }
 
 .logo a:hover span {
@@ -72,7 +73,7 @@
 
 .main-nav  a {
 	padding: 1.1em 0;
-	color: #DFDBD9;
+	color: #000000;
 	font-size: 15px;
 	text-align: center;
 }
@@ -103,7 +104,7 @@
 	width: 100%;
 	height: 100%;
 	border-right: solid 5px #89c5c5;
-	background: #3C3735;
+	background: rgba(85, 76, 66, 80%);
 	transition: .35s ease left;
 }
 
@@ -127,27 +128,32 @@
 }
 
 /*---------------------common ------------------------------*/
-#register_content {
+.sub_register_content {
 	padding: 80px;
 	float: right;
 	width: 80%;
 	height: 100%;
 }
 
-.register_title h2 {
+.sub_register_title h2 {
 	margin-top: 5px;
 	font-size: 30px;
 }
 
 .moving_button {
 	float: right;
+	margin-top:20px;
 	display: grid;
-	grid-template-columns: repeat(2, 47%);
+	grid-template-columns: repeat(2, 50%);
 	grid-gap: 1em;
+}
+.moving_button02 {
+	float: right;
+	margin-top:20px;
 }
 
 #next_button {
-	width: 70%;
+	width: 100%;
 	height: 40px;
 	padding: 5px;
 	margin-top: 40px;
@@ -200,7 +206,7 @@
 	font-size: 20px;
 }
 
-.study_title #s_title {
+.study_title #study_name {
 	width: 20%;
 	height: 30px;
 	font-size: 15px;
@@ -223,11 +229,22 @@
 
 .study_kinds img {
 	width: 100px;
+	margin-right: 20px;
+}
+.study_kinds input{
+	 accent-color: #408080;
+	 height: 25px;
+	 width: 25px;
 }
 
-#kinds_box p {
+.kinds_box p {
 	font-size: 15px;
 }
+
+.study_type_num{
+	margin-left: 20px;
+}
+
 
 #next_button1 {
 	width: 8%;
@@ -318,12 +335,8 @@
 }
 
 /*-------------------step3 page------------------------------*/
-.people_status_grid {
-	margin-top: 50px;
-	display: grid;
-	grid-template-columns: repeat(2, 40%);
-	grid-gap: 1.5em;
-}
+
+
 
 .study_people h3 {
 	font-size: 20px;
@@ -334,10 +347,6 @@
 	width: 15%;
 	height: 30px;
 	font-size: 15px;
-}
-
-.study_status h3 {
-	font-size: 20px;
 }
 
 .study_caution {

@@ -18,7 +18,6 @@
 	crossorigin="anonymous">
 
 <!-- 제이쿼리, 플러그인 CDN -->
-<link rel="stylesheet" href="/jquery-ui/jquery-ui.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script
@@ -91,5 +90,5 @@ document.addEventListener('DOMContentLoaded', function(){
 			</ul>
 		</nav>
 	</div>
-	<script src="/js/inc/top.js"></script>
+
 
