@@ -8,9 +8,11 @@
 		from study_room where study_num=#{param1}
 	</select>
 	<select id="studyuser" resultType="StudyVO">
-		select A.want_ok, A.want_coment, B.user_id 
-		from study_mate A join user B on A.user_id=B.user_id 
-		where study_num=#{param1} and want_ok="T" 
+		SELECT 	A.want_ok, A.want_coment, B.user_id, B.user_nick
+		FROM 	study_mate A 
+		JOIN 	user B 
+		ON 		A.user_id=B.user_id 
+		WHERE 	study_num=#{param1} AND want_ok="T" 
 	</select>
 
 	<select id="studyLang" resultType="String">
@@ -32,4 +34,16 @@
 		on l.lang_type_num=sl.lang_type_num
 		where s.study_num=#{param1}
 		order by study_type_name-->
+		
+	<select id="studyRoom" resultType="StudyVO">
+		select study_img, study_name, study_rule, host_id 
+		from study_room where study_num=#{param1}
+	</select>
+	<select id="mateList" resultType="StudyVO">
+		SELECT 	B.user_nick
+		FROM 	study_mate A 
+		JOIN 	user B 
+		ON 		A.user_id=B.user_id 
+		WHERE 	study_num=#{param1} AND want_ok="T" 
+	</select>
 </mapper>
