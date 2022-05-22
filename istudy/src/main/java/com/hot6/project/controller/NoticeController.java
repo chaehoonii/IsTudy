@@ -46,7 +46,7 @@ public class NoticeController {
 	@GetMapping(value = "/noticeWrite")
 	public ModelAndView noticeWrite() {
 
-		mav.setViewName("/notice/adminNoticeWrite");
+		mav.setViewName("/notice/noticeWrite");
 		return mav;
 	}
 	
@@ -57,7 +57,7 @@ public class NoticeController {
 			BoardVO vo = NoticeService.selectNoticeModal(board_num);
 			System.out.println(board_num);
 			mav.addObject("vo", vo);
-			mav.setViewName("/notice/adminNoticeEdit");
+			mav.setViewName("/notice/noticeEdit");
 			return mav;
 		}
 
