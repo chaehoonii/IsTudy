@@ -4,24 +4,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hot6.project.dao.StudyDetailDAO">
 	<select id="studydetail" resultType="StudyVO">
-		select study_img, study_name, study_rule, host_id 
+		select study_img, study_name, study_rule, host_id, max
 		from study_room where study_num=#{param1}
 	</select>
 	<select id="studyuser" resultType="StudyVO">
-		select A.want_ok, A.want_coment, B.user_id 
+		select A.want_ok, A.want_coment, B.user_id, B.profile_img
 		from study_mate A join user B on A.user_id=B.user_id 
 		where study_num=#{param1} and want_ok="T" 
-	</select>
-
-	<select id="studyLang" resultType="String">
-		select lt.lang_type_name 
-		from study_lang_type st join lang_type lt 
-		on st.lang_type_num=lt.lang_type_num and st.study_num=#{param1}
-	</select>
-	<select id="StudyTag" resultType="string">
-		select tag
-		from study_hashtag
-		where study_num=#{param1}
+		<!-- SELECT 	A.want_ok, A.want_coment, B.user_id, B.user_nick
+		FROM 	study_mate A 
+		JOIN 	user B 
+		ON 		A.user_id=B.user_id 
+		WHERE 	study_num=#{param1} AND want_ok="T"  -->
 	</select>
 	<!-- select is_mentor, s.study_type_num, lang_type_name, study_img, study_name, host_id, start_date, finish_date, max
 		from study_room s join study_type t
@@ -32,4 +26,16 @@
 		on l.lang_type_num=sl.lang_type_num
 		where s.study_num=#{param1}
 		order by study_type_name-->
+		
+	<select id="studyRoom" resultType="StudyVO">
+		select study_img, study_name, study_rule, host_id 
+		from study_room where study_num=#{param1}
+	</select>
+	<select id="mateList" resultType="StudyVO">
+		SELECT 	B.user_nick
+		FROM 	study_mate A 
+		JOIN 	user B 
+		ON 		A.user_id=B.user_id 
+		WHERE 	study_num=#{param1} AND want_ok="T" 
+	</select>
 </mapper>

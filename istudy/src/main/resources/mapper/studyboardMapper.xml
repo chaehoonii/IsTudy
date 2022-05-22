@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.hot6.project.dao.StudyBoardDAO">
+<!-- 질문 수 -->
+<select id="TotalStudyBoardList" resultType="int">
+	SELECT 	COUNT(board_num) AS total_studyBoard
+	FROM 	board 
+	WHERE 	board_type_num=1
+</select>
+<select id="StudyBoardList" resultType="BoardVO">
+	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply
+	FROM 	  board A
+    LEFT JOIN user B
+    ON 		  A.user_id=B.user_id
+    LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply FROM reply GROUP BY board_num) C
+    ON		  C.board_num=A.board_num
+	WHERE 	  A.board_type_num=1
+	ORDER BY  board_num DESC
+</select>
+</mapper>

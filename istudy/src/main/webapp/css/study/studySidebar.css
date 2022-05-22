@@ -7,12 +7,12 @@
 
 /*사이드바 및 버튼*/
 div[class="sidebar"]{
-	width:300px;
+	width:25vw;
 	height:100%;
 	position:fixed;
 	top:0;
-	background:#000;
-	left:-300px;
+	background-color:rgb(60, 60, 60);
+	left:-25vw;
 	z-index:100;
 	transition:all .35s;
 	opacity: 1.0;
@@ -27,13 +27,13 @@ input[id="menuicon"] +label {
 	height:25px;
 	top:20px;
 	position:fixed;
-	left:20px;
+	left:25px;
 	transition:all .35s;
 	cursor:pointer;
 }
 input[id="menuicon"]:checked +label {
 	z-index:2;
-	left:300px;
+	left:27vw;
 }
 input[id="menuicon"]{
 	display:none;

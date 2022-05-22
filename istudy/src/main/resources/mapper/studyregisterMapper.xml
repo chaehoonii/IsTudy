@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hot6.project.dao.StudyRegisterDAO">
+	<select id="register_content"  resultType="StudyVO">
+		select is_mentor, study_img, study_name, study_num, host_id, start_date, finish_date, max
+		from study_room
+	</select>
+	<insert id='studyInsert'>
+		INSERT study_room(study_type_num, study_name, study_rule, study_img,
+		start_date, finish_date, max, ip, is_mentor, host_id)		
+		VALUES(#{study_type_num}, #{study_name}, #{study_rule}, #{study_img},
+		#{start_date}, #{finish_date}, #{max}, #{ip}, #{is_mentor}, #{host_id}) 
+	</insert>
+	<insert id='studyLangInsert'>
+	INSERT  study_lang_type(study_num, lang_type_num) 
+	VALUES 
+	<foreach collection="lang_list" item="item" separator=","> 
+ 		(#{study_num}, #{item})
+ 	</foreach>		
+	</insert>
+	<insert id='studyTagInsert'>
+	INSERT study_hashtag(study_num, tag) 
+	VALUES  
+	<foreach collection="tag_list" item="item" separator=",">
+        (#{study_num}, #{item})
+    </foreach>
+</insert>
+</mapper>
