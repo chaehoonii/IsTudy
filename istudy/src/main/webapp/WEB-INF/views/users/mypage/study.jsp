@@ -114,7 +114,9 @@
 		            					</div>
 		            				</div>
 		            				<div class="studyName">
-		            					<a href='${url}/study_home/study_room/${vo.study_num}'>${vo.study_name}</a>
+		            					<%-- <a href='${url}/study_home/study_room/${vo.study_num}'>${vo.study_name}</a> --%>
+		            					<c:if test="${logPermission=='admin'}"><a href="javascript:window.open('${url}/study/studyRoom?study_num=${vo.study_num}','_blank', 'width=1200, height=700, scrollbar=yes')">${vo.study_name}</a></c:if>
+			            				<c:if test="${logPermission!='admin'}"><a href='${url}/study/studyRoom?study_num=${vo.study_num}'>${vo.study_name}</a></c:if>
 		            				</div>
 		            				<div class="studyStart">
 		            					<span>${vo.start_date}</span>
