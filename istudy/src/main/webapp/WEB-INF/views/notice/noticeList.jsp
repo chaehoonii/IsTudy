@@ -5,7 +5,7 @@
 <div class="noticeContainer">
 	<h1 class="noticeTitle">공지사항</h1>
 	<c:if test="${logPermission=='admin'}">
-		<button class="noticeBtn btn" onclick="window.location.href='/admin/notice/noticeWrite'">공지사항 등록</button>
+		<button class="noticeBtn btn" onclick="window.location.href='/notice/noticeWrite'">공지사항 등록</button>
 		<br/>
 	</c:if>
 	<br />
@@ -35,8 +35,8 @@
 								<div class="noticeBottonArea">
 									<c:if test="${logPermission=='admin'}">
 										<button class="noticeModalBtn btn" id="modalNoticeEdit" >공지사항 수정</button>
-                                        &nbsp;&nbsp;&nbsp;
-                                        <button class="noticeModalBtn btn" id="modalNoticeDel">공지사항 삭제</button>
+										&nbsp;&nbsp;&nbsp;
+										<button class="noticeModalBtn btn" id="modalNoticeDel">공지사항 삭제</button>
 									</c:if>
 								</div>
 							<!-- 모달 푸터 -->

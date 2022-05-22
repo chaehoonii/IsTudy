@@ -16,15 +16,18 @@
 	/*채팅 입력창*/
 	#inputMessage{
 		width:80%;
-		height:50%;
+		height:30px !important
+		;
 	}
 	
 	/*채팅 전송 버튼*/
 	#btn-submit{
+		height:30px !important;
+		font-size:1.2em;
 		background: #5587ED;
 		color:white;
 		width:18%;
-		height:50%;
+		height:70%;
 		border:none;
 		border-radius:3px;
 	}
@@ -42,7 +45,7 @@
 		vertical-align: bottom;
 		border: 1px solid black;
 		margin:5px;
-		height:100%;
+		height:60vh;
 		overflow: scroll;
 		overflow-x:hidden;
 		background: #F7F7F7;
@@ -71,7 +74,7 @@
 		border : none;
 		text-align: center;
 		background-color: #9bbbd4;
-		display: block;
+/* 		display: block; */
 	}
 
 	/*보낸 채팅 내용 부분*/
@@ -83,7 +86,7 @@
 	
 	/*채팅 메세지 입력 부분 div*/
 	#bottom-container{
-		margin:10px;
+		margin:50px 10px;
 	}
 	
 	/*채팅 시간 감싸는 div*/

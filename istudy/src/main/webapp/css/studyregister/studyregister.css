@@ -26,13 +26,14 @@
 
 .header {
 	position: fixed;
-	width: 18%;
-	height: 100vh;
-	background-color: rgba(99, 89, 78,100%);
+	width: 20%;
+	height:100vh;
+	background-color:#fff;
+	
 }
 
 .logo {
-	font: 300 2em;
+	font: 200 1.5em;
 	text-align: center;
 	padding: 0;
 	margin-top: 25%;
@@ -41,13 +42,13 @@
 .logo a {
 	display: block;
 	padding: 1em 0;
-	color: #DFDBD9;
+	color: #408080;
 	text-decoration: none;
 	transition: .15s linear color;
 }
 
 .logo a:hover {
-	color: #fff;
+	color: #808080;
 }
 
 .logo a:hover span {
@@ -72,7 +73,7 @@
 
 .main-nav  a {
 	padding: 1.1em 0;
-	color: #DFDBD9;
+	color: #000000;
 	font-size: 15px;
 	text-align: center;
 }
@@ -103,7 +104,7 @@
 	width: 100%;
 	height: 100%;
 	border-right: solid 5px #89c5c5;
-	background: #3C3735;
+	background: rgba(85, 76, 66, 80%);
 	transition: .35s ease left;
 }
 
@@ -127,26 +128,32 @@
 }
 
 /*---------------------common ------------------------------*/
-#register_content {
+.sub_register_content {
 	padding: 80px;
 	float: right;
 	width: 80%;
+	height: 100%;
 }
 
-.register_title h2 {
+.sub_register_title h2 {
 	margin-top: 5px;
 	font-size: 30px;
 }
 
 .moving_button {
 	float: right;
+	margin-top:20px;
 	display: grid;
-	grid-template-columns: repeat(2, 47%);
+	grid-template-columns: repeat(2, 50%);
 	grid-gap: 1em;
+}
+.moving_button02 {
+	float: right;
+	margin-top:20px;
 }
 
 #next_button {
-	width: 70%;
+	width: 100%;
 	height: 40px;
 	padding: 5px;
 	margin-top: 40px;
@@ -191,30 +198,19 @@
 	font-size: 13px;
 }
 /*-------------------step1 page------------------------------*/
-.study_host {
+.study_title {
 	margin-top: 50px;
 }
 
-.study_host h3 {
+.study_title h3 {
 	font-size: 20px;
 }
 
-.host_grid {
-	display: grid;
-	width: 100%;
-	grid-template-columns: repeat(2, 40%);
-	grid-gap: 1em;
-	overflow: hidden;
-}
-
-#host_box p {
+.study_title #study_name {
+	width: 20%;
+	height: 30px;
 	font-size: 15px;
 }
-
-.study_host img {
-	width: 130px;
-}
-
 .study_kinds {
 	margin-top: 70px;
 }
@@ -233,11 +229,22 @@
 
 .study_kinds img {
 	width: 100px;
+	margin-right: 20px;
+}
+.study_kinds input{
+	 accent-color: #408080;
+	 height: 25px;
+	 width: 25px;
 }
 
-#kinds_box p {
+.kinds_box p {
 	font-size: 15px;
 }
+
+.study_type_num{
+	margin-left: 20px;
+}
+
 
 #next_button1 {
 	width: 8%;
@@ -261,19 +268,7 @@
 }
 
 /*-------------------step2 page------------------------------*/
-.study_title {
-	margin-top: 50px;
-}
 
-.study_title h3 {
-	font-size: 20px;
-}
-
-.study_title #s_title {
-	width: 20%;
-	height: 30px;
-	font-size: 15px;
-}
 
 .study_image {
 	margin-top: 50px;
@@ -340,12 +335,8 @@
 }
 
 /*-------------------step3 page------------------------------*/
-.people_status_grid {
-	margin-top: 50px;
-	display: grid;
-	grid-template-columns: repeat(2, 40%);
-	grid-gap: 1.5em;
-}
+
+
 
 .study_people h3 {
 	font-size: 20px;
@@ -353,13 +344,9 @@
 
 #people_set {
 	margin-right: 5px;
-	width: 10%;
+	width: 15%;
 	height: 30px;
 	font-size: 15px;
-}
-
-.study_status h3 {
-	font-size: 20px;
 }
 
 .study_caution {
@@ -391,6 +378,7 @@
 /*-------------------step4 page------------------------------*/
 .study_period {
 	margin-top: 50px;
+	font-size:15px;
 }
 
 .study_period h3 {
@@ -404,7 +392,93 @@
 .study_language h3 {
 	font-size: 20px;
 }
+.tag_select h3{
+	font-size: 20px;
+}
+.tag_select{
+	margin-top: 50px;
+}
+/*----------드래그&드롭 div-----------*/
+.ox_container{
+	display: grid;
+	grid-template-columns: repeat(2, 50%);
+	grid-gap: 1em;
+	overflow: hidden;
+}
+.o_container, .x_container {
+	margin-top:10px;
+    background-color: #f3f5f7;
+    padding: 2rem;
+    border-collapse: collapse;
+}
+.o_container, .x_container p{
+	font-size: 15px;
+}
+.o_container:nth-child(n+2), .x_container:nth-child(n+2){
+    margin-top: 1rem;
+}
 
+.draggable {
+    height: 50px;
+    line-height: 50px;
+    margin: 5px;
+    padding: 0 10px;
+    background-color: white;
+    border: 1px solid #c5cdd7;
+    border-bottom:none;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.draggable:last-child {
+    border-bottom: 1px solid #c5cdd7;
+}
+
+.draggable.dragging {
+    opacity: .5;
+    background-color:#89c5c5;
+    border: 2px dashed #c5cdd7;
+}
+
+.el {
+    display: inline-block;
+    vertical-align: middle;
+}
+.ico-drag {
+    display: inline-block;
+    vertical-align: inherit;
+    width: 15px;
+    height: 15px;
+    background: url(./menu.png) no-repeat center top;
+    background-size: cover;
+}
+
+/*----------태그 div-----------*/
+#tag_div{
+	margin-bottom: 50px;
+}
+#plus{	
+	display:inline-block;
+	width:30px;
+	height:30px;
+	border: 4px solid #ddd;
+	border-radius: 50%;
+	padding:5px;
+	font-size:20px;
+	cursor:pointer;
+	top:0;
+}
+#tag_ul li{
+	float:left;
+	margin-left:5px;
+	margin-right:5px;
+	font-size: 15px;
+}
+.tag_box{
+	width:100px;
+	height:30px;
+	border-radius:5px;
+	border:1px solid #aaa;
+}
 #previous_button1 {
 	width: 11%;
 	height: 40px;

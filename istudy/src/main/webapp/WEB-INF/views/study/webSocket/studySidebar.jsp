@@ -13,7 +13,6 @@
 	<div class="content">
 		<!-- 멘티리스트 -->
 		<%@include file="studyPageMatesList.jsp"%>
-		<%@include file="studyPageChat.jsp"%>
 	</div>
 </div>
 <div style="clear:both"></div>

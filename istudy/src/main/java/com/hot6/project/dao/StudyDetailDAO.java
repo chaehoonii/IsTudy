@@ -14,4 +14,6 @@ public interface StudyDetailDAO {
 		public StudyVO studydetail(int study_num);
 
 		public List<StudyVO> studyuser(int study_num);
+		
+		public StudyVO studyRoom(int study_num);
 }
