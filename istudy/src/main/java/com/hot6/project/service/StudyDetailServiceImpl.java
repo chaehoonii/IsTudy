@@ -22,4 +22,8 @@ public class StudyDetailServiceImpl implements StudyDetailService{
 	public List<StudyVO> studyuser(int study_num){
 		return dao.studyuser(study_num);
 	}
+	@Override
+	public StudyVO studyRoom(int study_num) {
+		return dao.studyRoom(study_num);
+	}
 }

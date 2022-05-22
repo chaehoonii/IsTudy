@@ -9,4 +9,6 @@ public interface StudyDetailService {
 		public List<StudyVO> studydetail(int study_num);
 
 		public List<StudyVO> studyuser(int study_num);
+		
+		public StudyVO studyRoom(int study_num);
 }

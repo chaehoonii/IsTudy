@@ -11,7 +11,11 @@
 	max-width: 1100px;
 	margin: 0 auto;
 }
-
+#room_img{
+	width:40px;
+	margin-left:15px;
+	cursor:pointer;
+}
 .select_color {
 	appearance: none;
 	background-color: #EACACB;
