@@ -278,8 +278,7 @@ hr {
 }
 
 .button-click {
-	/* background-color: #f9f9f8; */
-	box-shadow: 2px 2px 3px #c2c2bd;
+	box-shadow: 2px 2px 3px #888888;
 }
 
 .buttons input[type=button] {
