@@ -73,8 +73,6 @@
               </foreach>      
            </where>
      </update>
- 
- 
 
 	<!-- 관리자 수 -->
 	<select id="getAdminCnt" resultType="int">
@@ -89,14 +87,19 @@
 		from report
 		INNER JOIN board
 		ON report.board_num = board.board_num
+		INNER JOIN report_type
+		ON report.report_type_num = report_type.report_type_num
 		<where>
 			<if test="param1 !=null and param1!='all'">confirm=#{param1}</if>
 			<if test="param2.searchWord!=null">
-				and board.board_num like '%${param2.searchWord}%' or report.user_id like
-				'%${param2.searchWord}%' or report.report_content like '%${param2.searchWord}%'
-				or report.report_time like '%${param2.searchWord}%' or report.report_type_num like
-				'%${param2.searchWord}%' or report.confirm like
-				'%${param2.searchWord}%'
+				and board.user_id like '%${param2.searchWord}%' or
+				board.title like '%${param2.searchWord}%' or
+				report.user_id like '%${param2.searchWord}%' or
+				report.report_content like '%${param2.searchWord}%'or 
+				report.report_time like '%${param2.searchWord}%' or 
+				report.report_type_num like '%${param2.searchWord}%' or 
+				report.confirm like '%${param2.searchWord}%' or
+				report_type.report_type_name like '%${param2.searchWord}%'
 			</if>
 		</where>
 		order by report.report_num limit ${param2.onePageRecord} offset

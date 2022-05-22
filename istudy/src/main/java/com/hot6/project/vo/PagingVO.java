@@ -83,8 +83,6 @@ public class PagingVO {
 		public void setSearchWord(String searchWord) {
 			this.searchWord = searchWord;
 		}
-<<<<<<< HEAD
-=======
 		public List<String> getSclass() {
 			return sclass;
 		}
@@ -112,5 +110,5 @@ public class PagingVO {
 			this.status = status;
 		}
 		
->>>>>>> a0158b64a90f8c8f73cd560d0473032c724f666a
+
 }

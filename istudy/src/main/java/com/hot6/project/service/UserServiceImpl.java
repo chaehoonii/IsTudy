@@ -28,6 +28,18 @@ public class UserServiceImpl implements UserService {
 	public int idCheck(String id) {
 		return dao.idCheck(id);
 	}
+	@Override
+	public int nickCheck(String nick) {
+		return dao.nickCheck(nick);
+	}
+	@Override
+	public int emailCheck(String email) {
+		return dao.emailCheck(email);
+	}
+	@Override
+	public int telCheck(String tel) {
+		return dao.telCheck(tel);
+	}
 
 	@Override
 	public UserVO loginCheck(UserVO vo) {

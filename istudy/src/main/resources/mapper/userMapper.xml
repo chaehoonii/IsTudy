@@ -51,6 +51,21 @@
 		FROM user
 		WHERE user_id=#{param1.user_id}
 	</select>
+	<select id="nickCheck" resultType="int">
+		SELECT count(user_nick) cnt
+		FROM user
+		WHERE user_nick=#{param1.user_nick}
+	</select>
+	<select id="emailCheck" resultType="int">
+		SELECT count(email) cnt
+		FROM user
+		WHERE email=#{param1.email}
+	</select>
+	<select id="telCheck" resultType="int">
+		SELECT count(tel) cnt
+		FROM user
+		WHERE tel=#{param1.tel}
+	</select>
 
 	<select id="userSelect" resultType="com.hot6.project.vo.UserVO">
 		select user_name,

@@ -102,6 +102,30 @@ public class UserController {
 		int cnt = service.idCheck(id);
 		return cnt;
 	}
+	// 닉네임 중복검사
+	@PostMapping("userNickCheck")
+	@ResponseBody
+	public int nickCheck(String nick) {
+		// id가 DB에 존재하는지 확인
+		int cnt = service.nickCheck(nick);
+		return cnt;
+	}
+	// 이메일 중복검사
+	@PostMapping("userEmailCheck")
+	@ResponseBody
+	public int emailCheck(String email) {
+		// id가 DB에 존재하는지 확인
+		int cnt = service.emailCheck(email);
+		return cnt;
+	}
+	// 번호 중복검사
+	@PostMapping("userTelCheck")
+	@ResponseBody
+	public int telCheck(String tel) {
+		// id가 DB에 존재하는지 확인
+		int cnt = service.telCheck(tel);
+		return cnt;
+	}
 	
 	// 회원정보수정 폼
 	   @GetMapping("userEdit")

@@ -25,6 +25,21 @@ function userCheck() {
 		alert("아이디 형식 오류 또는 중복이 확인되지 않았습니다.");
 		return false;
 	}
+	//닉네임 형식+중복 여부('N')
+	if (document.getElementById("nickchk").value == 'N') {
+		alert("닉네임 중복이 확인되지 않았습니다.");
+		return false;
+	}
+	//이메일 형식+중복 여부('N')
+	if (document.getElementById("emailchk").value == 'N') {
+		alert("이메일 중복이 확인되지 않았습니다.");
+		return false;
+	}
+	//번호 형식+중복 여부('N')
+	if (document.getElementById("tel_chk").value == 'N') {
+		alert("번호 중복이 확인되지 않았습니다.");
+		return false;
+	}
 
 	//비밀번호 입력 여부 + 확인란 체크
 	var regpwd = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/;
@@ -78,6 +93,9 @@ function userCheck() {
 
 $(function() {
 	let userid = document.getElementById("user_id");
+	let usernick = document.getElementById("user_nick");
+	let tel = document.getElementById("tel");
+	let email = document.getElementById("email");
 	//아이디 중복검사
 	var regid = /^[a-zA-Z0-9]{6,16}$/;
 	$("#user_id").keyup(function() {
@@ -106,6 +124,64 @@ $(function() {
 			$("#idchk").val('N');
 			$("#chk").css("color", "red").css("font-size", "14px");
 		}
+	});
+	
+	$("#user_nick").keyup(function() {
+		var nick = $("#user_nick").val();
+			var url = "/users/userNickCheck"
+			$.ajax({
+				url: url,
+				data: "nick=" + nick,
+				type: "POST",
+				success: function(result) {
+					if (result > 0) {	//중복 데이터 존재함 (불가능)
+						$("#nick_chk").html("이미 이 닉네임으로 가입된 계정이 있습니다.");
+						$("#nickchk").val('N');
+						$("#nick_chk").css("color", "red").css("font-size", "14px");
+					} else {			//중복 데이터 없음(가능)
+						$("#nick_chk").html("");
+						$("#nickchk").val('Y');
+					}
+				}
+			});
+	});
+	$("#email").keyup(function() {
+		var email = $("#email").val();
+			var url = "/users/userEmailCheck"
+			$.ajax({
+				url: url,
+				data: "email=" + email,
+				type: "POST",
+				success: function(result) {
+					if (result > 0) {	//중복 데이터 존재함 (불가능)
+						$("#email_chk").html("이미 이 이메일로 가입된 계정이 있습니다.");
+						$("#emailchk").val('N');
+						$("#email_chk").css("color", "red").css("font-size", "14px");
+					} else {			//중복 데이터 없음(가능)
+						$("#email_chk").html("");
+						$("#emailchk").val('Y');
+					}
+				}
+			});
+	});
+	$("#tel").keyup(function() {
+		var tel = $("#tel").val();
+			var url = "/users/userTelCheck"
+			$.ajax({
+				url: url,
+				data: "tel=" + tel,
+				type: "POST",
+				success: function(result) {
+					if (result > 0) {	//중복 데이터 존재함 (불가능)
+						$("#tel_chk2").html("이미 이 번호로 가입된 계정이 있습니다.");
+						$("#tel_chk").val('N');
+						$("#tel_chk2").css("color", "red").css("font-size", "14px");
+					} else {			//중복 데이터 없음(가능)
+						$("#tel_chk2").html("");
+						$("#tel_chk").val('Y');
+					}
+				}
+			});
 	});
 
 	//유효성 검사
@@ -139,7 +215,7 @@ $(function() {
 		if (!regTel2.test($("#tel").val())) {
 			$("#telChk").html("전화번호 형식이 잘못 되었습니다.").css('color', 'red').css("font-size", "14px");
 		} else {
-			$("#telChk").html("&nbsp;").css('color', 'blue').css("font-size", "14px");
+			$("#telChk").html("").css('color', 'blue').css("font-size", "14px");
 		}
 	});
 
