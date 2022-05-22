@@ -26,4 +26,8 @@ public class StudyDetailServiceImpl implements StudyDetailService{
 	public StudyVO studyRoom(int study_num) {
 		return dao.studyRoom(study_num);
 	}
+	@Override
+	public List<StudyVO> mateList(int study_num) {
+		return dao.mateList(study_num);
+	}
 }

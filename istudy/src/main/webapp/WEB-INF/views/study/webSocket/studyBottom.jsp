@@ -47,7 +47,7 @@
 <script>
 	function exit(){
 		if(confirm("스터디방에서 나가시겠습니까?")){
-			location.replace("/study?study_num=${vo.study_num}");
+			location.replace("/study/studyRoom?study_num=${vo.study_num}");
 		}else{
 			
 		}
