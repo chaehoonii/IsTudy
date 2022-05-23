@@ -9,7 +9,7 @@
 <script>
 	function userDel() {
 		if (confirm("정말로 탈퇴하시겠습니까?")) {
-			location.href = "${url}/users/userDel";
+			location.href = "/users/userDel";
 		}
 	}
 
@@ -134,10 +134,8 @@
 					</ul>
 				</fieldset>
 				<div class="submit_button_wrap">
-					<input type="submit" value="수 정 하 기"
-						style="margin-left: 3px; margin-right: 5px; margin-top: 0" /> <input
-						type="button" value="탈 퇴 하 기"
-						style="margin-left: 5px; margin-right: 3px;" onclick='userDel()' />
+					<input type="submit" value="수 정 하 기" style="margin-left: 3px; margin-right: 5px; margin-top: 0" /> 
+						<input type="button" value="탈 퇴 하 기" style="margin-left: 5px; margin-right: 3px;" onclick='userDel()' />
 				</div>
 			</form>
 		</div>
