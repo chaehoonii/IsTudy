@@ -305,3 +305,8 @@
        	</c:if>
     </ul>
 </div>
+<!-- 스터디 등록 버튼 -->
+<div id="study_register">
+	<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister/registerform';" value="스터디 등록">
+</div>
+<div style="clear:both"></div>

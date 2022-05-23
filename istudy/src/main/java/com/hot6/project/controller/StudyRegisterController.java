@@ -37,18 +37,13 @@ public class StudyRegisterController {
 		vo.setHost_id((String)request.getSession().getAttribute("logId"));
 		
 		ResponseEntity<String> entity =null;
-//		String permission = vo.setPermission((String)request.getSession().getAttribute("logPermission"));
-//		if(permission.equals("mentor")) {
-//				//멘토
-//		}else {
-//			service.StudyInsert(vo);	//일반
-//		}
+
 		try {
 			service.studyInsert(vo);
 			//정상구현
 			String msg = "<script>";
 			msg+="alert('스터디가 등록되었습니다>_<');";
-			msg+="location.href='?List';";
+			msg+="location.href='/study/study_info?board_num=';";
 			msg+="</script>";
 			entity = new ResponseEntity<String>(msg,HttpStatus.OK);//(문자열,인코딩타입,HttpStatus.OK : 200)
 		}catch(Exception e){
