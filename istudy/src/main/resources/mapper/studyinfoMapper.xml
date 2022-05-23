@@ -26,8 +26,8 @@
 	<select id="studyHome"  resultType="StudyVO">
 		SELECT 	is_mentor, s.study_type_num, t.study_type_name, study_img, study_name, 
 				host_id, start_date, finish_date, max, study_num, u.user_nick
-		
-		FROM 	study_room s join study_type t
+		FROM 	study_room s 
+		JOIN 	study_type t
 		ON 		s.study_type_num = t.study_type_num
 		JOIN 	user u
 		ON		u.user_id = s.host_id
@@ -49,7 +49,8 @@
 				(study_name LIKE CONCAT('%', #{searchWord}, '%') || host_id LIKE CONCAT('%', #{searchWord}, '%')
 				 || u.user_nick LIKE CONCAT('%', #{searchWord}, '%'))
 		</if>
-		order by study_type_name limit ${onePageRecord} offset ${offsetIndex}
+		ORDER BY s.study_num DESC 
+		LIMIT 	${onePageRecord} OFFSET ${offsetIndex}
 	</select>
 	
 	<!-- in_people, remain 출력 -->
@@ -103,6 +104,6 @@
 	</select>
 	<!-- 페이징 -->
 	<select id="totalRecord" resultType="int">
-		SELECT count(*) from study_room 
+		SELECT count(*) from study_room
 	</select>
 </mapper>
