@@ -82,11 +82,11 @@ input[type=radio] {
 input[type=submit] {
 	width: 100%;
 	padding: 15px;
-	font-size: 1.5em;
-	background-color: rgb(212, 196, 181); color : white;
 	margin-top: 8px;
 	border: none;
-	color: white;
+	background-color:rgb(230, 223, 215);
+    color:rgba(85, 76, 66, 80%);
+    font-size:16px;
 }
 
 #radio_list {

@@ -176,7 +176,15 @@
 	<form id="frm">
 		<div id="category_top">
 			<p>카테고리</p>
-			<input type="text" name="searchWord" id='searchWord' placeholder="SEARCH"> 
+
+			<c:choose>
+				<c:when test="${param.user_nick !=null || param.user_nick != ''}">
+					<input type="text" name="searchWord"  id='searchWord' placeholder="SEARCH" value="${user_nick}"> 
+				</c:when>
+				<c:otherwise>
+					<input type="text" name="searchWord"  id='searchWord' placeholder="SEARCH"> 
+				</c:otherwise>				
+			</c:choose>
 			<button type="submit">검색</button>
 		</div>
 		
