@@ -24,10 +24,14 @@
 		<!-- order by study_type_name limit ${onePageRecord} offset ${offsetIndex} -->
 	</select>
 	<select id="studyHome"  resultType="StudyVO">
-		select is_mentor, s.study_type_num, t.study_type_name, study_img, study_name, host_id, start_date, finish_date, max, study_num
-		from study_room s join study_type t
-		on s.study_type_num = t.study_type_num
-		where 1=1
+		SELECT 	is_mentor, s.study_type_num, t.study_type_name, study_img, study_name, 
+				host_id, start_date, finish_date, max, study_num, u.user_nick
+		
+		FROM 	study_room s join study_type t
+		ON 		s.study_type_num = t.study_type_num
+		JOIN 	user u
+		ON		u.user_id = s.host_id
+		WHERE 	1=1
 		<if test="sclass!=null">
 			and study_type_name in 
 			<foreach item="item" collection="sclass" open="(" separator="," close=")">
@@ -42,7 +46,8 @@
 		</if>
 		<if test="searchWord!=null">
 			and
-				(study_name LIKE CONCAT('%', #{searchWord}, '%') || host_id LIKE CONCAT('%', #{searchWord}, '%'))
+				(study_name LIKE CONCAT('%', #{searchWord}, '%') || host_id LIKE CONCAT('%', #{searchWord}, '%')
+				 || u.user_nick LIKE CONCAT('%', #{searchWord}, '%'))
 		</if>
 		order by study_type_name limit ${onePageRecord} offset ${offsetIndex}
 	</select>

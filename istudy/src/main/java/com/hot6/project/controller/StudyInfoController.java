@@ -26,6 +26,7 @@ public class StudyInfoController {
 
 		if(user_nick !=null && !user_nick.equals("")) {
 			mav.addObject("user_nick", user_nick);
+			pvo.setSearchWord(user_nick);
 		}
 
 		pvo.setOnePageRecord(4);

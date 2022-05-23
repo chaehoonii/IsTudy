@@ -244,7 +244,7 @@
 			</div>
 			<div class="sinfo">
 				<span class="sname">${vo.study_name}</span><br/>
-				<span class="sid">${vo.host_id}</span>
+				<span class="sid">${vo.user_nick}</span>
 				<span class="smentor">
 					<c:if test="${vo.is_mentor=='T'}">멘토</c:if>
 					<c:if test="${vo.is_mentor=='F'}">일반</c:if>
