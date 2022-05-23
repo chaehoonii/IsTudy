@@ -20,12 +20,16 @@ public class StudyInfoController {
 	
 	// 스터디 정보 페이지
 	@GetMapping("/study/study_home") 
-	public ModelAndView studyHome(PagingVO vo) {
+	public ModelAndView studyHome(String user_nick, PagingVO vo) {
 		/*
 		 * if(sclass!=null) { for(String str:sclass) { System.out.print(str); } }
 		 */
 		
 		ModelAndView mav=new ModelAndView(); 
+		
+		if(user_nick !=null && !user_nick.equals("")) {
+			mav.addObject("user_nick", user_nick);
+		}
 		
 		vo.setTotalRecord(service.totalRecord(vo));
 		
