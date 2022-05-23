@@ -40,7 +40,7 @@ import com.hot6.project.vo.UserVO;
 @RequestMapping("/users/")
 public class UserController {
 
-	@Value("/upload/user/")
+	//@Value("/upload/user/")
 	private String fileRealPath;
 
 	@Inject
@@ -67,6 +67,7 @@ public class UserController {
 			model.addAttribute("cnt", cnt);
 			return "users/joinResult";
 		}
+		
 
 		String filePath = session.getServletContext().getRealPath("/upload/user");//Paths.get(fileRealPath + user_img.getName());
 		String fileName=user_img.getOriginalFilename();
@@ -100,6 +101,30 @@ public class UserController {
 	public int idCheck(String id) {
 		// id가 DB에 존재하는지 확인
 		int cnt = service.idCheck(id);
+		return cnt;
+	}
+	// 닉네임 중복검사
+	@PostMapping("userNickCheck")
+	@ResponseBody
+	public int nickCheck(String nick) {
+		// id가 DB에 존재하는지 확인
+		int cnt = service.nickCheck(nick);
+		return cnt;
+	}
+	// 이메일 중복검사
+	@PostMapping("userEmailCheck")
+	@ResponseBody
+	public int emailCheck(String email) {
+		// id가 DB에 존재하는지 확인
+		int cnt = service.emailCheck(email);
+		return cnt;
+	}
+	// 번호 중복검사
+	@PostMapping("userTelCheck")
+	@ResponseBody
+	public int telCheck(String tel) {
+		// id가 DB에 존재하는지 확인
+		int cnt = service.telCheck(tel);
 		return cnt;
 	}
 	
@@ -142,12 +167,13 @@ public class UserController {
 			fileName=fileName.substring(0, idx)+"_"+vo.getUser_id()+fileName.substring(idx);//test_hong.png
 			System.out.println("fileName: "+fileName);
 		}
-		filePath = Paths.get(fileRealPath + fileName);
+		//filePath = Paths.get(fileRealPath + fileName);
 		//\\upload\\user\\test_hong.png
 		try {
+			fileRealPath=session.getServletContext().getRealPath("/upload/user");
 			//Files.write(filePath, user_img.getBytes());
-			user_img.transferTo(new File(filePath.toString()));//파일 업로드 	
-			System.out.println(filePath + "경로에 이미지가 저장됨");
+			user_img.transferTo(new File(fileRealPath, fileName));//파일 업로드 	
+			System.out.println(fileRealPath + "경로에 이미지가 저장됨");
 			// getBytes가 이미지 실체고 이걸 파일로 변환해서 저장해야한다.
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -195,7 +221,11 @@ public class UserController {
 				session.setAttribute("logName", user.getUser_name());
 				session.setAttribute("logStatus", "Y");
 				session.setAttribute("logPermission", user.getPermission());
+				
 				String url = (String) session.getAttribute("url");
+				if(url.equals("http://localhost:8060/users/login") || url.equals("http://localhost:8060/users/idSearch") || url.equals("http://localhost:8060/users/pwdSearch")) {
+					url = "/";
+				}
 				String msg = "<script>location.href = '"+url+"';</script>"; //이전페이지로 보내기
 				entity = new ResponseEntity<String>(msg, headers, HttpStatus.OK);
 

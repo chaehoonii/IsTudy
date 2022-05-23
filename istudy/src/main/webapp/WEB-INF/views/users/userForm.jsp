@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${url}/css/users/userForm.css"
+<link rel="stylesheet" href="/css/users/userForm.css"
 	type="text/css">
 <script src="${url}/js/users/userForm.js"></script>
 <style>
@@ -36,12 +36,9 @@ url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css%27)
 					<div id="user_notice">* 표시는 필수 입력 사항입니다.</div>
 					<ul>
 						<li>아이디</li>
-						<li><input type="text" id="idchk" value='Y'
-							style="display: none; width: 30px; margin: 0px;"> <input
-							type="text" id="idchk" value='N'
-							style="display: none; width: 30px; margin: 0px;"> <input
-							type="text" name="user_id" placeholder="* 6자리 이상 ~ 16자리 이하"
-							id="user_id" maxlength=16 />
+						<li><input type="text" id="idchk" value='Y' style="display: none; width: 30px; margin: 0px;">
+							<input type="text" id="idchk" value='N' style="display: none; width: 30px; margin: 0px;"> 
+							<input type="text" name="user_id" placeholder="* 6자리 이상 ~ 16자리 이하"id="user_id" maxlength=16 />
 							<div id='chk'></div></li>
 						<li>비밀번호</li>
 						<li><input type="password" name="user_pw" id="user_pw"
@@ -55,23 +52,29 @@ url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css%27)
 						<li><input type="text" name="user_name" id="user_name"
 							placeholder="* 홍길동" /></li>
 						<li>닉네임</li>
-						<li><input type="text" name="user_nick" id="user_nick"
-							placeholder="* 호부호형" /></li>
+						<li><input type="text" id="nickchk" value='Y' style="display: none; width: 30px; margin: 0px;">
+							<input type="text" id="nickchk" value='N' style="display: none; width: 30px; margin: 0px;"> 
+							<input type="text" name="user_nick" id="user_nick" placeholder="* 호부호형" />
+							<div id='nick_chk'></div></li>
 						<li>이메일</li>
-						<li><input type="text" name="email" id="email"
-							placeholder="* hong123@naver.com" /></li>
+						<li><input type="text" id="emailchk" value='Y' style="display: none; width: 30px; margin: 0px;">
+							<input type="text" id="emailchk" value='N' style="display: none; width: 30px; margin: 0px;"> 
+							<input type="text" name="email" id="email" placeholder="* hong123@naver.com" />
+							<div id='email_chk'></div></li>
 						<li>연락처</li>
-						<li><input type="text" name="tel" id="tel"
-							placeholder="* 숫자만 입력해주세요" />
-							<div id='telChk'></div></li>
+						<li><input type="text" id="tel_chk" value='Y' style="display: none; width: 30px; margin: 0px;">
+							<input type="text" id="tel_chk" value='N' style="display: none; width: 30px; margin: 0px;"> 
+							<input type="text" name="tel" id="tel" placeholder="* 숫자만 입력해주세요" />
+							<div id='telChk'></div>
+							<div id='tel_chk2'></div></li>
 						<li>분류</li>
 						<li>
 							<ul id="radio_list">
-								<li><input type="radio" name="permission" id="study_type1"
-									value="1" />일반</li>
-								<li><input type="radio" name="permission" id="study_type2"
-									value="2" />멘토</li>
-								<li>
+		                        <li><input type="radio" name="want" id="study_type1"
+		                           value="F" />일반</li>
+		                        <li><input type="radio" name="want" id="study_type2"
+		                           value="T" />멘토</li>
+		                        <li>
 									<ul style="display: none" id="career_list">
 										<select type="hidden" name="career_year" id="career_year">
 											<option value="">경력</option>

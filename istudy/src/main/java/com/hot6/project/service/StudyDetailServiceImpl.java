@@ -39,4 +39,8 @@ public class StudyDetailServiceImpl implements StudyDetailService{
 	public StudyVO LikeDetail(String user_id, int study_num) {
 		return dao.LikeDetail(user_id, study_num);
 	}
+	@Override
+	public List<StudyVO> mateList(int study_num) {
+		return dao.mateList(study_num);
+	}
 }

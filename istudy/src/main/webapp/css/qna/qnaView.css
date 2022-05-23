@@ -105,14 +105,15 @@
 	height:100px;
 }
 .content_edit_btns, .content_del_btns {
+	font-weight:800;
 	letter-spacing:1px;
-	background-color:rgba(85, 76, 66, 80%);
+	background-color:rgb(230, 223, 215);
+	color:rgba(85, 76, 66, 80%);
+	font-size:16px;
 	border-radius:10px;
 	border:none;
-	color:white;
 	cursor:pointer;
 	padding:10px;
-	font-size:1.3em;
 }
 /*====================댓글 등록폼=====================*/
 .qna_back04{
@@ -132,11 +133,12 @@
 #addReplybtn{
 	width:100px;
 	height:40px;
-	background-color:rgba(85, 76, 66, 80%);
+	background-color:rgb(230, 223, 215);
+	color:rgba(85, 76, 66, 80%);
+	font-size:16px;
+	font-weight:700;
 	border-radius:10px;
 	border:none;
-	color:white;
-	font-size:1.3em;
 }
 /*====================댓글 리스트=====================*/
 /*답변 채택*/
@@ -151,7 +153,7 @@
 	height:120px;
 	width:55vw;
 	position:relative;
-	margin-bottom:10px;
+	margin:15px 0px;
 }
 /*====================reply top=======================*/
 
@@ -204,10 +206,12 @@
 }
 /*====================reply bottom=======================*/
 #select_btn{
-	background-color:rgba(85, 76, 66, 80%);
+	background-color:rgb(230, 223, 215);
+	color:rgba(85, 76, 66, 80%);
+	font-size:16px;
+	font-weight:700;
 	border-radius:10px;
-	color:white;
-	padding:6px;
+	padding:8px;
 	cursor:pointer;
 }
 .not_selected{

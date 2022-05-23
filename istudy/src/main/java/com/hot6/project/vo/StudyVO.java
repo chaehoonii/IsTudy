@@ -40,6 +40,7 @@ public class StudyVO {
 	private String user_nick;
 	private String want_ok;
 	private String want_coment;
+	private int contribute;
 	
 	//calendar
 	private int plan_num;
@@ -62,6 +63,14 @@ public class StudyVO {
 	//데이터랩-> 인기 있는 스터디 (좋아요 수)
 	private int cnt;
 	
+	//검색어
+	
+	public int getContribute() {
+		return contribute;
+	}
+	public void setContribute(int contribute) {
+		this.contribute = contribute;
+	}
 	public String getUser_nick() {
 		return user_nick;
 	}

@@ -252,7 +252,7 @@
 					</div>						
 						<div id="qna_content_btn">
 							<c:if test="${logId == vo.user_id}">
-								<div><span class='content_edit_btns' onclick="BoardEdit()">글 수정</span>&emsp;<span class='content_del_btns' onclick="BoardDel()">글 삭제</span></div>
+								<div><span class='content_edit_btns' onclick="BoardEdit()">수정</span>&emsp;<span class='content_del_btns' onclick="BoardDel()">삭제</span></div>
 							</c:if>
 						</div>
 		</div>

@@ -3,9 +3,6 @@
     pageEncoding="UTF-8"%>
 <link href="/css/study/studyBottom.css" rel="stylesheet" type="text/css"> 
 
-<%@include file="studyPageChat.jsp"%>
-
-
 <div class="iconSection">
 	<div class="icon-box">
 		<div class="icon">
@@ -41,13 +38,12 @@
 <span class="exit-box"><a id="exitBtn" onclick="exit()" href="#"><i class="fas fa-sign-out-alt fa-3x exit"></i></a></span>
 
 <div class="chattingBar">
-		<!-- 멘티리스트 -->
 		<%@include file="studyPageChat.jsp"%>
 </div>
 <script>
 	function exit(){
 		if(confirm("스터디방에서 나가시겠습니까?")){
-			location.replace("/study?study_num=${vo.study_num}");
+			location.replace("/study/studyRoom?study_num=${vo.study_num}");
 		}else{
 			
 		}

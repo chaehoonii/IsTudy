@@ -12,7 +12,7 @@ import com.hot6.project.vo.StudyVO;
 @Repository
 public interface StudyInfoDAO {
 	// 스터디 정보 페이지
-	public List<StudyVO> studyHome(PagingVO vo);
+	public List<StudyVO> studyHome(PagingVO pvo);
 	public List<String> studyLang(int study_num);
 	public List<StudyVO> langAll();
 	public List<String> StudyTag(int study_num);
@@ -20,4 +20,5 @@ public interface StudyInfoDAO {
 	public int LikeUp(String user_id, int study_num);
 	public int LikeDown(String user_id, int study_num);
 	public StudyVO LikeDetail(String user_id, int study_num);
+	public int totalRecord(int study_type_num);
 }

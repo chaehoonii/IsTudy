@@ -20,9 +20,8 @@
                 <div class="userDesc">
                     <div class="category">
                         <ul>
-	                    	<li><a href="#">신고관리</a></li>
+	                    	<li><a href="/admin/adminReport">신고관리</a></li>
                     	  	<li><a href="/admin/adminUsers">회원관리</a></li>
-                          	<li><a href="#">공지사항 관리</a></li>
                           	<li><a href="/admin/adminData">데이터 랩</a></li>
 	                    </ul>  
                     </div>
@@ -72,7 +71,7 @@
     		data: {
     			labels: [${register_date}],  //날짜 
     			datasets: [{
-    				label: '신규 회원 추이',   
+    				label: '신규 회원 추이(6개월)',   
     				data: [${new_cnt}],   //신규 회원 수 
     				backgroundColor: [  					
     					'rgba(193, 117, 255, 0.2)'

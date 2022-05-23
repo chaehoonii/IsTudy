@@ -10,6 +10,12 @@ public interface UserService {
 
 	// 아이디 중복 체크
 	public int idCheck(String id);
+	// 닉네임 중복 체크
+	public int nickCheck(String nick);
+	// 이메일 중복 체크
+	public int emailCheck(String email);
+	// 번호 중복 체크
+	public int telCheck(String tel);
 
 	// 회원정보수정 폼 진입>로그인 정보 가져오기 (user 1명 선택)
 	public UserVO userSelect(String id);

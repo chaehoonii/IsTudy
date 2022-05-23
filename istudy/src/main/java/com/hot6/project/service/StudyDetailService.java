@@ -20,4 +20,5 @@ public interface StudyDetailService {
 
 	public StudyVO LikeDetail(String user_id, int study_num);
 
+	public List<StudyVO> mateList(int study_num);
 }
