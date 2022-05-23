@@ -132,7 +132,7 @@
 				$(value).each(function(idx, vo){
 					tag+='<div class="info">'
 					tag+=	'<div class="simg">'
-					tag+=		'<img src="/images/study_info/'+vo.study_img+ '" class="img img-thumbnail">'
+					tag+=		'<img src="/upload/study_room/'+vo.study_img+ '" class="img img-thumbnail">'
 					tag+=	'</div>'
 					tag+=	'<div class="sinfo">'
 					tag+=		'<span class="sname">'+vo.study_name+'</span><br/>'	
@@ -230,7 +230,7 @@
 	<!-- 반복문 안에서는 id x class o -->
 		<div class="info">
 			<div class="simg">
-				<img src="/images/study_info/${vo.study_img}" class="img img-thumbnail">
+				<img src="/upload/study_room/${vo.study_img}" class="img img-thumbnail">
 			</div>
 			<div class="sinfo">
 				<span class="sname">${vo.study_name}</span><br/>
