@@ -1,10 +1,16 @@
 package com.hot6.project.controller;
 
+
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.hot6.project.service.BoardService;
 import com.hot6.project.service.StudyBoardService;
 import com.hot6.project.service.StudyService;
+import com.hot6.project.vo.AdminUserVO;
 import com.hot6.project.vo.BoardVO;
 import com.hot6.project.vo.PagingVO;
 
@@ -87,4 +94,28 @@ public class StudyBoardController {
 		return mav;
 	}
 	
+	@PostMapping("reportJoin")
+	public ResponseEntity<String> reportJoinOk(int board_num, AdminUserVO vo, HttpServletRequest request, HttpSession session){
+		
+		ResponseEntity<String> entity = null;
+		
+		HttpHeaders headers = new HttpHeaders();		
+		headers.add("Content-Type", "text/html;charset=utf-8");
+		
+		//신고하는 사람
+		vo.setUser_id((String)session.getAttribute("logId"));	
+
+		try {		
+			SBservice.reportJoin(vo, board_num);			
+			String msg = "<script>alert('신고 완료되었습니다.');location.href = document.referrer;</script>";			
+			entity = new ResponseEntity<String>(msg, headers,HttpStatus.OK);		
+			
+		}catch(Exception e) {
+			e.printStackTrace();			
+			String msg = "<script>alert('신고에 실패하였습니다');history.back();</script>";			
+			entity = new ResponseEntity<String>(msg, headers,HttpStatus.BAD_REQUEST);				
+		}
+
+		return entity;		
+	}
 }
