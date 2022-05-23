@@ -67,33 +67,7 @@
 	margin-left:5px;
 	margin-right:5px;
 }
-/*언어타입*/
-#lang_ul{
-	background-color:#eee;
-	border-radius:10px;
-}
-#lang_ul li{
-	display:inline-block;
-	padding:10px;
-	font-size: 15px;
-	width:12%;
-}
-/*태그*/
-#tag_ul{
-	margin:30px;
-}
-#tag_ul li{
-	float:left;
-	margin-left:5px;
-	margin-right:5px;
-	font-size: 15px;
-}
-.tag_box{
-	width:100px;
-	height:30px;
-	border-radius:5px;
-	border:1px solid #aaa;
-}
+
 #submit_btn{
 	margin-top:50px;
 	width:100px;
@@ -105,7 +79,7 @@
 	border:none;
 	color:white;
 }
-#studyboardTextArea, #lang_ul{
+#studyboard_text_area, #lang_ul{
 	border-radius:10px;
 	filter: drop-shadow(0px 0px 3px rgba(0,0,0,30%));
 }

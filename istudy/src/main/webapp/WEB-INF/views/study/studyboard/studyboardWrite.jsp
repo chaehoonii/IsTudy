@@ -14,7 +14,6 @@
 				<h1>게시글 등록</h1>
 				<br/>
 				<br/>
-				<!-- <div id="studyboard_title"><span id="titleSpan">제목</span>&nbsp;&nbsp;<input type="text" id="studyboard_titlebox" name='title'></textarea></div> -->						
 				<div class="studyboard_title">
 					<div class="col-lg-4 studyboard_titlespan">글 제목&nbsp;</div>
 					<div class="col-lg-8">
@@ -24,7 +23,7 @@
 				<div>
 				<ul id="studyboard_content">
 					<li>
-						<div class="studyboardTextArea" id="studyboard_text_area" name="content">
+						<div class="studyboard_text_area" id="studyboard_text_area" name="content">
 							<!--CKEDITOR 4 -->
 							<textarea class="studyboard_editor" id="studyboard_editor" name="content" 
 							placeholder="코드블럭(markdown)이용 시 백틱(`)을 사용하세요"></textarea>
