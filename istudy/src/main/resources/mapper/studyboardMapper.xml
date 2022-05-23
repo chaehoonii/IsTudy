@@ -45,5 +45,10 @@
 	WHERE 	user_id=#{param1}
 	AND		reply_num=#{param2}
 </delete>
+<!-- 신고하기 -->
+<insert id="reportJoin">
+	INSERT INTO report(user_id, report_content, report_type_num, board_num) 
+	VALUES(#{param1.user_id}, #{param1.report_content}, #{param1.report_type_num}, #{param2})
+</insert>
 
 </mapper>

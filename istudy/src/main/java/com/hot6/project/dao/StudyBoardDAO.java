@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.hot6.project.vo.AdminUserVO;
 import com.hot6.project.vo.BoardVO;
 import com.hot6.project.vo.PagingVO;
 
@@ -29,6 +30,7 @@ public interface StudyBoardDAO {
 		
 		public int setTotalRecord(int board_type);
 
-	
+		//신고하기
+		public int reportJoin(AdminUserVO vo, int board_num);
 
 }
