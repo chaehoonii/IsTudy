@@ -83,7 +83,7 @@
 	display:line-block;
 	float:left;
 	margin-left:4%;
-	position:relative;
+/* 	position:relative; */
 }
 #screen_img{
 	width:300px;
@@ -102,11 +102,16 @@
 #mate_table tr, td{
 	border:1px solid #ddd;
 }
-.bulletin_box{
-	clear:both;
-	width:86%;
-	height: 300px;
-	margin-left:7%;
+#bulletin_box{
+	width:84%;
+	margin-left:8%;
 	margin-top:50px;
 	box-shadow:0 0 15px rgba(0,0,0,30%);
+	border-radius:15px;
+	text-align:center;
+	position:relative;
+}
+#bulletin_box hr{
+	width:75%;
+	text-align:center;
 }
