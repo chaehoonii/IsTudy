@@ -12,6 +12,13 @@
 		#{param1.start_date}, #{param1.finish_date}, #{param1.max}, #{param1.ip}, #{param1.is_mentor}, #{param1.host_id}, 
 		#{param1.study_content1}, #{param1.study_content2}) 
 	</insert>
+	<select id="studyNum" resultType="int">
+		SELECT 	 study_num 
+		FROM 	 study_room 
+		WHERE 	 host_id = #{param1}
+		ORDER BY study_num DESC
+		LIMIT 	 1
+	</select>
 	<insert id='studyLangInsert'>
 	INSERT  study_lang_type(study_num, lang_type_num) 
 	VALUES 
@@ -19,11 +26,11 @@
  		(#{study_num}, #{item})
  	</foreach>		
 	</insert>
-	<!-- <insert id='studyTagInsert'>
+	<insert id='studyTagInsert'>
 	INSERT study_hashtag(study_num, tag) 
 	VALUES  
 	<foreach collection="tag_list" item="item" separator=",">
         (#{study_num}, #{item})
     </foreach>
-</insert> -->
+	</insert>
 </mapper>

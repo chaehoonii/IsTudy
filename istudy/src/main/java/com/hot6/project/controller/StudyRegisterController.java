@@ -41,8 +41,13 @@ public class StudyRegisterController {
 		vo.setIp(request.getRemoteAddr());//접속자 IP
 		//글쓴이-session로그인 아이디를 구한다
 		vo.setHost_id((String)request.getSession().getAttribute("logId"));
-		vo.setIs_mentor("T"); //로직 처리 필요함
-		
+		//vo.setIs_mentor("T"); //로직 처리 필요함
+		String permission = (String) session.getAttribute("logPermission");
+		if(permission.equals("mentor")) {
+			vo.setIs_mentor("T");
+		}else {
+			vo.setIs_mentor("F");
+		}
 		ResponseEntity<String> entity =null;
 		
 		String pathName;
@@ -61,17 +66,7 @@ public class StudyRegisterController {
 					return entity;
 				}
 				
-				if (vo.getLang_list() != null) {
-					service.studyLangInsert(vo); // 언어
-				}
-
-				/*
-				 * List<String> taglist = vo.getTag_list(); if (taglist.size() != 0) { // 태그
-				 * 공백제거 for (int i = 0; i < taglist.size(); i++) { String tag =
-				 * taglist.get(i).trim(); // 공백제거한 태그 System.out.println(tag); if
-				 * (tag.equals("")) { taglist.remove(i); // 비어있는 태그 지우기 i--; } else {
-				 * taglist.set(i, tag); } } service.studyTagInsert(vo); // 태그 }
-				 */
+				
 			
 				String filePath = session.getServletContext().getRealPath("/upload/study_room");//Paths.get(fileRealPath + user_img.getName());
 				String fileName=mstudy_img.getOriginalFilename();
@@ -96,6 +91,26 @@ public class StudyRegisterController {
 			vo.setStudy_img(fileName);
 			System.out.println(vo);
 			service.studyInsert(vo, fileName);
+			vo.setStudy_num(service.studyNum(vo.getHost_id()));
+			if (vo.getLang_list() != null) {
+				service.studyLangInsert(vo); // 언어
+			}
+
+			
+			List<String> taglist = vo.getTag_list(); 
+				System.out.println(vo.getTag_list());
+			 	if (taglist.size() != 0) { // 태그공백제거
+			 		for (int i = 0; i < taglist.size(); i++) {
+			 			String tag = taglist.get(i).trim(); // 공백제거한 태그 
+			 			System.out.println(tag); 
+			 			if(tag.equals("")) { 
+			 				taglist.remove(i); // 비어있는 태그 지우기 
+			 				i--; 
+			 			} else {
+			 				taglist.set(i, tag); } 
+			 		} 
+			 		service.studyTagInsert(vo); // 태그 
+			 	}
 			System.out.println("등록완료");
 			//정상구현
 			String msg = "<script>";
