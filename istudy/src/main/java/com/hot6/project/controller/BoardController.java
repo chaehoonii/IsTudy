@@ -51,7 +51,7 @@ public class BoardController {
 
 	// 글 등록
 	@PostMapping("/board/boardWriteOk")
-	public ResponseEntity<String> boardWriteOk(BoardVO vo, HttpServletRequest request) {
+	public ResponseEntity<String> boardWriteOk(BoardVO vo, HttpServletRequest request, int study_num) {
 		vo.setIp(request.getRemoteAddr()); // 접속자 아이피
 		vo.setUser_id((String) request.getSession().getAttribute("logId")); // 작성자
 
@@ -63,10 +63,11 @@ public class BoardController {
 		int insertChk = 0;
 		// 스터디 게시판
 		if (vo.getBoard_type_num() == 1) {
+			vo.setStudy_num(study_num);
 			insertChk = Sservice.StudyboardInsert(vo);
 			vo.setBoard_num(Bservice.boardNum(vo.getUser_id())); // 유저의 최신글 번호 가져오기
-			int study_num = Bservice.getStudy_num(vo.getBoard_num()); // study_num 가져와야함!
-			msg += "location.href='/study/study_home/mystudy/studyList?study_num=" + study_num + "';</script>";
+			//study_num = Bservice.getStudy_num(vo.getBoard_num()); // study_num 가져와야함!
+			msg += "location.href='/study/studyRoom?study_num=" + study_num + "';</script>";
 		} else {
 			insertChk = Bservice.boardInsert(vo);
 			int board_num = Bservice.boardNum(vo.getUser_id()); // 유저의 최신글 번호 가져오기

@@ -20,7 +20,7 @@ public class ServerConfigure implements WebMvcConfigurer {
 			"/qna/likeUp", "/qna/likeDown", "/qna/replySelect", "/qna/replySelectDel", "/qna/qnaWrite", "/qna/qnaEdit", 
 			"/study/webSocket/screenShare", "/study/webSocket/audio", "/canvas", "/study/webSocket/chatPage",
 			"/study/webSocket/studyBottom", "/study/webSocket/studyPageChat", "/study/webSocket/studyPageMatesList", 
-			"/study/webSocket/studySidebar", "/compiler", "/study/webSocket/studyPage");
+			"/study/webSocket/studySidebar", "/compiler", "/study/webSocket/studyPage", "/studyregister/registerform");
 	
 	//권한이 admin인 사용자만 이동 가능한 URL
 	private static final List<String> URL_PATTERNS_ADMIN = Arrays.asList(
