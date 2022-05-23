@@ -250,7 +250,6 @@
 					<c:if test="${vo.is_mentor=='F'}">일반</c:if>
 				</span>
 				<span class="smax">
-								
 				<c:forEach var ="i" begin="${1}" end="${vo.in_people}">
 					<img src='/images/study_info/person_1.png' class='person_img'/>
 				</c:forEach>
