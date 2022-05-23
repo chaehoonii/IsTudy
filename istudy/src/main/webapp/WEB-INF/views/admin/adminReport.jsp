@@ -13,7 +13,7 @@
 <div class="adminReportPage">
 	<div class="profilePage">
 		<div class="userProfile">
-			<div class="userPhoto"></div>
+			<div class="userPhoto"><img src="/upload/user/${logImg}" id="mypage_profile_img" /></div>
 			<div class="userNickname">${nickName}</div>
 			<div class="userid">(${id})</div>
 			<div class="userDesc">

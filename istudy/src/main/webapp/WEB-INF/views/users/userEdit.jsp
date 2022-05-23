@@ -65,15 +65,24 @@
 						<li><input type="text" name="user_name" id="user_name"
 							placeholder="* 홍길동" value="${vo.user_name }" /></li>
 						<li>닉네임</li>
-						<li><input type="text" name="user_nick" id="user_nick"
-							placeholder="* 호부호형" value="${vo.user_nick }" /></li>
-						<li>이메일</li>
-						<li><input type="text" name="email" id="email"
-							placeholder="* hong123@naver.com" value="${vo.email }" /></li>
-						<li>연락처</li>
-						<li><input type="text" name="tel" id="tel"
-							placeholder="* 숫자만 입력해주세요" value="${vo.tel }" />
-							<div id='telChk'></div></li>
+                  <li><input style="display:none" id="nickoverlap" value="${vo.user_nick }"/>
+                     <input type="text" id="nickchk" value='Y' style="display: none; width: 30px; margin: 0px;">
+                     <input type="text" id="nickchk" value='N' style="display: none; width: 30px; margin: 0px;"> 
+                     <input type="text" name="user_nick" id="user_nick" placeholder="* 호부호형" value="${vo.user_nick }" />
+                     <div id='nick_chk'></div></li>
+                  <li>이메일</li>
+                  <li><input style="display:none" id="emailoverlap" value="${vo.email }"/>
+                     <input type="text" id="emailchk" value='Y' style="display: none; width: 30px; margin: 0px;">
+                     <input type="text" id="emailchk" value='N' style="display: none; width: 30px; margin: 0px;">
+                     <input type="text" name="email" id="email" placeholder="* hong123@naver.com" value="${vo.email }" />
+                     <div id='email_chk'></div></li>
+                  <li>연락처</li>
+                  <li><input style="display:none" id="teloverlap" value="${vo.tel }"/>
+                     <input type="text" id="tel_chk" value='Y' style="display: none; width: 30px; margin: 0px;">
+                     <input type="text" id="tel_chk" value='N' style="display: none; width: 30px; margin: 0px;">
+                     <input type="text" name="tel" id="tel" placeholder="* 숫자만 입력해주세요" value="${vo.tel }" />
+                     <div id='telChk'></div>
+                     <div id='tel_chk2'></div></li>
 						<li>분류</li>
 						<li>
 							<ul id="radio_list">
