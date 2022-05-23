@@ -215,8 +215,11 @@
         	height: 35px;
         	font-size: 14px;
         	border-radius:15px;
-        	border: 1px solid #ddd;
+        	border: none;
         	margin-right: 15px;
+        	background-color:rgb(230, 223, 215);
+		    color:rgba(85, 76, 66, 80%);
+		    font-size:16px;
         }
         .buttons input[type=button]:nth-child(3){
         	width: 80px;
@@ -241,9 +244,11 @@
         .search_form input[type=submit]{
         	width: 60px;
         	border-radius: 5px;
-        	border: 1px solid #ddd;
+        	border: none;
         	height: 100%;
-        	font-size: 16px;
+        	background-color:rgb(230, 223, 215);
+		    color:rgba(85, 76, 66, 80%);
+		    font-size:16px;
         	
         }
         #searchText::-webkit-input-placeholder{
@@ -255,8 +260,8 @@
 	        font-size: 14px;
     	}       
        .button-click{
-       		background-color: #f9f9f8;
-        	box-shadow: 2px 2px 3px #c2c2bd;
+       		background-color:rgba(230, 223, 215,0.8);
+        	box-shadow: 2px 2px 3px #888888;
        }
         .choose{
         	width: 100%;
@@ -267,10 +272,12 @@
         	height: 35px;
         	font-size: 16px;
         	border-radius:5px;
-        	border: 1px solid #ddd;
+        	border: none;
         	line-height: 35px;
         	float: right;
         	margin: 15px;
+        	background-color:rgb(230, 223, 215);
+		    color:rgba(85, 76, 66, 80%);
         }       
         
 		.pagingContainer{

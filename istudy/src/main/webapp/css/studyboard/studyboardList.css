@@ -1,0 +1,107 @@
+@charset "UTF-8";
+.studyboard_back {
+	width: 70%;
+	margin: 0 auto;
+	margin-top:100px;
+	position:relative;
+}
+#studyboard_list{
+	min-height: 80vh
+}
+#studyboard_logo{
+	width:20%;
+	display:inline-block;
+	cursor:pointer;
+}
+#studyboard_top01{
+	margin-left:0;
+	width:20%;
+	display:inline;
+}
+#studyboard_top02{
+	float:right;
+	margin-right:0;
+	display:inline;
+	cursor:pointer;
+	width: 5%;
+}
+.gray_box {
+	line-height: 35px;
+	border-radius: 5px;;
+	background-color:rgb(230, 223, 215);
+    color:rgba(85, 76, 66, 80%);
+    font-size:16px;
+	width:150px;
+	height: 50px;
+}
+
+/*studyboard리스트*/
+.studyboard_ul {
+	margin-left:50px;
+	line-height: 45px;
+	display:inline-block;
+	width:750px;
+	font-size:16px;
+	cursor:pointer;
+}
+.studyboard_ul2 {
+	margin-left: 10%;
+	line-height: 45px;
+	display:inline-block;
+	width:150px;
+	font-size:12px;
+}
+.studyboard_ul li, .studyboard_ul2 li{
+	text-overflow:ellipsis;
+	white-space: nowrap;
+  	overflow: hidden;
+}
+
+
+#studyboard_profile {
+	width: 40px;
+	border-radius: 50%;
+}
+.gray_border {
+	line-height: 30px;
+	border-radius: 5px;
+	padding: 5px;
+	border: 1px solid #ddd;
+	font-size:15px;
+}
+.white_border {
+	line-height: 30px;
+	border-radius: 5px;
+	padding: 5px;
+	border: 1px solid #fff;
+	font-size:15px;
+}
+/*답변 채택*/
+.not_selected{
+	line-height: 15px;
+	border-radius: 50%;
+	padding: 3px;
+	font-size:12px;
+	background-color: RGB(255,239,222);
+}
+.is_selected{
+	line-height: 15px;
+	border-radius: 50%;
+	padding: 3px;
+	font-size:12px;
+	background-color: RGB(222,239,255);
+}
+/* =====================페이징============================== */
+.pagingContainer{
+	margin:0 auto;
+}
+.page-link{
+	border:none !important;
+	font-size:1.5em;
+	color:black !important;
+}
+.page-link:hover{
+	background-color:rgba(85, 76, 66, 70%) !important;
+	color:white !important;
+	border-radius:5px !important;
+}

@@ -145,7 +145,7 @@
 			            						<a href="${vo.career}">${vo.career}</a>
 			            					</c:if>
 			            					<c:if test="${vo.career==null}">
-			            						<span>-</span>
+			            						<span></span>
 			            					</c:if>
 			            				</div>    							            				
 			            		</div><hr/>

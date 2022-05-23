@@ -37,7 +37,6 @@
 <span class="exit-box"><a id="exitBtn" onclick="exit()" href="#"><i class="fas fa-sign-out-alt fa-3x exit"></i></a></span>
 
 <div class="chattingBar">
-		<!-- 멘티리스트 -->
 		<%@include file="studyPageChat.jsp"%>
 </div>
 <script>
