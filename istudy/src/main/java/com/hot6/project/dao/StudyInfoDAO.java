@@ -17,5 +17,8 @@ public interface StudyInfoDAO {
 	public List<StudyVO> langAll();
 	public List<String> StudyTag(int study_num);
 	public StudyVO studyPeople(int study_num);
+	public int LikeUp(String user_id, int study_num);
+	public int LikeDown(String user_id, int study_num);
+	public StudyVO LikeDetail(String user_id, int study_num);
 	public int totalRecord(int study_type_num);
 }

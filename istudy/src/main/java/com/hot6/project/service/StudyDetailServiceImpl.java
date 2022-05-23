@@ -26,6 +26,19 @@ public class StudyDetailServiceImpl implements StudyDetailService{
 	public StudyVO studyRoom(int study_num) {
 		return dao.studyRoom(study_num);
 	}
+	// 좋아요
+	@Override
+	public int LikeUp(String user_id, int study_num) {
+		return dao.LikeUp(user_id, study_num);
+	}
+	@Override
+	public int LikeDown(String user_id, int study_num) {
+		return dao.LikeDown(user_id, study_num);
+	}
+	@Override
+	public StudyVO LikeDetail(String user_id, int study_num) {
+		return dao.LikeDetail(user_id, study_num);
+	}
 	@Override
 	public List<StudyVO> mateList(int study_num) {
 		return dao.mateList(study_num);
