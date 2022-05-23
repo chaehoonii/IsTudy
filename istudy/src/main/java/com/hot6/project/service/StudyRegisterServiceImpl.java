@@ -11,9 +11,23 @@ import com.hot6.project.vo.StudyVO;
 public class StudyRegisterServiceImpl implements StudyRegisterService {
 	@Inject
 	StudyRegisterDAO dao;
-	
+
 	@Override
-	public int studyInsert(StudyVO vo) {
-		return dao.studyInsert(vo);
+	public int studyInsert(StudyVO vo, String filePath) {
+		return dao.studyInsert(vo, filePath);
 	}
+
+	@Override
+	public int studyTagInsert(StudyVO vo) {
+		// TODO Auto-generated method stub
+		return dao.studyTagInsert(vo);
+	}
+
+	@Override
+	public int studyLangInsert(StudyVO vo) {
+		// TODO Auto-generated method stub
+		return dao.studyLangInsert(vo);
+	}
+	
+	
 }

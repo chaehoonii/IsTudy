@@ -271,6 +271,12 @@
 		<hr>
 	</c:forEach>
 </div>
+
+<!-- 스터디 등록 버튼 -->
+<div id="study_register">
+	<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister/studyregister_0';" value="스터디 등록">
+</div>
+<div style="clear:both"></div>
 <div class="pagingContainer">
 	<ul class="pagination justify-content-center" id="paging">
     	<c:if test="${pvo.pageNum==1}">
@@ -278,7 +284,7 @@
         </c:if>
         <c:if test="${pvo.pageNum>1}">
             <li class="page-item">
-            	<a class="page-link" href="/study/studyHome?pageNum=${pvo.pageNum-1}" id="prevBtn">
+            	<a class="page-link" href="/study/study_home?pageNum=${pvo.pageNum-1}" id="prevBtn">
             		<i class="fa fa-angle-left"></i>
             	</a>
             </li>
@@ -290,7 +296,7 @@
             			<li class="page-item disabled"><a class="page-link">${p}</a></li>
                     </c:when>
                     <c:when test="${p!=pvo.pageNum}">
-                        <li class="page-item"><a class="page-link" href="/study/studyHome?pageNum=${p}">${p}</a></li>
+                        <li class="page-item"><a class="page-link" href="/study/study_home?pageNum=${p}">${p}</a></li>
                     </c:when>
                 </c:choose>
             </c:if>
@@ -304,7 +310,7 @@
       	</c:if>
         <c:if test="${pvo.pageNum<pvo.totalPage}">
             <li class="page-item">
-            	<a class="page-link" href="/study/studyHome?pageNum=${pvo.pageNum+1}" id="nextBtn">
+            	<a class="page-link" href="/study/study_home?pageNum=${pvo.pageNum+1}" id="nextBtn">
             		<i class="fa fa-angle-right"></i>
             	</a>
             </li>
@@ -313,6 +319,6 @@
 </div>
 <!-- 스터디 등록 버튼 -->
 <div id="study_register">
-	<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister/studyregister_0';" value="스터디 등록">
+	<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister/registerform';" value="스터디 등록">
 </div>
 <div style="clear:both"></div>

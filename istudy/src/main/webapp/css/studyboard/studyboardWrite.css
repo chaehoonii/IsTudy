@@ -1,7 +1,7 @@
 @charset "UTF-8";
-.qna_back00 {
+.studyboard_back00 {
 	text-align:center;
-	margin-top:100px; 
+	margin-top:150px; 
 	margin-bottom:100px; 
 }
 #back_btn{
@@ -16,12 +16,12 @@
 	top:23vh;
 	cursor:pointer;
 }
-.qna_back01 {
+.studyboard_back01 {
 	text-align:center;
 	width:60vw;
 	margin:0 auto;
 }
-.qna_title{
+.studyboard_title{
 	width:1000px;
 	height:40px;
 	line-height:40px;
@@ -29,13 +29,13 @@
 	margin-bottom:40px;
 	padding-left:30px;
 }
-.qna_titlespan{
+.studyboard_titlespan{
 	background-color:rgba(85, 76, 66, 80%);
 	font-size:1.8em;
 	color:white;
 	border-radius:10px;
 }
-.qna_titlebox{
+.studyboard_titlebox{
 	width:600px;
 	height:40px;
 	border:0.5px solid rgba(85, 76, 66, 80%);
@@ -43,7 +43,7 @@
 	font-size:1.5em;
 	padding-left:10px;
 }
-#qna_content{
+#studyboard_content{
 	padding:30px;
 	padding-bottom:10px;
 	position:relative;
@@ -98,19 +98,14 @@
 	margin-top:50px;
 	width:100px;
 	height:40px;
+	font-size:1.5em;
 	letter-spacing:1px;
+	background-color:rgba(85, 76, 66, 80%);
 	border-radius:10px;
 	border:none;
-	background-color:rgb(230, 223, 215);
-	color:rgba(85, 76, 66, 80%);
-	font-size:16px;
-	font-weight:700;
+	color:white;
 }
-#qnaTextArea, #lang_ul{
+#studyboardTextArea, #lang_ul{
 	border-radius:10px;
 	filter: drop-shadow(0px 0px 3px rgba(0,0,0,30%));
-}
-.qna_back02 h1{
-	font-family: 'ROKAFSansBold' !important;
-	color:rgba(0,0,0,80%);
 }

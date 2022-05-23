@@ -24,12 +24,15 @@
 		let study_type_num = $("#register_form input[name='study_type_num']:checked").val();
 		let study_img = $("#register_form input[name='study_img']").val();
 		let study_rule = document.getElementById("caution_text");
+		let study_content1 = document.getElementById("info_1");
+		let study_content2 = document.getElementById("info_2");
 		let start_date = document.getElementById("todayDate");
 		let finish_date = document.getElementById("final_date");
 		let lang_type_name = $("#register_form input[name='lang_type_name']").val();
+		let tag = document.getElementById("selected_lang");
 		
 		//스터디 이름 
-		var regname = /^[가-힣a-zA-Z0-9]{1,20}$/;
+		var regname = /^[ㄱ-ㅎ가-힣a-zA-Z0-9]{1,20}$/;
 
 		if (!regname.test(study_name.value)) {
 			alert("스터디 이름을 20자리 이하로 만들어주세요.");
@@ -88,15 +91,11 @@
 			return false;
 		}
 		//스터디 사용 언어
-		if($('#seleted_lang').val() == null) {
-			alert("123!");
-    		$("#seleted_lang").focus();
-    		return;
-		}
+	
 		
 
 		if(confirm('글을 등록하시겠습니까?')){
-			$("#sub_register_form").submit();
+			$("#register_form").submit();
 		}				
 		
 	})
@@ -244,7 +243,7 @@
 		<div class="study_language">
 			<h3>▶스터디 사용 언어</h3>
 			<div class="ox_container">
-			<div class="o_container" id="selected_lang" name="selected_lang">
+			<div class="o_container" name="selected_lang">
 				<p>사용하는 언어<p>		
 			</div>
 			<div class="x_container">

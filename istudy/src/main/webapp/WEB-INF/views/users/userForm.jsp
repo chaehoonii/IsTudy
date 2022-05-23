@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${url}/css/users/userForm.css"
+<link rel="stylesheet" href="/css/users/userForm.css"
 	type="text/css">
 <script src="${url}/js/users/userForm.js"></script>
 <style>

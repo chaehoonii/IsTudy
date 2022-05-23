@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<link rel="stylesheet" href="/css/qna/qnaView.css" type="text/css">
+<link rel="stylesheet" href="/css/studyboard/studyboardView.css" type="text/css">
 <script>
 		//댓글 리스트
-		function qnaReplyList(){
+		function studyboardReplyList(){
 			var pathname = decodeURIComponent(location.href);
 			var board_num = pathname.substring( pathname.indexOf('=')+1);
 			var param = {"board_num" : board_num};
@@ -17,16 +17,16 @@
 				success:function(data){
 					var tag = "";
 					for(var i=0; i<data.length; i++){
-						tag += "<div class='qna_back03_reply'>";
+						tag += "<div class='studyboard_back03_reply'>";
 						//reply top
 						//프로필, 날짜
 						tag += "<div class='reply_top'>";
-						tag += "<div class='qna_profile_reply' style='display:inline-block;'><img src='/upload/user/"+data[i].profile_img+"' id='qna_profile'/>&emsp;";
+						tag += "<div class='studyboard_profile_reply' style='display:inline-block;'><img src='/upload/user/"+data[i].profile_img+"' id='studyboard_profile'/>&emsp;";
 						tag += data[i].user_nick;
 						if('${logPermission}'=='mentor'){
 							tag += "&nbsp;<img src='"+data[i].level_icon+"'style='width:20px; margin-right:10px;'/>"
 						}
-						tag += "</div>"; //qna_profile_reply
+						tag += "</div>"; //studyboard_profile_reply
 						//채택버튼
 						if(data[i].selected == 1){ //답변채택된 글일때
 							if('${logId}'== data[i].writer_id){	//로그인아이디가 작성자일때 > 채택취소
@@ -47,9 +47,9 @@
 						//댓글 내용, 좋아요
 						tag += "<div class='reply_bottom'>";
 						if(data[i].like_type == 0){
-							tag += "&emsp;&emsp;<span class='like_span' onclick='LikeUp("+data[i].reply_num+")'><img src='/images/like_0_sky.png' class='qna_like' />&nbsp;"+data[i].like_num+"</span>";
+							tag += "&emsp;&emsp;<span class='like_span' onclick='LikeUp("+data[i].reply_num+")'><img src='/images/like_0_sky.png' class='studyboard_like' />&nbsp;"+data[i].like_num+"</span>";
 						}else{
-							tag += "&emsp;&emsp;<span class='like_span' onclick='LikeDown("+data[i].reply_num+")'><img src='/images/like_1_sky.png' class='qna_like' />&nbsp;"+data[i].like_num+"</span>";
+							tag += "&emsp;&emsp;<span class='like_span' onclick='LikeDown("+data[i].reply_num+")'><img src='/images/like_1_sky.png' class='studyboard_like' />&nbsp;"+data[i].like_num+"</span>";
 						}
 						tag += "&emsp;&emsp;<div class='reply_content'>"+data[i].reply_coment;
 						
@@ -79,7 +79,7 @@
 									type:'POST',
 									success:function(r){
 										console.log(r);
-										qnaReplyList();
+										studyboardReplyList();
 										$("#reply_coment").val("");
 									},
 									error:function(error){
@@ -121,7 +121,7 @@
 										data:param,
 										type:'POST',
 										success:function(){
-											qnaReplyList();
+											studyboardReplyList();
 										}
 									})
 								})
@@ -134,19 +134,19 @@
 					
 				}
 			})//ajax
-		}//qnaReplyList
+		}//studyboardReplyList
 		
 	// 게시글 삭제===================================================================================================
 	function BoardDel(){
 		if(confirm("글을 삭제하시겠습니까?")){
-	   		location.href = "/board/boardDelete?board_num="+${vo.board_num};     
+	   		location.href = "/study/board/boardDelete?board_num="+${vo.board_num};     
 	    }
 	    return false;
 	}
 	// 게시글 수정폼으로 이동================================================================================================
 	function BoardEdit(){
 		if(confirm("글을 수정하시겠습니까?")){
-	   		location.href = "/qna/qnaEdit?board_num="+${vo.board_num};     
+	   		location.href = "/study/studyboard/studyboardEdit?board_num="+${vo.board_num};     
 	    }
 	    return false;
 	}
@@ -155,11 +155,11 @@
 		var param02 = {"reply_num":reply_num};
 		console.log(reply_num);
 		$.ajax({
-			url:'/qna/likeUp',
+			url:'/study/studyboard/likeUp',
 			data:param02,
 			type:'POST',
 			success:function(){
-				qnaReplyList();
+				studyboardReplyList();
 			}
 		});
 	}
@@ -168,11 +168,11 @@
 		var param03 = {"reply_num":reply_num};
 		console.log(reply_num);
 		$.ajax({
-			url:'/qna/likeDown',
+			url:'/studyboard/likeDown',
 			data:param03,
 			type:'GET',
 			success:function(){
-				qnaReplyList();
+				studyboardReplyList();
 			}
 		})
 	}
@@ -185,49 +185,19 @@
 				data:param04,
 				type:'GET',
 				success:function(){
-					qnaReplyList();
+					studyboardReplyList();
 				}
 			})
 		}
 	}
-	//답변 채택===================================================================================================
-	function SelectReply(reply_num){
-		if(confirm('답변을 채택하시겠습니까?')){
-			var param05 = {"reply_num":reply_num};
-			$.ajax({
-				url:'/qna/replySelect',
-				data:param05,
-				type:'POST',
-				success:function(){
-					qnaReplyList();
-				}
-			})
-		}
-	}
-	//답변 채택 취소===================================================================================================
-	function SelectReplyDel(reply_num){
-		if(confirm('답변채택을 취소하시겠습니까?')){
-			var param06 = {"reply_num":reply_num};
-			$.ajax({
-				url:'/qna/replySelectDel',
-				data:param06,
-				type:'POST',
-				success:function(){
-					qnaReplyList();
-				}
-			})
-		}
-	}
-	
-	//댓글 리스트 불러오기
-	qnaReplyList();
+
 </script>
 
-<div class='qna_back00'>
-	<img src='/images/back02.png' id="back_btn" onclick="location.href='/qna/qnaList'"/>
-	<div class='qna_back01'>
-		<div class='qna_back02'>
-					<div id="qna_title">
+<div class='studyboard_back00'>
+	<img src='/images/back02.png' id="back_btn" onclick="location.href='/study/studyboard/studyboardList'"/>
+	<div class='studyboard_back01'>
+		<div class='studyboard_back02'>
+					<div id="studyboard_title">
 						<div class="titleSection">${vo.title}</div>
 						<div class="tagBox">
 							<span class="tag_title"></span>
@@ -239,25 +209,25 @@
 							</c:forEach>
 							<br/>
 							<div class="titleSection_child">
-								<span id='qna_profile_span'><img src='/upload/user/${vo.profile_img}' id='qna_profile' />&nbsp;&nbsp;&nbsp;${vo.user_nick}</span>&emsp;&emsp;
+								<span id='studyboard_profile_span'><img src='/upload/user/${vo.profile_img}' id='studyboard_profile' />&nbsp;&nbsp;&nbsp;${vo.user_nick}</span>&emsp;&emsp;
 								<span>조회수&nbsp;: &nbsp;${vo.hit}</span>&emsp;&emsp;
 								<span>${vo.write_date}</span>&emsp;&emsp;
 							</div>
 						</div>
 					</div>
 						<hr/>
-					<div id="qna_content">
+					<div id="studyboard_content">
 						<div id='content_box'>${vo.content}</div>
 						
 					</div>						
-						<div id="qna_content_btn">
+						<div id="studyboard_content_btn">
 							<c:if test="${logId == vo.user_id}">
-								<div><span class='content_edit_btns' onclick="BoardEdit()">수정</span>&emsp;<span class='content_del_btns' onclick="BoardDel()">삭제</span></div>
+								<div><span class='content_edit_btns' onclick="BoardEdit()">글 수정</span>&emsp;<span class='content_del_btns' onclick="BoardDel()">글 삭제</span></div>
 							</c:if>
 						</div>
 		</div>
 		<c:if test="${logStatus=='Y'}">
-			<div class='qna_back04'>
+			<div class='studyboard_back04'>
 				<form method='post' id='replyWriteForm'>
 					<input type='hidden' name='board_num' id='board_num_box' value='${vo.board_num}'/>
 						<span><input type="text" name="reply_coment" class="graySquare" id="reply_coment"/></span>&emsp;
@@ -268,7 +238,7 @@
 		<div id='reply_div'>
 		</div>
 		<c:if test="${logStatus!='Y'}">
-			<div class='qna_back03'>
+			<div class='studyboard_back03'>
 					<ul class='reply_ul02'>
 						<li>로그인 후 댓글 등록이 가능합니다.</li>
 					</ul>

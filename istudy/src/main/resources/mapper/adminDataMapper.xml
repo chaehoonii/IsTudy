@@ -18,7 +18,7 @@
  	
  	<select id="get_new_member" resultType="UserVO">
  		select date_format(user.register_date, '%Y.%m') register_date , count(user_id) cnt
-		from user group by date_format(user.register_date, '%Y.%m') order by register_date asc
+		from user group by date_format(user.register_date, '%Y.%m') order by register_date desc limit 6
  	</select>
  
  </mapper>
