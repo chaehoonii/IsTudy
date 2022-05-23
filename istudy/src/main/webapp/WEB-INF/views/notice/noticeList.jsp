@@ -5,8 +5,10 @@
 <div class="noticeContainer">
 	<h1 class="noticeTitle">공지사항</h1>
 	<c:if test="${logPermission=='admin'}">
+	<div class="noticeBtnArea">
 		<button class="noticeBtn btn" onclick="window.location.href='/notice/noticeWrite'">공지사항 등록</button>
 		<br/>
+	</div>
 	</c:if>
 	<br />
 	<div class="noticeBoard">

@@ -17,8 +17,8 @@ public class StudyInfoServiceImpl implements StudyInfoService{
 	
 	// 스터디글 정보페이지
 	@Override
-	public List<StudyVO> studyHome(PagingVO vo) {
-		return dao.studyHome(vo);
+	public List<StudyVO> studyHome(PagingVO pvo) {
+		return dao.studyHome(pvo);
 	}
 	public List<String> studyLang(int study_num){
 		return dao.studyLang(study_num);
@@ -35,8 +35,7 @@ public class StudyInfoServiceImpl implements StudyInfoService{
 		return dao.studyPeople(study_num);
 	}
 	@Override
-	public int totalRecord(PagingVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int totalRecord(int study_type_num) {
+		return dao.totalRecord(study_type_num);
 	}
 }
