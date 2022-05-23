@@ -4,24 +4,25 @@
 #category_box{
 	float:left;
 	width:20%;
-	height:100vh;
-	
-	padding:20px;
+	height:108vh;
+	padding:40px;
+	background-color:rgb(230,223,215);
+	color:rgba(0,0,0,70%);
+	position:relative;
 	margin-top:60px;
-	border:1px solid black;
+}
+#categoryt_box input{
+	border:none;
+}
+#category_box h2{
+	font-weight:900;
 }
 #category_top{
 	margin-bottom:20px;
 }
-#category_top p{
-	padding-bottom: 20px; 
-	font-size: 20px;
-}
-#first_menu{
-	margin-top:15px;
-}
-#s_date{
-	float:left;
+.first_menu{
+	margin-bottom:40px;
+	clear:both;
 }
 #stype1{
 	float:left;
@@ -29,46 +30,96 @@
 #sstatus1{
 	float:left;
 }
-#second_menu li{
-	font-size:20px;
-	vertical-align:2px;
+.second_menu, .second_menu01{
+	overflow:auto;
+	margin-top:15px;
+}
+.second_menu01{
+	width:50%;
+	font-size:15px;
+}
+.second_menu li{
+	width:50%;
+	float:left;
+	font-size:15px;
 }
 #second_menu input {
 	vertical-align:2px;
 }
+/*스터디 기간*/
+#datepicker1, #datepicker2{
+	border:none;
+	border-radius:10px;
+	width:40%;
+	height:30px;
+	text-align:center;
+	font-size:14px;
+	font-weight:600;
+	color:rgba(0,0,0,60%);
+}
+/*스터디 언어*/
+#langList, #searchWord{
+	border:none;
+	border-radius:10px;
+	width:70%;
+	height:30px;
+	color:rgba(0,0,0,60%);
+	font-size:14px;
+	font-weight:600;
+	text-align:center;
+	margin:15px 0px;
+}
+/*스터디 검색*/
+#searchWord{
+	padding-left:10px;
+}
+#studySearchBtn{
+	width:50px;
+	height:30px;
+	border:none;
+	border-radius:10px;
+	background-color:rgba(85, 76, 66, 70%);
+	color:white;
+	font-size:16px;
+	font-weight:700;
+	margin-left:10px;
+}
 /* =====================스터디 목록============================== */
 #study_list{
-	width:77%;
+	width:60%;
+	height:97vh;
 	float:right;
-	margin-top:60px;
-	margin-bottom:60px;
+	margin-top:150px;
+	margin-right:10%;
 }
 .info{
 	display:flex;
 	flex-flow:row nowrap;
 	justify-content:space-around;
 	width:100%;
-	height:210px;
+	height:160px;
 	line-height:50px;
+	transition:0.5s;
+}
+.info:hover{
+	background-color:rgba(85, 76, 66, 30%);
 }
 .simg{
-	width:200px;
-	height:200px;
-	padding:10px;
-  	margin-top:20px;
-  	margin-right:30px;
+	margin-top:3px;
 }
-.simg img{
-	width:100%; 
-	object-fit:cover; 
-	height:200px;
+.img-thumbnail{
+	width:200px;
+	height:150px;
 }
 .sinfo{
 	width:73%;
-	height:200px;
+	height:160px;
 	padding:10px;
-  	margin-top:20px;
 	font-size:15px;
+}
+.sname, .smentor{
+	font-size:1.2em;
+	font-weight:800;
 }
 .sid{		
 	/* margin-right:190px; */
@@ -102,17 +153,16 @@
 	right:0;
 }
 .mbutton{
-	background-color:rgb(230,223,215);
 	border: none;
-	color:rgba(85, 76, 66, 80%);
-	padding: 5px 10px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
 	border-radius: 5px;
 	cursor: pointer;
+	background-color:rgb(230, 223, 215);
+	color:rgba(85, 76, 66, 80%);
+	font-size:16px;
+	font-weight:700;
 }
 
 input[type=checkbox]{
@@ -122,6 +172,8 @@ input[type=checkbox]{
 /* =====================페이징============================== */
 .pagingContainer{
     margin:0 auto;
+    margin-top:40px !important;
+    margin-bottom:20px !important;
 }
 .page-link{
     border:none !important;
@@ -136,21 +188,29 @@ input[type=checkbox]{
 
 /* =====================스터디 등록 버튼============================== */
 #study_register{
+	text-align:right;
+	margin-bottom:10px;
+}
+#studyTitle{
+	text-align:center;
+	font-family: 'ROKAFSansBold' !important;
+	font-size:3em;
 	position:absolute;
-	bottom:200;
-	left:0;
-	padding:20px;
+	top:100px;
+	left:47%;
+	z-index:1000;
 }
 #rbutton{
-	background-color:rgb(230, 223, 215);
 	border: none;
-	color:rgba(85, 76, 66, 80%);
-	padding: 15px 30px;
+	padding: 10px 20px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
 	border-radius: 5px;
 	cursor: pointer;
+	background-color:rgba(85, 76, 66, 70%);
+	color:white;
+	font-size:16px;
+	font-weight:700;
+	margin-right:30px;
 }

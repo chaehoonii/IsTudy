@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	<div class="menuWrap">
 		<nav id="menu">
 			<ul class="category_list">
-				<li class="listStyle"><a href="/study/study_home">스터디 구하기</a></li>
+				<li class="listStyle"><a href="/study/study_home?pageNum=1">스터디 구하기</a></li>
 				<li class="listStyle"><a href="/qna/qnaList?pageNum=1">Q & A</a></li>
 				<li class="listStyleLast"><a href="/notice/noticeList?pageNum=1">공지사항</a></li>
 			</ul>
