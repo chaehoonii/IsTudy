@@ -13,7 +13,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <!-- 카테고리 스터디 기간에 사용 -->
-
+<style>
+.person_img{
+	width:30px;
+}
+</style>
 <script>
 	// datepicker 한글 설정
 	$.datepicker.setDefaults({
@@ -246,7 +250,15 @@
 					<c:if test="${vo.is_mentor=='T'}">멘토</c:if>
 					<c:if test="${vo.is_mentor=='F'}">일반</c:if>
 				</span>
-				<span class="smax">${vo.in_people}/${vo.max}</span>
+				<span class="smax">
+								
+				<c:forEach var ="i" begin="${1}" end="${vo.in_people}">
+					<img src='/images/study_info/person_1.png' class='person_img'/>
+				</c:forEach>
+				<c:forEach var ="i" begin="${1}" end="${vo.remain}">
+					<img src='/images/study_info/person_0.png' class='person_img'/>
+				</c:forEach>
+				</span>
 				<span class="sname">${vo.study_type_name}</span><br/>
 				<span class="sdate">${vo.start_date} ~ ${vo.finish_date}</span>
 				<c:forEach var="lang_list" items="${vo.lang_list}" end="2">
@@ -266,6 +278,12 @@
 		<hr>
 	</c:forEach>
 </div>
+
+<!-- 스터디 등록 버튼 -->
+<div id="study_register">
+	<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister/studyregister_0';" value="스터디 등록">
+</div>
+<div style="clear:both"></div>
 <div class="pagingContainer">
 	<ul class="pagination justify-content-center" id="paging">
     	<c:if test="${pvo.pageNum==1}">
@@ -273,7 +291,7 @@
         </c:if>
         <c:if test="${pvo.pageNum>1}">
             <li class="page-item">
-            	<a class="page-link" href="/study/studyHome?pageNum=${pvo.pageNum-1}" id="prevBtn">
+            	<a class="page-link" href="/study/study_home?pageNum=${pvo.pageNum-1}" id="prevBtn">
             		<i class="fa fa-angle-left"></i>
             	</a>
             </li>
@@ -285,7 +303,7 @@
             			<li class="page-item disabled"><a class="page-link">${p}</a></li>
                     </c:when>
                     <c:when test="${p!=pvo.pageNum}">
-                        <li class="page-item"><a class="page-link" href="/study/studyHome?pageNum=${p}">${p}</a></li>
+                        <li class="page-item"><a class="page-link" href="/study/study_home?pageNum=${p}">${p}</a></li>
                     </c:when>
                 </c:choose>
             </c:if>
@@ -299,7 +317,7 @@
       	</c:if>
         <c:if test="${pvo.pageNum<pvo.totalPage}">
             <li class="page-item">
-            	<a class="page-link" href="/study/studyHome?pageNum=${pvo.pageNum+1}" id="nextBtn">
+            	<a class="page-link" href="/study/study_home?pageNum=${pvo.pageNum+1}" id="nextBtn">
             		<i class="fa fa-angle-right"></i>
             	</a>
             </li>

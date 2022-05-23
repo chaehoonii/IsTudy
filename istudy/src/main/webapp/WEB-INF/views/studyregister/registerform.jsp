@@ -18,18 +18,21 @@
 	
 	
 	$(".r_button").on('click', function() {
-		
+		// 사용언어 name 셋팅
+		$(".o_container input[type=hidden]").attr("name",'lang_type_name');
 		//필수 데이터 입력 여부
 		let study_name = document.getElementById("study_name");
 		let study_type_num = $("#register_form input[name='study_type_num']:checked").val();
 		let study_img = $("#register_form input[name='study_img']").val();
 		let study_rule = document.getElementById("caution_text");
+		let study_content1 = document.getElementById("info_1");
+		let study_content2 = document.getElementById("info_2");
 		let start_date = document.getElementById("todayDate");
 		let finish_date = document.getElementById("final_date");
-		let lang_type_name = $("#register_form input[name='lang_type_name']").val();
+
 		
 		//스터디 이름 
-		var regname = /^[가-힣a-zA-Z0-9]{1,20}$/;
+		var regname = /^[ㄱ-ㅎ가-힣a-zA-Z0-9]{1,20}$/;
 
 		if (!regname.test(study_name.value)) {
 			alert("스터디 이름을 20자리 이하로 만들어주세요.");
@@ -58,15 +61,11 @@
 		}
 		
 		//스터디 내용
-		var study_content1 = $('#info_1').val();
-
 		if($('#info_1').val() == "") {
 			alert("스터디 내용을 입력해주세요!");
     		$("#info_1").focus();
     		return;
 		}
-		
-		var study_content2 = $('#info_2').val();
 
 		if($('#info_2').val() == "") {
 			alert("스터디 상세내용을 입력해주세요!");
@@ -88,14 +87,16 @@
 			return false;
 		}
 		//스터디 사용 언어
-		if($('#seleted_lang') == null) {
-			alert("123!");
+		console.log($('.o_container input').length);
+		if($('.o_container input').length == null) {
+			alert("123");
+
     		return;
 		}
 		
 
 		if(confirm('글을 등록하시겠습니까?')){
-			$("#sub_register_form").submit();
+			$("#register_form").submit();
 		}				
 		
 	})
@@ -243,74 +244,74 @@
 		<div class="study_language">
 			<h3>▶스터디 사용 언어</h3>
 			<div class="ox_container">
-			<div class="o_container" id="selected_lang" name="selected_lang">
+			<div class="o_container" name="selected_lang">
 				<p>사용하는 언어<p>		
 			</div>
 			<div class="x_container">
 			<p>사용하지 않는 언어<p>
-				<div class="draggable" draggable="true" >
+				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="1">HTML</div>
+					<input type="hidden" class="el" value="1"/>HTML
+				</div>
+				<div class="draggable" draggable="true" value='2'>
+					<span class="ico-drag"></span>
+					<input type="hidden" class="el" value="2"/>CSS
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="2">CSS</div>
+					<input type="hidden" class="el" value="3"/>JavaScript
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="3">JavaScript</div>
+					<input type="hidden" class="el" value="4"/>Python
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="4">Python</div>
+					<input type="hidden" class="el" value="5"/>Java
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="5">Java</div>
+					<input type="hidden" class="el" value="6"/>C++
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="6">C++</div>
+					<input type="hidden" class="el" value="7"/>Kotlin
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="7">Kotlin</div>
+					<input type="hidden" class="el" value="8"/>Swift
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="8">Swift</div>
+					<input type="hidden" class="el" value="9"/>PHP
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="9">PHP</div>
+					<input type="hidden" class="el" value="10"/>Go
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="10">Go</div>
+					<input type="hidden" class="el" value="11"/>C#
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="11">C#</div>
+					<input type="hidden" class="el" value="12"/>SQL
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="12">SQL</div>
+					<input type="hidden" class="el" value="13"/>Scala
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="13">Scala</div>
+					<input type="hidden" class="el" value="14"/>R
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="14">R</div>
+					<input type="hidden" class="el" value="15"/>Bash
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="15">Bash</div>
-				</div>
-				<div class="draggable" draggable="true">
-					<span class="ico-drag"></span>
-					<div class="el" name="lang_type_name" value="16">Shell</div>
+					<input type="hidden" class="el" value="16"/>Shell
 				</div>
 			</div>
 			<script src="/js/studyregister/dragDrop.js"></script>

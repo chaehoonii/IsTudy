@@ -8,7 +8,7 @@
 <select id="TotalStudyBoardList" resultType="int">
 	SELECT 	COUNT(board_num) AS total_studyBoard
 	FROM 	board 
-	WHERE 	board_type_num=1
+	WHERE 	board_type_num=1 and study_num=#{param1}
 </select>
 <select id="StudyBoardList" resultType="BoardVO">
 	SELECT 	  A.*, B.*, IFNULL(C.count_reply,0) AS count_reply
@@ -17,7 +17,33 @@
     ON 		  A.user_id=B.user_id
     LEFT JOIN (SELECT board_num,COUNT(reply_num) AS count_reply FROM reply GROUP BY board_num) C
     ON		  C.board_num=A.board_num
-	WHERE 	  A.board_type_num=1
+	WHERE 	  A.board_type_num=1 and study_num=#{param1}
 	ORDER BY  board_num DESC
+	LIMIT 3
 </select>
+<select id="StudyBoardView" resultType="BoardVO">
+	SELECT 	  A.board_num, A.board_type_num, A.hit, A.title, A.content, DATE_FORMAT(A.write_date, '%Y-%m-%d') AS write_date, 
+			  B.user_id, B.user_nick, B.profile_img, count(case when C.selected=1 then 1 end) as solved,
+			  E.file1, E.file2, E.file3, E.file4
+	FROM 	  board A
+    LEFT JOIN user B
+    ON 		  A.user_id=B.user_id
+    LEFT JOIN reply C
+    on		  C.board_num = A.board_num
+    LEFT JOIN board_image E
+    on		  E.board_num = A.board_num
+	WHERE 	  A.board_num=#{param1}
+</select>
+<!-- 좋아요 누르기 -->
+<insert id='LikeUp'>
+	INSERT reply_like(user_id, reply_num) 
+	VALUES(#{param1}, #{param2});
+</insert>
+<!-- 좋아요 취소 -->
+<delete id='LikeDown'>
+	DELETE 	FROM reply_like
+	WHERE 	user_id=#{param1}
+	AND		reply_num=#{param2}
+</delete>
+
 </mapper>

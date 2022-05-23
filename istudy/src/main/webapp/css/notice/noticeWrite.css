@@ -1,7 +1,8 @@
 .noticeWriteContainer{
 	margin:0 auto;
 	margin-top:100px;
-	height:79.8vh;
+	height:85%;
+	min-height:800px;
 	text-align:center;	
 	position:relative;
 }
@@ -39,14 +40,15 @@
 }
 .ck-editor__editable{
 	max-width:1000px;
-	min-height:500px;
+	min-height:550px;
 }
 .registBtn{
 	width:100px;
 	height:40px;
-	font-size:1.5em;
 	letter-spacing:1px;
-	background-color:rgba(85, 76, 66, 80%);
-	color:white;
 	border-radius:10px;
+	background-color:rgb(230, 223, 215);
+	color:rgba(85, 76, 66, 80%);
+	font-size:16px;
+	font-weight:700;
 }
