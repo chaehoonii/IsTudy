@@ -71,8 +71,8 @@
 	</select>
 	<!-- 댓글 작성 -->
 	<insert id='applyWrite'>
-		INSERT 	study_mate(study_num, user_id, want_coment, ip) 
-		VALUES	(#{study_num}, #{user_id}, #{want_coment}, #{ip})
+		INSERT 	study_mate(study_num, user_id, want_coment) 
+		VALUES	(#{study_num}, #{user_id}, #{want_coment})
 	</insert>
 	<!-- 댓글 삭제 -->
 	<delete id="applyDel">
@@ -89,6 +89,18 @@
 	<update id="applyEditOk">
 		UPDATE 	study_mate 
 		SET 	want_coment=#{want_coment} 
+		WHERE 	want_num=#{want_num}
+	</update>
+	<!-- 신청 수락 -->
+	<update id="ApplySelect">
+		UPDATE 	study_mate 
+		SET 	want_ok='T' 
+		WHERE 	want_num=#{want_num}
+	</update>
+	<!-- 스터디원 강퇴 -->
+	<update id="ApplySelectDel">
+		UPDATE 	study_mate 
+		SET 	want_ok='F' 
 		WHERE 	want_num=#{want_num}
 	</update>
 </mapper>

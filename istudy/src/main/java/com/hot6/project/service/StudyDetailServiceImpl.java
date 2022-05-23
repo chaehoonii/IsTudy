@@ -68,4 +68,12 @@ public class StudyDetailServiceImpl implements StudyDetailService{
 	public List<StudyVO> applyList(int study_num) {
 		return dao.applyList(study_num);
 	}
+	@Override
+	public int ApplySelect(int want_num) {
+		return dao.ApplySelect(want_num);
+	}
+	@Override
+	public int ApplySelectDel(int want_num) {
+		return dao.ApplySelectDel(want_num);
+	}
 }

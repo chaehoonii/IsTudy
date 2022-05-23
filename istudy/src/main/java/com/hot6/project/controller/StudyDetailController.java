@@ -87,7 +87,7 @@ public class StudyDetailController{
 	@RequestMapping(value = "/study/applyWrite", method = RequestMethod.POST)
 	public int applyWrite(StudyVO vo, HttpSession session, HttpServletRequest request) {
 		vo.setUser_id((String) session.getAttribute("logId"));
-		vo.setIp(request.getRemoteAddr()); // 접속자 아이피
+		System.out.println(vo);
 		int Chk = service.applyWrite(vo);
 		return Chk;
 	}
@@ -95,7 +95,6 @@ public class StudyDetailController{
 	@ResponseBody // Ajax
 	@RequestMapping(value = "/study/applyDel", method = RequestMethod.GET)
 	public int applyDel(@RequestParam("want_num") int want_num) {
-		String user_id = service.getIdByWantnum(want_num);
 		int Chk = service.applyDel(want_num);
 		return Chk;
 	}
@@ -110,5 +109,19 @@ public class StudyDetailController{
 	@RequestMapping(value = "/study/applyEditOk", method = RequestMethod.POST)
 	public int applyEditOk(StudyVO vo) {
 		return service.applyEditOk(vo);
+	}
+	//답변 채택
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/study/applySelect", method = RequestMethod.POST)
+	public int replySelect(@RequestParam("want_num") int want_num) {
+		int Chk = service.ApplySelect(want_num);
+		return Chk;
+	}
+	//답변 채택 취소
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/study/applySelectDel", method = RequestMethod.POST)
+	public int replySelectDel(@RequestParam("want_num") int want_num) {
+		int Chk = service.ApplySelectDel(want_num);
+		return Chk;
 	}
 }
