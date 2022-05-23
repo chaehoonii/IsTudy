@@ -8,7 +8,7 @@
 		from study_room where study_num=#{param1}
 	</select>
 	<select id="studyuser" resultType="StudyVO">
-		select A.want_ok, A.want_coment, B.user_id, B.profile_img
+		select A.want_ok, A.want_coment, B.user_nick, B.profile_img
 		from study_mate A join user B on A.user_id=B.user_id 
 		where study_num=#{param1} and want_ok="T" 
 		<!-- SELECT 	A.want_ok, A.want_coment, B.user_id, B.user_nick
@@ -32,14 +32,33 @@
 		from study_room where study_num=#{param1}
 	</select>
 	<select id="mateList" resultType="StudyVO">
-		SELECT 	A.user_nick, IFNULL(C.contribute,0) AS contribute
-		FROM 	user A
-		JOIN 	study_mate B
-		ON 		A.user_id=B.user_id
-        JOIN	(SELECT user_id, count(*) AS contribute FROM board WHERE study_num=#{param1} GROUP BY user_id) C
-        ON		C.user_id=A.user_id
-        WHERE 	study_num=#{param1}
-        AND		B.want_ok='T'
+		select A.user_id, B.user_nick, IFNULL(C.contribute,0) AS contribute
+        from study_mate A
+        join user B
+        on A.user_id=B.user_id
+        join (select user_id, count(board_num) AS contribute from board where study_num=#{param1} group by user_id) C
+        on C.user_id = A.user_id
+        group by C.user_id 
         ORDER BY contribute DESC
 	</select>
+	<!-- 좋아요 누르기 -->
+	<insert id='LikeUp'>
+	    insert study_like(user_id, study_num) values (#{param1}, #{param2})
+	</insert>
+	<!-- 좋아요 취소 -->
+	<delete id='LikeDown'>
+	   	delete from study_like
+	   	where user_id=#{param1} and study_num=#{param2}
+	</delete>
+	<select id="LikeDetail" resultType="StudyVO">
+		SELECT 	 B.user_id, C.study_num,
+					COUNT( case when ifnull(C.user_id, 0)= #{param1} then 1 end) AS like_type,
+					COUNT(C.user_id) AS like_num
+		from	user B
+		LEFT JOIN 	study_like C
+		ON			B.user_id=C.user_id
+		WHERE 		C.study_num = #{param2}
+		GROUP BY 	C.study_num;
+	</select>
+	
 </mapper>

@@ -18,6 +18,8 @@ public class StudyVO {
 	private String is_mentor;
 	private int in_people;	//현재 스터디원 수(select count)
 	private int remain;	//남은 인원
+	private String study_content1;
+	private String study_content2;
 	
 	//user
 	private String profile_img;
@@ -54,14 +56,30 @@ public class StudyVO {
 	//study_hashtag
 	private String tag;
 	
+	private int like_num;
+	private int like_type;
+	
 	private List<String> lang_list;
 	private List<String> tag_list;
 	
 	//데이터랩-> 인기 있는 스터디 (좋아요 수)
 	private int cnt;
 	
+
 	
-	
+	public String getStudy_content1() {
+		return study_content1;
+	}
+	public void setStudy_content1(String study_content1) {
+		this.study_content1 = study_content1;
+	}
+	public String getStudy_content2() {
+		return study_content2;
+	}
+	public void setStudy_content2(String study_content2) {
+		this.study_content2 = study_content2;
+	}
+
 	public int getContribute() {
 		return contribute;
 	}
@@ -291,5 +309,33 @@ public class StudyVO {
 	public void setProfile_img(String profile_img) {
 		this.profile_img = profile_img;
 	}
-
+	
+	public int getLike_num() {
+		return like_num;
+	}
+	public void setLike_num(int like_num) {
+		this.like_num = like_num;
+	}
+	public int getLike_type() {
+		return like_type;
+	}
+	public void setLike_type(int like_type) {
+		this.like_type = like_type;
+	}
+	
+	@Override
+	public String toString() {
+		return "StudyVO [study_num=" + study_num + ", study_name=" + study_name + ", study_rule=" + study_rule
+				+ ", study_img=" + study_img + ", study_write=" + study_write + ", study_write_date=" + study_write_date
+				+ ", start_date=" + start_date + ", finish_date=" + finish_date + ", ip=" + ip + ", max=" + max
+				+ ", host_id=" + host_id + ", is_mentor=" + is_mentor + ", in_people=" + in_people + ", remain="
+				+ remain + ", profile_img=" + profile_img + ", color_num=" + color_num + ", color_name=" + color_name
+				+ ", study_type_num=" + study_type_num + ", study_type_name=" + study_type_name + ", lang_type_num="
+				+ lang_type_num + ", lang_type_name=" + lang_type_name + ", want_num=" + want_num + ", user_id="
+				+ user_id + ", user_nick=" + user_nick + ", want_ok=" + want_ok + ", want_coment=" + want_coment
+				+ ", contribute=" + contribute + ", plan_num=" + plan_num + ", plan_name=" + plan_name
+				+ ", plan_detail=" + plan_detail + ", plan_start=" + plan_start + ", plan_finish=" + plan_finish
+				+ ", start_time=" + start_time + ", finish_time=" + finish_time + ", tag=" + tag + ", lang_list="
+				+ lang_list + ", tag_list=" + tag_list + ", cnt=" + cnt + "]";
+	}
 }

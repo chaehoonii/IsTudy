@@ -7,9 +7,10 @@
 	</select>
 	<insert id='studyInsert'>
 		INSERT study_room(study_type_num, study_name, study_rule, study_img,
-		start_date, finish_date, max, ip, is_mentor, host_id)		
-		VALUES(#{study_type_num}, #{study_name}, #{study_rule}, #{study_img},
-		#{start_date}, #{finish_date}, #{max}, #{ip}, #{is_mentor}, #{host_id}) 
+		start_date, finish_date, max, ip, is_mentor, host_id, study_content1, study_content2)		
+		VALUES(#{param1.study_type_num}, #{param1.study_name}, #{param1.study_rule}, #{param1.study_img},
+		#{param1.start_date}, #{param1.finish_date}, #{param1.max}, #{param1.ip}, #{param1.is_mentor}, #{param1.host_id}, 
+		#{param1.study_content1}, #{param1.study_content2}) 
 	</insert>
 	<insert id='studyLangInsert'>
 	INSERT  study_lang_type(study_num, lang_type_num) 
@@ -18,11 +19,11 @@
  		(#{study_num}, #{item})
  	</foreach>		
 	</insert>
-	<insert id='studyTagInsert'>
+	<!-- <insert id='studyTagInsert'>
 	INSERT study_hashtag(study_num, tag) 
 	VALUES  
 	<foreach collection="tag_list" item="item" separator=",">
         (#{study_num}, #{item})
     </foreach>
-</insert>
+</insert> -->
 </mapper>

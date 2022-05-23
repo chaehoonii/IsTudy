@@ -3,8 +3,6 @@
 
 <title>스터디 정보 페이지</title>'
 
-<link rel="stylesheet" href="/css/studyhome/studyhome.css" type="text/css" />
-<!-- <link rel="stylesheet" href="/js/study/studyhome.js" type="text/js" /> -->
 
 <!-- DatePicker File import -->
 <!-- jQuery UI CSS파일 -->
@@ -12,6 +10,10 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+<link rel="stylesheet" href="/css/studyhome/studyhome.css" type="text/css" />
+<script src="/js/studyhome/studyhome.js"></script>
+
 <!-- 카테고리 스터디 기간에 사용 -->
 <style>
 .person_img{
@@ -116,9 +118,7 @@
 		//document.getElementById('study_list').innerText= result;
 	}
 	function ajaxSend(param, value){
-		//alert(typeof value)
-		data=$('#frm').serialize()
-		alert(data)
+		data=$('#frm').serialize();
 		$.ajax({
 			type: 'POST',
 			url: '/study/study_home2',
@@ -129,42 +129,43 @@
 					$('#study_list').html(tag)
 					
 				}else{
-				//alert(JSON.stringify(value))
-				var tag='';
-				//alert(value.length)
-				//console.log(JSON.stringify(value))
-				$(value).each(function(idx, vo){
-					tag+='<div class="info">'
-					tag+=	'<div class="simg">'
-					tag+=		'<img src="/images/study_info/'+vo.study_img+ '" class="img img-thumbnail">'
-					tag+=	'</div>'
-					tag+=	'<div class="sinfo">'
-					tag+=		'<span class="sname">'+vo.study_name+'</span><br/>'	
-					tag+=		'<span class="sid">'+vo.host_id+'</span>'	
-					tag+=		'<span class="smentor">'
-					tag+=			'<c:if test="${'+vo.is_mentor+'=='T'}">멘토</c:if>'
-					tag+=			'<c:if test="${'+vo.is_mentor+'=='F'}">일반</c:if>'
-					tag+=		'</span>'	
-					tag+=		'<span class="smax">'+vo.in_people+'/'+vo.max+'</span>'	
-					tag+=		'<span class="sname">'+vo.study_type_name+'</span><br/>'
-					tag+=		'<span class="sdate">'+vo.start_date+ '~'+vo.finish_date+'</span>'
-					$(vo.lang_list).each(function(i, lang){
-						tag+=			'<span class="lang_list">&nbsp;'+lang+'&nbsp;</span>&nbsp;'
+
+					//alert(JSON.stringify(value))
+					var tag='';
+					//alert(value.length)
+					//console.log(JSON.stringify(value))
+					$(value).each(function(idx, vo){
+						tag+='<div class="info">'
+						tag+=	'<div class="simg">'
+						tag+=		'<img src="/upload/study_room/'+vo.study_img+ '" class="img img-thumbnail">'
+						tag+=	'</div>'
+						tag+=	'<div class="sinfo">'
+						tag+=		'<span class="sname">'+vo.study_name+'</span><br/>'	
+						tag+=		'<span class="sid">'+vo.host_id+'</span>'	
+						tag+=		'<span class="smentor">'
+						tag+=			'<c:if test="${'+vo.is_mentor+'=='T'}">멘토</c:if>'
+						tag+=			'<c:if test="${'+vo.is_mentor+'=='F'}">일반</c:if>'
+						tag+=		'</span>'	
+						tag+=		'<span class="smax">'+vo.in_people+'/'+vo.max+'</span>'	
+						tag+=		'<span class="sname">'+vo.study_type_name+'</span><br/>'
+						tag+=		'<span class="sdate">'+vo.start_date+ '~'+vo.finish_date+'</span>'
+						$(vo.lang_list).each(function(i, lang){
+							tag+=			'<span class="lang_list">&nbsp;'+lang+'&nbsp;</span>&nbsp;'
+						})
+						$(vo.tag_list).each(function(t, tg){
+							tag+=	'<span class="tag_list">&nbsp;'+tg+'&nbsp;</span>&nbsp;'
+							/* console.log("*************************")
+							console.log(tag)
+							console.log("*************************") */
+						})
+						
+						tag+=	'</div>'
+						tag+='</div>'
+						//alert(tag)
+						//console.log(tag)
+						//console.log("*************************")
 					})
-					$(vo.tag_list).each(function(t, tg){
-						tag+=	'<span class="tag_list">&nbsp;'+tg+'&nbsp;</span>&nbsp;'
-						/* console.log("*************************")
-						console.log(tag)
-						console.log("*************************") */
-					})
-					
-					tag+=	'</div>'
-					tag+='</div>'
-					//alert(tag)
-					//console.log(tag)
-					//console.log("*************************")
-				})
-				$('#study_list').html(tag)
+					$('#study_list').html(tag)
 				}
 			},
 			error:function(e){
@@ -173,32 +174,32 @@
 		})
 	}
 </script>
-
 <div id="category_box">
 	<form id="frm">
 		<div id="category_top">
 			<p>카테고리</p>
+
 			<c:choose>
 				<c:when test="${param.user_nick !=null || param.user_nick != ''}">
-					<input type="text" name="SEARCH" placeholder="SEARCH" value="${user_nick}"> 
+					<input type="text" name="searchWord"  id='searchWord' placeholder="SEARCH" value="${user_nick}"> 
 				</c:when>
 				<c:otherwise>
-					<input type="text" name="SEARCH" placeholder="SEARCH"> 
+					<input type="text" name="searchWord"  id='searchWord' placeholder="SEARCH"> 
 				</c:otherwise>				
 			</c:choose>
 			<button type="submit">검색</button>
 		</div>
 		
-		<div id="first_menu"> 
+		<div class="first_menu"> 
 			<h1>스터디 종류</h1>
-			<ul id="second_menu">
+			<ul class="second_menu">
 				<li><label for="stype1"><input type="checkbox" name="stype" id="stype1" value="T" onclick="getTypeValue()" style="margin-right:10px;">멘토</label></li>
 				<li><label for="stype2"><input type="checkbox" name="stype" id="stype2" value="F" onclick="getTypeValue()">일반</label></li>
 			</ul>
 		</div>
-		<div id="first_menu"> 
+		<div class="first_menu"> 
 			<h1>스터디 분류</h1>
-			<ul id="second_menu">
+			<ul class="second_menu">
 				<li><label for="sclass1"><input type="checkbox" name="sclass" id="sclass1" value="Frontend" onclick="getClassValue()">프론트엔드</label></li>
 				<li><label for="sclass2"><input type="checkbox" name="sclass" id="sclass2" value="Backend" onclick="getClassValue()">백엔드</label></li>
 				<li><label for="sclass3"><input type="checkbox" name="sclass" id="sclass3" value="Algorithm" onclick="getClassValue()">알고리즘</label></li>
@@ -206,14 +207,14 @@
 				<li><label for="sclass5"><input type="checkbox" name="sclass" id="sclass5" value="English" onclick="getClassValue()">영어</label></li>
 			</ul>
 		</div>
-		<div id="first_menu"> 
+		<div class="first_menu"> 
 			<h1>스터디 상태</h1>
-			<ul id="second_menu">
+			<ul class="second_menu">
 				<li id="sstatus"><label for=sstatus1><input type="checkbox" name="status" id="sstatus1" value="1" onclick="getStatusValue()">모집</label></li>
 				<li><label for=sstatus2><input type="checkbox" name="status" id="sstatus2" value="0" onclick="getStatusValue()">마감</label></li>
 			</ul>
 		</div>
-		<div id="first_menu"> 
+		<div class="first_menu"> 
 			<h1>스터디 언어</h1>
 			<select id="langList">
 				<c:forEach var="vo" items="${langList}">
@@ -222,7 +223,7 @@
 				</c:forEach>
 			</select>
 		</div>
-		<div id="first_menu"> 
+		<div class="first_menu"> 
 			<h1>스터디 기간</h1>
 				<%-- <p><input type="date" id="s_date" min="${start_date}" ></p>
 		      	<input type="hidden" value="apply" name="status">
@@ -233,19 +234,22 @@
 				  <input type="text" id="datepicker2" onclick="getDateValue()">
 				</p>
 		</div>
+		<!-- 스터디 등록 버튼 -->
+		<div id="study_register">
+			<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister';" value="스터디 등록하기">
+		</div>
 	</form>
-	
 </div>
 <div id="study_list">
 	<c:forEach var="vo" items="${studyhome}">
 	<!-- 반복문 안에서는 id x class o -->
 		<div class="info">
 			<div class="simg">
-				<img src="/images/study_info/${vo.study_img}" class="img img-thumbnail">
+				<img src="/upload/study_room/${vo.study_img}" class="img img-thumbnail">
 			</div>
 			<div class="sinfo">
 				<span class="sname">${vo.study_name}</span><br/>
-				<span class="sid">${vo.host_id}</span>
+				<span class="sid">${vo.user_nick}</span>
 				<span class="smentor">
 					<c:if test="${vo.is_mentor=='T'}">멘토</c:if>
 					<c:if test="${vo.is_mentor=='F'}">일반</c:if>

@@ -37,17 +37,20 @@ public class StudyRegisterController {
 
 ////////////////////////////////////////스터디 등록/////////////////////////////////////////////
 	@PostMapping("studyRegisterOk")
-	public ResponseEntity<String> studyRegisterOk(StudyVO vo,@RequestParam("study_img") MultipartFile study_img, HttpServletRequest request, HttpSession session) {
+	public ResponseEntity<String> studyRegisterOk(StudyVO vo,@RequestParam("mstudy_img") MultipartFile mstudy_img, HttpServletRequest request, HttpSession session) {
 		vo.setIp(request.getRemoteAddr());//접속자 IP
 		//글쓴이-session로그인 아이디를 구한다
 		vo.setHost_id((String)request.getSession().getAttribute("logId"));
+		vo.setIs_mentor("T"); //로직 처리 필요함
+		
 		ResponseEntity<String> entity =null;
 		
 		String pathName;
 		
 		// 프로필 이미지 설정 X -> profile 자동설정
-				if (study_img.isEmpty()) {
+				if (mstudy_img.isEmpty()) {
 					pathName = "study_default.png";
+					vo.setStudy_img(pathName);
 					int cnt = service.studyInsert(vo, pathName);
 					session.setAttribute("logImg", pathName);
 					String msg = "<script>";
@@ -62,24 +65,16 @@ public class StudyRegisterController {
 					service.studyLangInsert(vo); // 언어
 				}
 
-				List<String> taglist = vo.getTag_list();
-				if (taglist.size() != 0) {
-					// 태그 공백제거
-					for (int i = 0; i < taglist.size(); i++) {
-						String tag = taglist.get(i).trim(); // 공백제거한 태그
-						System.out.println(tag);
-						if (tag.equals("")) {
-							taglist.remove(i); // 비어있는 태그 지우기
-							i--;
-						} else {
-							taglist.set(i, tag);
-						}
-					}
-					service.studyTagInsert(vo); // 태그
-				}
-
+				/*
+				 * List<String> taglist = vo.getTag_list(); if (taglist.size() != 0) { // 태그
+				 * 공백제거 for (int i = 0; i < taglist.size(); i++) { String tag =
+				 * taglist.get(i).trim(); // 공백제거한 태그 System.out.println(tag); if
+				 * (tag.equals("")) { taglist.remove(i); // 비어있는 태그 지우기 i--; } else {
+				 * taglist.set(i, tag); } } service.studyTagInsert(vo); // 태그 }
+				 */
+			
 				String filePath = session.getServletContext().getRealPath("/upload/study_room");//Paths.get(fileRealPath + user_img.getName());
-				String fileName=study_img.getOriginalFilename();
+				String fileName=mstudy_img.getOriginalFilename();
 				int idx=fileName.lastIndexOf(".");
 				if(idx>0) {
 					fileName=fileName.substring(0, idx)+"_"+vo.getUser_id()+fileName.substring(idx);//test_hong.png
@@ -87,7 +82,7 @@ public class StudyRegisterController {
 				}
 				try {
 					//Files.write(filePath, user_img.getBytes());
-					study_img.transferTo(new File(filePath, fileName));//파일 업로드 	
+					mstudy_img.transferTo(new File(filePath, fileName));//파일 업로드 	
 					System.out.println(filePath + "경로에 이미지가 저장됨");
 					// getBytes가 이미지 실체고 이걸 파일로 변환해서 저장해야한다.
 				} catch (Exception e) {
@@ -98,6 +93,8 @@ public class StudyRegisterController {
 				session.setAttribute("logImg", fileName);
 
 		try {
+			vo.setStudy_img(fileName);
+			System.out.println(vo);
 			service.studyInsert(vo, fileName);
 			System.out.println("등록완료");
 			//정상구현
@@ -106,6 +103,8 @@ public class StudyRegisterController {
 			msg+="location.href='/study/study_home';";
 			msg+="</script>";
 			entity = new ResponseEntity<String>(msg,HttpStatus.OK);//(문자열,인코딩타입,HttpStatus.OK : 200)
+			
+			
 		}catch(Exception e){
 			e.printStackTrace();
 			//등록안됨..
@@ -115,7 +114,7 @@ public class StudyRegisterController {
 			msg+="</script>";
 			entity = new ResponseEntity<String>(msg,HttpStatus.BAD_REQUEST);
 		}
-		return entity;				
+		return entity;		
 	}
 
 }
