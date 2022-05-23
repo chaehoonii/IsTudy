@@ -2,7 +2,7 @@
 
 #contents{
 	width:80%;
-	height:90vh; 
+	height:100%; 
 	float:right;
 	margin-top:60px;
 	margin-bottom:60px;
@@ -10,47 +10,31 @@
 	line-height:50px;
 }
 .simg{
-	width:400px;
-	height:300px;
-	padding:10px;
+	width:82%;
+	height:400px;
   	margin-top:20px;
   	margin-bottom:30px;
+	margin-left:50px;
+}
+.detail_grid{
+	display:grid;
+	grid-template-columns: repeat(2, 60%);
+	grid-gap: 0.5em;
+	width: 80%;
 }
 .detailstudy{
 	border: 1px solid gray;
-	width:73%;
-	height:300px;
+	width:70%;
+	height:100%;
 	padding:10px;
+	margin-left:50px;
 }
-.participant{
-	border: 1px solid gray;
-	width:73%;
-	height:300px;
-  	margin-top:5px;
-	padding:10px;
-}
-.sdetailuser{
-  	border: 1px solid gray;
-  	width:73%;
-	height:300px;
-  	margin-top:5px;
-  	
-	padding:10px;
+.like_span{
 	float:left;
 }
-.tid{		
-	display: inline-block;
-	width: 100px;
+.like_span img{
+	width: 50px;
 }
-.duser{	
-	display: inline-block;
-	width: 96px;
-}
-.dcoment{
-	border:1px solid gray;
-	width: 96px;
-}
-
 /* =====================스터디 언어 태그============================== */
 .lang_list {
     background-color: #FEF5D4;
@@ -65,16 +49,54 @@
 	padding: 5px;
     font-size:12px;
 }
-/* =====================댓글 입력 버튼============================== */
-/* #type_comment{
-	position:absolute;
-	bottom:0;
-	right:0;
-} */
-#commentbtn{
-	background-color:rgb(192, 192, 192);
+.participant{
+	border: 1px solid gray;
+	width:75.5%;
+	height:100%;
+	padding:10px;
+	position:relative;
+}
+.dmax_droom{
+	position: absolute; 
+	right: 10px; 
+	bottom: 10px;
+}
+/* =====================스터디 룸 이동 버튼============================== */
+#roombtn{
+	background-color:rgb(230, 223, 215);
 	border: none;
-	color: black;
+	color:rgba(85, 76, 66, 80%);
+	text-align: center;
+	text-decoration: nonergb(232, 244, 232)ine-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.sdetailuser{
+  	border: 1px solid gray;
+	width:82%;
+	height:300px;
+  	margin-top:30px;
+	padding:10px;
+	margin-left:50px;
+}
+.tid{		
+	display: inline-block;
+	width: 10%;
+}
+.duser{	
+	display: inline-block;
+	width: 10%;
+}
+.dcoment{
+	border:1px solid gray;
+	margin-right:50px;
+}
+.editdelete{
+	background-color:rgb(230, 223, 215);
+	border: none;
+	color:rgba(85, 76, 66, 80%);
 	padding: 0px 10px;
 	text-align: center;
 	text-decoration: none;
@@ -84,11 +106,20 @@
 	border-radius: 5px;
 	cursor: pointer;
 }
-/* =====================스터디 룸 이동 버튼============================== */
-#roombtn{
-	background-color:rgb(192, 192, 192);
+#dcontent{
+	width:45%;
+}
+/* =====================댓글 입력 버튼============================== */
+/* #type_comment{
+	position:absolute;
+	bottom:0;
+	right:0;
+} */
+#commentbtn{
+	background-color:rgb(230, 223, 215);
 	border: none;
-	color: black;
+	color:rgba(85, 76, 66, 80%);
+	padding: 0px 10px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
@@ -106,13 +137,13 @@
 #listbtn{
 	background-color:rgb(230,223,215);
 	border: none;
-	color: white;
+	color:rgba(85, 76, 66, 80%);
 	padding: 15px 30px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
 	font-size: 16px;
-	margin: 4px 2px;
+	margin: -70px 90px;
 	border-radius: 5px;
 	cursor: pointer;
 }

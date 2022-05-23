@@ -86,4 +86,14 @@
 	   	delete from reply_like 
 	   	where user_id=#{param1} and reply_num=#{param2}
 	</delete>
+	<select id="LikeDetail" resultType="StudyVO">
+		SELECT 	 B.user_id, C.study_num,
+					COUNT( case when ifnull(C.user_id, 0)= #{param1} then 1 end) AS like_type,
+					COUNT(C.user_id) AS like_num
+		from	user B
+		LEFT JOIN 	study_like C
+		ON			B.user_id=C.user_id
+		WHERE 		C.study_num = #{param2}
+		GROUP BY 	C.study_num;
+	</select>
 </mapper>

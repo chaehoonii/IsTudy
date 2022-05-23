@@ -53,6 +53,9 @@ public class StudyVO {
 	//study_hashtag
 	private String tag;
 	
+	private int like_num;
+	private int like_type;
+	
 	private List<String> lang_list;
 	private List<String> tag_list;
 	
@@ -281,6 +284,18 @@ public class StudyVO {
 	}
 	public void setProfile_img(String profile_img) {
 		this.profile_img = profile_img;
+	}
+	public int getLike_num() {
+		return like_num;
+	}
+	public void setLike_num(int like_num) {
+		this.like_num = like_num;
+	}
+	public int getLike_type() {
+		return like_type;
+	}
+	public void setLike_type(int like_type) {
+		this.like_type = like_type;
 	}
 
 }

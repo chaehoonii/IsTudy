@@ -13,5 +13,4 @@ public interface StudyInfoService {
 	public List<String> StudyTag(int study_num);
 	public StudyVO studyPeople(int study_num);
 	public int totalRecord(PagingVO vo);
-	
 }
