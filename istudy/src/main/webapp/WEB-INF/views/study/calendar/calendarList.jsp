@@ -225,7 +225,6 @@
 	<div id='calendar'></div>
 </div>
 
-
 <!-- 입력 모달 -->
 <div id="addPlanModal" class="modal">
 	<!-- modal -->

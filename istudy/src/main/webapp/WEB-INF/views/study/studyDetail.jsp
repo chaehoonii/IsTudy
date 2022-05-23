@@ -202,14 +202,15 @@ $(document).ready(function(){
 			      }
 			   }
 </script>
-
+<img src='/images/back02.png' id="back_btn" onclick="location.href='/study/study_home'"/>
 <div id="contents">
-		<img class="simg" src="/upload/study_room/${vo.study_img}" class="img img-thumbnail"><br/>
+	<form id="frm">
 		<div class="detail_grid">
 			<div class=detailstudy>
-				<span class="dlike"></span>
-				<span class="dname">${vo.study_name}<br/></span><hr/>
+				<span class="dname">${vo.study_name}</span>
+				<span class="dlike"></span><hr/>
 				<span class="dcontent">${vo.study_rule}</span><br/>
+				<hr/>
 				<c:forEach var="lang_list" items="${vo.lang_list}" end="2">
 					<span class="lang_list">&nbsp;${lang_list}&nbsp;</span>&nbsp;
 				</c:forEach> 
@@ -218,22 +219,28 @@ $(document).ready(function(){
 				</c:forEach>
 			</div>
 			<div class="participant">
-				참여멤버<br/><hr/>
 				<div class="dmemeber">
-					<c:forEach var="studyuser" items="${studyuser}">
-						<img class="dimg" src="/upload/user/${studyuser.profile_img}" class="img img-thumbnail"><br/>
-						<span class="dnick">${studyuser.user_nick}</span><br/>
-					</c:forEach>
+						<span class="dnick">[스터디장]&emsp;${vo.user_nick}</span><br/>
+						<img class="dimg" src="/upload/user/${vo.profile_img}" class="img img-thumbnail"><br/>
+					<hr/>
+					<div class="peopleIcon">
+						<span>참여멤버</span>&emsp;
+						<c:forEach var ="i" begin="${1}" end="${vo.in_people}">
+							<img src='/images/study_info/person_1.png' class='person_img'/>
+						</c:forEach>
+						<c:forEach var ="i" begin="${1}" end="${vo.remain}">
+							<img src='/images/study_info/person_0.png' class='person_img'/>
+						</c:forEach>
+					</div>
 				</div>	
+				<hr/>
 				<div class="dmax_droom">
-					<span class="dmax">${vo.in_people}/${vo.max}</span>
 					<div id="droom">
 						<input type="button" id="roombtn" onclick="location.href='http://localhost:8060/study/studyRoom?study_num=${study_num}';" value="스터디 룸 입장">
 					</div>
 				</div>
 			</div>
 		</div>
-		
 		<div class="sdetailuser">
 			<span class="tid">ID</span>	
 			<span>신청글</span><br/>			
@@ -257,10 +264,6 @@ $(document).ready(function(){
 				</div>
 			</c:if>
 		</div>
-</div>
-<!-- 스터디 목록 버튼 -->
-<div id="slist_page">
-	<input type="button" id="listbtn" onclick="location.href='http://localhost:8060/study/study_home';" value="스터디 목록">
 </div>
 <div style="clear:both"></div>
 
