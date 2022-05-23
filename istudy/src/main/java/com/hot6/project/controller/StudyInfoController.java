@@ -22,7 +22,6 @@ public class StudyInfoController {
 	@GetMapping("/study/study_home") 
 	public ModelAndView studyHome(String user_nick, PagingVO pvo) {
 
-	
 		/*
 		 * if(sclass!=null) { for(String str:sclass) { System.out.print(str); } }
 		 */
@@ -32,7 +31,7 @@ public class StudyInfoController {
 		if(user_nick !=null && !user_nick.equals("")) {
 			mav.addObject("user_nick", user_nick);
 		}
-		
+
 		pvo.setOnePageRecord(4);
 		pvo.setOnePageCount(5);
 //		pvo.setStudyTotalRecord(service.totalRecord(1));
