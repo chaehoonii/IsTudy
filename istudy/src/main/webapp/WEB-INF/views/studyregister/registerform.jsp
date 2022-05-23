@@ -29,8 +29,7 @@
 		let study_content2 = document.getElementById("info_2");
 		let start_date = document.getElementById("todayDate");
 		let finish_date = document.getElementById("final_date");
-		/* let tag = $("#register_form input[name='tag']").val();
- */
+		let tag_list = $("#register_form input[name='tag_list']").val();
 		
 		//스터디 이름 
 		var regname = /^[ㄱ-ㅎ가-힣a-zA-Z0-9]{1,20}$/;
@@ -94,7 +93,6 @@
 
     		return;
 		}
-		
 
 		if(confirm('글을 등록하시겠습니까?')){
 			$("#register_form").submit();
@@ -245,26 +243,26 @@
 		<div class="study_language">
 			<h3>▶스터디 사용 언어</h3>
 			<div class="ox_container">
-			<div class="o_container" name="selected_lang">
+			<div class="x_container">
 				<p>사용하는 언어<p>		
 			</div>
-			<div class="x_container">
+			<div class="o_container">
 			<p>사용하지 않는 언어<p>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="1"/>HTML
+					<input type="hidden" class="el" name="lang_list" value="1"/>HTML
 				</div>
-				<div class="draggable" draggable="true" value='2'>
+				<div class="draggable" draggable="true"'>
 					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="2"/>CSS
-				</div>
-				<div class="draggable" draggable="true">
-					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="3"/>JavaScript
+					<input type="hidden" class="el" name="lang_list" value="2"/>CSS
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="4"/>Python
+					<input type="hidden" class="el" name="lang_list" value="3"/>JavaScript
+				</div>
+				<div class="draggable" draggable="true">
+					<span class="ico-drag"></span>
+					<input type="hidden" class="el" name="lang_list" value="4"/>Python
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
@@ -318,20 +316,20 @@
 			<script src="/js/studyregister/dragDrop.js"></script>
 			</div>
 		</div>
-		<!-- <div class="tag_select">
+		<div class="tag_select">
 			<h3>▶스터디룸 TAG</h3>
 			<div id='tag_div'>
 			<ul id='tag_ul_big'>
 				<li>
 					<ul id='tag_ul'>
-						<li># : <input type="text" name="tag" class='tag_box' /></li>
+						<li># : <input type="text" name="tag_list" class='tag_box' /></li>
 					</ul>
 				</li>
 				<li><img src='/images/studyregister/plus.png' id='plus' onclick='PlusTag()' /></li>
 			</ul>
 		</div>
 		<script src="/js/studyregister/tagSelect.js"></script>
-	</div> -->
+		</div> 
 	</div>
 	<div class="moving_button02">
 		<input type="button" value="PREVIOUS" class="previous_button" id="previous_button">
