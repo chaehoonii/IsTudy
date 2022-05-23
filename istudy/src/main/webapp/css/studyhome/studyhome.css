@@ -100,6 +100,8 @@
 	height:160px;
 	line-height:50px;
 	transition:0.5s;
+	z-index:100;
+	cursor: pointer;	
 }
 .info:hover{
 	background-color:rgba(85, 76, 66, 30%);
@@ -174,6 +176,7 @@ input[type=checkbox]{
     margin:0 auto;
     margin-top:40px !important;
     margin-bottom:20px !important;
+    position:relative;
 }
 .page-link{
     border:none !important;
@@ -215,8 +218,11 @@ input[type=checkbox]{
 	margin-right:30px;
 }
 .like_span{
-	float:left;
+	z-index:900;
+	float:right;
+	font-size:16px;
+	font-weight:900;
 }
 .like_span img{
-	width: 50px;
+	width: 40px;
 }
