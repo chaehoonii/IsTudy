@@ -99,31 +99,23 @@ public class StudyBoardController {
 		
 		ResponseEntity<String> entity = null;
 		
-		HttpHeaders headers = new HttpHeaders();
-		
+		HttpHeaders headers = new HttpHeaders();		
 		headers.add("Content-Type", "text/html;charset=utf-8");
+		
 		//신고하는 사람
 		vo.setUser_id((String)session.getAttribute("logId"));	
 
-		try {
-			
-			SBservice.reportJoin(vo, board_num);
-			
-			String msg = "<script>alert('신고 완료되었습니다.');location.href = document.referrer;</script>";
-			
+		try {		
+			SBservice.reportJoin(vo, board_num);			
+			String msg = "<script>alert('신고 완료되었습니다.');location.href = document.referrer;</script>";			
 			entity = new ResponseEntity<String>(msg, headers,HttpStatus.OK);		
 			
 		}catch(Exception e) {
-			e.printStackTrace();
-			
-			String msg = "<script>alert('신고에 실패하였습니다');history.back();</script>";
-			
+			e.printStackTrace();			
+			String msg = "<script>alert('신고에 실패하였습니다');history.back();</script>";			
 			entity = new ResponseEntity<String>(msg, headers,HttpStatus.BAD_REQUEST);				
 		}
 
-		return entity;
-		
+		return entity;		
 	}
-	
-	
 }
