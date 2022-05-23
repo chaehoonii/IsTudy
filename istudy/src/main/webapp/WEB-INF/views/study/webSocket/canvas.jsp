@@ -134,9 +134,9 @@
 				</div>
 				<div class="kit">
 					<div class="btn-box">
-						<button class="btn btn-outline-primary canvasfn active" onclick="selectTool('pencil')"><img class="canvas_icon" alt="" src="resources/img/canvas/pen.png"></button>
-						<button id="erase" class="btn btn-outline-primary canvasfn"><img class="canvas_icon" alt="" src="resources/img/canvas/eraser.png"></button>					
-						<button class="btn btn-outline-danger"  onclick="clearPage()"><img class="canvas_icon" alt="" src="resources/img/canvas/trash.png"></button>
+						<button id="write" class="btn btn-outline-primary canvasfn active" onclick="selectTool('pencil')" style="color:white; background-color:blue; width:55px; height:30px">쓰기<img class="canvas_icon" alt="" src="resources/img/canvas/pen.png"></button>
+						<button id="erase" class="btn btn-outline-primary canvasfn" style="color:white; background-color:green; width:55px; height:30px">지우개<img class="canvas_icon" alt="" src="resources/img/canvas/eraser.png"></button>					
+						<button id="delete" class="btn btn-outline-danger"  onclick="clearPage()" style="color:white; background-color:red; width:55px; height:30px">삭제<img class="canvas_icon" alt="" src="resources/img/canvas/trash.png"></button>
 					</div>	
 						<input id="slider1" class="form-range" type="range" min="1" max="20" value="3" onchange="lineWidth(this.value);" />
 						<input id="input-file" class="btn" type="file" style="margin-top:10px; width:100%;" onchange="uploadFile(this);" />
