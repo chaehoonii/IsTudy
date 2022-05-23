@@ -29,10 +29,10 @@ function applyList(){
 				tag += "</div>"; //qna_profile_reply
 				//채택버튼
 				if(data[i].want_ok == 'T'){ //답변채택된 글일때
-					tag += "<div class='reply_date' style='display:inline-block;'><span class='is_selected_01'><span class='is_selected_02'>&nbsp;✔&nbsp;</span>승인 완료</span>&emsp;&emsp;";
+					tag += "<span class='is_selected_01'><span class='is_selected_02'></span><img src='/images/study_info/check.png'></span>";
 				}else{ //답변채택되지 않은 글일때
 					if('${logId}'== data[i].host_id){ //로그인아이디가 작성자일때 > 채택
-						tag += "<span id='select_btn' onclick='SelectReply("+data[i].want_num+")'>수락</span>&emsp;&emsp;";
+						tag += "<span id='select_btn' onclick='SelectApply("+data[i].want_num+")'><img src='/images/study_info/agree.png'></span>";
 					}else{
 						tag += "<span>&nbsp;&nbsp;&nbsp;</span>&emsp;&emsp;";
 					}
@@ -118,6 +118,34 @@ function applyList(){
 					}
 				})
 			})
+			//답변 채택===================================================================================================
+			   function SelectReply(want_num){
+			      if(confirm('신청을 수락하시겠습니까?')){
+			         var param05 = {"want_num":want_num};
+			         $.ajax({
+			            url:'/study/applySelect',
+			            data:param05,
+			            type:'POST',
+			            success:function(){
+			               applyList();
+			            }
+			         })
+			      }
+			   }
+			   //답변 채택 취소===================================================================================================
+			   function SelectReplyDel(want_num){
+			      if(confirm('스터디원을 강퇴하시겠습니까?')){
+			         var param06 = {"want_num":want_num};
+			         $.ajax({
+			            url:'/study/applySelectDel',
+			            data:param06,
+			            type:'POST',
+			            success:function(){
+			               applyList();
+			            }
+			         })
+			      }
+			   }
 		}
 	})//ajax
 }//qnaReplyList

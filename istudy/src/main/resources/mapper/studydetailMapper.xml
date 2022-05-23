@@ -61,11 +61,13 @@
 		GROUP BY 	C.study_num
 	</select>
 	<select id="applyList" resultType="StudyVO">
-		select A.*, B.user_nick, B.profile_img
+		select A.*, B.user_nick, B.profile_img, C.host_id
         from study_mate A
         join user B
         on B.user_id = A.user_id
-        where study_num=#{param1}
+        join study_room C
+        on C.study_num=A.study_num
+        where A.study_num=#{param1}
 	</select>
 	<!-- 댓글 작성 -->
 	<insert id='applyWrite'>
