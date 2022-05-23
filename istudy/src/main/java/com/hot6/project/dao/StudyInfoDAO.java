@@ -20,5 +20,5 @@ public interface StudyInfoDAO {
 	public int LikeUp(String user_id, int study_num);
 	public int LikeDown(String user_id, int study_num);
 	public StudyVO LikeDetail(String user_id, int study_num);
-	public int totalRecord(int study_type_num);
+	public int totalRecord();
 }

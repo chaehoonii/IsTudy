@@ -24,16 +24,19 @@ public class StudyInfoController {
 	public ModelAndView studyHome(String user_nick, PagingVO pvo) {
 
 		ModelAndView mav=new ModelAndView(); 
-
+		
+		//검색
 		if(user_nick !=null && !user_nick.equals("")) {
 			mav.addObject("user_nick", user_nick);
 			pvo.setSearchWord(user_nick);
 		}
-
+		
+		//페이징
 		pvo.setOnePageRecord(4);
 		pvo.setOnePageCount(5);
-		pvo.setTotalRecord(service.totalRecord(1));
-
+		pvo.setTotalRecord(service.totalRecord());
+		pvo.setOffsetIndex(pvo.getPageNum(), 4);
+		System.out.println(pvo.getOffsetIndex());
 		
 		List<StudyVO> langList=service.langAll(); // 카테고리 언어 출력
 		List<StudyVO> studylist= service.studyHome(pvo);
@@ -60,24 +63,24 @@ public class StudyInfoController {
 		return mav; 
 	}
 	//ajax
-	@PostMapping("/study/study_home2")
-	public ModelAndView studyHome2(@RequestBody PagingVO pvo) {
-		ModelAndView mav=new ModelAndView(); 
-		List<StudyVO> studylist= service.studyHome(pvo);
-		if(studylist!=null) {
-			for(StudyVO svo:studylist) {
-				List<String> langs=service.studyLang(svo.getStudy_num());
-				svo.setLang_list(langs);
-				svo.setTag_list(service.StudyTag(svo.getStudy_num()));
-				StudyVO stvo=service.studyPeople(svo.getStudy_num());
-				if(vo!=null) {
-					svo.setIn_people(stvo.getIn_people());
-					svo.setRemain(stvo.getRemain());
-				}
-				mav.addObject("vo",studylist);
-				mav.addObject("pvo",pvo);
-			}
-		}
-		return mav; 
-	}
+    @PostMapping("/study/study_home2")
+    public ModelAndView studyHome2(@RequestBody PagingVO pvo) {
+        ModelAndView mav=new ModelAndView(); 
+        List<StudyVO> studylist= service.studyHome(pvo);
+        if(studylist!=null) {
+            for(StudyVO svo:studylist) {
+                List<String> langs=service.studyLang(svo.getStudy_num());
+                svo.setLang_list(langs);
+                svo.setTag_list(service.StudyTag(svo.getStudy_num()));
+                StudyVO stvo=service.studyPeople(svo.getStudy_num());
+                if(vo!=null) {
+                    svo.setIn_people(stvo.getIn_people());
+                    svo.setRemain(stvo.getRemain());
+                }
+                mav.addObject("vo",studylist);
+                mav.addObject("pvo",pvo);
+            }
+        }
+        return mav; 
+    }
 }
