@@ -19,14 +19,17 @@ public class StudyRegisterServiceImpl implements StudyRegisterService {
 
 	@Override
 	public int studyTagInsert(StudyVO vo) {
-		// TODO Auto-generated method stub
 		return dao.studyTagInsert(vo);
 	}
 
 	@Override
 	public int studyLangInsert(StudyVO vo) {
-		// TODO Auto-generated method stub
 		return dao.studyLangInsert(vo);
+	}
+
+	@Override
+	public int studyNum(String user_id) {
+		return dao.studyNum(user_id);
 	}
 	
 	

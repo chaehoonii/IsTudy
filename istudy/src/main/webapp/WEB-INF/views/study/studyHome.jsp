@@ -236,7 +236,7 @@
 		</div>
 		<!-- 스터디 등록 버튼 -->
 		<div id="study_register">
-			<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister';" value="스터디 등록하기">
+			<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister/registerform';" value="스터디 등록하기">
 		</div>
 	</form>
 </div>
@@ -282,12 +282,6 @@
 		<hr>
 	</c:forEach>
 </div>
-
-<!-- 스터디 등록 버튼 -->
-<div id="study_register">
-	<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister/studyregister_0';" value="스터디 등록">
-</div>
-<div style="clear:both"></div>
 <div class="pagingContainer">
 	<ul class="pagination justify-content-center" id="paging">
     	<c:if test="${pvo.pageNum==1}">
@@ -328,8 +322,3 @@
        	</c:if>
     </ul>
 </div>
-<!-- 스터디 등록 버튼 -->
-<div id="study_register">
-	<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister/registerform';" value="스터디 등록">
-</div>
-<div style="clear:both"></div>

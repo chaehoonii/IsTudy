@@ -43,7 +43,7 @@ $(document).ready(function(){
 
 <div id="contents">
 	<form id="frm">
-		<img class="simg" src="/images/study_info/${vo.study_img}" class="img img-thumbnail"><br/>
+		<img class="simg" src="/upload/study_room/${vo.study_img}" class="img img-thumbnail"><br/>
 		<div class="detail_grid">
 			<div class=detailstudy>
 				<span class="dlike"></span>
