@@ -276,6 +276,10 @@
 				<img src="/upload/study_room/${vo.study_img}" class="img img-thumbnail">
 			</div>
 			<div class="sinfo">
+				<span class='like_span'>
+					<img src='/images/like_1_sky.png' class='qna_like' />&nbsp;
+					${vo.like_num}
+				</span>
 				<span class="smentor">
 					<c:if test="${vo.is_mentor=='T'}">[멘토]</c:if>
 					<c:if test="${vo.is_mentor=='F'}">[일반]</c:if>
@@ -305,7 +309,7 @@
 		</div>	
 		<hr style="width:90%; float:left;">
 	</c:forEach>
-	<div style="clear:both"></div>
+</div>
 <div class="pagingContainer">
 	<ul class="pagination justify-content-center" id="paging">
     	<c:if test="${pvo.pageNum==1}">
@@ -346,4 +350,4 @@
        	</c:if>
     </ul>
 </div>
-</div>
+<div style="clear:both"></div>

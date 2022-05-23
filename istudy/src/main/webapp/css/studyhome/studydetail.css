@@ -33,7 +33,7 @@
 	float:left;
 }
 .like_span img{
-	width: 50px;
+	width: 25px;
 }
 /* =====================스터디 언어 태그============================== */
 .lang_list {
@@ -146,4 +146,7 @@
 	margin: -70px 90px;
 	border-radius: 5px;
 	cursor: pointer;
+}
+.dimg{
+	width:20%;
 }
