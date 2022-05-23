@@ -92,8 +92,8 @@ public class PagingVO {
 	public int getOffsetIndex() {
 		return offsetIndex;
 	}
-	public void setOffsetIndex(int offsetIndex) {
-		this.offsetIndex = offsetIndex;
+	public void setOffsetIndex(int pageNum, int onePageRecord) {
+		this.offsetIndex = (pageNum-1)*onePageRecord;
 	}
 	public int getOnePageCount() {
 		return onePageCount;

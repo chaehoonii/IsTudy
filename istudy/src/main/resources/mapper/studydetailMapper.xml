@@ -4,8 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hot6.project.dao.StudyDetailDAO">
 	<select id="studydetail" resultType="StudyVO">
-		select study_img, study_name, study_rule, host_id, max
-		from study_room where study_num=#{param1}
+		select study_img, study_name, study_rule, host_id, b.user_nick, max, b.profile_img
+		from study_room a 
+		join user b on b.user_id = a.host_id
+		where study_num=#{param1}
 	</select>
 	<select id="studyuser" resultType="StudyVO">
 		select A.want_ok, A.want_coment, B.user_nick, B.profile_img
@@ -58,7 +60,49 @@
 		LEFT JOIN 	study_like C
 		ON			B.user_id=C.user_id
 		WHERE 		C.study_num = #{param2}
-		GROUP BY 	C.study_num;
+		GROUP BY 	C.study_num
 	</select>
-	
+	<select id="applyList" resultType="StudyVO">
+		select A.*, B.user_nick, B.profile_img, C.host_id
+        from study_mate A
+        join user B
+        on B.user_id = A.user_id
+        join study_room C
+        on C.study_num=A.study_num
+        where A.study_num=#{param1}
+	</select>
+	<!-- 댓글 작성 -->
+	<insert id='applyWrite'>
+		INSERT 	study_mate(study_num, user_id, want_coment) 
+		VALUES	(#{study_num}, #{user_id}, #{want_coment})
+	</insert>
+	<!-- 댓글 삭제 -->
+	<delete id="applyDel">
+		DELETE 	FROM study_mate
+		WHERE 	want_num=#{param1}
+	</delete>
+	<!-- 댓글 수정폼 -->
+	<select id="getOneReply" resultType="StudyVO">
+		SELECT 	* 
+		FROM 	study_mate 
+		WHERE 	want_num = #{param1}
+	</select>
+	<!-- 댓글 수정 -->
+	<update id="applyEditOk">
+		UPDATE 	study_mate 
+		SET 	want_coment=#{want_coment} 
+		WHERE 	want_num=#{want_num}
+	</update>
+	<!-- 신청 수락 -->
+	<update id="ApplySelect">
+		UPDATE 	study_mate 
+		SET 	want_ok='T' 
+		WHERE 	want_num=#{want_num}
+	</update>
+	<!-- 스터디원 강퇴 -->
+	<update id="ApplySelectDel">
+		UPDATE 	study_mate 
+		SET 	want_ok='F' 
+		WHERE 	want_num=#{want_num}
+	</update>
 </mapper>

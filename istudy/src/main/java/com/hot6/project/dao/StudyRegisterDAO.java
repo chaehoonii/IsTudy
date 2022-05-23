@@ -14,5 +14,6 @@ public interface StudyRegisterDAO {
 	
 	public int studyTagInsert(StudyVO vo);		
 	public int studyLangInsert(StudyVO vo);
+	public int studyNum(String user_id);
 	
 }

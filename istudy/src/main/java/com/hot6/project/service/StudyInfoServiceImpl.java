@@ -35,7 +35,7 @@ public class StudyInfoServiceImpl implements StudyInfoService{
 		return dao.studyPeople(study_num);
 	}
 	@Override
-	public int totalRecord(int study_type_num) {
-		return dao.totalRecord(study_type_num);
+	public int totalRecord() {
+		return dao.totalRecord();
 	}
 }
