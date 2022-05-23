@@ -194,7 +194,7 @@
 </script>
 
 <div class='studyboard_back00'>
-	<img src='/images/back02.png' id="back_btn" onclick="location.href='/study/studyboard/studyboardList'"/>
+	<img src='/images/back02.png' id="back_btn" onclick="location.href='/study/studyRoom?study_num=${vo.study_num}'"/>
 	<div class='studyboard_back01'>
 		<div class='studyboard_back02'>
 					<div id="studyboard_title">

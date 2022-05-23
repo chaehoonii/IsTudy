@@ -24,7 +24,7 @@
 		user_nick,
 		tel,
 		email,
-		permission,
+		want,
 		career,
 		<if test="param1.career_year!=null and param1.career_year!=''">
 		career_year,
@@ -37,7 +37,7 @@
 		#{param1.user_nick},
 		#{param1.tel},
 		#{param1.email},
-		#{param1.permission},
+		#{param1.want},
 		<if test="param1.career_year!=null and param1.career_year!=''">
 		#{param1.career},
 		</if>

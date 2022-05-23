@@ -24,7 +24,6 @@
 		<div class='qna_back02'>
 			<form method='post' action='/board/boardWriteOk' id='qnaWriteForm' enctype="multipart/form-data">
 				<input type='hidden' value='2' name='board_type_num'/>
-				<input type='hidden' name='content' id='content_hidden'/>
 				<h1>Q & A 등록</h1>
 				<br/>
 				<br/>
@@ -38,10 +37,10 @@
 				<div>
 				<ul id="qna_content">
 					<li>
-						<div class="qnaTextArea" id="qnaTextArea" name="content">
+						<div class="qnaTextArea" id="qnaTextArea">
 							<!--CKEDITOR 4 -->
 							<textarea class="qna_editor" id="qna_editor" name="content" 
-							placeholder="코드블럭(markdown)이용 시 백틱(`)을 사용하세요"></textarea>
+							placeholder="코드블럭(markdown)이용 시 백틱(```)을 사용하세요"></textarea>
 						</div>
 					</li>
 					<li>
@@ -72,7 +71,7 @@
 				</div>				
 				<div style="clear:both"></div>
 				<br/>
-				<div><input type='button' id='submit_btn' value='글 등록'/></div>
+				<div><input type='submit' id='submit_btn' value='글 등록'/></div>
 			</form>
 		</div>
 	</div>
@@ -103,18 +102,21 @@ $(document).ready(function() {
 			dialogDefinition.removeContents('Link'); // 링크탭 제거 
 		}
 	});
-	$('#qnaForm').submit(function() {
-		if ($(".qnaWriteTitleBox").val() == '') {
+	$('#qnaWriteForm').submit(function() {
+		if ($(".qna_titlebox").val() == '') {
 			alert("제목을 입력해주세요");
-			$(".qnaWriteTitleBox").focus();
+			$(".qna_titlebox").focus();
 			return false;
 		}
 		if (CKEDITOR.instances.qnaWrite.getData() == '') {
 			alert("내용을 입력해주세요");
-			$('.qnaTextArea').focus();
+			$('.qna_editor').focus();
 			return false;
 		}
-		location.href = "/qna/qnaList";
+		if(confirm('글을 등록하시겠습니까?')){
+			$("#qnaWriteForm").submit();
+		}
+		return false;
 	});
 });
 </script>

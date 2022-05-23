@@ -56,12 +56,16 @@ public class StudyVO {
 	//study_hashtag
 	private String tag;
 	
+	private int like_num;
+	private int like_type;
+	
 	private List<String> lang_list;
 	private List<String> tag_list;
 	
 	//데이터랩-> 인기 있는 스터디 (좋아요 수)
 	private int cnt;
 	
+
 	
 	public String getStudy_content1() {
 		return study_content1;
@@ -75,6 +79,7 @@ public class StudyVO {
 	public void setStudy_content2(String study_content2) {
 		this.study_content2 = study_content2;
 	}
+
 	public int getContribute() {
 		return contribute;
 	}
@@ -304,6 +309,20 @@ public class StudyVO {
 	public void setProfile_img(String profile_img) {
 		this.profile_img = profile_img;
 	}
+	
+	public int getLike_num() {
+		return like_num;
+	}
+	public void setLike_num(int like_num) {
+		this.like_num = like_num;
+	}
+	public int getLike_type() {
+		return like_type;
+	}
+	public void setLike_type(int like_type) {
+		this.like_type = like_type;
+	}
+	
 	@Override
 	public String toString() {
 		return "StudyVO [study_num=" + study_num + ", study_name=" + study_name + ", study_rule=" + study_rule
@@ -319,6 +338,4 @@ public class StudyVO {
 				+ ", start_time=" + start_time + ", finish_time=" + finish_time + ", tag=" + tag + ", lang_list="
 				+ lang_list + ", tag_list=" + tag_list + ", cnt=" + cnt + "]";
 	}
-	
-
 }
