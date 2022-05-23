@@ -247,7 +247,11 @@
 				<img src="/images/study_info/${vo.study_img}" class="img img-thumbnail">
 			</div>
 			<div class="sinfo">
-				<span class="sname">${vo.study_name}</span><br/>
+				<span class="sname">${vo.study_name}</span>
+				<span class='like_span'>
+					<img src='/images/like_1_sky.png' class='qna_like' />&nbsp;
+					${vo.like_num}
+				</span>
 				<span class="sid">${vo.user_nick}</span>
 				<span class="smentor">
 					<c:if test="${vo.is_mentor=='T'}">멘토</c:if>
@@ -282,11 +286,6 @@
 	</c:forEach>
 </div>
 
-<!-- 스터디 등록 버튼 -->
-<div id="study_register">
-	<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister/studyregister_0';" value="스터디 등록">
-</div>
-<div style="clear:both"></div>
 <div class="pagingContainer">
 	<ul class="pagination justify-content-center" id="paging">
     	<c:if test="${pvo.pageNum==1}">
@@ -326,9 +325,5 @@
             </li>
        	</c:if>
     </ul>
-</div>
-<!-- 스터디 등록 버튼 -->
-<div id="study_register">
-	<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister/registerform';" value="스터디 등록">
 </div>
 <div style="clear:both"></div>

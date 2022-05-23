@@ -154,3 +154,9 @@ input[type=checkbox]{
 	border-radius: 5px;
 	cursor: pointer;
 }
+.like_span{
+	float:left;
+}
+.like_span img{
+	width: 50px;
+}

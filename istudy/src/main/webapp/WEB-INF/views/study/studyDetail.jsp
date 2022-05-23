@@ -4,9 +4,124 @@
 <title>스터디 상세 페이지</title>
 
 <link rel="stylesheet" href="/css/studyhome/studydetail.css" type="text/css" />
-<link rel="stylesheet" href="/js/study/studydetail.js" type="text/js" />
+<script src="/js/studyhome/studydetail.js"></script>
 
 <script>
+//스터디 신청 리스트
+function applyList(){
+	var study_num=${study_num};
+	var param = {"study_num" : study_num};
+	var url = '/study/applyList';
+	$.ajax({
+		data:param,
+		url:url,
+		type:'GET',
+		dataType:'json',
+		success:function(data){
+			var tag = "";
+			for(var i=0; i<data.length; i++){
+				tag += "<div class='qna_back03_reply'>";
+				//reply top
+				//프로필, 날짜
+				tag += "<div class='reply_top'>";
+				tag += "<div class='qna_profile_reply' style='display:inline-block;'><img src='/upload/user/"+data[i].profile_img+"' id='qna_profile'/>&emsp;";
+				tag += data[i].user_nick;
+				tag += "</div>"; //qna_profile_reply
+				//채택버튼
+				if(data[i].want_ok == 'T'){ //답변채택된 글일때
+					tag += "<div class='reply_date' style='display:inline-block;'><span class='is_selected_01'><span class='is_selected_02'>&nbsp;✔&nbsp;</span>승인 완료</span>&emsp;&emsp;";
+				}else{ //답변채택되지 않은 글일때
+					if('${logId}'== data[i].host_id){ //로그인아이디가 작성자일때 > 채택
+						tag += "<span id='select_btn' onclick='SelectReply("+data[i].want_num+")'>수락</span>&emsp;&emsp;";
+					}else{
+						tag += "<span>&nbsp;&nbsp;&nbsp;</span>&emsp;&emsp;";
+					}
+				}
+				tag += "</div><hr/>";	//reply_top
+				
+				tag += "&emsp;&emsp;<div class='reply_content'>"+data[i].want_coment;
+				
+				//수정삭제
+				if('${logId}'== data[i].user_id){
+					tag += "<div id='reply_btns'><input type='hidden' value='"+data[i].want_num+"'/><span class='reply_edit edit_btns'>수정</span>&nbsp;&nbsp;<span class='reply_del del_btns' onclick='ReplyDel("+data[i].want_num+")'>삭제</span></div>";
+				}
+				tag += "</div></div>";	
+			}
+			$(".study_apply").html(tag);	
+			
+			//댓글 등록=========================================================================================
+			$("#addReplybtn").off("click").on("click",function(){
+				if($("#reply_coment").val().trim() ==''){
+					alert("댓글 내용을 입력해주세요.");
+					$("#reply_coment").focus();
+					return false;
+				}else{
+					if(confirm('댓글을 등록하시겠습니까?')){
+						var param = $('#replyWriteForm').serialize();
+						var url = '/study/applyWrite';
+						console.log(param);
+						$.ajax({
+							data:param,
+							url:url,
+							type:'POST',
+							success:function(r){
+								console.log(r);
+								applyList();
+								$("#reply_coment").val("");
+							},
+							error:function(error){
+						        alert("error:"+error);
+						    }
+						})
+					}
+					return false;
+				}
+			})
+			//댓글 수정폼=========================================================================================
+			$(".reply_edit").click(function(){
+				var want_num = $(this).prev().val();
+				var param = {"want_num":want_num};
+				console.log("want_num="+want_num);
+				$.ajax({
+					url:'/study/applyEdit',
+					data:param,
+					type:'GET',
+					context: this,
+					success:function(r){
+						console.log("success");
+						var tag01 = "";
+						tag01 += "<form method='post' id='replyEditForm'>";
+						tag01 += "<input type='hidden' name='reply_num' value='"+r.want_num+"'/>";
+						//tag01 += "<input type='hidden' name='board_num' value='"+r.board_num+"'/>";
+						tag01 += "<ul class='reply_write_ul'>";
+						tag01 += "<li><textarea name='reply_coment' class='graySquare' id='reply_coment'>"+r.want_coment+"</textarea></li>";
+						tag01 += "<li><input type='button' value='댓글 수정' id='replyEditbtn' /></li>";
+						tag01 += "</ul></form>";
+						
+						$(this).parent().parent().parent().html(tag01);
+							
+						//댓글 수정=========================================================================================
+						$("#replyEditbtn").click(function(){
+							var param = $("#replyEditForm").serialize();
+							$.ajax({
+								url:'/study/applyEditOk',
+								data:param,
+								type:'POST',
+								success:function(){
+									applyList();
+								}
+							})
+						})
+					},
+					error:function(error){
+						alert("error:"+error);
+					}
+				})
+			})
+		}
+	})//ajax
+}//qnaReplyList
+applyList();
 function likeDetail(){
 	var pathname = decodeURIComponent(location.href);
 	var study_num = pathname.substring( pathname.indexOf('=')+1);
@@ -75,21 +190,7 @@ $(document).ready(function(){
 		
 		<div class="sdetailuser">
 			<span class="tid">ID</span>	
-			<span>신청글</span><br/>	
-			<c:forEach var="vo" items="${studyuser}">
-				<span class="duser">${vo.user_nick}</span>
-				<span class="dcoment">${vo.want_coment}</span>
-				<input type="button" class="editdelete" value="수정" >		
-				<input type="button" class="editdelete" value="삭제" ><br/>
-			</c:forEach>
-			<span class="dapply">
-				<c:if test="${vo.want_ok=='T'}">
-					O
-				</c:if>		
-				<c:if test="${vo.want_ok=='T'}">
-					<input type="button" value="X" >	
-				</c:if>
-			</span>
+			<span>신청글</span><br/>			
 			<c:if test="${logStatus=='Y'}">
 			<div class='study_apply'>
 				<form method='post' id='studyapplyWrite'>
