@@ -29,7 +29,8 @@
 		let study_content2 = document.getElementById("info_2");
 		let start_date = document.getElementById("todayDate");
 		let finish_date = document.getElementById("final_date");
-
+		/* let tag = $("#register_form input[name='tag']").val();
+ */
 		
 		//스터디 이름 
 		var regname = /^[ㄱ-ㅎ가-힣a-zA-Z0-9]{1,20}$/;
@@ -183,7 +184,7 @@
 			<h3>▶스터디 대표 이미지</h3>
 			<div class="file-wrapper flie-wrapper-area">
   				<div class="float-left">
-   				<input type="file" name="study_img" id="file" class="upload-box upload-plus" accept="image/*">
+   				<input type="file" name="mstudy_img" id="file" class="upload-box upload-plus" accept="image/*">
   		  		<div id="preview"></div>
    		 		<div class="file-edit-icon">
 	      			<a href="#" class="preview-edit">수정</a>
@@ -196,8 +197,8 @@
 		<div class="study_info">
 			<h3>▶스터디 내용</h3>
 			<div class="info_box">
-				<textarea id="info_1" placeholder="스터디 내용을 입력하세요"></textarea>
-				<textarea id="info_2" placeholder="상세내용을 입력하세요"></textarea><br/>
+				<textarea name="study_content1" id="info_1" placeholder="스터디 내용을 입력하세요"></textarea>
+				<textarea name="study_content2" id="info_2" placeholder="상세내용을 입력하세요"></textarea><br/>
 			</div>
 		</div>
 	</div>
@@ -220,7 +221,7 @@
 		
 		<div class="study_caution">
 			<h3>▶스터디 규칙</h3>			
-			<textarea id="caution_text" placeholder="스터디 규칙을 500자 이내로 입력하세요."></textarea>
+			<textarea id="caution_text" name="study_rule" placeholder="스터디 규칙을 500자 이내로 입력하세요."></textarea>
 		</div>
 	</div>
 	<div class="moving_button">
@@ -238,7 +239,7 @@
 		<div class="study_period">
 			<h3>▶스터디 기간</h3><br/>
 			From.&nbsp;&nbsp;<input type="date" id="todayDate" name="start_date">&nbsp;&nbsp;&nbsp;&nbsp;
-			To.&nbsp;&nbsp;<input type="date" id="final_date" name="final_date">
+			To.&nbsp;&nbsp;<input type="date" id="final_date" name="finish_date">
 		</div>
 		<script src="/js/studyregister/currentDate.js"></script>
 		<div class="study_language">
@@ -317,7 +318,7 @@
 			<script src="/js/studyregister/dragDrop.js"></script>
 			</div>
 		</div>
-		<div class="tag_select">
+		<!-- <div class="tag_select">
 			<h3>▶스터디룸 TAG</h3>
 			<div id='tag_div'>
 			<ul id='tag_ul_big'>
@@ -330,7 +331,7 @@
 			</ul>
 		</div>
 		<script src="/js/studyregister/tagSelect.js"></script>
-	</div>
+	</div> -->
 	</div>
 	<div class="moving_button02">
 		<input type="button" value="PREVIOUS" class="previous_button" id="previous_button">
