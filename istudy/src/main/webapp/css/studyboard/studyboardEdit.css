@@ -1,0 +1,124 @@
+@charset "UTF-8";
+.studyboard_back00 {
+	text-align:center;
+	margin-top:150px; 
+	margin-bottom:100px; 
+}
+#back_btn{
+	display:inline-block;
+	width:50px;
+	height:50px;
+	border: 4px solid #ddd;
+	border-radius: 50%;
+	padding:5px;
+	position:absolute;
+	left:15vw;
+	top:23vh;
+	cursor:pointer;
+}
+.studyboard_back01 {
+	text-align:center;
+	width:65vw;
+	margin:0 auto;
+	display:inline-block;
+}
+.studyboard_back02 {
+	border: 2px solid #ddd;
+	border-radius:10px;
+	
+}
+#studyboard_title{
+	margin-top:50px;
+	margin-bottom:50px;
+	line-height:50px;
+	padding-left:40px;
+	padding-right:40px;
+}
+#title_box, #content_box{
+	width:80%;
+}
+#studyboard_content{
+	margin-top:50px;
+	margin-bottom:50px;
+	border-top:1px solid #ddd;
+	padding:40px;
+	padding-bottom:10px;
+}
+#studyboard_title li, #studyboard_content li{
+  	font-size:14px;
+}
+#studyboard_title li:nth-child(1){
+	display:inline-block;
+	font-size:18px;
+	width:100%;
+}
+#studyboard_content li{
+	margin-bottom:30px;
+}
+#studyboard_content li:nth-child(3){
+	margin-bottom:0;
+	float:left;
+}
+#studyboard_content li:nth-child(4){
+	float:left;
+}
+#plus{	
+	display:inline-block;
+	width:30px;
+	height:30px;
+	border: 4px solid #ddd;
+	border-radius: 50%;
+	padding:5px;
+	font-size:20px;
+	cursor:pointer;
+	top:0;
+}
+#ul_big li{
+	float:left;
+	margin-left:5px;
+	margin-right:5px;
+}
+/*언어타입*/
+#lang_ul{
+	background-color:#eee;
+	border-radius:10px;
+}
+#lang_ul li{
+	display:inline-block;
+	padding:10px;
+	font-size: 15px;
+	width:12%;
+}
+/*태그*/
+#tag_ul{
+	margin:30px;
+}
+#tag_ul li{
+	display:inline-block;
+	margin-left:5px;
+	margin-right:5px;
+	font-size: 15px;
+	float:left;	
+}
+.tag_box{
+	width:100px;
+	height:30px;
+	border-radius:5px;
+	border:1px solid #aaa;
+}
+.noresize{
+	resize:none;
+}
+.round{
+	border-radius:10px;
+}
+#img_files{
+	width:100%;
+}
+#editor img{
+	max-width:80%;
+	min-width:20%;
+	max-height:80%;
+	min-height:20%;	
+}
+

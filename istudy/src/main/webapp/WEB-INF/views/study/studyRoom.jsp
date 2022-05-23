@@ -10,34 +10,37 @@ $(document).ready(function(){
 });
 </script>
 
-<div style='height:92vh; position:relative;'>
+<div class="room_div">
 	<div id='name_div'>
 		<span id='name_span'>${vo.study_name}</span>
 	</div>
-	<div id='calendar_box_parent'>
-		<div id='calendar_box'>
-			<%@include file="calendar/calendarList.jsp"%>
+	<div class="study_room_grid">
+		<div id='calendar_box_parent'>
+			<div id='calendar_box'>
+				<%@include file="calendar/calendarList.jsp"%>
+			</div>
+			<div id='calendar_box2'></div>
 		</div>
-		<div id='calendar_box2'></div>
+		<div id="screen_box">
+			<img src='/images/study_room/screen01.png' id='screen_img' onclick="location.href='/study/webSocket/studyPage?study_num=${study_num}'" title='화면공유'/>
+			<table id='mate_table'>
+				<thead>
+					<tr>
+						<td>스터디원</td>
+						<td>게시글 수</td>
+					</tr>
+				</thead>
+				<c:forEach var='vo' items='${mateList}'>
+					<tr>					
+						<td>${vo.user_nick}</td>
+						<td>${vo.contribute}</td>
+					</tr>
+				</c:forEach>		
+			</table>
+		</div>
 	</div>
-	<div>
-		<img src='/images/study_room/screen01.png' id='screen_img' onclick="location.href='/study/webSocket/studyPage?study_num=${study_num}'" title='화면공유'/>
-	</div>
-	<div>
-		<table id='mate_table'>
-			<thead>
-				<tr>
-					<td>스터디원</td>
-					<td>게시글 수</td>
-				</tr>
-			</thead>
-			<c:forEach var='vo' items='${mateList}'>
-				<tr>					
-					<td>${vo.user_nick}</td>
-					<td>${vo.contribute}</td>
-				</tr>
-			</c:forEach>		
-		</table>
+	<div id='bulletin_box'>
+			<%@include file="studyboard/studyboardList.jsp"%>
 	</div>
 </div>
 <div style="clear:both"></div>
