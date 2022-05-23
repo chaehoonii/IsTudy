@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="${url}/css/users/userForm.css"
+<link rel="stylesheet" href="/css/users/userForm.css"
 	type="text/css">
 <script src="${url}/js/users/userForm.js"></script>
 <style>
@@ -70,11 +70,11 @@ url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css%27)
 						<li>분류</li>
 						<li>
 							<ul id="radio_list">
-								<li><input type="radio" name="permission" id="study_type1"
-									value="1" />일반</li>
-								<li><input type="radio" name="permission" id="study_type2"
-									value="2" />멘토</li>
-								<li>
+		                        <li><input type="radio" name="want" id="study_type1"
+		                           value="F" />일반</li>
+		                        <li><input type="radio" name="want" id="study_type2"
+		                           value="T" />멘토</li>
+		                        <li>
 									<ul style="display: none" id="career_list">
 										<select type="hidden" name="career_year" id="career_year">
 											<option value="">경력</option>

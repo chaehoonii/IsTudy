@@ -99,10 +99,10 @@
 				            				</c:choose>
             							</div>    
 		            					<div class="nicknames">
-			            					<a href="/users/mypage/study?user_id=${vo.user_id}&admin=True" target="_blank" onclick="window.open(this.href,'_blank', 'width=1200, height=700, scrollbar=yes')" <c:if test="${vo.permission eq 'user' && vo.want eq 'T'}">style="color:blue;"</c:if>>${vo.user_nick}</a>
+			            					<a href="javascript:window.open('/users/mypage/study?user_id=${vo.user_id}&admin=True','_blank', 'width=1200, height=700, scrollbar=yes')" <c:if test="${vo.permission eq 'user' && vo.want eq 'T'}">style="color:blue;"</c:if>>${vo.user_nick}</a>
 			            				</div>
 			            				<div class="id">
-			            					<a href="/users/mypage/study?user_id=${vo.user_id}&admin=True" target="_blank" onclick="window.open(this.href,'_blank', 'width=1200, height=700, scrollbar=yes')" <c:if test="${vo.permission eq 'user' && vo.want eq 'T'}">style="color:blue;"</c:if>>${vo.user_id}</a>
+			            					<a href="javascript:window.open('/users/mypage/study?user_id=${vo.user_id}&admin=True','_blank', 'width=1200, height=700, scrollbar=yes')" <c:if test="${vo.permission eq 'user' && vo.want eq 'T'}">style="color:blue;"</c:if>>${vo.user_id}</a>
 			            				</div>
 			            				<div class="name">
 			            					<span>${vo.user_name}</span>
@@ -145,7 +145,7 @@
 			            						<a href="${vo.career}">${vo.career}</a>
 			            					</c:if>
 			            					<c:if test="${vo.career==null}">
-			            						<span>-</span>
+			            						<span></span>
 			            					</c:if>
 			            				</div>    							            				
 			            		</div><hr/>

@@ -40,7 +40,7 @@
             const afterElement = getDragAfterElement(container, e.clientY);
             const draggable = document.querySelector('.dragging')
             // container.appendChild(draggable)
-            container.insertBefore(draggable, afterElement)
+            container.insertBefore(draggable, afterElement);                        
         })
     });
 })();

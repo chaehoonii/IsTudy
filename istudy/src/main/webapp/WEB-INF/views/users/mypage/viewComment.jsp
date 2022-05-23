@@ -10,9 +10,34 @@
                 <div class="userPhoto">
                 	<img src="/upload/user/${logImg}" id="mypage_profile_img" />
                 </div>
-                <div class="userNickname">
-                	${nickName} 
-                </div>
+                <c:if test="${logPermission=='mentor'}">
+                	<div class="userNickname">
+	                	<img src='${level_icon}' width="40px;" id="icon_hover"/>&nbsp;&nbsp;${nickName} 
+	                </div>
+                </c:if>
+                <c:if test="${logPermission!='mentor'}">
+	                <div class="userNickname">
+	                	${nickName} 
+	                </div>
+                </c:if>
+                <div id="level_info">
+					<ul>
+						<li>[ 레벨 ]</li>
+						<li>level 1 &nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 ~ 100</li>
+						<li>level 2 &nbsp;&nbsp;:&nbsp;&nbsp; 101 ~ 200</li>
+						<li>level 3 &nbsp;&nbsp;:&nbsp;&nbsp; 201 ~ 300</li>
+						<li>level 4 &nbsp;&nbsp;:&nbsp;&nbsp; 301 ~ </li>
+						<li><br/>[ 점수 기준 ]</li>
+						<li>게시글</li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;+ 3점</li>
+						<li>댓글</li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;+ 1점</li>
+						<li>내댓글 좋아요</li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;+ 1점</li>
+						<li>내댓글 채택</li>
+						<li>&nbsp;&nbsp;&nbsp;&nbsp;+ 5점</li>
+					</ul>
+				</div>
                 <div class="userid">
                 	(${id})
                 </div>
@@ -68,7 +93,7 @@
 		            				
 		            				<div class="commentTitle">
 		            					<c:if test="${vo.board_type_num==2}">
-		            						<c:if test="${logPermission=='admin'}"><a href="${url}/qna/qnaView?board_num=${vo.board_num}" target="_blank" onclick="window.open(this.href,'_blank', 'width=1200, height=700, scrollbar=yes')">${vo.title}</a></c:if>
+		            						<c:if test="${logPermission=='admin'}"><a href="javascript:window.open('${url}/qna/qnaView?board_num=${vo.board_num}','_blank', 'width=1200, height=700, scrollbar=yes')">${vo.title}</a></c:if>
 			            					<c:if test="${logPermission!='admin'}"><a href='${url}/qna/qnaView?board_num=${vo.board_num}'>${vo.title}</a></c:if>
 			            				</c:if>
 			            				<c:if test="${vo.board_type_num==1}">

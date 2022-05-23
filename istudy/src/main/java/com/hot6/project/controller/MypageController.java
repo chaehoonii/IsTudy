@@ -96,7 +96,7 @@ public class MypageController {
 		mav.addObject("cntArticle", Mservice.cntArticle(id));
 		
 		mav.addObject("id", id);
-		
+		mav.addObject("level_icon", Mservice.getIcon(id));
 		mav.addObject("nickName", Mservice.getNickname(id));
 		
 		mav.setViewName("users/mypage/viewWrite");
@@ -125,7 +125,7 @@ public class MypageController {
 			mav.addObject("cntComment", Mservice.cntComment(id));
 			
 			mav.addObject("id", id);
-			
+			mav.addObject("level_icon", Mservice.getIcon(id));
 			mav.addObject("nickName", Mservice.getNickname(id));
 			
 			mav.setViewName("users/mypage/viewComment");

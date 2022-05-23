@@ -117,12 +117,21 @@
    border-radius:20px;
    filter: drop-shadow(0px 3px 3px rgba(0,0,0,30%));
 }
-.card img{
-   width:80%;
+#profile-image{
+   width:200px;
+   height: 200px;
    margin:0 auto;
    margin-top:10px;
    border-radius:10px;
 }
+#level-icon{
+   width:30px;
+   height: 30px;
+   margin:0 auto;
+   margin-top:10px;
+   border-radius:10px;
+}
+
 .card-text, .card-title{
    margin:15px 0px;
 }
