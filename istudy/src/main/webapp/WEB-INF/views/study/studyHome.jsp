@@ -134,10 +134,12 @@
 					var tag=" ";
 					//alert(value.length)
 					//console.log(JSON.stringify(value))
-					$(value).each(function(idx, vo, pvo){
+					var vo = value.vo;
+					var pvo = value.pvo;
+					$(value).each(function(vo, pvo){
 						tag+="<div class='info' onclick=\"location.href='/study/study_home/"+vo.study_num+"'\">"
 						tag+=	"<div class='simg'>"
-						tag+=		"<img src='/images/study_info/"+vo.study_img+"' class='img img-thumbnail'>"
+						tag+=		"<img src='/upload/study_room/"+vo.study_img+"' class='img img-thumbnail'>"
 						tag+=	"</div>"
 						tag+=	"<div class='sinfo'>"
 						tag+=		"<span class='smentor'>"
