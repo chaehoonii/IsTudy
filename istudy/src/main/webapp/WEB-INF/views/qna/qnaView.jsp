@@ -107,8 +107,8 @@
 								tag01 += "<input type='hidden' name='reply_num' value='"+r.reply_num+"'/>";
 								tag01 += "<input type='hidden' name='board_num' value='"+r.board_num+"'/>";
 								tag01 += "<ul class='reply_write_ul'>";
-								tag01 += "<li><textarea name='reply_coment' class='graySquare' id='reply_coment'>"+r.reply_coment+"</textarea></li>";
-								tag01 += "<li><input type='button' value='댓글 수정' id='replyEditbtn' /></li>";
+								tag01 += "<li><textarea name='reply_coment' class='graySquare'>"+r.reply_coment+"</textarea></li>";
+								tag01 += "<li><input type='button' value='댓글수정' id='replyEditbtn' /></li>";
 								tag01 += "</ul></form>";
 								
 								$(this).parent().parent().parent().html(tag01);

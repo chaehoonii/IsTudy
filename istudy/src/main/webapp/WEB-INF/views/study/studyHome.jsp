@@ -172,22 +172,16 @@
 
 <div id="category_box">
 	<form id="frm">
-		<div id="category_top">
-			<p>카테고리</p>
-			<input type="search" name="SEARCH" placeholder="SEARCH"> 
-			<button type="submit">검색</button>
-		</div>
-		
-		<div id="first_menu"> 
-			<h1>스터디 종류</h1>
-			<ul id="second_menu">
+		<div class="first_menu"> 
+			<h2>스터디 종류</h2>
+			<ul class="second_menu">
 				<li><label for="stype1"><input type="checkbox" name="stype" id="stype1" value="T" onclick="getTypeValue()" style="margin-right:10px;">멘토</label></li>
 				<li><label for="stype2"><input type="checkbox" name="stype" id="stype2" value="F" onclick="getTypeValue()">일반</label></li>
 			</ul>
 		</div>
-		<div id="first_menu"> 
-			<h1>스터디 분류</h1>
-			<ul id="second_menu">
+		<div class="first_menu"> 
+			<h2>스터디 분류</h2>
+			<ul class="second_menu01">
 				<li><label for="sclass1"><input type="checkbox" name="sclass" id="sclass1" value="Frontend" onclick="getClassValue()">프론트엔드</label></li>
 				<li><label for="sclass2"><input type="checkbox" name="sclass" id="sclass2" value="Backend" onclick="getClassValue()">백엔드</label></li>
 				<li><label for="sclass3"><input type="checkbox" name="sclass" id="sclass3" value="Algorithm" onclick="getClassValue()">알고리즘</label></li>
@@ -195,40 +189,45 @@
 				<li><label for="sclass5"><input type="checkbox" name="sclass" id="sclass5" value="English" onclick="getClassValue()">영어</label></li>
 			</ul>
 		</div>
-		<div id="first_menu"> 
-			<h1>스터디 상태</h1>
-			<ul id="second_menu">
+		<div class="first_menu"> 
+			<h2>스터디 상태</h2>
+			<ul class="second_menu">
 				<li id="sstatus"><label for=sstatus1><input type="checkbox" name="status" id="sstatus1" value="1" onclick="getStatusValue()">모집</label></li>
 				<li><label for=sstatus2><input type="checkbox" name="status" id="sstatus2" value="0" onclick="getStatusValue()">마감</label></li>
 			</ul>
 		</div>
-		<div id="first_menu"> 
-			<h1>스터디 언어</h1>
+		<div class="first_menu"> 
+			<h2>스터디 언어</h2>
 			<select id="langList">
 				<c:forEach var="vo" items="${langList}">
 						<option value="${vo.lang_type_num}" selected onclick="getLangValue()">${vo.lang_type_name}</option>
-					<%-- <input type="checkbox" name="lang" id="lang" value="${vo.lang_type_num}"><label>${vo.lang_type_name}</label></span> --%>
 				</c:forEach>
 			</select>
 		</div>
-		<div id="first_menu"> 
-			<h1>스터디 기간</h1>
-				<%-- <p><input type="date" id="s_date" min="${start_date}" ></p>
-		      	<input type="hidden" value="apply" name="status">
-		      	<p><input type="date" id="f_date" min="${finish_date}" ></p>
-		      	<input type="hidden" value="apply" name="status"> --%>
+		<div class="first_menu"> 
+			<h3>스터디 기간</h3>
 		      	<p>조회기간을 선택해주세요 <br/>
 				  <input type="text" id="datepicker1" onclick="getDateValue()"> ~
 				  <input type="text" id="datepicker2" onclick="getDateValue()">
 				</p>
 		</div>
+		<div id="category_top">
+			<p>스터디 검색</p>
+			<input type="search" name="SEARCH" placeholder="SEARCH"> 
+			<button type="submit">검색</button>
+		</div>
 	</form>
+	
 	
 </div>
 <div id="study_list">
+<!-- 스터디 등록 버튼 -->
+	<div id="study_register">
+		<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister/registerform';" value="스터디 등록">
+	</div>
 	<c:forEach var="vo" items="${studyhome}">
 	<!-- 반복문 안에서는 id x class o -->
-		<div class="info">
+		<div class="info" onclick="location.href='/study/study_home/${vo.study_num}'">
 			<div class="simg">
 				<img src="/images/study_info/${vo.study_img}" class="img img-thumbnail">
 			</div>
@@ -249,22 +248,11 @@
 					<span class="tag_list">&nbsp;${tag_list}&nbsp;</span>&nbsp;
 				</c:forEach>
 				<!-- 스터디 자세히 보기 버튼 -->
-				<div class="study_more">
-					<a href="/study/study_home/${vo.study_num}">
-						<input type="button" class="mbutton" value="스터디 자세히 보기">
-					</a>
-				</div>
 			</div>
 		</div>	
-		<hr>
+		<hr style="width:90%; float:left;">
 	</c:forEach>
-</div>
-
-<!-- 스터디 등록 버튼 -->
-<div id="study_register">
-	<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister/studyregister_0';" value="스터디 등록">
-</div>
-<div style="clear:both"></div>
+	<div style="clear:both"></div>
 <div class="pagingContainer">
 	<ul class="pagination justify-content-center" id="paging">
     	<c:if test="${pvo.pageNum==1}">
@@ -305,8 +293,4 @@
        	</c:if>
     </ul>
 </div>
-<!-- 스터디 등록 버튼 -->
-<div id="study_register">
-	<input type="button" id="rbutton" onclick="location.href='http://localhost:8060/studyregister/registerform';" value="스터디 등록">
 </div>
-<div style="clear:both"></div>

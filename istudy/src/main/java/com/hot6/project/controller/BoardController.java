@@ -50,28 +50,30 @@ public class BoardController {
 	QnaService Qservice;
 
 	// 글 등록
-	@PostMapping("/board/boardWriteOk")
-	public ResponseEntity<String> boardWriteOk(BoardVO vo, HttpServletRequest request) {
-		vo.setIp(request.getRemoteAddr()); // 접속자 아이피
-		vo.setUser_id((String) request.getSession().getAttribute("logId")); // 작성자
+    @PostMapping("/board/boardWriteOk")
+    public ResponseEntity<String> boardWriteOk(BoardVO vo, HttpServletRequest request) {
+        vo.setIp(request.getRemoteAddr()); // 접속자 아이피
+        vo.setUser_id((String) request.getSession().getAttribute("logId")); // 작성자
+        System.out.println(vo.getBoard_type_num());
+        ResponseEntity<String> entity = null;
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
 
-		ResponseEntity<String> entity = null;
-		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(new MediaType("text", "html", Charset.forName("UTF-8")));
-
-		String msg = "<script>alert('글이 등록되었습니다');";
-		int insertChk = 0;
-		// 스터디 게시판
-		if (vo.getBoard_type_num() == 1) {
-			insertChk = Sservice.StudyboardInsert(vo);
-			vo.setBoard_num(Bservice.boardNum(vo.getUser_id())); // 유저의 최신글 번호 가져오기
-			int study_num = Bservice.getStudy_num(vo.getBoard_num()); // study_num 가져와야함!
-			msg += "location.href='/study/study_home/mystudy/studyList?study_num=" + study_num + "';</script>";
-		} else {
-			insertChk = Bservice.boardInsert(vo);
-			int board_num = Bservice.boardNum(vo.getUser_id()); // 유저의 최신글 번호 가져오기
-			vo.setBoard_num(board_num);
-			// qna 게시판
+        String msg = "<script>alert('글이 등록되었습니다');";
+        int insertChk = 0;
+        // 스터디 게시판
+        if (vo.getBoard_type_num() == 1) {
+            vo.setStudy_num(vo.getStudy_num());
+            insertChk = Sservice.StudyboardInsert(vo);
+            vo.setBoard_num(Bservice.boardNum(vo.getUser_id())); // 유저의 최신글 번호 가져오기
+            //study_num = Bservice.getStudy_num(vo.getBoard_num()); // study_num 가져와야함!
+            msg += "location.href='/study/studyRoom?study_num=" + vo.getStudy_num() + "';</script>";
+        } else {
+            insertChk = Bservice.boardInsert(vo);
+            int board_num = Bservice.boardNum(vo.getUser_id()); // 유저의 최신글 번호 가져오기
+            System.out.println("board_num: "+board_num);
+            vo.setBoard_num(board_num);
+            // qna 게시판
 			if (vo.getBoard_type_num() == 2) {
 				msg += "location.href='/qna/qnaList';</script>";
 				if (vo.getLang_list() != null) {

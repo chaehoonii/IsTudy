@@ -234,17 +234,43 @@
 }
 .edit_btns, .del_btns {
 	letter-spacing:1px;
-	background-color:rgba(85, 76, 66, 80%);
 	border-radius:10px;
 	border:none;
-	color:white;
 	cursor:pointer;
 	padding:7px;
 	font-size:0.8em;
+	background-color:rgb(230, 223, 215);
+	color:rgba(85, 76, 66, 80%);
+	font-size:16px;
+	font-weight:700;
+}
+.reply_write_ul li:first-child{
+	float:left;
+	width:66.5%;
+}
+.reply_write_ul li:last-child{
+	float:left;
+	width:20%;
 }
 .graySquare {
+	width:35vw;
+	height:35px;
 	resize: none;
 	border: 2px solid #bbb;
-	border-radius: 5px;
-	padding: 20px;
+	border-radius:10px;
+	overflow-y:hidden;
+	line-height:35px;
+	margin-left:60px;
+	font-size:14px;
+}
+#replyEditbtn{
+	width:4.5vw;
+	height:35px;
+	border:none;
+	border-radius:10px;
+	display:inline-block;
+	background-color:rgb(230, 223, 215);
+	color:rgba(85, 76, 66, 80%);
+	font-size:16px;
+	font-weight:700;
 }
