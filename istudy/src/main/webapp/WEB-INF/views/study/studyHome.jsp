@@ -116,9 +116,7 @@
 		//document.getElementById('study_list').innerText= result;
 	}
 	function ajaxSend(param, value){
-		//alert(typeof value)
-		data=$('#frm').serialize()
-		alert(data)
+		data=$('#frm').serialize();
 		$.ajax({
 			type: 'POST',
 			url: '/study/study_home2',
@@ -129,42 +127,42 @@
 					$('#study_list').html(tag)
 					
 				}else{
-				//alert(JSON.stringify(value))
-				var tag='';
-				//alert(value.length)
-				//console.log(JSON.stringify(value))
-				$(value).each(function(idx, vo){
-					tag+='<div class="info">'
-					tag+=	'<div class="simg">'
-					tag+=		'<img src="/images/study_info/'+vo.study_img+ '" class="img img-thumbnail">'
-					tag+=	'</div>'
-					tag+=	'<div class="sinfo">'
-					tag+=		'<span class="sname">'+vo.study_name+'</span><br/>'	
-					tag+=		'<span class="sid">'+vo.host_id+'</span>'	
-					tag+=		'<span class="smentor">'
-					tag+=			'<c:if test="${'+vo.is_mentor+'=='T'}">멘토</c:if>'
-					tag+=			'<c:if test="${'+vo.is_mentor+'=='F'}">일반</c:if>'
-					tag+=		'</span>'	
-					tag+=		'<span class="smax">'+vo.in_people+'/'+vo.max+'</span>'	
-					tag+=		'<span class="sname">'+vo.study_type_name+'</span><br/>'
-					tag+=		'<span class="sdate">'+vo.start_date+ '~'+vo.finish_date+'</span>'
-					$(vo.lang_list).each(function(i, lang){
-						tag+=			'<span class="lang_list">&nbsp;'+lang+'&nbsp;</span>&nbsp;'
+					//alert(JSON.stringify(value))
+					var tag='';
+					//alert(value.length)
+					//console.log(JSON.stringify(value))
+					$(value).each(function(idx, vo){
+						tag+='<div class="info">'
+						tag+=	'<div class="simg">'
+						tag+=		'<img src="/images/study_info/'+vo.study_img+ '" class="img img-thumbnail">'
+						tag+=	'</div>'
+						tag+=	'<div class="sinfo">'
+						tag+=		'<span class="sname">'+vo.study_name+'</span><br/>'	
+						tag+=		'<span class="sid">'+vo.host_id+'</span>'	
+						tag+=		'<span class="smentor">'
+						tag+=			'<c:if test="${'+vo.is_mentor+'=='T'}">멘토</c:if>'
+						tag+=			'<c:if test="${'+vo.is_mentor+'=='F'}">일반</c:if>'
+						tag+=		'</span>'	
+						tag+=		'<span class="smax">'+vo.in_people+'/'+vo.max+'</span>'	
+						tag+=		'<span class="sname">'+vo.study_type_name+'</span><br/>'
+						tag+=		'<span class="sdate">'+vo.start_date+ '~'+vo.finish_date+'</span>'
+						$(vo.lang_list).each(function(i, lang){
+							tag+=			'<span class="lang_list">&nbsp;'+lang+'&nbsp;</span>&nbsp;'
+						})
+						$(vo.tag_list).each(function(t, tg){
+							tag+=	'<span class="tag_list">&nbsp;'+tg+'&nbsp;</span>&nbsp;'
+							/* console.log("*************************")
+							console.log(tag)
+							console.log("*************************") */
+						})
+						
+						tag+=	'</div>'
+						tag+='</div>'
+						//alert(tag)
+						//console.log(tag)
+						//console.log("*************************")
 					})
-					$(vo.tag_list).each(function(t, tg){
-						tag+=	'<span class="tag_list">&nbsp;'+tg+'&nbsp;</span>&nbsp;'
-						/* console.log("*************************")
-						console.log(tag)
-						console.log("*************************") */
-					})
-					
-					tag+=	'</div>'
-					tag+='</div>'
-					//alert(tag)
-					//console.log(tag)
-					//console.log("*************************")
-				})
-				$('#study_list').html(tag)
+					$('#study_list').html(tag)
 				}
 			},
 			error:function(e){
@@ -178,12 +176,13 @@
 	<form id="frm">
 		<div id="category_top">
 			<p>카테고리</p>
+
 			<c:choose>
 				<c:when test="${param.user_nick !=null || param.user_nick != ''}">
-					<input type="text" name="SEARCH" placeholder="SEARCH" value="${user_nick}"> 
+					<input type="text" name="searchWord"  id='searchWord' placeholder="SEARCH" value="${user_nick}"> 
 				</c:when>
 				<c:otherwise>
-					<input type="text" name="SEARCH" placeholder="SEARCH"> 
+					<input type="text" name="searchWord"  id='searchWord' placeholder="SEARCH"> 
 				</c:otherwise>				
 			</c:choose>
 			<button type="submit">검색</button>
@@ -245,7 +244,7 @@
 			</div>
 			<div class="sinfo">
 				<span class="sname">${vo.study_name}</span><br/>
-				<span class="sid">${vo.host_id}</span>
+				<span class="sid">${vo.user_nick}</span>
 				<span class="smentor">
 					<c:if test="${vo.is_mentor=='T'}">멘토</c:if>
 					<c:if test="${vo.is_mentor=='F'}">일반</c:if>

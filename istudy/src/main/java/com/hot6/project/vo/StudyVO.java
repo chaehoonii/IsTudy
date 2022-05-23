@@ -60,7 +60,7 @@ public class StudyVO {
 	//데이터랩-> 인기 있는 스터디 (좋아요 수)
 	private int cnt;
 	
-	
+	//검색어
 	
 	public int getContribute() {
 		return contribute;
