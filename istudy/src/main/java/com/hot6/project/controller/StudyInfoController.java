@@ -20,16 +20,23 @@ public class StudyInfoController {
 	
 	// 스터디 정보 페이지
 	@GetMapping("/study/study_home") 
-	public ModelAndView studyHome(PagingVO pvo) {
+	public ModelAndView studyHome(String user_nick, PagingVO pvo) {
+
 		/*
 		 * if(sclass!=null) { for(String str:sclass) { System.out.print(str); } }
 		 */
 		
 		ModelAndView mav=new ModelAndView(); 
+
+		if(user_nick !=null && !user_nick.equals("")) {
+			mav.addObject("user_nick", user_nick);
+		}
+
 		pvo.setOnePageRecord(4);
 		pvo.setOnePageCount(5);
 //		pvo.setStudyTotalRecord(service.totalRecord(1));
 		pvo.setTotalRecord(service.totalRecord(1));
+
 		
 		List<StudyVO> langList=service.langAll(); // 카테고리 언어 출력
 		List<StudyVO> studylist= service.studyHome(pvo);

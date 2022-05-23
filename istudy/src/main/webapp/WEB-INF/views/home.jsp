@@ -59,11 +59,11 @@
 		<div class="owl-carousel owl-theme owl-loaded col-lg-10">
 			<c:forEach var="vo" items="${MentorList}">
 				<div class="card item">
-					<img src="/upload/user/${vo.profile_img}" />
+					<img id ="profile-image" src="/upload/user/${vo.profile_img}" />
 					<div class="card-body">
-						<img src='${vo.level_icon}' style='width:30px; margin:0;display:inline;'><h4 class="card-title">${vo.user_nick}</h4>
+						<img id="level-icon" src='${vo.level_icon}' style='width:30px; margin:0;display:inline;'><h4 class="card-title">${vo.user_nick}</h4>
 						<p class="card-text">${vo.career}</p>
-						<a href="/studyHome" class="btn profile">스터디 보기</a>
+						<a href="study/study_home?user_nick=${vo.user_nick}" class="btn profile">스터디 보기</a>
 					</div>
 				</div>
 			</c:forEach>

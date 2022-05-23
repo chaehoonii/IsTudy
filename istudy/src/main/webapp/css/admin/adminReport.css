@@ -278,17 +278,19 @@ hr {
 }
 
 .button-click {
-	background-color: #f9f9f8;
-	box-shadow: 2px 2px 3px #c2c2bd;
+	box-shadow: 2px 2px 3px #888888;
 }
 
 .buttons input[type=button] {
 	width: 70px;
 	height: 35px;
-	font-size: 14px;
 	border-radius: 15px;
-	border: 1px solid #ddd;
+	border: none;
 	margin-right: 15px;
+	background-color:rgb(230, 223, 215);
+    color:rgba(85, 76, 66, 80%);
+    font-size:16px;
+	
 }
 
 .buttons input[type=button]:nth-child(3) {
@@ -317,9 +319,11 @@ hr {
 .search_form input[type=submit] {
 	width: 60px;
 	border-radius: 5px;
-	border: 1px solid #ddd;
+	border: none;
 	height: 100%;
-	font-size: 16px;
+	background-color:rgb(230, 223, 215);
+    color:rgba(85, 76, 66, 80%);
+    font-size:16px;
 }
 
 #searchText::-webkit-input-placeholder {
@@ -331,14 +335,6 @@ hr {
 	font-size: 14px;
 }
 
-/* .buttons input[type=button]:first-child{
-        	margin-right:15px;
-        } */
-/* .buttons input[type=button]:nth-child(2){
-        	background-color: #f9f9f8;
-        	box-shadow: 2px 2px 3px #c2c2bd;
-        	
-        } */
 .choose {
 	width: 100%;
 	height: 40px;
@@ -349,10 +345,12 @@ hr {
 	height: 35px;
 	font-size: 16px;
 	border-radius: 5px;
-	border: 1px solid #ddd;
+	border: none;
 	line-height: 35px;
 	float: right;
 	margin: 15px;
+	background-color:rgb(230, 223, 215);
+    color:rgba(85, 76, 66, 80%);
 }
 
 .modal {
