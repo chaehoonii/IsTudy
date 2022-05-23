@@ -9,6 +9,7 @@
 	min-height: 80vh
 }
 #studyboard_logo{
+	font-family: 'ROKAFSansBold';
 	width:20%;
 	display:inline-block;
 	cursor:pointer;
