@@ -214,3 +214,9 @@ input[type=checkbox]{
 	font-weight:700;
 	margin-right:30px;
 }
+.like_span{
+	float:left;
+}
+.like_span img{
+	width: 50px;
+}

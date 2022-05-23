@@ -3,6 +3,7 @@ package com.hot6.project.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hot6.project.service.StudyDetailService;
 import com.hot6.project.service.StudyInfoService;
+import com.hot6.project.vo.BoardVO;
 import com.hot6.project.vo.StudyVO;
 
 @RestController
@@ -72,5 +74,41 @@ public class StudyDetailController{
 	public StudyVO likeDetail(@RequestParam("study_num") int study_num, HttpSession session) {
 		String user_id = (String)session.getAttribute("logId");
 		return service.LikeDetail(user_id, study_num);
+	}
+	// 댓글리스트
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/study/applyList", method = RequestMethod.GET)
+	public List<StudyVO> applyList(@RequestParam("study_num") int study_num, HttpSession session) {
+		List<StudyVO> applyList = service.applyList(study_num);
+		return applyList;
+	}
+	// 댓글 등록
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/study/applyWrite", method = RequestMethod.POST)
+	public int applyWrite(StudyVO vo, HttpSession session, HttpServletRequest request) {
+		vo.setUser_id((String) session.getAttribute("logId"));
+		vo.setIp(request.getRemoteAddr()); // 접속자 아이피
+		int Chk = service.applyWrite(vo);
+		return Chk;
+	}
+	// 댓글 삭제
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/study/applyDel", method = RequestMethod.GET)
+	public int applyDel(@RequestParam("want_num") int want_num) {
+		String user_id = service.getIdByWantnum(want_num);
+		int Chk = service.applyDel(want_num);
+		return Chk;
+	}
+	// 댓글 수정폼
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/study/applyEdit", method = RequestMethod.GET)
+	public StudyVO applyEdit(@RequestParam("want_num") int want_num) {
+		return service.getOneReply(want_num);
+	}
+	// 댓글 수정
+	@ResponseBody // Ajax
+	@RequestMapping(value = "/study/applyEditOk", method = RequestMethod.POST)
+	public int applyEditOk(StudyVO vo) {
+		return service.applyEditOk(vo);
 	}
 }

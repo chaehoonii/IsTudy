@@ -25,12 +25,13 @@
 	</select>
 	<select id="studyHome"  resultType="StudyVO">
 		SELECT 	is_mentor, s.study_type_num, t.study_type_name, study_img, study_name, 
-				host_id, start_date, finish_date, max, study_num, u.user_nick
-		
+				host_id, start_date, finish_date, max, s.study_num, u.user_nick, C.like_num
 		FROM 	study_room s join study_type t
 		ON 		s.study_type_num = t.study_type_num
 		JOIN 	user u
 		ON		u.user_id = s.host_id
+        LEFT JOIN 	(select study_num, COUNT(user_id) AS like_num from study_like group by study_num) C
+		ON	s.study_num = C.study_num
 		WHERE 	1=1
 		<if test="sclass!=null">
 			and study_type_name in 

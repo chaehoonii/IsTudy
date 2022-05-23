@@ -21,4 +21,16 @@ public interface StudyDetailService {
 	public StudyVO LikeDetail(String user_id, int study_num);
 
 	public List<StudyVO> mateList(int study_num);
+
+	public int applyWrite(StudyVO vo);
+
+	public String getIdByWantnum(int want_num);
+
+	public int applyDel(int want_num);
+
+	public StudyVO getOneReply(int want_num);
+
+	public int applyEditOk(StudyVO vo);
+	
+	public List<StudyVO> applyList(int study_num);
 }
