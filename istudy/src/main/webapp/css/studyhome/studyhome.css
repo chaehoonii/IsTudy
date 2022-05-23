@@ -10,6 +10,7 @@
 	background-color:rgb(230,223,215);
 	color:rgba(0,0,0,70%);
 	position:relative;
+	margin-top:60px;
 }
 #categoryt_box input{
 	border:none;
