@@ -92,7 +92,6 @@ $(function() {
 					var param = {
 						"report_num": cb[i].value
 					}
-					confirm('ajax전')
 					$.ajax({
 						url: '/admin/adminDelete',
 						type: 'GET',

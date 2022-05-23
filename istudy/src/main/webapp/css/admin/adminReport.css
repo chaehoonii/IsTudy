@@ -62,7 +62,6 @@ body::-webkit-scrollbar {
 	left: 50%;
 	transform: translate(-50%, 0%);
 	background-color: white;
-	border: 1px solid #ddd;
 }
 
 .userNickname {
@@ -287,10 +286,9 @@ hr {
 	border-radius: 15px;
 	border: none;
 	margin-right: 15px;
-	background-color:rgb(230, 223, 215);
-    color:rgba(85, 76, 66, 80%);
-    font-size:16px;
-	
+	background-color: rgb(230, 223, 215);
+	color: rgba(85, 76, 66, 80%);
+	font-size: 16px;
 }
 
 .buttons input[type=button]:nth-child(3) {
@@ -321,9 +319,9 @@ hr {
 	border-radius: 5px;
 	border: none;
 	height: 100%;
-	background-color:rgb(230, 223, 215);
-    color:rgba(85, 76, 66, 80%);
-    font-size:16px;
+	background-color: rgb(230, 223, 215);
+	color: rgba(85, 76, 66, 80%);
+	font-size: 16px;
 }
 
 #searchText::-webkit-input-placeholder {
@@ -349,8 +347,8 @@ hr {
 	line-height: 35px;
 	float: right;
 	margin: 15px;
-	background-color:rgb(230, 223, 215);
-    color:rgba(85, 76, 66, 80%);
+	background-color: rgb(230, 223, 215);
+	color: rgba(85, 76, 66, 80%);
 }
 
 .modal {
@@ -394,4 +392,10 @@ hr {
 	background-color: rgba(85, 76, 66, 70%) !important;
 	color: white !important;
 	border-radius: 5px !important;
+}
+
+#mypage_profile_img {
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
 }

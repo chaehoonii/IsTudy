@@ -155,7 +155,7 @@ public class UserController {
 			vo.setProfile_img(pathName);
 			int cnt = service.userUpdate(vo, pathName);
 			// mav.setViewName(pathName);
-			mav.setViewName("redirect:/");
+	         mav.setViewName("redirect:/users/mypage/study");
 			// model.addAttribute("cnt", cnt);
 			session.setAttribute("logImg", pathName);
 			return mav;
@@ -182,7 +182,7 @@ public class UserController {
 		service.userUpdate(vo, fileName);
 
 		session.setAttribute("logImg", fileName); 
-		mav.setViewName("redirect:/");
+        mav.setViewName("redirect:/users/mypage/study");
 		return mav;
 	}
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hot6.project.service.AdminUserService;
+import com.hot6.project.service.UserService;
 import com.hot6.project.vo.AdminUserVO;
 import com.hot6.project.vo.BoardVO;
 import com.hot6.project.vo.PagingVO;
@@ -24,6 +25,9 @@ public class AdminUserController {
 
 	@Inject
 	AdminUserService AUservice;
+
+	@Inject
+	UserService Uservice;
 
 	@GetMapping("adminUsers")
 	public ModelAndView adminUser(@RequestParam(name = "permission", defaultValue = "all") String permission,
@@ -43,6 +47,9 @@ public class AdminUserController {
 
 		mav.addObject("nickName", nickName);
 
+		UserVO userVO = Uservice.userSelect(id);
+		session.setAttribute("logImg", userVO.getProfile_img());
+
 		// 해당 레코드 수
 		int allCnt = AUservice.getAllCnt(permission, want, pvo);
 		System.out.println(allCnt);
@@ -61,7 +68,6 @@ public class AdminUserController {
 		// 관리자 수
 		mav.addObject("adminCnt", AUservice.getPermissionCnt("admin", null));
 
-
 		mav.addObject("pvo", pvo);
 
 		mav.setViewName("admin/adminUsers");
@@ -70,27 +76,38 @@ public class AdminUserController {
 	}
 
 	@GetMapping("adminReport")
-	public ModelAndView adminReport(@RequestParam(name = "confirm",defaultValue = "all") String confirm, PagingVO pvo, HttpSession session) {
+	public ModelAndView adminReport(@RequestParam(name = "confirm", defaultValue = "all") String confirm, PagingVO pvo,
+			HttpSession session) {
 
-	      ModelAndView mav = new ModelAndView();
-	      
-	      int allReportCnt = AUservice.getAllReportPagingCnt(confirm, pvo); 
-	      pvo.setTotalRecord(allReportCnt);
-	      
-	      if (pvo.getSearchWord() != null) {
-	         mav.addObject("word", pvo.getSearchWord());
-	      }
-	      
-	      mav.addObject("adminReport", AUservice.getAdminUserInfo(confirm, pvo));
-	      mav.addObject("allReportCnt", AUservice.getAllReportCnt(confirm, pvo));
-	      mav.addObject("standbyReportCnt", AUservice.getStandbyReportCnt());
-	      mav.addObject("confirmReportCnt", AUservice.getConfirmReportCnt());
-	      mav.addObject("pvo", pvo);
-	      mav.setViewName("admin/adminReport");
+		ModelAndView mav = new ModelAndView();
+		String id = (String) session.getAttribute("logId");
 
-	      return mav;
-	   }
-	
+		String nickName = (String) session.getAttribute("logNickname");
+
+		mav.addObject("id", id);
+
+		mav.addObject("nickName", nickName);
+
+		UserVO userVO = Uservice.userSelect(id);
+		session.setAttribute("logImg", userVO.getProfile_img());
+
+		int allReportCnt = AUservice.getAllReportPagingCnt(confirm, pvo);
+		pvo.setTotalRecord(allReportCnt);
+
+		if (pvo.getSearchWord() != null) {
+			mav.addObject("word", pvo.getSearchWord());
+		}
+
+		mav.addObject("adminReport", AUservice.getAdminUserInfo(confirm, pvo));
+		mav.addObject("allReportCnt", AUservice.getAllReportCnt(confirm, pvo));
+		mav.addObject("standbyReportCnt", AUservice.getStandbyReportCnt());
+		mav.addObject("confirmReportCnt", AUservice.getConfirmReportCnt());
+		mav.addObject("pvo", pvo);
+		mav.setViewName("admin/adminReport");
+
+		return mav;
+	}
+
 	// 신고 관리 확인
 	@GetMapping("confirmUpdate")
 	   public String confirmUpdate(HttpSession session,@RequestParam("report_num") int report_num) {
@@ -99,9 +116,10 @@ public class AdminUserController {
 	      System.out.println(vo.getReport_num());
 	      AUservice.getConfirmUpdate(vo);
 	      return "redirect:/";
+
 	}
 	
-	 // 신고된 글 계정 삭제
+	// 신고된 글 계정 삭제
 	@GetMapping("adminDelete")
 	   public String adminDelete(HttpSession session,@RequestParam("report_num") int report_num) {
 	      AdminUserVO vo=new AdminUserVO();
@@ -146,7 +164,6 @@ public class AdminUserController {
 		AUservice.sendBackStatus(vo);
 
 		mav.setViewName("redirect:adminUsers");
-
 
 		return mav;
 	}
