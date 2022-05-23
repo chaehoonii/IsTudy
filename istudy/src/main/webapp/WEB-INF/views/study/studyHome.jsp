@@ -3,8 +3,6 @@
 
 <title>스터디 정보 페이지</title>'
 
-<link rel="stylesheet" href="/css/studyhome/studyhome.css" type="text/css" />
-<!-- <link rel="stylesheet" href="/js/study/studyhome.js" type="text/js" /> -->
 
 <!-- DatePicker File import -->
 <!-- jQuery UI CSS파일 -->
@@ -12,6 +10,10 @@
 <link rel="stylesheet" href="/resources/demos/style.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+<link rel="stylesheet" href="/css/studyhome/studyhome.css" type="text/css" />
+<script src="/js/studyhome/studyhome.js"></script>
+
 <!-- 카테고리 스터디 기간에 사용 -->
 <style>
 .person_img{
@@ -128,6 +130,7 @@
 					$('#study_list').html(tag)
 					
 				}else{
+
 					//alert(JSON.stringify(value))
 					var tag=" ";
 					//alert(value.length)
@@ -137,7 +140,7 @@
 					$(value).each(function(vo, pvo){
 						tag+="<div class='info' onclick=\"location.href='/study/study_home/"+vo.study_num+"'\">"
 						tag+=	"<div class='simg'>"
-						tag+=		"<img src='/images/study_info/"+vo.study_img+"' class='img img-thumbnail'>"
+						tag+=		"<img src='/upload/study_room/"+vo.study_img+"' class='img img-thumbnail'>"
 						tag+=	"</div>"
 						tag+=	"<div class='sinfo'>"
 						tag+=		"<span class='smentor'>"
@@ -270,7 +273,7 @@
 	<!-- 반복문 안에서는 id x class o -->
 		<div class="info" onclick="location.href='/study/study_home/${vo.study_num}'">
 			<div class="simg">
-				<img src="/images/study_info/${vo.study_img}" class="img img-thumbnail">
+				<img src="/upload/study_room/${vo.study_img}" class="img img-thumbnail">
 			</div>
 			<div class="sinfo">
 				<span class="smentor">
