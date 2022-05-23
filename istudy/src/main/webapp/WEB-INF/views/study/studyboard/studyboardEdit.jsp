@@ -3,28 +3,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <link rel="stylesheet" href="/css/studyboard/studyboardWrite.css" type="text/css">
 <script src="/js/ckeditor/ckeditor.js"></script>
-<script>
-	var cnt=1;
-	//태그 플러스
-	function PlusTag(){
-		if(cnt<5){
-			var li ="<li><input type='text' name='tag_list' class='tag_box'/></li>";
-			$("#tag_ul").append(li);
-			cnt++;
-			console.log(cnt);
-			if(cnt==5){
-				$("#plus").remove();
-			}
-		}
-	}
-</script>
 <div class='studyboard_back00'>
 	<img src='/images/back02.png' id="back_btn" onclick="location.='/study/studyboard/studyboardList'"/>
 	<div class='studyboard_back01'>
 		<div class='studyboard_back02'>
 			<form method='post' action='/board/boardEditOk' id='studyboardEditForm' enctype="multipart/form-data">
-				<input type='hidden' value='2' name='board_type_num'/>
+				<input type='hidden' value='1' name='board_type_num'/>
 				<input type='hidden' name='board_num' value='${vo.board_num}'/>
+				<input type='hidden' value="${study_num}" name="study_num"/>
 				<input type='hidden' name='content' id='content_hidden'/>
 				<h1>수정</h1>
 				<br/>
@@ -38,7 +24,7 @@
 				<div>
 				<ul id="studyboard_content">
 					<li>
-						<div class="studyboardTextArea" id="studyboardTextArea" name="content">
+						<div class="studyboard_text_area" id="studyboard_text_area" name="content">
 							<!--CKEDITOR 4 -->
 							<textarea class="studyboard_editor" id="studyboard_editor" name="content" 
 							placeholder="코드블럭(markdown)이용 시 백틱(`)을 사용하세요">${vo.content}</textarea>
@@ -48,7 +34,7 @@
 				</div>				
 				<div style="clear:both"></div>
 				<br/>
-				<div><input type='button' id='submit_btn' value='수정'/></div>
+				<div><input type='submit' id='submit_btn' value='수정'/></div>
 			</form>
 		</div>
 	</div>
@@ -87,20 +73,11 @@ $(document).ready(function() {
 		}
 		if (CKEDITOR.instances.studyboardWrite.getData() == '') {
 			alert("내용을 입력해주세요");
-			$('.studyboardTextArea').focus();
+			$('.studyboard_text_area').focus();
 			return false;
 		}
 		location.href = "/study/studyboard/studyboardList";
 	});
-	//선택한 언어 불러오기==============================================================================================
-	var lang_num_list = ${vo.lang_num_list};
-	
-	for(var num of lang_num_list){
-		console.log(num);
-		$("#lang_ul input").each(function(i, obj){
-			if($(obj).attr("value")==num) $(obj).prop("checked", true);
-		})
-	}
 	//submit=========================================================================================================
 	$("#submit_btn").click(function(){
 		if(confirm('수정하시겠습니까?')){
