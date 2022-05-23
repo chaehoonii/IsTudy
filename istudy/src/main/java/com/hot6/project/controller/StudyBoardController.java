@@ -1,7 +1,5 @@
 package com.hot6.project.controller;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -82,10 +80,10 @@ public class StudyBoardController {
 	}
 	//글 수정 폼
 	@RequestMapping(value = "studyboard/studyboardEdit", method = RequestMethod.GET)
-	public ModelAndView studyboardEdit(int board_num) {
+	public ModelAndView studyboardEdit(int study_num) {
 		ModelAndView mav = new ModelAndView();
-		BoardVO vo = SBservice.StudyBoardView(board_num);
-	    mav.addObject("vo", vo);
+		mav.addObject("study_num", study_num);
+		mav.setViewName("/study/studyboard/studyboardEdit");
 		return mav;
 	}
 	

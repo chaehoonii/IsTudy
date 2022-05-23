@@ -78,34 +78,7 @@
 	margin-left:5px;
 	margin-right:5px;
 }
-/*언어타입*/
-#lang_ul{
-	background-color:#eee;
-	border-radius:10px;
-}
-#lang_ul li{
-	display:inline-block;
-	padding:10px;
-	font-size: 15px;
-	width:12%;
-}
-/*태그*/
-#tag_ul{
-	margin:30px;
-}
-#tag_ul li{
-	display:inline-block;
-	margin-left:5px;
-	margin-right:5px;
-	font-size: 15px;
-	float:left;	
-}
-.tag_box{
-	width:100px;
-	height:30px;
-	border-radius:5px;
-	border:1px solid #aaa;
-}
+
 .noresize{
 	resize:none;
 }

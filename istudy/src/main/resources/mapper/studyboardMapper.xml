@@ -19,6 +19,7 @@
     ON		  C.board_num=A.board_num
 	WHERE 	  A.board_type_num=1 and study_num=#{param1}
 	ORDER BY  board_num DESC
+	LIMIT 3
 </select>
 <select id="StudyBoardView" resultType="BoardVO">
 	SELECT 	  A.board_num, A.board_type_num, A.hit, A.title, A.content, DATE_FORMAT(A.write_date, '%Y-%m-%d') AS write_date, 
