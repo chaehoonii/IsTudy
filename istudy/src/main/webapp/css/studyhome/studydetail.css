@@ -1,56 +1,69 @@
 @charset "UTF-8";
-
+#back_btn{
+   display:inline-block;
+   width:35px;
+   height:35px;
+   border: 4px solid #ddd;
+   border-radius: 50%;
+   padding:5px;
+   position:absolute;
+   left:10vw;
+   top:15vh;
+   cursor:pointer;
+}
 #contents{
-	width:80%;
-	height:90vh; 
+	width:88%;
+	height:100%; 
 	float:right;
-	margin-top:60px;
+	margin-top:100px;
 	margin-bottom:60px;
 	font-size:15px;
 	line-height:50px;
 }
 .simg{
-	width:400px;
-	height:300px;
-	padding:10px;
+	width:82%;
+	height:400px;
   	margin-top:20px;
   	margin-bottom:30px;
+	margin-left:50px;
 }
+.detail_grid{
+	display:grid;
+	grid-template-columns: repeat(2, 60%);
+	grid-gap: 0.5em;
+	width: 80%;
+}
+/*=========제목, 내용 부분===========*/
 .detailstudy{
-	border: 1px solid gray;
-	width:73%;
-	height:300px;
+	width:105%;
+	height:100%;
 	padding:10px;
+	margin-left:50px;
+	box-shadow:0 0 10px rgba(0,0,0,30%);
+	border-radius:15px;
+	padding:40px;
 }
-.participant{
-	border: 1px solid gray;
-	width:73%;
-	height:300px;
-  	margin-top:5px;
-	padding:10px;
-}
-.sdetailuser{
-  	border: 1px solid gray;
-  	width:73%;
-	height:300px;
-  	margin-top:5px;
-  	
-	padding:10px;
+.like_span{
 	float:left;
+	font-size:16px;
+	font-weight:700;
 }
-.tid{		
-	display: inline-block;
-	width: 100px;
+.like_span img{
+	width:40px;
+	margin-right:10px;
 }
-.duser{	
-	display: inline-block;
-	width: 96px;
+.dname{
+	margin-left:20px;
+	margin-top:10px;
+	font-size:25px;
+	font-weight:700;
 }
-.dcoment{
-	border:1px solid gray;
-	width: 96px;
+.dlike{
+	float:right;
 }
-
+.dcontent{
+	
+}
 /* =====================스터디 언어 태그============================== */
 .lang_list {
     background-color: #FEF5D4;
@@ -65,16 +78,79 @@
 	padding: 5px;
     font-size:12px;
 }
-/* =====================댓글 입력 버튼============================== */
-/* #type_comment{
-	position:absolute;
-	bottom:0;
-	right:0;
-} */
-#commentbtn{
-	background-color:rgb(192, 192, 192);
+/*==========참가 인원============*/
+.participant{
+	box-shadow:0 0 10px rgba(0,0,0,30%);
+	border-radius:15px;
+	width:60%;
+	height:100%;
+	padding:10px;
+	position:relative;
+	float:right;
+	margin-left:17%;
+}
+.dmemeber{
+	text-align:center;
+}
+.dnick{
+	font-size:20px;
+	font-weight:700;
+}
+.dimg{
+	width:200px;
+	border-radius:50%;
+}
+.peopleIcon{
+	width:100%;
+	height:50px;
+}
+.person_img{
+	width:40px;
+	height:40px;
+}
+.dmax_droom{
+	text-align:center;
+}
+/* 스터디 룸 이동 버튼 */
+#roombtn{
+	width:200px;
 	border: none;
-	color: black;
+	text-align: center;
+	text-decoration: nonergb(232, 244, 232)ine-block;
+	margin: 4px 2px;
+	border-radius: 5px;
+	cursor: pointer;
+	background-color:rgb(230, 223, 215);
+  	color:rgba(85, 76, 66, 80%);
+   	font-size:16px;
+   	font-weight:700;
+}
+/*=========신청 댓글 섹션===========*/
+.sdetailuser{
+	width:82%;
+	height:300px;
+  	margin-top:45px;
+	padding:10px;
+	margin-left:50px;
+	box-shadow:0 0 10px rgba(0,0,0,30%);
+	border-radius:15px;
+}
+.tid{		
+	display: inline-block;
+	width: 10%;
+}
+.duser{	
+	display: inline-block;
+	width: 10%;
+}
+.dcoment{
+	border:1px solid gray;
+	margin-right:50px;
+}
+.editdelete{
+	background-color:rgb(230, 223, 215);
+	border: none;
+	color:rgba(85, 76, 66, 80%);
 	padding: 0px 10px;
 	text-align: center;
 	text-decoration: none;
@@ -84,11 +160,20 @@
 	border-radius: 5px;
 	cursor: pointer;
 }
-/* =====================스터디 룸 이동 버튼============================== */
-#roombtn{
-	background-color:rgb(192, 192, 192);
+#dcontent{
+	width:45%;
+}
+/* =====================댓글 입력 버튼============================== */
+/* #type_comment{
+	position:absolute;
+	bottom:0;
+	right:0;
+} */
+#commentbtn{
+	background-color:rgb(230, 223, 215);
 	border: none;
-	color: black;
+	color:rgba(85, 76, 66, 80%);
+	padding: 0px 10px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
@@ -98,21 +183,3 @@
 	cursor: pointer;
 }
 /* =====================스터디 목록 이동 버튼============================== */
-#slist_page{
-	position:absolute;
-	bottom:0;
-	right:0;
-}
-#listbtn{
-	background-color:rgb(230,223,215);
-	border: none;
-	color: white;
-	padding: 15px 30px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin: 4px 2px;
-	border-radius: 5px;
-	cursor: pointer;
-}

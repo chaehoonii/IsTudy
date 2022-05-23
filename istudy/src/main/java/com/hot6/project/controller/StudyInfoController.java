@@ -61,23 +61,23 @@ public class StudyInfoController {
 	}
 	//ajax
 	@PostMapping("/study/study_home2")
-	public ModelAndView studyHome2(@RequestBody PagingVO pvo) {
-		ModelAndView mav=new ModelAndView(); 
-		List<StudyVO> studylist= service.studyHome(pvo);
+	public List<StudyVO> studyHome2(PagingVO vo) {
+		System.out.println(vo.getSclass());
+	
+		List<StudyVO> studylist= service.studyHome(vo);
 		if(studylist!=null) {
 			for(StudyVO svo:studylist) {
 				List<String> langs=service.studyLang(svo.getStudy_num());
+				System.out.println(svo.getStudy_name()+"/"+langs);
 				svo.setLang_list(langs);
 				svo.setTag_list(service.StudyTag(svo.getStudy_num()));
-				StudyVO stvo=service.studyPeople(svo.getStudy_num());
-				if(vo!=null) {
-					svo.setIn_people(stvo.getIn_people());
-					svo.setRemain(stvo.getRemain());
+				StudyVO pvo=service.studyPeople(svo.getStudy_num());
+				if(pvo!=null) {
+					svo.setIn_people(pvo.getIn_people());
+					svo.setRemain(pvo.getRemain());
 				}
-				mav.addObject("vo",studylist);
-				mav.addObject("pvo",pvo);
 			}
 		}
-		return mav; 
+		return studylist; 
 	}
 }

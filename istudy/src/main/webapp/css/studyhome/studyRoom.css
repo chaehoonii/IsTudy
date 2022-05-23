@@ -1,36 +1,71 @@
 @charset "UTF-8";
+#back_btn{
+   display:inline-block;
+   width:35px;
+   height:35px;
+   border: 4px solid #ddd;
+   border-radius: 50%;
+   padding:5px;
+   position:absolute;
+   left:10vw;
+   top:1vh;
+   cursor:pointer;
+}
 .room_div{
 	min-height: 80vh;
-	margin-top:150px;
+	margin-top:100px;
 }
 #name_div{
 	text-align:center;
+	position:relative;
+	margin-bottom:50px;
 }
 #name_span{
 	margin:0 auto;
-	border-radius:5px;
-	padding:10px;
+	padding:20px;
+	border-radius:15px;
 	font-size:25px;
+	font-weight:900;
 	background-color:#eee;
-	width: 600px;
 	position:relative;
-	text-align:center;
 }
-.study_room_grid{
-	margin-top: 50px;
-	margin-left:10%;
-	padding:10px;
-	display:grid;
-	grid-template-columns: repeat(2, 50%);
-	grid-gap: 4em;
+.section_title{
+	height:60px;
+	padding:20px;
+	font-weight:800;
+}
+.section_title p{
+	letter-spacing:3px;
+	font-size:20px;
+	font-weight:800;
+}
+/*=======달력 박스==========*/
+#calendar_box_parent{
+	width:40%;
+	height:650px;
+	box-shadow:0 0 15px rgba(0,0,0,30%);
+	border-radius:15px;
+	text-align:center;
+	float:left;
+	margin-left:8%;
+	position:relative;
 }
 #calendar_box{
-	width:70%;
-	margin-left:10%;
+	width:80%;
+	z-index:100;
+	margin:0 auto;
+	position:absolute;
+	top:0;
+	left:4vw;
 }
 #calendar_box2{
 	width:80%;
+	height:600px;
 	cursor:pointer;
+	z-index:200;
+	position:absolute;
+	top:0;
+	left:4vw;
 }
 .fc-button-group, .fc-toolbar-chunk button[type=button], #room_img{
 	display:none;
@@ -38,20 +73,27 @@
 .fc-view table, tbody{
 	border-radius:10px;
 }
+/*=========화면공유 섹선===========*/
+#screen_box{
+	width:40%;
+	height:650px;
+	box-shadow:0 0 15px rgba(0,0,0,30%);
+	border-radius:15px;
+	text-align:center;
+	display:line-block;
+	float:left;
+	margin-left:4%;
+	position:relative;
+}
 #screen_img{
-	margin-left:10%;
-	margin-top:150px;
-	height:300px;
 	width:300px;
 	cursor:pointer;
 }
 #mate_table{
 	line-height:30px;
 	font-size:15px;
-	border-radius:5px;
-	text-align:center;
-	padding:10px;
-	width:500px;
+	margin:5%;
+	width:90%;
 }
 #mate_table thead{
 	font-size:18px;
@@ -61,7 +103,10 @@
 	border:1px solid #ddd;
 }
 .bulletin_box{
-	margin-top:50px;
-	width:100%;
+	clear:both;
+	width:86%;
 	height: 300px;
+	margin-left:7%;
+	margin-top:50px;
+	box-shadow:0 0 15px rgba(0,0,0,30%);
 }
