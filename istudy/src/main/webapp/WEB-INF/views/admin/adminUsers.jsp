@@ -8,6 +8,7 @@
         <div class="profilePage">
             <div class="userProfile">
                 <div class="userPhoto">
+                <img src="/upload/user/${logImg}" id="mypage_profile_img" />
                 </div>
                 <div class="userNickname">
                 	${nickName} 

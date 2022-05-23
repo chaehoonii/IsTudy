@@ -1,14 +1,14 @@
 @charset "UTF-8";
+
 @import
 	url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css')
 	;
-	
+
 ul, li, body * {
 	padding: 0;
 	margin: 0;
 	list-style-type: none;
 }
-
 
 ul, li * {
 	list-style-type: none;
@@ -47,7 +47,7 @@ ul, li * {
 }
 
 fieldset {
-	padding: 40px; 
+	padding: 40px;
 	margin-bottom: 20px;
 	border: 1px solid rgba(118, 118, 118, 0.5);
 	margin-top: 80px;
@@ -67,6 +67,10 @@ fieldset li:last-child {
 	margin: 5px 0px;
 }
 
+input[type=password] {
+	font-family: 'Malgun gothic', dotum, sans-serif;
+}
+
 input[type=text], input[type=password] {
 	width: 100%;
 	height: 35px;
@@ -82,11 +86,12 @@ input[type=radio] {
 input[type=submit] {
 	width: 100%;
 	padding: 15px;
+	font-size: 1.5em;
+	background-color: rgb(212, 196, 181);
+	color: white;
 	margin-top: 8px;
 	border: none;
-	background-color:rgb(230, 223, 215);
-    color:rgba(85, 76, 66, 80%);
-    font-size:16px;
+	color: white;
 }
 
 #radio_list {
@@ -97,7 +102,6 @@ input[type=submit] {
 	margin: 0;
 	float: left;
 }
-
 
 #radio_list li:not(first-child) {
 	margin-right: 10px;
@@ -110,6 +114,6 @@ input[type=submit] {
 	font-size: 14px;
 }
 
-.career_url{
-	display:none;
+.career_url {
+	display: none;
 }
