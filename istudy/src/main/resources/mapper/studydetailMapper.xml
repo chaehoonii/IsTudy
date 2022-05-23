@@ -32,14 +32,13 @@
 		from study_room where study_num=#{param1}
 	</select>
 	<select id="mateList" resultType="StudyVO">
-		SELECT 	A.user_nick, IFNULL(C.contribute,0) AS contribute
-		FROM 	user A
-		JOIN 	study_mate B
-		ON 		A.user_id=B.user_id
-        JOIN	(SELECT user_id, count(*) AS contribute FROM board WHERE study_num=#{param1} GROUP BY user_id) C
-        ON		C.user_id=A.user_id
-        WHERE 	study_num=#{param1}
-        AND		B.want_ok='T'
+		select A.user_id, B.user_nick, IFNULL(C.contribute,0) AS contribute
+        from study_mate A
+        join user B
+        on A.user_id=B.user_id
+        join (select user_id, count(board_num) AS contribute from board where study_num=#{param1} group by user_id) C
+        on C.user_id = A.user_id
+        group by C.user_id 
         ORDER BY contribute DESC
 	</select>
 </mapper>

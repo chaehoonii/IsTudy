@@ -40,7 +40,7 @@
 						<div class="qnaTextArea" id="qnaTextArea">
 							<!--CKEDITOR 4 -->
 							<textarea class="qna_editor" id="qna_editor" name="content" 
-							placeholder="코드블럭(markdown)이용 시 백틱(`)을 사용하세요"></textarea>
+							placeholder="코드블럭(markdown)이용 시 백틱(```)을 사용하세요"></textarea>
 						</div>
 					</li>
 					<li>
