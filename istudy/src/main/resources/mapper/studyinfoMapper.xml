@@ -60,7 +60,7 @@
    		select b.* from(
 		 select A.study_num, ifnull(G.in_people,0) as in_people, A.max, A.max - ifnull(G.in_people,0) as remain
 			from study_room A  
-			join (select study_num, ifnull(COUNT(want_ok),0) as in_people from study_mate where want_ok='T' group by study_num ) G
+			left outer join (select study_num, ifnull(COUNT(want_ok),0) as in_people from study_mate where want_ok='T' group by study_num ) G
 		    on G.study_num=A.study_num 
 		    where A.study_num=#{param1} ) b where 1=1
 		<if test="status!=null and status=='1'">
