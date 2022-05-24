@@ -40,4 +40,10 @@ public interface StudyDetailDAO {
 	public int applyEditOk(StudyVO vo);
 	
 	public List<StudyVO> applyList(int study_num);
+	
+	// 신청 수락
+	public int ApplySelect(int want_num);
+
+	// 스터디원 강퇴
+	public int ApplySelectDel(int want_num);
 }

@@ -295,7 +295,7 @@ $(function() {
                </div>                  
                   <div id="qna_content_btn">
                      <c:if test="${logId == vo.user_id}">
-                        <div><span class='content_edit_btns' onclick="BoardEdit()">수정</span>&emsp;<span class='content_del_btns' onclick="BoardDel()">삭제</span></div>
+                        <div><span class='content_edit_btns' onclick="BoardEdit()">수정</span>&emsp;<span class='content_del_btns' id=" boardDelete" onclick="BoardDel()">삭제</span></div>
                      </c:if>
                   </div>
       </div>
@@ -304,7 +304,7 @@ $(function() {
             <form method='post' id='replyWriteForm'>
                <input type='hidden' name='board_num' id='board_num_box' value='${vo.board_num}'/>
                   <span><input type="text" name="reply_coment" class="graySquare" id="reply_coment"/></span>&emsp;
-                  <span><input type='button' value='댓글 등록' id="addReplybtn" /></span>
+                  <span><input type='button' value='댓글 등록' id="replyWrite" /></span>
             </form>
          </div>
       </c:if>   

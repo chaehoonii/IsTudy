@@ -139,7 +139,7 @@
    // 게시글 삭제===================================================================================================
    function BoardDel(){
       if(confirm("글을 삭제하시겠습니까?")){
-            location.href = "/study/board/boardDelete?board_num="+${vo.board_num};     
+            location.href = "/board/boardDelete?board_num="+${vo.board_num};     
        }
        return false;
    }

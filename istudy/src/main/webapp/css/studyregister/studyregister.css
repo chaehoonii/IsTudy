@@ -25,7 +25,7 @@
 }
 
 .header {
-	margin-top:5%;
+	margin-top:3%;
 	position: fixed;
 	width: 20%;
 	height:100vh;
@@ -34,6 +34,7 @@
 }
 
 .logo {
+	font-family: 'ROKAFSansBold';
 	font: 200 1.5em;
 	text-align: center;
 	padding: 0;
@@ -41,6 +42,7 @@
 }
 
 .logo a {
+	font-family: 'ROKAFSansBold';
 	display: block;
 	padding: 1em 0;
 	color: #408080;
@@ -77,6 +79,7 @@
 	color: #000000;
 	font-size: 15px;
 	text-align: center;
+	font-family: 'ROKAFSansBold';
 }
 
 .main-nav a:hover {
@@ -131,17 +134,18 @@
 
 /*---------------------common ------------------------------*/
 .sub_register_content {
-	margin-top: 5%;
+	margin-top: 3%;
 	padding: 80px;
 	float: right;
 	width: 80%;
 	height: 100%;
-	min-height: 80vh;
+	min-height: 81vh;
 }
 
 .sub_register_title h2 {
 	margin-top: 5px;
 	font-size: 30px;
+	font-family: 'ROKAFSansBold';
 }
 
 .moving_button {
@@ -208,19 +212,22 @@
 
 .study_title h3 {
 	font-size: 20px;
+	font-family: 'ROKAFSansBold';
 }
 
 .study_title #study_name {
+	margin-top:10px;
 	width: 20%;
-	height: 30px;
+	height: 50px;
 	font-size: 15px;
 }
 .study_kinds {
-	margin-top: 70px;
+	margin-top: 100px;
 }
 
 .study_kinds h3 {
 	font-size: 20px;
+	font-family: 'ROKAFSansBold';
 }
 
 .kinds_grid {
@@ -280,6 +287,7 @@
 
 .study_image h3 {
 	font-size: 20px;
+	font-family: 'ROKAFSansBold';
 }
 
 .thumb {
@@ -311,6 +319,7 @@
 
 .study_info h3 {
 	font-size: 20px;
+	font-family: 'ROKAFSansBold';
 }
 
 .study_info .info_box {
@@ -345,13 +354,15 @@
 .study_people h3 {
 	margin-top: 50px;
 	font-size: 20px;
+	font-family: 'ROKAFSansBold';
 }
 
 #people_set {
 	margin-right: 5px;
-	width: 15%;
-	height: 30px;
-	font-size: 15px;
+	width: 10%;
+	height: 45px;
+	font-size: 20px;
+	text-align: center;
 }
 
 .study_caution {
@@ -360,13 +371,14 @@
 
 .study_caution h3 {
 	font-size: 20px;
+	font-family: 'ROKAFSansBold';
 }
 
 #caution_text {
 	padding: 10px;
 	resize: none;
 	width: 45%;
-	height: 250px;
+	height: 240px;
 	font-size: 13px;
 	border-radius: 5px;
 	border: 1px solid gray;
@@ -388,17 +400,22 @@
 
 .study_period h3 {
 	font-size: 20px;
+	font-family: 'ROKAFSansBold';
 }
-
+#todayDate, #final_date{
+	height: 45px;
+}
 .study_language {
 	margin-top: 50px;
 }
 
 .study_language h3 {
 	font-size: 20px;
+	font-family: 'ROKAFSansBold';
 }
 .tag_select h3{
 	font-size: 20px;
+	font-family: 'ROKAFSansBold';
 }
 .tag_select{
 	margin-top: 50px;
