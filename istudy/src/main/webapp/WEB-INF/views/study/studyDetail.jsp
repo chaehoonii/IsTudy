@@ -19,36 +19,37 @@ function applyList(){
 		dataType:'json',
 		success:function(data){
 			var tag = "";
-			for(var i=0; i<data.length; i++){
-				tag += "<div class='qna_back03_reply'>";
-				//reply top
-				//프로필, 날짜
-				tag += "<div class='reply_top'>";
-				tag += "<div class='qna_profile_reply' style='display:inline-block;'><img src='/upload/user/"+data[i].profile_img+"' id='qna_profile'/>&emsp;";
-				tag += data[i].user_nick;
-				tag += "</div>"; //qna_profile_reply
-				//신청버튼
-				if(data[i].want_ok == 'T'){ //신청확정된 댓글일때
-					if('${logId}'== data[i].host_id){ //로그인아이디가 작성자일때 > 채택취소
-						tag += "<span class='select_btn' onclick='SelectApplyDel("+data[i].want_num+")'><img src='/images/study_info/check.png'></span>";
-					}else{
-						tag += "<span class='select_btn' ><img src='/images/study_info/check.png'></span>";
-					}
-				}else{ //신청확정되지 않은 글일때
-					if('${logId}'== data[i].host_id){ //로그인아이디가 작성자일때 > 채택
-						tag += "<span class='select_btn' onclick='SelectApply("+data[i].want_num+")'><img src='/images/study_info/agree.png'></span>";
-					}else{
-						tag += "<span>&nbsp;&nbsp;&nbsp;</span>&emsp;&emsp;";
-					}
-				}
-				tag += "</div><hr/>";	//reply_top
-				tag += "<div class='reply_content'><span id='reply_comment'>"+data[i].want_coment+"</span>";
-				//수정삭제
-				if('${logId}'== data[i].user_id){
-					tag += "<span id='reply_btns'><input type='hidden' value='"+data[i].want_num+"'/><span class='reply_edit edit_btns'>수정</span>&nbsp;&nbsp;<span class='reply_del del_btns' onclick='ApplyDel("+data[i].want_num+")'>삭제</span></div>";
-				}
-				tag += "</span></div>";	
-			}
+            for(var i=0; i<data.length; i++){
+                tag += "<div class='qna_back03_reply'>";
+                //reply top
+                //프로필, 날짜
+                tag += "<div class='reply_top'>";
+                tag += "<div class='qna_profile_reply' style='display:inline-block;'><img src='/upload/user/"+data[i].profile_img+"' id='qna_profile'/>&emsp;";
+                tag += data[i].user_nick;
+                tag += "</div>"; //qna_profile_reply
+                
+                //신청버튼
+                if(data[i].want_ok == 'T'){ //신청확정된 댓글일때
+                    if('${logId}'== data[i].host_id){ //로그인아이디가 작성자일때 > 채택취소
+                        tag += "<span class='select_btn' onclick='SelectApplyDel("+data[i].want_num+")'><img src='/images/study_info/check.png'></span>";
+                    }else{
+                        tag += "<span class='select_btn' ><img src='/images/study_info/check.png'></span>";
+                    }
+                }else{ //신청확정되지 않은 글일때
+                    if('${logId}'== data[i].host_id){ //로그인아이디가 작성자일때 > 채택
+                        tag += "<span class='select_btn' onclick='SelectApply("+data[i].want_num+")'><img src='/images/study_info/agree.png'></span>";
+                    }else{
+                        tag += "<span>&nbsp;&nbsp;&nbsp;</span>&emsp;&emsp;";
+                    }
+                }
+                tag += "</div><hr/>";    //reply_top
+                tag += "<div class='reply_content'><span id='reply_comment'>"+data[i].want_coment+"</span>";
+                //수정삭제
+                if('${logId}'== data[i].user_id){
+                    tag += "<span id='reply_btns'><input type='hidden' value='"+data[i].want_num+"'/><span class='reply_edit edit_btns'>수정</span>&nbsp;&nbsp;<span class='reply_del del_btns' onclick='ApplyDel("+data[i].want_num+")'>삭제</span></div>";
+                }
+                tag += "</div></div>";    
+            }
 			$(".apply_div").html(tag);	
 			
 			//댓글 등록=========================================================================================
@@ -216,7 +217,13 @@ $(document).ready(function(){
 			</div>
 			<div class="participant">
 				<div class="dmemeber">
-						<span class="dnick">[스터디장]&emsp;${vo.user_nick}</span><br/>
+						<span class="dnick">[스터디장]&emsp;${vo.user_nick}
+                        <c:if test="${vo.permission=='mentor'}">
+                            &nbsp;<img id="level-icon" src='${vo.level_icon}' style='width:30px; margin:0;display:inline;'></span><br/>
+                        </c:if>
+                        <c:if test="${vo.permission=='user'}">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </c:if></span><br/>
 						<img class="dimg" src="/upload/user/${vo.profile_img}" class="img img-thumbnail"><br/>
 					<hr/>
 					<div class="peopleIcon">
