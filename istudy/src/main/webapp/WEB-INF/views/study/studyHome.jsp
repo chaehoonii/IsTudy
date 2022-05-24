@@ -131,12 +131,10 @@
 					
 				}else{
 					//alert(JSON.stringify(value))
-					var tag=" ";
+					var tag='';
 					//alert(value.length)
 					//console.log(JSON.stringify(value))
-					var vo = value.vo;
-					var pvo = value.pvo;
-					$(value).each(function(vo, pvo){
+					$(value).each(function(idx, vo){
 						tag+="<div class='info' onclick=\"location.href='/study/study_home/"+vo.study_num+"'\">"
 						tag+=	"<div class='simg'>"
 						tag+=		"<img src='/upload/study_room/"+vo.study_img+"' class='img img-thumbnail'>"
@@ -148,51 +146,33 @@
 						} else{
 							tag+= "[일반]";
 						}
-						tag+=		"</span>&emsp;"
-						tag+=		"<span class='sname'>"+vo.study_name+"</span>"	
-						tag+=		"&emsp;/&emsp;<span class='sname'>"+vo.study_type_name+"</span><br/>"	
-						tag+=		"&emsp;&emsp;<span class='sid'>"+vo.user_nick+"</span>"	
-						tag+=		"<span class='smax'>"
+						tag+=		"</span>&emsp;";
+						tag+=		"<span class='sname'>"+vo.study_name+"</span>";	
+						tag+=		"&emsp;/&emsp;<span class='sname'>"+vo.study_type_name+"</span><br/>"	;
+						tag+=		"&emsp;&emsp;<span class='sid'>"+vo.user_nick+"</span>"	;
+						tag+=		"<span class='smax'>";
 						for(var i=1;i<=vo.in_people;i++){
-							tag+=			"<img src='/images/study_info/person_1.png' class='person_img'/>"
+							tag+=			"<img src='/images/study_info/person_1.png' class='person_img'/>";
 						}
 						for(var i=1;i<=vo.in_people;i++){
-						tag+=			"<img src='/images/study_info/person_0.png' class='person_img'/>"
+							tag+=			"<img src='/images/study_info/person_0.png' class='person_img'/>";
 						}
-						tag+=		"</span><br/>"
-						tag+=		"<span class='sdate'>"+vo.start_date+"~"+vo.finish_date+"</span>"
+							tag+=		"</span><br/>";
+							tag+=		"<span class='sdate'>"+vo.start_date+"~"+vo.finish_date+"</span>";
 						$(vo.lang_list).each(function(i, lang){
-							tag+=	"<span class='lang_list'>&nbsp;"+lang+"&nbsp;</span>&nbsp;"
+							tag+=	"<span class='lang_list'>&nbsp;"+lang+"&nbsp;</span>&nbsp;";
 						})
 						$(vo.tag_list).each(function(t, tg){
-							tag+=	"<span class='tag_list'>&nbsp;"+tg+"&nbsp;</span>&nbsp;"
-							/* console.log("*************************")
-							console.log(tag)
-							console.log("*************************") */
+							tag+=	"<span class='tag_list'>&nbsp;"+tg+"&nbsp;</span>&nbsp;";
 						})
 						
-						tag+=	"</div>"
-						tag+="</div>"
-						tag+="<hr style='width:90%; float:left;'>"
+						tag+=	"</div>";
+						tag+="</div>";
+						tag+="<hr style='width:90%; float:left;'>";
 						
-// 						//페이징
-// 						tag+="<div style='clear:both'></div>"
-// 						tag+="<div class='pagingContainer'>"
-// 						tag+="<ul class='pagination justify-content-center' id='paging'>"
-// 						if(pvo.pageNum==1){tag+="<li class='page-item disabled'><a class='page-link' id='prevBtn'><i class='fa fa-angle-left'></i></a></li>"}
-// 						if(pvo.pageNum>1){tag+="<a class='page-link' href='/study/study_home?pageNum="+pvo.pageNum-1+" id='prevBtn'><i class='fa fa-angle-left'></i></a>"}
-// 						for(var p=pvo.startPage;p<=pvo.totalPage;p++){
-// 							if(p<=pvo.totalPage){
-// 								if(p==pvo.pageNum){
-// 									tag+="<li class='page-item disabled'><a class='page-link'>"+p+"</a></li>"
-// 								} else if(p!=pvo.pageNum){
-// 									tag+="<li class='page-item'><a class='page-link' href='/study/study_home?"+pageNum=p+"'>"+p+"</a></li>"
-// 								}
-// 							}
-// 						}
-// 						tag+="</ul></div>"
 					})
-					$('#study_list').html(tag)
+					$('#study_list').html(tag);
+					$("#pagingContainer").remove();
 				}
 			},
 			error:function(e){
@@ -200,6 +180,7 @@
 			}		
 		})
 	}
+
 </script>
 <h1 id="studyTitle">스터디 목록</h1>
 <div id="category_box">
@@ -311,7 +292,7 @@
         </c:if>
         <c:if test="${pvo.pageNum>1}">
             <li class="page-item">
-            	<a class="page-link" href="/study/study_home?pageNum=${pvo.pageNum-1}" id="prevBtn">
+            	<a class="page-link" href="/study/study_home?pageNum=${pvo.pageNum-1}${searchUrl}" id="prevBtn">
             		<i class="fa fa-angle-left"></i>
             	</a>
             </li>
@@ -323,7 +304,7 @@
             			<li class="page-item disabled"><a class="page-link">${p}</a></li>
                     </c:when>
                     <c:when test="${p!=pvo.pageNum}">
-                        <li class="page-item"><a class="page-link" href="/study/study_home?pageNum=${p}">${p}</a></li>
+                        <li class="page-item"><a class="page-link" href="/study/study_home?pageNum=${p}${searchUrl}">${p}</a></li>
                     </c:when>
                 </c:choose>
             </c:if>
@@ -337,7 +318,7 @@
       	</c:if>
         <c:if test="${pvo.pageNum<pvo.totalPage}">
             <li class="page-item">
-            	<a class="page-link" href="/study/study_home?pageNum=${pvo.pageNum+1}" id="nextBtn">
+            	<a class="page-link" href="/study/study_home?pageNum=${pvo.pageNum+1}${searchUrl}" id="nextBtn">
             		<i class="fa fa-angle-right"></i>
             	</a>
             </li>
