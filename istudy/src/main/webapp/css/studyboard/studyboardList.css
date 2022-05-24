@@ -37,8 +37,8 @@
 
 /*studyboard리스트*/
 .studyboard_ul {
-	margin-left:50px;
-	line-height: 45px;
+	margin-left:10%;
+	line-height: 90px;
 	display:inline-block;
 	width:750px;
 	font-size:16px;
