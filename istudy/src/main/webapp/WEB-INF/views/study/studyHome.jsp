@@ -289,12 +289,15 @@
 				<br/>
 				<span class="sid">${vo.user_nick}</span>
 				<span class="smax">
+				
 				<c:forEach var ="i" begin="${1}" end="${vo.in_people}">
 					<img src='/images/study_info/person_1.png' class='person_img'/>
 				</c:forEach>
 				<c:forEach var ="i" begin="${1}" end="${vo.remain}">
 					<img src='/images/study_info/person_0.png' class='person_img'/>
 				</c:forEach>
+				
+				
 				</span>
 				<br/>
 				<span class="sdate">${vo.start_date} ~ ${vo.finish_date}</span>
