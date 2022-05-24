@@ -54,7 +54,8 @@ a, a:visited, a:hover, a:active{
 }
 .btnDiv{
 	text-align:right;
-	margin-right:20px;
+	/* margin-right:20px; */
+	margin-left:70px;
 }
 .loginBtn, .signUpBtn{
 	width:80px !important;
