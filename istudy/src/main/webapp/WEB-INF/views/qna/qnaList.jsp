@@ -8,7 +8,7 @@
 		<h1 id='qna_logo' onclick="location.href='/qna/qnaList'">Q & A</h1>		
 		<br/><br/><br/><br/>
 		<div id='qna_top01'><span class='white_border'>&nbsp;(&nbsp;${totalQna}&nbsp;) 개의 질문&nbsp;</span></div>
-		<div id='qna_top02' onclick="location.href='/qna/qnaWrite'"><span class='gray_box'>&nbsp;질 문 하 기&nbsp;</span></div>
+		<div id='qna_top02' onclick="location.href='/qna/qnaWrite'"><span class='gray_box'>&nbsp;질문하기&nbsp;</span></div>
 		<hr/>
 		<c:forEach var="vo" items="${qnaList}">
 			<ul class='qna_ul' onclick="location.href='/qna/qnaView?board_num=${vo.board_num}'">

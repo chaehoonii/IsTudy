@@ -21,10 +21,11 @@
 }
 #qna_top02{
 	float:right;
-	margin-right:0;
-	width:10%;
+	margin-right:5px;
+	width:15%;
 	display:inline;
 	cursor:pointer;
+	letter-spacing: 5px;
 }
 .gray_box {
 	line-height: 35px;
@@ -102,6 +103,9 @@
 	height:40px;
 	border-radius: 50%;
 }
+#qna_content::-webkit-scrollbar{ display:none; }
+#qna_content{ -ms-overflow-style: none; }
+
 .gray_border {
 	line-height: 30px;
 	border-radius: 5px;
