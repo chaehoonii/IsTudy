@@ -110,14 +110,14 @@ public class AdminUserController {
 
 	// 신고 관리 확인
 	@GetMapping("confirmUpdate")
-	   public String confirmUpdate(HttpSession session,@RequestParam("report_num") int report_num) {
-	      AdminUserVO vo=new AdminUserVO();
-	      vo.setReport_num(report_num);
-	      System.out.println(vo.getReport_num());
-	      AUservice.getConfirmUpdate(vo);
-	      return "redirect:/";
-
+	public String confirmUpdate(HttpSession session, @RequestParam("report_num") int report_num) {
+		AdminUserVO vo = new AdminUserVO();
+		vo.setReport_num(report_num);
+		System.out.println(vo.getReport_num());
+		AUservice.getConfirmUpdate(vo);
+		return "redirect:/";
 	}
+
 	
 	// 신고된 글 계정 삭제
 	@GetMapping("adminDelete")
