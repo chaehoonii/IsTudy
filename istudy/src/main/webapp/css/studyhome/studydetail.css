@@ -1,10 +1,21 @@
 @charset "UTF-8";
-
+#back_btn{
+   display:inline-block;
+   width:35px;
+   height:35px;
+   border: 4px solid #ddd;
+   border-radius: 50%;
+   padding:5px;
+   position:absolute;
+   left:10vw;
+   top:15vh;
+   cursor:pointer;
+}
 #contents{
-	width:80%;
+	width:88%;
 	height:100%; 
 	float:right;
-	margin-top:60px;
+	margin-top:100px;
 	margin-bottom:60px;
 	font-size:15px;
 	line-height:50px;
@@ -22,18 +33,33 @@
 	grid-gap: 0.5em;
 	width: 80%;
 }
+/*=========제목, 내용 부분===========*/
 .detailstudy{
-	border: 1px solid gray;
-	width:70%;
+	width:105%;
 	height:100%;
 	padding:10px;
 	margin-left:50px;
+	box-shadow:0 0 10px rgba(0,0,0,30%);
+	border-radius:15px;
+	padding:40px;
 }
 .like_span{
 	float:left;
+	font-size:16px;
+	font-weight:700;
 }
 .like_span img{
-	width: 50px;
+	width:40px;
+	margin-right:10px;
+}
+.dname{
+	margin-left:20px;
+	margin-top:10px;
+	font-size:25px;
+	font-weight:700;
+}
+.dlike{
+	float:right;
 }
 /* =====================스터디 언어 태그============================== */
 .lang_list {
@@ -49,37 +75,62 @@
 	padding: 5px;
     font-size:12px;
 }
+/*==========참가 인원============*/
 .participant{
-	border: 1px solid gray;
-	width:75.5%;
+	box-shadow:0 0 10px rgba(0,0,0,30%);
+	border-radius:15px;
+	width:60%;
 	height:100%;
 	padding:10px;
 	position:relative;
+	float:right;
+	margin-left:17%;
+}
+.dmemeber{
+	text-align:center;
+}
+.dnick{
+	font-size:20px;
+	font-weight:700;
+}
+.dimg{
+	width:200px;
+	border-radius:50%;
+}
+.peopleIcon{
+	width:100%;
+	height:50px;
+}
+.person_img{
+	width:40px;
+	height:40px;
 }
 .dmax_droom{
-	position: absolute; 
-	right: 10px; 
-	bottom: 10px;
+	text-align:center;
 }
-/* =====================스터디 룸 이동 버튼============================== */
+/* 스터디 룸 이동 버튼 */
 #roombtn{
-	background-color:rgb(230, 223, 215);
+	width:200px;
 	border: none;
-	color:rgba(85, 76, 66, 80%);
 	text-align: center;
 	text-decoration: nonergb(232, 244, 232)ine-block;
-	font-size: 16px;
 	margin: 4px 2px;
 	border-radius: 5px;
 	cursor: pointer;
+	background-color:rgb(230, 223, 215);
+  	color:rgba(85, 76, 66, 80%);
+   	font-size:16px;
+   	font-weight:700;
 }
+/*=========신청 댓글 섹션===========*/
 .sdetailuser{
-  	border: 1px solid gray;
 	width:82%;
 	height:300px;
-  	margin-top:30px;
+  	margin-top:45px;
 	padding:10px;
 	margin-left:50px;
+	box-shadow:0 0 10px rgba(0,0,0,30%);
+	border-radius:15px;
 }
 .tid{		
 	display: inline-block;
@@ -125,25 +176,6 @@
 	display: inline-block;
 	font-size: 16px;
 	margin: 4px 2px;
-	border-radius: 5px;
-	cursor: pointer;
-}
-/* =====================스터디 목록 이동 버튼============================== */
-#slist_page{
-	position:absolute;
-	bottom:0;
-	right:0;
-}
-#listbtn{
-	background-color:rgb(230,223,215);
-	border: none;
-	color:rgba(85, 76, 66, 80%);
-	padding: 15px 30px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	margin: -70px 90px;
 	border-radius: 5px;
 	cursor: pointer;
 }

@@ -12,16 +12,25 @@ $(document).ready(function(){
 
 <div class="room_div">
 	<div id='name_div'>
+	<img src='/images/back02.png' id="back_btn" onclick="history.back()"/>
 		<span id='name_span'>${vo.study_name}</span>
 	</div>
 	<div class="study_room_grid">
 		<div id='calendar_box_parent'>
+			<div class="section_title">
+				<p>스케줄러</p>
+			</div>
+			<hr/>
 			<div id='calendar_box'>
 				<%@include file="calendar/calendarList.jsp"%>
 			</div>
 			<div id='calendar_box2'></div>
 		</div>
 		<div id="screen_box">
+			<div class="section_title">
+				<p>화면공유 / 채팅</p>
+			</div>
+			<hr/>
 			<img src='/images/study_room/screen01.png' id='screen_img' onclick="location.href='/study/webSocket/studyPage?study_num=${study_num}'" title='화면공유'/>
 			<table id='mate_table'>
 				<thead>
@@ -39,8 +48,12 @@ $(document).ready(function(){
 			</table>
 		</div>
 	</div>
-	<div id='bulletin_box'>
-			<%@include file="studyboard/studyboardList.jsp"%>
+	<div id='bulletin_box' style="clear:both;">
+		<div class="section_title">
+			<p>스터디 게시판</p>
+		</div>
+		<hr/>
+		<%@include file="studyboard/studyboardList.jsp"%>
 	</div>
 </div>
 <div style="clear:both"></div>

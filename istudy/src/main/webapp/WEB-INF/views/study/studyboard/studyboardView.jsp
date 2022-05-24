@@ -206,7 +206,7 @@ $(function() {
 </script>
 <div class="modal">
    <div class="modal_content">
-   <form method="post" action="/study/reportJoin" onsubmit='return reportsubmit()' enctype="multipart/form-data">
+   <form method="post" action="/study/reportJoin?board_num=${vo.board_num}" onsubmit='return reportsubmit()' enctype="multipart/form-data">
       <div style="width:100%;height:110px;display:inline-block;">
       <label style="float:left;margin-left:70px;margin-top:40px;">신고 분류</label>
       <select style="margin-top:40px;width:300px;border: 1px solid rgba(118, 118, 118, 0.5);" type="hidden" name="report_type_num" id="report_type_num" width="100%">
