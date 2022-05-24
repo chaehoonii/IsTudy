@@ -304,7 +304,7 @@ $(function() {
             <form method='post' id='replyWriteForm'>
                <input type='hidden' name='board_num' id='board_num_box' value='${vo.board_num}'/>
                   <span><input type="text" name="reply_coment" class="graySquare" id="reply_coment"/></span>&emsp;
-                  <span><input type='button' value='댓글 등록' id="replyWrite" /></span>
+                  <span><input type='button' value='댓글 등록' id="addReplybtn" /></span>
             </form>
          </div>
       </c:if>   
