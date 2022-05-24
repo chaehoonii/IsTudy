@@ -5,8 +5,6 @@
 
 <div class='studyboard_back'>
 	<div id='studyboard_list'>
-		<h1 id='studyboard_logo' onclick="location.href='/study/studyboard/studyboardList'">스터디 게시판</h1>		
-		<br/><br/><br/><br/>
 		<div id='studyboard_top01'><span class='white_border'>&nbsp;(&nbsp;${total_study_board}&nbsp;) 개의 글&nbsp;</span></div>
 		<div id='studyboard_top02' onclick="location.href='/study/studyboard/studyboardWrite?study_num=${study_num}'"><span class='gray_box'>&nbsp;글쓰기&nbsp;</span></div>
 		<hr/>

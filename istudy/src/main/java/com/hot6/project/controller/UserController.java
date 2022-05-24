@@ -223,7 +223,7 @@ public class UserController {
 				session.setAttribute("logPermission", user.getPermission());
 				
 				String url = (String) session.getAttribute("url");
-				if(url.equals("http://localhost:8060/users/login") || url.equals("http://localhost:8060/users/idSearch") || url.equals("http://localhost:8060/users/pwdSearch")) {
+				if(url ==null || url.equals("http://localhost:8060/users/login") || url.equals("http://localhost:8060/users/idSearch") || url.equals("http://localhost:8060/users/pwdSearch")) {
 					url = "/";
 				}
 				String msg = "<script>location.href = '"+url+"';</script>"; //이전페이지로 보내기

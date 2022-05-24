@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,16 +24,19 @@ public class StudyInfoController {
 	public ModelAndView studyHome(String user_nick, PagingVO pvo) {
 
 		ModelAndView mav=new ModelAndView(); 
-
+		
+		//검색
 		if(user_nick !=null && !user_nick.equals("")) {
 			mav.addObject("user_nick", user_nick);
 			pvo.setSearchWord(user_nick);
 		}
-
+		
+		//페이징
 		pvo.setOnePageRecord(4);
 		pvo.setOnePageCount(5);
-		pvo.setTotalRecord(service.totalRecord(1));
-
+		pvo.setTotalRecord(service.totalRecord());
+		pvo.setOffsetIndex(pvo.getPageNum(), 4);
+		System.out.println(pvo.getOffsetIndex());
 		
 		List<StudyVO> langList=service.langAll(); // 카테고리 언어 출력
 		List<StudyVO> studylist= service.studyHome(pvo);
@@ -58,7 +62,6 @@ public class StudyInfoController {
 		mav.setViewName("/study/studyHome"); 
 		return mav; 
 	}
-	
 	//ajax
 	@PostMapping("/study/study_home2")
 	public List<StudyVO> studyHome2(PagingVO vo) {

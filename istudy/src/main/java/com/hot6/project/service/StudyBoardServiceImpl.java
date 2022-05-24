@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.hot6.project.dao.StudyBoardDAO;
+import com.hot6.project.vo.AdminUserVO;
 import com.hot6.project.vo.BoardVO;
 import com.hot6.project.vo.PagingVO;
 
@@ -45,4 +46,8 @@ public class StudyBoardServiceImpl implements StudyBoardService {
 		return dao.setTotalRecord(board_type);
 	}
 
+	@Override
+	public int reportJoin(AdminUserVO vo, int board_num) {
+		return dao.reportJoin(vo, board_num);
+	}	
 }
