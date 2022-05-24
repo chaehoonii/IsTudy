@@ -133,7 +133,7 @@
 .graySquare{
 	width:75%;
 	height:50px;
-  	margin-top:50px;
+  	margin-top:45px;
   	padding-left:20px;
 	margin-left:50px;
 	border:2px solid rgba(0,0,0,30%);
@@ -209,14 +209,6 @@
 	line-height:40px !important;
 	resize:none;
 	overflow-y:hidden;
-	width:75%;
-	height:50px;
-  	margin-top:50px;
-  	padding-left:20px;
-	margin-left:50px;
-	border:2px solid rgba(0,0,0,30%);
-	border-radius:15px;
-	position:relative;
 }
 #replyEditbtn{
 	width:80px;
@@ -228,5 +220,4 @@
   	color:rgba(85, 76, 66, 80%);
    	font-size:16px;
    	font-weight:700;
-   	position:relative;
 }

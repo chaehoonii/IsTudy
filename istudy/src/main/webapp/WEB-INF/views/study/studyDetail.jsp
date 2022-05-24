@@ -27,6 +27,7 @@ function applyList(){
 				tag += "<div class='qna_profile_reply' style='display:inline-block;'><img src='/upload/user/"+data[i].profile_img+"' id='qna_profile'/>&emsp;";
 				tag += data[i].user_nick;
 				tag += "</div>"; //qna_profile_reply
+				
 				//신청버튼
 				if(data[i].want_ok == 'T'){ //신청확정된 댓글일때
 					if('${logId}'== data[i].host_id){ //로그인아이디가 작성자일때 > 채택취소
@@ -47,7 +48,7 @@ function applyList(){
 				if('${logId}'== data[i].user_id){
 					tag += "<span id='reply_btns'><input type='hidden' value='"+data[i].want_num+"'/><span class='reply_edit edit_btns'>수정</span>&nbsp;&nbsp;<span class='reply_del del_btns' onclick='ApplyDel("+data[i].want_num+")'>삭제</span></div>";
 				}
-				tag += "</span></div>";	
+				tag += "</div></div>";	
 			}
 			$(".apply_div").html(tag);	
 			
