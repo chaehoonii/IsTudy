@@ -130,7 +130,6 @@
 					$('#study_list').html(tag)
 					
 				}else{
-
 					//alert(JSON.stringify(value))
 					var tag=" ";
 					//alert(value.length)
@@ -176,29 +175,22 @@
 						tag+="</div>"
 						tag+="<hr style='width:90%; float:left;'>"
 						
-						//페이징
-						tag+="<div style='clear:both'></div>"
-						tag+="<div class='pagingContainer'>"
-						tag+="<ul class='pagination justify-content-center' id='paging'>"
-						if(pvo.pageNum==1){tag+="<li class='page-item disabled'><a class='page-link' id='prevBtn'><i class='fa fa-angle-left'></i></a></li>"}
-						if(pvo.pageNum>1){tag+="<a class='page-link' href='/study/study_home?pageNum="+pvo.pageNum-1+" id='prevBtn'><i class='fa fa-angle-left'></i></a>"}
-						for(var p=pvo.startPage;p<=pvo.totalPage;p++){
-							if(p<=pvo.totalPage){
-								if(p==pvo.pageNum){
-									tag+="<li class='page-item disabled'><a class='page-link'>"+p+"</a></li>"
-								} else if(p!=pvo.pageNum){
-									tag+="<li class='page-item'><a class='page-link' href='/study/study_home?pageNum="+p+"'>"+p+"</a></li>"
-								}
-							}
-						}
-						if(pvo.pageNum == pvo.totalPage){
-							tag+="<li class='page-item disabled'>"
-							tag+="<a class='page-link' id='nextBtn'><i class='fa fa-angle-right'></i></a></li>"
-						} else if(pvo.pageNum<pvo.totalPage){
-							tag+="<li class='page-item'>"
-							tag+="<a class='page-link' href='/study/study_home?pageNum="+pvo.pageNum+1+"' id='nextBtn'><i class='fa fa-angle-right'></i></a></li>"
-						}
-						tag+="</ul></div>"
+// 						//페이징
+// 						tag+="<div style='clear:both'></div>"
+// 						tag+="<div class='pagingContainer'>"
+// 						tag+="<ul class='pagination justify-content-center' id='paging'>"
+// 						if(pvo.pageNum==1){tag+="<li class='page-item disabled'><a class='page-link' id='prevBtn'><i class='fa fa-angle-left'></i></a></li>"}
+// 						if(pvo.pageNum>1){tag+="<a class='page-link' href='/study/study_home?pageNum="+pvo.pageNum-1+" id='prevBtn'><i class='fa fa-angle-left'></i></a>"}
+// 						for(var p=pvo.startPage;p<=pvo.totalPage;p++){
+// 							if(p<=pvo.totalPage){
+// 								if(p==pvo.pageNum){
+// 									tag+="<li class='page-item disabled'><a class='page-link'>"+p+"</a></li>"
+// 								} else if(p!=pvo.pageNum){
+// 									tag+="<li class='page-item'><a class='page-link' href='/study/study_home?"+pageNum=p+"'>"+p+"</a></li>"
+// 								}
+// 							}
+// 						}
+// 						tag+="</ul></div>"
 					})
 					$('#study_list').html(tag)
 				}
@@ -276,10 +268,6 @@
 				<img src="/upload/study_room/${vo.study_img}" class="img img-thumbnail">
 			</div>
 			<div class="sinfo">
-				<span class='like_span'>
-					<img src='/images/like_1_sky.png' class='qna_like' />&nbsp;
-					${vo.like_num}
-				</span>
 				<span class="smentor">
 					<c:if test="${vo.is_mentor=='T'}">[멘토]</c:if>
 					<c:if test="${vo.is_mentor=='F'}">[일반]</c:if>
@@ -299,6 +287,10 @@
 				
 				
 				</span>
+				<span class='like_span'>
+					<img src='/images/like_1_sky.png' class='qna_like' />&nbsp;
+					${vo.like_num}
+				</span>
 				<br/>
 				<span class="sdate">${vo.start_date} ~ ${vo.finish_date}</span>
 				<c:forEach var="lang_list" items="${vo.lang_list}" end="2">
@@ -312,7 +304,6 @@
 		</div>	
 		<hr style="width:90%; float:left;">
 	</c:forEach>
-</div>
 <div class="pagingContainer">
 	<ul class="pagination justify-content-center" id="paging">
     	<c:if test="${pvo.pageNum==1}">
@@ -352,5 +343,5 @@
             </li>
        	</c:if>
     </ul>
+    </div>
 </div>
-<div style="clear:both"></div>

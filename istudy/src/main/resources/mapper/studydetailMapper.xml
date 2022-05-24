@@ -4,8 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hot6.project.dao.StudyDetailDAO">
 	<select id="studydetail" resultType="StudyVO">
-		select study_img, study_name, study_rule, host_id, max
-		from study_room where study_num=#{param1}
+		select study_img, study_name, study_rule, host_id, b.user_nick, max, b.profile_img
+		from study_room a 
+		join user b on b.user_id = a.host_id
+		where study_num=#{param1}
 	</select>
 	<select id="studyuser" resultType="StudyVO">
 		select A.want_ok, A.want_coment, B.user_nick, B.profile_img

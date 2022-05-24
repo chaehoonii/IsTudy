@@ -235,7 +235,7 @@ public class BoardController {
 			String msg = "<script>alert('글이 삭제되었습니다');";
 			if (type_num == 1) {
 				int study_num = Bservice.getStudy_num(board_num);
-				msg += "location.href='/study/study_home/mystudy/studyList?study_num=" + study_num + "';</script>";
+				msg += "location.href='/study/studyRoom?study_num=" + study_num + "';</script>";
 			} else if (type_num == 2) {
 				msg += "location.href='/qna/qnaList';</script>";
 			} else if (type_num == 3) {
@@ -307,7 +307,7 @@ public class BoardController {
 	        	String msg = "<script>alert('글이 수정되었습니다');";
 	        	if (vo.getBoard_type_num() == 1) {
 	    			int study_num = Bservice.getStudy_num(board_num); // study_num 가져와야함!
-	    			msg += "location.href='/study/study_home/mystudy/studyList?study_num=" + study_num + "';</script>";
+	    			msg += "location.href='/study/studyRoom?study_num=" + study_num + "';</script>";
 	    			// qna 게시판
 	    		} else if (vo.getBoard_type_num() == 2) {
 	    			msg += "location.href='/qna/qnaView?board_num=" + board_num + "';</script>";
