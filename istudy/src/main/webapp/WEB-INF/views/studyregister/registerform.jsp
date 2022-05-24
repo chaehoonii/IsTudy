@@ -32,7 +32,7 @@
 		let tag_list = $("#register_form input[name='tag_list']").val();
 		
 		//스터디 이름 
-		var regname = /^[ㄱ-ㅎ가-힣a-zA-Z0-9]{1,20}$/;
+		var regname = /^[~!@#$%^'&*()_+|<>?:{}| |ㄱ-ㅎ가-힣a-zA-Z0-9]{1,20}$/;
 
 		if (!regname.test(study_name.value)) {
 			alert("스터디 이름을 20자리 이하로 만들어주세요.");
@@ -107,7 +107,7 @@
 <div class="sidebar">
 	<div class="header" role="banner">
   		<h1 class="logo">
-    		<a href="#"><span>I </span>s<span>T</span>udy</a>
+    		<a href="/study/study_home"><span>I </span>s<span>T</span>udy</a>
   		</h1>
   	<div class="nav-wrap">
     	<nav class="main-nav" role="navigation">
@@ -266,51 +266,51 @@
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="5"/>Java
+					<input type="hidden" class="el" name="lang_list" value="5"/>Java
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="6"/>C++
+					<input type="hidden" class="el" name="lang_list" value="6"/>C++
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="7"/>Kotlin
+					<input type="hidden" class="el" name="lang_list" value="7"/>Kotlin
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="8"/>Swift
+					<input type="hidden" class="el" name="lang_list" value="8"/>Swift
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="9"/>PHP
+					<input type="hidden" class="el" name="lang_list" value="9"/>PHP
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="10"/>Go
+					<input type="hidden" class="el" name="lang_list" value="10"/>Go
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="11"/>C#
+					<input type="hidden" class="el" name="lang_list" value="11"/>C#
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="12"/>SQL
+					<input type="hidden" class="el" name="lang_list" value="12"/>SQL
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="13"/>Scala
+					<input type="hidden" class="el" name="lang_list" value="13"/>Scala
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="14"/>R
+					<input type="hidden" class="el" name="lang_list" value="14"/>R
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="15"/>Bash
+					<input type="hidden" class="el" name="lang_list" value="15"/>Bash
 				</div>
 				<div class="draggable" draggable="true">
 					<span class="ico-drag"></span>
-					<input type="hidden" class="el" value="16"/>Shell
+					<input type="hidden" class="el" name="lang_list" value="16"/>Shell
 				</div>
 			</div>
 			<script src="/js/studyregister/dragDrop.js"></script>
