@@ -204,7 +204,6 @@ $(document).ready(function(){
 </script>
 <img src='/images/back02.png' id="back_btn" onclick="location.href='/study/study_home'"/>
 <div id="contents">
-	<form id="frm">
 		<div class="detail_grid">
 			<div class=detailstudy>
 				<span class="dname">${vo.study_name}</span>
