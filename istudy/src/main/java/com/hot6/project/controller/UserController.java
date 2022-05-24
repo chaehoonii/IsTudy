@@ -223,7 +223,7 @@ public class UserController {
 				session.setAttribute("logPermission", user.getPermission());
 				
 				String url = (String) session.getAttribute("url");
-				if(url ==null || url.equals("http://localhost:8060/users/login") || url.equals("http://localhost:8060/users/idSearch") || url.equals("http://localhost:8060/users/pwdSearch")) {
+				if(url=="" || url==null || url.equals("http://localhost:8060/users/login") || url.equals("http://localhost:8060/users/idSearch") || url.equals("http://localhost:8060/users/pwdSearch")) {
 					url = "/";
 				}
 				String msg = "<script>location.href = '"+url+"';</script>"; //이전페이지로 보내기
@@ -233,7 +233,7 @@ public class UserController {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 
 			String msg = "<script>alert('로그인 실패하였습니다.\\n 다시 로그인하세요.');history.back();</script>";
 			entity = new ResponseEntity<String>(msg, headers, HttpStatus.BAD_REQUEST);
