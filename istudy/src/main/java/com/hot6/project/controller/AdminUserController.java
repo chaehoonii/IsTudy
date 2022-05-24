@@ -115,7 +115,6 @@ public class AdminUserController {
 		vo.setReport_num(report_num);
 		System.out.println(vo.getReport_num());
 		AUservice.getConfirmUpdate(vo);
-		session.invalidate();
 		return "redirect:/";
 	}
 
