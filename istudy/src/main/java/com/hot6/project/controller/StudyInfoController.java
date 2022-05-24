@@ -56,13 +56,28 @@ public class StudyInfoController {
 			}
 		}
 		
+		String searchUrl = "";
+		if(pvo.getStype()!=null) {
+			for(String s : pvo.getStype()) {
+				searchUrl += "&stype="+s;
+			}
+		}
+		if(pvo.getSclass()!=null) {
+			for(String s : pvo.getSclass()) {
+				searchUrl += "&sclass="+s;
+			}
+		}
+		if(pvo.getSearchWord()!=null) {
+			searchUrl += "&searchWord="+pvo.getSearchWord();
+		}
+		mav.addObject("searchUrl", searchUrl);
 		mav.addObject("pvo", pvo);
 		mav.addObject("studyhome", studylist); 
 		mav.addObject("langList", langList);
 		mav.setViewName("/study/studyHome"); 
 		return mav; 
 	}
-	//ajax
+
 	@PostMapping("/study/study_home2")
 	public List<StudyVO> studyHome2(PagingVO vo) {
 		System.out.println(vo.getSclass());
