@@ -24,7 +24,7 @@
 		<div id="study_rec_list">
 			<c:forEach var="vo" items="${StudyList}">
 				<ul class="studyInfo">
-                    <li><a href="/study_home/study_info?study_num=${vo.study_num}"><img
+                    <li><a href="/study/study_home/${vo.study_num}"><img
                             src="/upload/study_room/${vo.study_img}" width="100px" /></a></li>
                     <c:if test="${vo.is_mentor == 'T'}">
                         <li class="studyInfoText sort">멘토</li>
