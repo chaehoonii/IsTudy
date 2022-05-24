@@ -6,16 +6,16 @@
   
   	<!-- 진행 중인 스터디 -->
   	<select id="joinStudy" resultType="StudyVO">
-		SELECT study_room.*, study_type.study_type_name, study_mate.user_id FROM study_room INNER JOIN study_type
-		ON study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[<]]> finish_date
-		INNER JOIN study_mate ON study_mate.study_num= study_room.study_num WHERE user_id= #{param1} or host_id=#{param1}
+		SELECT  DISTINCT study_room.study_num, study_room.start_date, study_room.finish_date, study_room.study_name, study_room.host_id, study_type.study_type_name, study_mate.user_id 
+		FROM study_room INNER JOIN study_type ON study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[<]]> finish_date
+		INNER JOIN study_mate ON study_mate.study_num= study_room.study_num WHERE user_id= #{param1} or host_id=#{param1} GROUP BY study_num
 	</select>
 	
 	<!-- 완료된 스터디 -->
 	<select id="finishStudy" resultType="StudyVO">
-		SELECT study_room.*, study_type.study_type_name, study_mate.user_id FROM study_room INNER JOIN study_type
-		ON study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[>=]]> finish_date
-		INNER join study_mate ON study_mate.study_num= study_room.study_num WHERE user_id= #{param1} or host_id=#{param1}
+		SELECT  DISTINCT study_room.study_num, study_room.start_date, study_room.finish_date, study_room.study_name, study_room.host_id, study_type.study_type_name, study_mate.user_id 
+		FROM study_room INNER JOIN study_type ON  study_room.study_type_num = study_type.study_type_num AND date(now()) <![CDATA[>=]]> finish_date
+		INNER join study_mate ON study_mate.study_num= study_room.study_num WHERE user_id= #{param1} or host_id=#{param1} GROUP BY study_num
 	</select>
 	
 	<!-- 작성한 글 보기 -->
