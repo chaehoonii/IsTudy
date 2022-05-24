@@ -16,7 +16,6 @@ import com.hot6.project.service.StudyDetailService;
 import com.hot6.project.service.StudyRoomService;
 import com.hot6.project.vo.BoardVO;
 import com.hot6.project.vo.PagingVO;
-import com.hot6.project.vo.StudyVO;
 
 @RestController
 public class StudyRoomController {
