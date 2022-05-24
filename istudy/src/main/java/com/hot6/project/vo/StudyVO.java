@@ -20,7 +20,22 @@ public class StudyVO {
 	private int remain;	//남은 인원
 	private String study_content1;
 	private String study_content2;
+	private String level_icon;
+	private String permission;
 	
+	public String getLevel_icon() {
+		return level_icon;
+	}
+	public void setLevel_icon(String level_icon) {
+		this.level_icon = level_icon;
+	}
+	public String getPermission() {
+		return permission;
+	}
+	public void setPermission(String permission) {
+		this.permission = permission;
+	}
+
 	//user
 	private String profile_img;
 	private String level_icon;

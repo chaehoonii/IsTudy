@@ -12,7 +12,7 @@
    cursor:pointer;
 }
 .room_div{
-	min-height: 80vh;
+	min-height: 140vh;
 	margin-top:100px;
 }
 #name_div{
@@ -104,14 +104,16 @@
 }
 #bulletin_box{
 	width:84%;
+	height:500px;
 	margin-left:8%;
-	margin-top:50px;
+	top:70px;
 	box-shadow:0 0 15px rgba(0,0,0,30%);
 	border-radius:15px;
-	text-align:center;
 	position:relative;
+	overflow: scroll;
 }
 #bulletin_box hr{
 	width:75%;
-	text-align:center;
 }
+#bulletin_box::-webkit-scrollbar{ display:none; }
+
