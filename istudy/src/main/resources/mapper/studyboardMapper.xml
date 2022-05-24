@@ -45,5 +45,8 @@
 	WHERE 	user_id=#{param1}
 	AND		reply_num=#{param2}
 </delete>
-
+	<delete id="boardDelete">
+		DELETE 	FROM board 
+		WHERE 	board_num=#{param1}
+	</delete>
 </mapper>
