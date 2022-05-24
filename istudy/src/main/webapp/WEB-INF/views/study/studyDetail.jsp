@@ -217,7 +217,13 @@ $(document).ready(function(){
 			</div>
 			<div class="participant">
 				<div class="dmemeber">
-						<span class="dnick">[스터디장]&emsp;${vo.user_nick}</span><br/>
+						<span class="dnick">[스터디장]&emsp;${vo.user_nick}
+                        <c:if test="${vo.permission=='mentor'}">
+                            &nbsp;<img id="level-icon" src='${vo.level_icon}' style='width:30px; margin:0;display:inline;'></span><br/>
+                        </c:if>
+                        <c:if test="${vo.permission=='user'}">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        </c:if></span><br/>
 						<img class="dimg" src="/upload/user/${vo.profile_img}" class="img img-thumbnail"><br/>
 					<hr/>
 					<div class="peopleIcon">
