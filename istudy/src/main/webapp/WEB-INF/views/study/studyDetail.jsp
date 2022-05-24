@@ -27,14 +27,14 @@ function applyList(){
 				tag += "<div class='qna_profile_reply' style='display:inline-block;'><img src='/upload/user/"+data[i].profile_img+"' id='qna_profile'/>&emsp;";
 				tag += data[i].user_nick;
 				tag += "</div>"; //qna_profile_reply
-				//채택버튼
-				if(data[i].want_ok == 'T'){ //답변채택된 글일때
+				//신청버튼
+				if(data[i].want_ok == 'T'){ //신청확정된 댓글일때
 					if('${logId}'== data[i].host_id){ //로그인아이디가 작성자일때 > 채택취소
 						tag += "<span class='select_btn' onclick='SelectApplyDel("+data[i].want_num+")'><img src='/images/study_info/check.png'></span>";
 					}else{
 						tag += "<span class='select_btn' ><img src='/images/study_info/check.png'></span>";
 					}
-				}else{ //답변채택되지 않은 글일때
+				}else{ //신청확정되지 않은 글일때
 					if('${logId}'== data[i].host_id){ //로그인아이디가 작성자일때 > 채택
 						tag += "<span class='select_btn' onclick='SelectApply("+data[i].want_num+")'><img src='/images/study_info/agree.png'></span>";
 					}else{
@@ -42,14 +42,12 @@ function applyList(){
 					}
 				}
 				tag += "</div><hr/>";	//reply_top
-				
-				tag += "&emsp;&emsp;<div class='reply_content'>"+data[i].want_coment;
-				
+				tag += "<div class='reply_content'><span id='reply_comment'>"+data[i].want_coment+"</span>";
 				//수정삭제
 				if('${logId}'== data[i].user_id){
-					tag += "<div id='reply_btns'><input type='hidden' value='"+data[i].want_num+"'/><span class='reply_edit edit_btns'>수정</span>&nbsp;&nbsp;<span class='reply_del del_btns' onclick='ApplyDel("+data[i].want_num+")'>삭제</span></div>";
+					tag += "<span id='reply_btns'><input type='hidden' value='"+data[i].want_num+"'/><span class='reply_edit edit_btns'>수정</span>&nbsp;&nbsp;<span class='reply_del del_btns' onclick='ApplyDel("+data[i].want_num+")'>삭제</span></div>";
 				}
-				tag += "</div></div>";	
+				tag += "</span></div>";	
 			}
 			$(".apply_div").html(tag);	
 			
@@ -96,11 +94,10 @@ function applyList(){
 						var tag01 = "";
 						tag01 += "<form method='post' id='replyEditForm'>";
 						tag01 += "<input type='hidden' name='want_num' value='"+r.want_num+"'/>";
-						//tag01 += "<input type='hidden' name='board_num' value='"+r.board_num+"'/>";
-						tag01 += "<ul class='reply_write_ul'>";
-						tag01 += "<li><textarea name='want_coment' class='graySquare' id='want_coment'>"+r.want_coment+"</textarea></li>";
-						tag01 += "<li><input type='button' value='댓글 수정' id='replyEditbtn' /></li>";
-						tag01 += "</ul></form>";
+						tag01 += "<div class='reply_write_ul'>";
+						tag01 += "<textarea name='want_coment' id='want_coment'>"+r.want_coment+"</textarea>";
+						tag01 += "&emsp;&emsp;<input type='button' value='댓글 수정' id='replyEditbtn' />";
+						tag01 += "</div></form>";
 						
 						$(this).parent().parent().parent().html(tag01);
 							
@@ -241,11 +238,6 @@ $(document).ready(function(){
 			</div>
 		</div>
 		<div class="sdetailuser">
-			<span class="tid">ID</span>	
-			<span>신청글</span><br/>			
-			
-			<div class='apply_div'>
-			</div>
 			<c:if test="${logStatus=='Y'}">
 				<div class='study_apply'>
 		            <form method='post' id='applyWriteForm'>
@@ -259,9 +251,11 @@ $(document).ready(function(){
 				<div class='comment_back03'>
 					<ul class='comment_back02'>
 						<li>로그인 후 신청 등록이 가능합니다.</li>
-					</ul>
+<!-- 					</ul> -->
 				</div>
 			</c:if>
+			<div class='apply_div'>
+			</div>
 		</div>
 </div>
 <div style="clear:both"></div>
