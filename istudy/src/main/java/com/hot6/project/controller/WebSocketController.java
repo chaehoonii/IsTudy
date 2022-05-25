@@ -83,7 +83,9 @@ public class WebSocketController {
 	    @RequestMapping(value="/study/webSocket/studyPage", method = RequestMethod.GET)
 	    public ModelAndView studyPage(@RequestParam("study_num") int study_num, HttpSession session, HttpServletRequest request) {
 	    	ModelAndView mav = new ModelAndView();
+	    	System.out.println(study_num);
 	    	StudyVO vo = Sservice.getStudyByStudynum(study_num);
+	    	System.out.println(vo);
 	    	String logId = (String) session.getAttribute("logId");
 	    	session.setAttribute("my_id", "user"+Integer.toString((int)(Math.random() * 10000)));	
 	    	String my_id = (String) session.getAttribute("my_id");
