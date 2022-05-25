@@ -2,8 +2,6 @@
 
 use istudy_db;
 
-delete from board_type;
-
 select * from user;
 select * from board order by board_num;
 select * from study_type order by study_type_num;
@@ -25,17 +23,24 @@ insert study_type(study_type_name) values('English');
 insert study_type(study_type_name) values('etc');
 
 insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want) values('admin0000', '관리자', '관리자', 'admin1111', '01000000000', 'hong@gmail.com', 'admin', '1', 'F');
-insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want) values('aaaa0000', '홍길동', '홍홍홍홍홍', 'aaaa1111', '01011111111', 'hong01@gmail.com', 'user', '2', 'F');
-insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want) values('bbbb0000', '김길동', '고구마조아', 'bbbb1111', '01022222222', 'hong02@gmail.com', 'user', '3', 'F');
-insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career) values('cccc0000', '이길동', '보라돌잉', 'cccc1111', '01033333333', 'hong03@gmail.com', 'user', '4', 'T', '(전)삼성 멀티캠퍼스 강사');
-insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, exp) values('dddd0000', '박길동', '갓생개발자', 'dddd1111', '01044444444', 'hong04@gmail.com', 'mentor', '5', 'T','(현)삼성 멀티캠퍼스 강사',0);
-insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, exp) values('eeee0000', '고길동', '사람인사람인', 'eeee1111', '01055555555', 'hong05@gmail.com', 'mentor', '1', 'T','(현)삼성 멀티캠퍼스 강사',150);
-insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, exp) values('ffff0000', '강길동', '가가가아악', 'ffff1111', '01066666666', 'hong06@gmail.com', 'mentor', '2', 'T','(현)삼성 멀티캠퍼스 강사',250);
-insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, exp) values('gggg0000', '유길동', '뚜비두바', 'gggg1111', '01077777777', 'hong07@gmail.com', 'mentor', '3', 'T','(현)삼성 멀티캠퍼스 강사',350);
-insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, exp) values('hhhh0000', '송길동', '나나나나난낭', 'hhhh1111', '01088888888', 'hong08@gmail.com', 'mentor', '4', 'T','(현)삼성 멀티캠퍼스 강사',0);
-insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, exp) values('iiii0000', '장길동', 'ㅠㅠㅠㅠ', 'iiii1111', '01099999999', 'hong09@gmail.com', 'mentor', '5', 'T','(현)삼성 멀티캠퍼스 강사',0);
-insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, exp) values('jjjj0000', '나길동', '멘토오오오스', 'jjjj1111', '01011112222', 'hong10@gmail.com', 'mentor', '1', 'T','(현)삼성 멀티캠퍼스 강사',450);
-insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, exp) values('kkkk0000', '차길동', '개발인생', 'kkkk1111', '01022223333', 'hong11@gmail.com', 'mentor', '2', 'T','(현)삼성 멀티캠퍼스 강사',0);
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, register_date) values('aaaa0000', '홍길동', '홍홍홍홍홍', 'aaaa1111', '01011111111', 'hong01@gmail.com', 'user', '2', 'F', '2022-01-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, register_date) values('bbbb0000', '김길동', '고구마조아', 'bbbb1111', '01022222222', 'hong02@gmail.com', 'user', '3', 'F', '2022-01-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, register_date) values('mmmm0000', '홍길동', '홍홍홍홍gg홍', 'mmmm1111', '01011111141', 'hong015@gmail.com', 'user', '2', 'F', '2022-01-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, register_date) values('nnnn0000', '홍길동', '홍홍홍홍gd', 'nnnn1111', '01013111141', 'hong014@gmail.com', 'user', '4', 'F', '2022-03-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, register_date) values('oooo0000', '홍길동', '홍홍홍홍gf홍', 'oooo1111', '01011411141', 'hong013@gmail.com', 'user', '5', 'F', '2022-02-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, register_date) values('pppp0000', '홍길동', '홍홍홍홍hf홍', 'pppp1111', '01011811141', 'hong016@gmail.com', 'user', '6', 'F', '2022-02-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, career_year, register_date) values('cccc0000', '이길동', '보라돌잉', 'cccc1111', '01033333333', 'hong03@gmail.com', 'user', '4', 'T', 'https://github.com/SeongSilver', '1~3년', '2021-08-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, career_year, exp, register_date) values('dddd0000', '박길동', '갓생개발자', 'dddd1111', '01044444444', 'hong04@gmail.com', 'mentor', '5', 'T','https://github.com/SeongSilver','4~6년',0, '2021-09-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, career_year, exp, register_date) values('eeee0000', '고길동', '사람인사람인', 'eeee1111', '01055555555', 'hong05@gmail.com', 'mentor', '1', 'T','https://github.com/kjy222','4~6년',150, '2021-08-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, career_year, exp, register_date) values('ffff0000', '강길동', '가가가아악', 'ffff1111', '01066666666', 'hong06@gmail.com', 'mentor', '2', 'T','https://github.com/kjy222','4~6년',250, '2021-08-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, career_year, exp, register_date) values('gggg0000', '유길동', '뚜비두바', 'gggg1111', '01077777777', 'hong07@gmail.com', 'mentor', '3', 'T','https://github.com/hyeyoung-dev','7~9년',350, '2021-10-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, career_year, exp, register_date) values('hhhh0000', '송길동', '나나나나난낭', 'hhhh1111', '01088888888', 'hong08@gmail.com', 'mentor', '4', 'T','https://github.com/hyeyoung-dev','7~9년',0, '2021-11-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, career_year, exp, register_date) values('iiii0000', '장길동', 'ㅠㅠㅠㅠ', 'iiii1111', '01099999999', 'hong09@gmail.com', 'mentor', '5', 'T','https://github.com/fnejd','7~9년',0, '2022-05-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, career_year, exp, register_date) values('jjjj0000', '나길동', '멘토오오오스', 'jjjj1111', '01011112222', 'hong10@gmail.com', 'mentor', '1', 'T','https://github.com/fnejd','10년 이상',450, '2022-05-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, career_year, exp, register_date) values('kkkk0000', '차길동', '개발인생', 'kkkk1111', '01022223433', 'hong11@gmail.com', 'mentor', '2', 'T','https://github.com/paestro95','1~3년',0, '2022-05-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, career_year, exp, register_date) values('qqqq0000', '차길동', '개발인생3', 'qqqq1111', '01022223553', 'hong17@gmail.com', 'mentor', '4', 'T','https://github.com/paestro95','1~3년',0, '2022-04-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, career_year, exp, register_date) values('rrrr0000', '차길동', '개발인생4', 'rrrr1111', '01022223733', 'hong18@gmail.com', 'mentor', '5', 'T','https://github.com/chaehoonii','10년 이상',0, '2021-11-01');
+insert user(user_id, user_name, user_nick, user_pw, tel, email, permission, study_type_num, want, career, career_year, exp, register_date) values('ssss0000', '차길동', '개발인생5', 'ssss1111', '01022223633', 'hong19@gmail.com', 'mentor', '1', 'T','https://github.com/chaehoonii','10년 이상',0, '2021-11-01');
 
 insert board_type(board_type_name) values('스터디 게시판');
 insert board_type(board_type_name) values('Q&A');
@@ -246,7 +251,12 @@ insert board(user_id, title, content, ip, board_type_num) values ('cccc0000','�
 테이블에 외래키 매핑 관계를 추가했습니다. 단방향 일대일 관계라 한쪽에만 OneToOne을 붙여서 테이블 생성해주었습니다.
 MySQL 켜서 확인하면 라인이 1:1이 아니고 1:n으로 나타나는데 이유가 뭘까요? 원래 이렇게 나오는건가요? 
 잘 아시는 분들 답변부탁드리겠습니다 감사합니다!!',0,2);
-insert board(user_id, title, content, ip, board_type_num) values ('dddd0000','프로그래밍 중 오류가 뜹니다.','해결방법이 뭔가요 ㅠㅠ?',0,2);
+
+insert board(user_id, title, content, ip, board_type_num, study_num) values ('aaaa0000','스프링부트 디비연결','디비연결이 안된건가요ㅠㅠ 도와주세요',0,1,9);
+insert board(user_id, title, content, ip, board_type_num, study_num) values ('bbbb0000','스프링부트 디r비연결','디비연결이 안된건가sdf요ㅠㅠ 도와주세요',0,1,9);
+insert board(user_id, title, content, ip, board_type_num, study_num) values ('cccc0000','스프링부트df 디비연결','디비연결이 안된건가요ㅠㅠ 도와주세요',0,1,9);
+insert board(user_id, title, content, ip, board_type_num, study_num) values ('dddd0000','스프링부트 zxc디비연결','디비연결이 안된건가요ㅠㅠ 도와주세요',0,1,10);
+
 
 insert board_image(board_num, file1) values(1,'1651922690712.jpg');
 insert board_image(board_num, file1) values(3,'1651925182654.jpg');
@@ -281,9 +291,18 @@ insert reply_like(reply_num, user_id) values(2,'bbbb0000');
 insert reply_like(reply_num, user_id) values(3,'aaaa0000');
 insert reply_like(reply_num, user_id) values(1,'eeee0000');
 
-select @@max_connections;
-SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST;
-CALL mysql.rds_kill(18009);
+SELECT * FROM INFORMATION_SCHEMA.PROCESSLIST order by time desc;
+CALL mysql.rds_kill(35041);
 
 set foreign_key_checks=1;
 truncate report;
+
+		SELECT 	A.user_nick, ifnull(C.contribute,0) as contribute
+		FROM 	user A
+		JOIN 	study_mate B
+		ON 		A.user_id=B.user_id
+        join	(select user_id, count(*) as contribute from board where board_type_num=1 group by user_id) C
+        on		C.user_id=A.user_id
+		WHERE 	B.study_num=2
+        and		B.want_ok='T';
+        select user_id, count(*) as contribute from board where board_type_num=1 group by user_id;
