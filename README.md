@@ -3,7 +3,7 @@
 </div>
 
 
-# T-LOG  
+# I-study
 ### 사이트 이동 없이 한 플랫폼 내에서 플래너, 채팅 등의  
 ### IT분야 스터디 관련 기능들을 이용할 수 있는 웹 서비스
   
@@ -45,12 +45,11 @@
 
 ## 프로젝트 사용 방법
 ### 설치
-PAINTRAVEL 폴더, paintravel-frontend 폴더에서 패키지 및 라이브러리 설치
+
 ```
 npm install
 ```
 
-PAINTRAVEL 폴더에서 프로젝트 시작
 ```
 npm run dev
 ```
